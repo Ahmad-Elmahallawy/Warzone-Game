@@ -1,0 +1,3 @@
+C:/Users/ahmad/Desktop/Courses/Fall 2023/COMP 345/COMP345-Warzone-Project/cmake-build-debug/CMakeFiles/COMP345_Warzone_Project.dir
+C:/Users/ahmad/Desktop/Courses/Fall 2023/COMP 345/COMP345-Warzone-Project/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/ahmad/Desktop/Courses/Fall 2023/COMP 345/COMP345-Warzone-Project/cmake-build-debug/CMakeFiles/rebuild_cache.dir
