@@ -14,7 +14,7 @@ class Order {
 
     private:
 
-        std::string effect = "String describing the order";
+        std::string action = "String describing the order";
 
     public:
 
@@ -58,7 +58,7 @@ class Deploy : public Order
 {
     private:
         
-        std::string effect = "effect in Deploy order class";
+        std::string action = "effect in Deploy order class";
 
     public:
 
@@ -76,7 +76,7 @@ class Advance : public Order
 
     private:
     
-        std::string effect = "effect in Advance order class";
+        std::string action = "effect in Advance order class";
 
     public:
        
@@ -93,7 +93,7 @@ class Bomb : public Order
 {
     private:
         
-        std::string effect = "effect in Bomb order class";
+        std::string action = "effect in Bomb order class";
 
     public:
         
@@ -110,7 +110,7 @@ class Blockade : public Order
 {
     private:
        
-        std::string effect = "effect in Blockade order class";
+        std::string action = "effect in Blockade order class";
 
     public:
       
@@ -127,7 +127,7 @@ class Airlift : public Order
 {
     private:
         
-        std::string effect = "effect in Airlift order class";
+        std::string action = "effect in Airlift order class";
 
     public:
         
@@ -144,12 +144,12 @@ class Negotiate : public Order
 {
     private:
   
-        std::string effect = "effect in Negotiate order class";
+        std::string action = "effect in Negotiate order class";
 
     public:
         
         Negotiate();
-        Negotiate(Negotiate& Negotiate);
+        Negotiate(Negotiate& negotiate);
 
         void execute();
         bool validate();

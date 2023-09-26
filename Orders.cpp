@@ -3,25 +3,63 @@
 
 #include <iostream>
 #include <queue>
+using namespace std;
 
-class Order {
+//for order class
+Order::Order() {}
+Order::Order(Order& order) 
+{
+	this->action = order.action;
+}
 
-private:
+bool Order::validate() {}
+void Order::execute() {}
 
-public:
-
-	Order(); //default constructor
-
-	void execute();
-
-	bool validate();
-
-	
-};
-//constructors
-
-
-
-// implementation of Order class
 
 //different kinds of orders are: deploy, advance,bomb, blockade, airlift, and negotiate
+
+//for deploy subclass
+Deploy::Deploy() {}
+Deploy::Deploy(Deploy& deploy) 
+{
+	this->action = deploy.action;
+}
+
+//for advance subclass
+Advance::Advance() {}
+Advance::Advance(Advance& advance) 
+{
+	this->action = advance.action;
+}
+
+//for bomb subclass
+Bomb::Bomb() {}
+Bomb::Bomb(Bomb& bomb)
+{
+	this->action = bomb.action;
+}
+
+//for blockade subclass
+Blockade::Blockade() {}
+Blockade::Blockade(Blockade& blockade) 
+{
+	this->action = blockade.action;
+}
+
+//for airlift subclass
+Airlift::Airlift() {}
+Airlift::Airlift(Airlift& airlift)
+{
+	this->action = airlift.action;
+}
+
+
+//for negotiate subclass
+Negotiate::Negotiate() {}
+Negotiate::Negotiate(Negotiate& negotiate)
+{
+	this->action = negotiate.action;
+}
+
+
+
