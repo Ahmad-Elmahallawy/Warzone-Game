@@ -39,6 +39,8 @@ public:
 
     std::vector<Territory*> toAttack() const;
 
+
+    // getters and setters
     Hand *getHand();
 
     void issueOrder();

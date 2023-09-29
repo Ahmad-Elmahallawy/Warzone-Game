@@ -15,6 +15,7 @@ Player::Player() {
 Player::Player(Hand *hand, const vector<Territory *> &territories, const string &playerName, OrdersList *ordersList)
         : hand(hand), territories(territories), playerName(playerName), ordersList(ordersList) {}
 
+// copy constructor
 Player::Player(Player &player) {
     hand = new Hand(player.hand);
     territories = vector<Territory*>(player.territories);
