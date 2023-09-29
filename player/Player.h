@@ -1,6 +1,6 @@
-//
-// Created by ahmad on 9/24/2023.
-//
+// Part 2
+// This is the player header file
+
 #ifndef COMP345_WARZONE_PROJECT_PLAYER_H
 #define COMP345_WARZONE_PROJECT_PLAYER_H
 
@@ -14,14 +14,17 @@ class Player {
 // private attributes
 private:
     Hand* hand;
-
     vector<Territory*> territories; //territories owned by a player
-
     string playerName;
+    Order* ordersList;
+
 
 // public attributes
 public:
-    Player(); // default constructor
+    Player();
+
+    Player(Hand *hand, const vector<Territory *> &territories, const string &playerName, Order *ordersList);
+    // default constructor
 
     ~Player();   // deconstruct
 
@@ -39,6 +42,19 @@ public:
     Hand *getHand();
 
     void issueOrder();
+
+    const vector<Territory *> &getTerritories() const;
+
+    const string &getPlayerName() const;
+
+    void setHand(Hand *hand);
+
+    void setTerritories(const vector<Territory *> &territories);
+
+    void setPlayerName(const string &playerName);
+
+    Order *getOrdersList1() const;
+
 
 
 };
