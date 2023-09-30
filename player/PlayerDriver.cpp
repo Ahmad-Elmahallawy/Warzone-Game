@@ -3,7 +3,8 @@
 #include <iostream>
 #include "Player.h"
 #include "Cards.h";
-
+#include "Order.h"
+#include "Map.h"
 using namespace std;
 void testPlayer() {
 

@@ -6,6 +6,8 @@
 
 #include <string>
 #include <vector>
+#include "Cards.h";
+#include "Order.h"
 
 using namespace std;
 
