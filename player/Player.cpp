@@ -1,6 +1,6 @@
 // part 2
 // this is the player.cpp file where all the definitions are done
-
+#include <iostream>
 #include "Player.h"
 
 // default constructor
@@ -80,5 +80,15 @@ vector<Territory*> Player::toDefend(){
 vector<Territory*> Player::toAttack(){
     return {new Territory(), new Territory(), new Territory()};
 }
+
+// Assignment operator overload
+void Player::operator=(Player &player)
+{
+    cout << "Player assignment operator called." << endl;
+    hand = player.hand;
+    ordersList = player.ordersList;
+    ownedTerritories = player.ownedTerritories;
+}
+
 
 
