@@ -1,173 +1,149 @@
 #include "Orders.h"
-#include <math.h>
 
-#include <iostream>
-#include <queue>
-using namespace std;
+//Order&Order ::operator = (const Order&O)
+//{
+//	
+//}
 
-//for order class
-Order::Order() {}
-Order::Order(Order& order) 
+Order::Order()
 {
-	this->action = order.action;
 }
 
-bool Order::validate() {}
-void Order::execute() {}
-
-
-//different kinds of orders are: deploy, advance,bomb, blockade, airlift, and negotiate
-
-//for deploy subclass
-Deploy::Deploy() {}
-Deploy::Deploy(Deploy& deploy) 
+Order::~Order()
 {
-	this->action = deploy.action;
+}
+//Order::Order(const Order& O) 
+//{
+//	this->vec_type1 = *new vector<string>(O.vec_type1);
+//	this->type_id = new string(*(O.type_id));
+//}
+void Order::validate()
+{
+	cout << "validate if the order is valid" << endl;
+	valid = true;
 }
 
-bool Deploy :: validate()
+void Order::execute()
 {
-	cout << "deploy class is valid"<< endl;
+	if (valid) {
+		cout << "executes the action..." << endl;
+	}
 }
 
-void Deploy::execute()
+void Order::set_type_id(int num)
 {
-	if (this->validate() == true)
+	type_id = num;
+}
+
+string Order::get_type()
+{
+	return vec_type1.at(type_id);
+}
+
+
+
+
+
+void OrderList::add_order_list(Order* an_order)
+{
+	vec_order_list.push_back(an_order); //add an order
+}
+
+vector<Order*>* OrderList::get_order_list()
+{
+	return &vec_order_list;
+}
+
+void OrderList::remove_order(Order* oneOrder)
+{
+	for (int i = 0; i < vec_order_list.size(); i++) {
+		if (oneOrder->get_type() == vec_order_list.at(i)->get_type()) {
+			cout << "  deleting the order: " << oneOrder->get_type() << endl;
+			vec_order_list.erase(vec_order_list.begin() + i);
+
+			return;
+		}
+	}
+}
+
+void OrderList::move(int position, int new_position)
+{
+	if (position >= 0 && position < vec_order_list.size() && new_position >= 0 && new_position < vec_order_list.size())
 	{
-		cout << "executing Order deploy" << endl;
+		vec_order_list.insert(vec_order_list.begin() + new_position, vec_order_list.at(position));
+		vec_order_list.erase(vec_order_list.begin() + position);
 	}
-}
-
-//for advance subclass
-Advance::Advance() {}
-Advance::Advance(Advance& advance) 
-{
-	this->action = advance.action;
-}
-
-bool Advance::validate()
-{
-	cout << "Advance class is valid" << endl;
-}
-
-void Advance::execute()
-{
-	if (this->validate() == true)
+	else if (new_position == vec_order_list.size())
 	{
-		cout << "executing Order Advance" << endl;
+		vec_order_list.push_back(vec_order_list.at(position));
+		vec_order_list.erase(vec_order_list.begin() + position);
+	}
+	else {
+		cout << "\n error, not valid position" << endl;
 	}
 }
 
-//for bomb subclass
-Bomb::Bomb() {}
-Bomb::Bomb(Bomb& bomb)
+Deploy::Deploy()
 {
-	this->action = bomb.action;
+	cout << "deploy added" << endl;
+	set_type_id(0);
 }
 
-bool Bomb::validate()
+Deploy::~Deploy()
 {
-	cout << "Bomb class is valid" << endl;
 }
 
-void Bomb::execute()
+string* Deploy::get_type()
 {
-	if (this->validate() == true)
-	{
-		cout << "executing Bomb deploy" << endl;
-	}
+	return &type1;
 }
 
-//for blockade subclass
-Blockade::Blockade() {}
-Blockade::Blockade(Blockade& blockade) 
+Advance::Advance()
 {
-	this->action = blockade.action;
+	cout << "advance is added" << endl;
+	set_type_id(1);
 }
 
-bool Blockade::validate()
+Advance::~Advance()
 {
-	cout << "Blockade class is valid" << endl;
 }
 
-void Blockade::execute()
+Bomb::Bomb()
 {
-	if (this->validate() == true)
-	{
-		cout << "executing Order Blockade" << endl;
-	}
+	cout << "bomb is added" << endl;
+	set_type_id(2);
 }
 
-//for airlift subclass
-Airlift::Airlift() {}
-Airlift::Airlift(Airlift& airlift)
+Bomb::~Bomb()
 {
-	this->action = airlift.action;
 }
 
-bool Airlift::validate()
+Blockade::Blockade()
 {
-	cout << "Airlift class is valid" << endl;
+	cout << "blockade is added" << endl;
+	set_type_id(3);
 }
 
-void Airlift::execute()
+Blockade::~Blockade()
 {
-	if (this->validate() == true)
-	{
-		cout << "executing Order Airlift" << endl;
-	}
 }
 
-
-//for negotiate subclass
-Negotiate::Negotiate() {}
-Negotiate::Negotiate(Negotiate& negotiate)
+Airlift::Airlift()
 {
-	this->action = negotiate.action;
+	cout << "airlift is added" << endl;
+	set_type_id(4);
 }
 
-bool Negotiate::validate()
+Airlift::~Airlift()
 {
-	cout << "Negotiate class is valid" << endl;
 }
 
-void Negotiate::execute()
+Negotiate::Negotiate()
 {
-	if (this->validate() == true)
-	{
-		cout << "executing Order Negotiate" << endl;
-	}
+	cout << "negotiate is added" << endl;
+	set_type_id(5);
 }
 
-
-//orders list class
-
-OrdersList::OrdersList() {}
-OrdersList::OrdersList(OrdersList& ordersList)
+Negotiate::~Negotiate()
 {
-	this->ordersList = ordersList.ordersList;
 }
-
-//add an order to OrdesList
-void OrdersList::addOrder(Order* order)
-{
-	ordersList.push(order);
-}
-
-// get next order on the list
-Order* OrdersList::getNextOrder()
-{
-	// if list not empty, pop and return next order
-	if (!ordersList.empty())
-	{
-		Order* nextOrderPtr = ordersList.front();
-		ordersList.pop();
-		return nextOrderPtr;
-	}
-	else
-	{   // if list is empty, print a message
-		std::cout << " nothing to get: Order list is empty !";
-		return nullptr;
-	}
-}
-
