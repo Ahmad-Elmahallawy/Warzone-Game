@@ -131,52 +131,6 @@ void MapLoader::setNumberOfTerritories(int n) {
 int MapLoader::getNumberOfTerritories() {
     return this->numberOfTerritories;
 }
-void MapLoader::loadMap() {
-    int noOfLines = 0;
-    std::string myline;
-    bool past = false;
-    int noOfTs = this->getNumberOfTerritoriesFromFile();
-    std::ifstream myFile;
-    myFile.open(this->fileName);
-    Map gameMap(noOfTs);
-    if(myFile.is_open()){
-        while(myFile){
-            if(myline == "[Territories]"){
-                past = true;
-            }
-            std::getline(myFile,myline);
-            if(past && myline != ""){
-                string word;
-                vector<string> tokens;
-//            std::cout<<myline<<'\n';
-                stringstream ss(myline);
-                while(!ss.eof()){
-                    getline(ss,word,',');
-                    tokens.push_back(word);
-//                cout<<word<<endl;
-                }
-                string testName = tokens[0];
-                Territory t;
-                if(this->territoryExists(testName)){
-                     t =  this->findTerritory(testName);
-                }else{
-                    t.setTerritoryName(tokens[0]);
-                    t.setXCoordinate(stoi(tokens[1]));
-                    t.setYCoordinate(stoi(tokens[2]));
-                    t.setContinentName(tokens[3]);
-                    gameMap.listOfTerritories.push_back(t);
-                }
-                cout<<t.getTerritoryName()<<t.getXCoordinate()<<t.getYCoordinate()<<t.getContinentName()<<endl;
-                for(int k = 4;k<tokens.size();k++){
-
-                }
-                noOfLines++;
-            }
-        }
-    }
-    this->setNumberOfTerritories(noOfLines);
-}
-
 void MapLoader::firstRun() {
     string myline = "";
     bool past = false;
@@ -198,7 +152,7 @@ void MapLoader::firstRun() {
                 while (!ss.eof()) {
                     getline(ss, word, ',');
                     tokens.push_back(word);
-//                cout<<word<<endl;
+//                    cout<<word<<endl;
                 }
                 Territory t(stoi(tokens[1]), stoi(tokens[2]),tokens[0],tokens[3]);
                 this->gameMap->listOfTerritories.push_back(t);
@@ -241,19 +195,22 @@ void MapLoader::secondRun() {
             }
         }
     }
-    this->gameMap->print();
     bool continentCheck = this->gameMap->checkContinent();
+    bool connectivityCheck = this->gameMap->DFS();
     if(continentCheck){
         cout<<"Continent test has passed: every territory belongs to only one continent"<<endl;
+        if(connectivityCheck){
+            cout<<"Connectivity test has passed: Map is a connected graph and every continent is a connected subgraph";
+        } else{
+            cout<<"Connectivity test has failed: Map is not  a connected graph and not every continent is a connected subgraph";
+            exit(0);
+        }
     } else{
         cout<<"Continent test has failed: there exists one or more territories that belong to more than one continent"<<endl;
+        exit(0);
     }
-    bool connectivityCheck = this->gameMap->DFS();
-    if(connectivityCheck){
-        cout<<"Connectivity test has passed: Map is a connected graph and every continent is a connected subgraph";
-    } else{
-        cout<<"Connectivity test has failed: Map is not  a connected graph and not every continent is a connected subgraph";
-    }
+    this->gameMap->print();
+
 //    cout<<this->gameMap->listOfTerritories.size();
 //    for(int j = 0;j<this->gameMap->listOfTerritories.size();j++){
 //        cout<<this->gameMap->listOfTerritories[j].getTerritoryName()<<endl;
@@ -293,9 +250,12 @@ bool MapLoader::territoryExists(string tName) {
 }
 
 Territory MapLoader::findTerritory(std::string tName) {
+    Territory t;
     for(int i = 0;i<this->gameMap->listOfTerritories.size();i++){
         if(tName == this->gameMap->listOfTerritories[i].getTerritoryName()){
             return this->gameMap->listOfTerritories[i];
         }
     }
+    t.setTerritoryName("Not found");
+    return t;
 }

@@ -55,7 +55,6 @@ private:
 };
 class MapLoader{
 public:
-    void loadMap();
     Map *gameMap;
     MapLoader(string fileName);
     MapLoader(int n,std::string fileName);
@@ -71,4 +70,7 @@ public:
 private:
     int numberOfTerritories;
 };
+
+void testLoadMaps();
+
 #endif //COMPP345WARZONE_MAP_H

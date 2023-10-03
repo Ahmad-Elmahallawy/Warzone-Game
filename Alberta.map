@@ -19,7 +19,7 @@ Prairies=6
 
 [Territories]
 Territory01,382,194,Northern Alberta,Territory1A,Territory02,Territory04,Territory05
-Territory1A,492,345,Northern Alberta,Territory01,Territory02,Territory04,Territory05,Territory06,Territory09,Territory10
+Territory01,492,345,Northern Alberta,Territory01,Territory02,Territory04,Territory05,Territory06,Territory09,Territory10
 Territory02,689,187,Northern Alberta,Territory01,Territory1A,Territory03,Territory06
 Territory03,852,246,Northern Alberta,Territory02,Territory06,Territory07
 Territory04,278,365,Northern Alberta,Territory01,Territory1A,Territory05,Territory08,Territory09,Territory14
