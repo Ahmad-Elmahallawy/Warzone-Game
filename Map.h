@@ -11,6 +11,7 @@
 #include <list>
 #include <fstream>
 #include <vector>
+#include "Player.h"
 using namespace std;
 class Territory{
 public:
@@ -37,6 +38,8 @@ private:
     string continent;//could be enum to ensure that only one continent chosen
     static int viableVertexNumber;
     int vertexNumber;
+    int numberOfArmies
+    Player *owningPlayer;
 };
 class Map{
 public:
