@@ -7,7 +7,7 @@ Here : remove, move of the orderlist will be tested, expected result shown comme
 
 using namespace std;
 
-int main()
+void testOrdersLists()
 {
 	cout << "test OrderDriver...\n" << endl;
 	OrderList anOrderList;
@@ -34,7 +34,7 @@ int main()
 	}
 
 	//removing an order
-	anOrderList.remove_order(&aDeploy);
+	anOrderList.remove(&aDeploy);
 
 	//check output
 	cout << "\n the orderlist contains: " << endl;

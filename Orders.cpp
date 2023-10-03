@@ -9,6 +9,11 @@ Order::Order()
 {
 }
 
+Order::Order(Order& order)
+{
+	this->action = order.action;
+}
+
 Order::~Order()
 {
 }
@@ -17,15 +22,15 @@ Order::~Order()
 //	this->vec_type1 = *new vector<string>(O.vec_type1);
 //	this->type_id = new string(*(O.type_id));
 //}
-void Order::validate()
+bool Order::validate()
 {
 	cout << "validate if the order is valid" << endl;
-	valid = true;
+	return true;
 }
 
 void Order::execute()
 {
-	if (valid) {
+	if (this->validate() == true) {
 		cout << "executes the action..." << endl;
 	}
 }
@@ -54,7 +59,7 @@ vector<Order*>* OrderList::get_order_list()
 	return &vec_order_list;
 }
 
-void OrderList::remove_order(Order* oneOrder)
+void OrderList::remove(Order* oneOrder)
 {
 	for (int i = 0; i < vec_order_list.size(); i++) {
 		if (oneOrder->get_type() == vec_order_list.at(i)->get_type()) {
@@ -83,14 +88,37 @@ void OrderList::move(int position, int new_position)
 	}
 }
 
+
+//subclasses of order
+
 Deploy::Deploy()
 {
 	cout << "deploy added" << endl;
 	set_type_id(0);
 }
 
+Deploy::Deploy(Deploy& deploy)
+{
+	this->action = deploy.action;
+}
+
 Deploy::~Deploy()
 {
+}
+
+bool Deploy::validate()
+{
+	cout << "deploy class is valid" << endl;
+	return true;
+}
+
+void Deploy::execute()
+{
+	if (this->validate() == true)
+	{
+		cout << "executing Order deploy" << endl;
+		cout << "order: " + this->action;
+	}
 }
 
 string* Deploy::get_type()
@@ -98,14 +126,35 @@ string* Deploy::get_type()
 	return &type1;
 }
 
+
 Advance::Advance()
 {
 	cout << "advance is added" << endl;
 	set_type_id(1);
 }
 
+Advance::Advance(Advance& advance)
+{
+	this->action = advance.action;
+}
+
 Advance::~Advance()
 {
+}
+
+bool Advance::validate()
+{
+	cout << "Advance class is valid" << endl;
+	return true;
+}
+
+void Advance::execute()
+{
+	if (this->validate() == true)
+	{
+		cout << "executing Order Advance" << endl;
+		cout << "order: " + this->action;
+	}
 }
 
 Bomb::Bomb()
@@ -114,8 +163,28 @@ Bomb::Bomb()
 	set_type_id(2);
 }
 
+Bomb::Bomb(Bomb& bomb)
+{
+	this->action = bomb.action;
+}
+
 Bomb::~Bomb()
 {
+}
+
+bool Bomb::validate()
+{
+	cout << "Bomb class is valid" << endl;
+	return true;
+}
+
+void Bomb::execute()
+{
+	if (this->validate() == true)
+	{
+		cout << "executing Bomb deploy" << endl;
+		cout << "order: " + this->action;
+	}
 }
 
 Blockade::Blockade()
@@ -124,8 +193,28 @@ Blockade::Blockade()
 	set_type_id(3);
 }
 
+Blockade::Blockade(Blockade& blockade)
+{
+	this->action = blockade.action;
+}
+
 Blockade::~Blockade()
 {
+}
+
+bool Blockade::validate()
+{
+	cout << "Blockade class is valid" << endl;
+	return true;
+}
+
+void Blockade::execute()
+{
+	if (this->validate() == true)
+	{
+		cout << "executing Order Blockade" << endl;
+		cout << "order: " + this->action;
+	}
 }
 
 Airlift::Airlift()
@@ -134,8 +223,28 @@ Airlift::Airlift()
 	set_type_id(4);
 }
 
+Airlift::Airlift(Airlift& airlift)
+{
+	this->action = airlift.action;
+}
+
 Airlift::~Airlift()
 {
+}
+
+bool Airlift::validate()
+{
+	cout << "Airlift class is valid" << endl;
+	return true;
+}
+
+void Airlift::execute()
+{
+	if (this->validate() == true)
+	{
+		cout << "executing Order Airlift" << endl;
+		cout << "order: " + this->action;
+	}
 }
 
 Negotiate::Negotiate()
@@ -146,4 +255,19 @@ Negotiate::Negotiate()
 
 Negotiate::~Negotiate()
 {
+}
+
+bool Negotiate::validate()
+{
+	cout << "Negotiate class is valid" << endl;
+	return true;
+}
+
+void Negotiate::execute()
+{
+	if (this->validate() == true)
+	{
+		cout << "executing Order Negotiate" << endl;
+		cout << "order: " + this->action;
+	}
 }
