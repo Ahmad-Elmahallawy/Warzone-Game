@@ -26,6 +26,10 @@ void testOrdersLists()
 	anOrderList.add_order_list(&anairlift);
 	anOrderList.add_order_list(&anegotiate);
 
+	//validate and execute
+	cout << "  " << anOrderList.get_order_list()->at(0)->validate() << endl;
+	anOrderList.get_order_list()->at(3)->execute();
+	
 
 	//print orderlist
 	cout << "\n the orderlist contains: " << endl;
