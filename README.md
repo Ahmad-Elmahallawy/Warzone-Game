@@ -9,7 +9,7 @@ COMP-345 Assignment #1
 - [ ] do we need assignment and stream insertion operator?
 
 ## Map
-// add here if you want to remember things to do
+- [ ] test MapLoader with a invalid map file
 
 ## Order
 // add here if you want to remember things to do
