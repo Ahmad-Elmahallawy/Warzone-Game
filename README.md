@@ -17,3 +17,8 @@ COMP-345 Assignment #1
 
 ## Cards
 // add here if you want to remember things to do
+
+
+## Lab Questions to ask
+- toDefend() and toAttack(), what do we put as a return
+- in player, should territory be pointer array?
