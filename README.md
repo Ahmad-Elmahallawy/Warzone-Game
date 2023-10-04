@@ -16,7 +16,7 @@ COMP-345 Assignment #1
 
 
 ## Cards
-// add here if you want to remember things to do
+- [ ]  The size of the deck
 
 
 ## Lab Questions to ask
