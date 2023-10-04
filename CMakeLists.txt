@@ -8,4 +8,4 @@ include_directories(player)
 
 add_executable(COMP345_Warzone_Project
         player/Player.cpp
-        player/Player.h)
+        player/Player.h player/PlayerDriver.cpp)
