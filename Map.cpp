@@ -238,7 +238,7 @@ int MapLoader::getNumberOfTerritoriesFromFile() {
     return n;
 }
 
-bool MapLoader::territoryExists(string tName) {
+bool MapLoader::territoryExists(string tName) {//finds out if given territory exists
     bool found = false;
     for(int k = 0;k<this->gameMap->listOfTerritories.size();k++){
         string otherTName = this->gameMap->listOfTerritories[k].getTerritoryName();

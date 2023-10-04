@@ -63,7 +63,7 @@ public:
     MapLoader(int n,std::string fileName);
     ~MapLoader();
     int getNumberOfTerritoriesFromFile();
-    bool territoryExists(string tName);
+    bool territoryExists(string tName);//finds out if given territory exists
     Territory findTerritory(string tName);
     void setNumberOfTerritories(int n);
     void firstRun();
