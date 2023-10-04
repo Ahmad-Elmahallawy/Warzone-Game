@@ -59,7 +59,7 @@ public:
 
     Order *getOrdersList1() const;
 
-
+    void testPlayer();
 
 };
 
