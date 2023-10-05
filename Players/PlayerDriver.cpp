@@ -1,7 +1,7 @@
 #include "Player.h"
 using namespace std;
 
-int testPlayers()()
+void testPlayers()
 {
     cout << "SETTING UP PLAYER'S" << endl;
     cout << "***********************************************************\n" << endl;
@@ -34,5 +34,4 @@ int testPlayers()()
     cout << "***********************************************************" << endl;
     p1->toDefend();
 
-    return 0;
 }
