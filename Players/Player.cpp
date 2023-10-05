@@ -2,24 +2,22 @@
 // this is the Players.cpp file where all the definitions are done
 #include <iostream>
 #include "Player.h"
-
+using namespace std;
 // default constructor
 Player::Player() {
     this->hand = new Hand();
     this->territories = vector<Territory *>();
     this->playerName = "no name";
-    this->ordersList = new Order();
+    this->ordersList = new OrderList();
 }
 
-// non-default constructor
-Player::Player(Hand *hand, const vector<Territory *> &territories, const string &playerName, Order *ordersList) : hand(
-        hand), territories(territories), playerName(playerName), ordersList(ordersList) {}
+
 
 // copy constructor
 Player::Player(Player &player) {
     hand = new Hand(*player.hand);
     territories = vector<Territory*>(player.territories);
-    ordersList = new Order(*player.ordersList);
+    ordersList = new OrderList(*player.ordersList);
     playerName = player.playerName;
 
 }
@@ -37,8 +35,8 @@ const string &Player::getPlayerName() const {
 }
 
 
-Order *Player::getOrdersList1() const {
-    return ordersList;
+OrderList* Player::getOrdersList() const {
+    return this->ordersList;
 }
 
 Hand* Player::getHand() const
@@ -67,41 +65,47 @@ void Player::setPlayerId(int playerId) {
     playerID = playerId;
 }
 
-Order *Player::getOrdersList() const {
-    return ordersList;
-}
 
-void Player::setOrdersList(Order *ordersList) {
+void Player::setOrdersList(OrderList *ordersList) {
     Player::ordersList = ordersList;
 }
 
 // creates a new order
 void Player::issueOrder() {
-    OrderList orderList;
-    Order *order = new Order();
-
-    orderList.add_order_list(order);//no addOrder for type order its for type orderlist
-
-    cout << "an new order is added";
+    Order *order = new Order(*new Deploy());
+cout << "an Issue has been ordered called. The orders are: \n";
+    ordersList->add_order_list(order);
+    for(int i = 0 ; i < ordersList->get_order_list()->size() ; i++){
+        cout << ordersList->get_order_list()->at(i)->get_type() << endl;
+        cout<< "";
+    }
 }
 
 // currently just a static territories to defend
 vector<Territory*> Player::toDefend() const{
-    return {new Territory(), new Territory()};
+
+    Territory *t1, *t2, *t3;
+    t1 = new Territory();
+    t2 = new Territory();
+    t3 = new Territory();
+    t1->setTerritoryName("Belgium");
+    t2->setTerritoryName("Canada");
+    t3->setTerritoryName("Italy");
+    cout << t1->getTerritoryName() + ", " + t2->getTerritoryName() + ", " + t3->getTerritoryName();
+    return {t1, t2, t3};
 }
 
 // currently just a static territories to attack
 vector<Territory*> Player::toAttack() const{
-    return {new Territory(), new Territory(), new Territory()};
-}
-
-// Assignment operator overload
-Player& Player::operator=(const Player &player)
-{
-    cout << "Player assignment operator called." << endl;
-    hand = player.hand;
-    ordersList = player.ordersList;
-    vector<Territory*> ownedTerritories = player.territories;//territories?
+    Territory *t1, *t2, *t3;
+    t1 = new Territory();
+    t2 = new Territory();
+    t3 = new Territory();
+    t1->setTerritoryName("England");
+    t2->setTerritoryName("France");
+    t3->setTerritoryName("Mexico");
+    cout << t1->getTerritoryName() + ", " + t2->getTerritoryName() + ", " + t3->getTerritoryName();
+    return {t1,t2,t3};
 }
 
 
