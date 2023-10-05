@@ -1,7 +1,7 @@
 #include "Player.h"
 using namespace std;
 
-void testPlayers()
+void testPlayer()
 {
     cout << "SETTING UP PLAYER'S" << endl;
     cout << "***********************************************************\n" << endl;

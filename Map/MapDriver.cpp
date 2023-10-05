@@ -8,11 +8,11 @@ using namespace std;
 
 int getNumberOfTerritoriesFromFile(string fileName);
 void testLoadMaps() {
-    int n = getNumberOfTerritoriesFromFile(R"(C:\Users\oimbs\CLionProjects\COMP345-Remake\Map\Alberta.map)");//number of territrories
-    MapLoader loader(n,R"(C:\Users\oimbs\CLionProjects\COMP345-Remake\Map\Alberta.map)");
-    loader.firstRun();
-    loader.secondRun();
-    loader.~MapLoader();
+    int n = getNumberOfTerritoriesFromFile(R"(C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Map\Alberta.map)");//number of territrories
+    MapLoader loader(n,R"(C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Map\Alberta.map)");
+   loader.firstRun();
+   loader.secondRun();
+//    loader.~MapLoader();
 }
 int getNumberOfTerritoriesFromFile(string fileName){
     string myline;

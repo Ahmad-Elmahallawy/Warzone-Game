@@ -1,9 +1,12 @@
 #include <iostream>
 #include "Map/Map.h"
 #include "GameEngine.h"
+#include "Players/Player.h"
+
 int main() {
     std::cout << "Hello hello! test" << std::endl;
     testLoadMaps();
+//    testPlayer();
     return 0;
 }
 

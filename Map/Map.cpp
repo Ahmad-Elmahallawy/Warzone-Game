@@ -70,6 +70,10 @@ Map::Map(int v) {
     this->numberOfVertices = v;
 }
 
+Map::~Map() {
+    delete[] this->adjlist;
+}
+
 void Map::addEdge(Territory t1, Territory t2) {
     adjlist[t1.getVertexNumber()].push_back(t2);
 }
@@ -89,6 +93,7 @@ bool Map::checkContinent() {
     for (int i = 0; i < this->listOfTerritories.size(); ++i) {
         int count = std::count(this->listOfTerritories.begin(),this->listOfTerritories.end(), this->listOfTerritories[i]);
         if(count>1){
+            cout<<this->listOfTerritories[i].getTerritoryName();
             return false;
         }
     }
@@ -130,7 +135,7 @@ MapLoader::MapLoader(int n,string fileName) {
     }
 }
 MapLoader::~MapLoader(){
-    delete(this->gameMap);
+    delete this->gameMap;
 }
 void MapLoader::setNumberOfTerritories(int n) {
     this->numberOfTerritories = n;
@@ -181,20 +186,20 @@ void MapLoader::secondRun() {
 //        cout<<this->gameMap->listOfTerritories[j].getTerritoryName()<<endl;
 //    }
     if(myFile.is_open()){
-        while (myFile){
+        while (!myFile.eof()){
             if (myline == "[Territories]") {
                 past = true;
             }
             std::getline(myFile, myline);
             if (past && myline != "") {
-//            std::cout<<myline<<'\n';
+                std::cout<<myline<<'\n';
                 word = "";
                 tokens.clear();
                 stringstream ss(myline);
                 while (!ss.eof()) {
                     getline(ss, word, ',');
                     tokens.push_back(word);
-//                cout<<word<<endl;
+//                    cout<<word<<endl;
                 }
                 primary = this->findTerritory(tokens[0]);
                 for (int i = 4; i < tokens.size(); ++i) {
