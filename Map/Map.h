@@ -11,6 +11,7 @@
 #include <list>
 #include <fstream>
 #include <vector>
+class Player;
 //#include "Players/Player.h"
 using namespace std;
 class Territory{
@@ -39,7 +40,7 @@ private:
     static int viableVertexNumber;
     int vertexNumber;
     int numberOfArmies;
-//    Player *owningPlayer;
+    Player *owningPlayer;
 };
 class Map{
 public:

@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Project_1::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Project_1-Debug-d30bf887e607dea91e81.json",
+					"jsonFile" : "target-Project_1-Debug-b2b6525cce22f73db8c3.json",
 					"name" : "Project_1",
 					"projectIndex" : 0
 				}
@@ -49,12 +49,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/ahmad/Desktop/Courses/Fall 2023/COMP 345/Project_1/cmake-build-debug",
-		"source" : "C:/Users/ahmad/Desktop/Courses/Fall 2023/COMP 345/Project_1"
+		"build" : "C:/Users/oimbs/CLionProjects/COMP345-Remake/cmake-build-debug",
+		"source" : "C:/Users/oimbs/CLionProjects/COMP345-Remake"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 3
+		"minor" : 5
 	}
 }

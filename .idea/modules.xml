@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/COMP345-Remake.iml" filepath="$PROJECT_DIR$/.idea/COMP345-Remake.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Project_1.iml" filepath="$PROJECT_DIR$/.idea/Project_1.iml" />
     </modules>
   </component>

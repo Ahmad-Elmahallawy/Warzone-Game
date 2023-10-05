@@ -9,6 +9,7 @@
 #include <list>
 #include <bits/stdc++.h>
 #include <vector>
+#include "../Players/Player.h"
 using namespace std;
 int Territory::viableVertexNumber =0;
 Territory::Territory(int xCoordinate, int yCoordinate, std::string territoryName, std::string continent) {
