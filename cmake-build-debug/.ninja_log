@@ -1,12 +1,11 @@
 # ninja log v5
-8	277	7181779055717915	build.ninja	3fde8d8d0f82b1d4
+8	277	7181787686293726	build.ninja	3fde8d8d0f82b1d4
 4	428	7181777279381365	CMakeFiles/Project_1.dir/Map/MapDriver.cpp.obj	434b67bed4462b46
-5	431	7181778779169881	CMakeFiles/Project_1.dir/GameEngine.cpp.obj	a725470db0d4b505
-714	966	7181778784450651	Project_1.exe	8a469bea43ab6901
+4	518	7181785460177205	CMakeFiles/Project_1.dir/GameEngine.cpp.obj	a725470db0d4b505
+561	873	7181783875544944	Project_1.exe	153e0e02a072c3db
 3	1516	7181776754001352	CMakeFiles/Project_1.dir/Map/Map.cpp.obj	e628b457afa7a1f8
 17	205	7181777886299460	CMakeFiles/Project_1.dir/Cards/CardsDriver.cpp.obj	d2d128964a7da77f
 5	473	7181777888986764	CMakeFiles/Project_1.dir/Cards/Cards.cpp.obj	31d814a3f2a1440
 22	576	7181778780627925	CMakeFiles/Project_1.dir/Orders/OrdersDriver.cpp.obj	f37e6ef09ad5fd58
 14	713	7181778781968073	CMakeFiles/Project_1.dir/Orders/Orders.cpp.obj	58730d227ac6d7c4
 10	938	7181780293583426	CMakeFiles/Project_1.dir/Players/Player.cpp.obj	cb8ad060ef6f63ef
-939	1132	7181780295459860	Project_1.exe	153e0e02a072c3db

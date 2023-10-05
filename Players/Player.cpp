@@ -59,6 +59,22 @@ void Player::setPlayerName(const string &playerName) {
     Player::playerName = playerName;
 }
 
+int Player::getPlayerId() const {
+    return playerID;
+}
+
+void Player::setPlayerId(int playerId) {
+    playerID = playerId;
+}
+
+Order *Player::getOrdersList() const {
+    return ordersList;
+}
+
+void Player::setOrdersList(Order *ordersList) {
+    Player::ordersList = ordersList;
+}
+
 // creates a new order
 void Player::issueOrder() {
     OrderList orderList;

@@ -19,6 +19,7 @@ private:
     Hand* hand;
     vector<Territory*> territories; //territories owned by a Players
     string playerName;
+    int playerID;
     Order* ordersList;
 
 
@@ -60,9 +61,19 @@ public:
 
     void setPlayerName(const string &playerName);
 
+    void setPlayerID(const int &playerID);
+
     Order *getOrdersList1() const;
 
     void testPlayer();
+
+    int getPlayerId() const;
+
+    void setPlayerId(int playerId);
+
+    Order *getOrdersList() const;
+
+    void setOrdersList(Order *ordersList);
 
 
 };

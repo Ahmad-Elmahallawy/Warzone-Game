@@ -97,6 +97,12 @@ build CMakeFiles/Project_1.dir/Players/Player.cpp.obj: CXX_COMPILER__Project_1_D
   OBJECT_DIR = CMakeFiles\Project_1.dir
   OBJECT_FILE_DIR = CMakeFiles\Project_1.dir\Players
 
+build CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.obj: CXX_COMPILER__Project_1_Debug C$:/Users/ahmad/Desktop/Courses/Fall$ 2023/COMP$ 345/Project_1/Players/PlayerDriver.cpp || cmake_object_order_depends_target_Project_1
+  DEP_FILE = CMakeFiles\Project_1.dir\Players\PlayerDriver.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\Project_1.dir
+  OBJECT_FILE_DIR = CMakeFiles\Project_1.dir\Players
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Project_1
@@ -105,7 +111,7 @@ build CMakeFiles/Project_1.dir/Players/Player.cpp.obj: CXX_COMPILER__Project_1_D
 #############################################
 # Link the executable Project_1.exe
 
-build Project_1.exe: CXX_EXECUTABLE_LINKER__Project_1_Debug CMakeFiles/Project_1.dir/GameEngine.cpp.obj CMakeFiles/Project_1.dir/Map/Map.cpp.obj CMakeFiles/Project_1.dir/Map/MapDriver.cpp.obj CMakeFiles/Project_1.dir/Cards/Cards.cpp.obj CMakeFiles/Project_1.dir/Cards/CardsDriver.cpp.obj CMakeFiles/Project_1.dir/Orders/Orders.cpp.obj CMakeFiles/Project_1.dir/Orders/OrdersDriver.cpp.obj CMakeFiles/Project_1.dir/Players/Player.cpp.obj
+build Project_1.exe: CXX_EXECUTABLE_LINKER__Project_1_Debug CMakeFiles/Project_1.dir/GameEngine.cpp.obj CMakeFiles/Project_1.dir/Map/Map.cpp.obj CMakeFiles/Project_1.dir/Map/MapDriver.cpp.obj CMakeFiles/Project_1.dir/Cards/Cards.cpp.obj CMakeFiles/Project_1.dir/Cards/CardsDriver.cpp.obj CMakeFiles/Project_1.dir/Orders/Orders.cpp.obj CMakeFiles/Project_1.dir/Orders/OrdersDriver.cpp.obj CMakeFiles/Project_1.dir/Players/Player.cpp.obj CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Project_1.dir
