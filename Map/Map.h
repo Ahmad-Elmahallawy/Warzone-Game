@@ -28,6 +28,7 @@ public:
     string getContinentName();
     void setContinentName(string cName);
     int getVertexNumber();
+    void setVertexNumber();
     int getViableVertexNumber();
     bool operator==(const Territory& other) const {
         return this->territoryName == other.territoryName;

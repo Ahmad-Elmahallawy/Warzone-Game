@@ -61,6 +61,10 @@ void Territory::setTerritoryName(std::string tName) {
 void Territory::setContinentName(std::string cName) {
     this->continent = cName;
 }
+
+void Territory::setVertexNumber() {
+    this->vertexNumber = getViableVertexNumber();
+}
 Map::Map(int v) {
     this->adjlist = new list<Territory> [v];
     this->numberOfVertices = v;
@@ -92,9 +96,11 @@ bool Map::checkContinent() {
 }
 
 void Map::DFSUtil(Territory& v, std::vector<bool> &visited) {
+    if(v.getVertexNumber() >= visited.size()){
+        return;
+    }
     visited[v.getVertexNumber()] = true;
-
-    for(Territory& neighbor: adjlist[v.getVertexNumber()]){
+    for(auto neighbor: adjlist[v.getVertexNumber()]){
         if(!visited[neighbor.getVertexNumber()]){
             DFSUtil(neighbor, visited);
         }
@@ -153,7 +159,6 @@ void MapLoader::firstRun() {
                 while (!ss.eof()) {
                     getline(ss, word, ',');
                     tokens.push_back(word);
-//                    cout<<word<<endl;
                 }
                 Territory t(stoi(tokens[1]), stoi(tokens[2]),tokens[0],tokens[3]);
                 this->gameMap->listOfTerritories.push_back(t);
@@ -172,6 +177,9 @@ void MapLoader::secondRun() {
     myFile.open(fileName);
     string word;
     vector<string> tokens;
+//    for(int j = 0;j<this->gameMap->listOfTerritories.size();j++){
+//        cout<<this->gameMap->listOfTerritories[j].getTerritoryName()<<endl;
+//    }
     if(myFile.is_open()){
         while (myFile){
             if (myline == "[Territories]") {
@@ -196,6 +204,9 @@ void MapLoader::secondRun() {
             }
         }
     }
+//    for(int j = 0;j<this->gameMap->listOfTerritories.size();j++){
+//        cout<<this->gameMap->listOfTerritories[j].getTerritoryName()<<endl;
+//    }
     bool continentCheck = this->gameMap->checkContinent();
     bool connectivityCheck = this->gameMap->DFS();
     if(continentCheck){
@@ -258,5 +269,6 @@ Territory MapLoader::findTerritory(std::string tName) {
         }
     }
     t.setTerritoryName("Not found");
+    t.setVertexNumber();
     return t;
 }
