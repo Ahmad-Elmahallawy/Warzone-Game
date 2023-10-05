@@ -20,7 +20,7 @@ private:
     vector<Territory*> territories; //territories owned by a Players
     string playerName;
     int playerID;
-    Order* ordersList;
+    OrderList* ordersList;
 
 
 // public attributes
@@ -31,10 +31,13 @@ public:
 
     Player(Player &player);
 
+    Player(Hand *hand, const vector<Territory *> &territories, const string &playerName, int playerId,
+           OrderList *ordersList) : hand(hand), territories(territories), playerName(playerName), playerID(playerId),
+                                    ordersList(ordersList) {}
+
 
     ~Player();   // deconstruct
 
-    Player& operator=(const Player &player);
 
     void setName(string name);
 
@@ -63,20 +66,17 @@ public:
 
     void setPlayerID(const int &playerID);
 
-    Order *getOrdersList1() const;
-
-    void testPlayer();
 
     int getPlayerId() const;
 
     void setPlayerId(int playerId);
 
-    Order *getOrdersList() const;
+    void setOrdersList(OrderList *ordersList);
 
-    void setOrdersList(Order *ordersList);
-
+    OrderList* getOrdersList() const;
 
 };
 
+void testPlayer();
 
 #endif //COMP345_WARZONE_PROJECT_PLAYER_H
