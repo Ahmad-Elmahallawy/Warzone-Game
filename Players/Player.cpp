@@ -27,46 +27,43 @@ Player::~Player() {
 
 }
 
+// returns player's territories
 const vector<Territory *> &Player::getTerritories() const {
     return territories;
 }
 
+// returns player name
 const string &Player::getPlayerName() const {
     return playerName;
 }
 
-
+// return's user's orderlist
 OrderList* Player::getOrdersList() const {
     return this->ordersList;
 }
 
+// returns player hand
 Hand* Player::getHand() const
 {
     return  this->hand;
-    //return *hand;
 }
 
+// sets player's hand
 void Player::setHand(Hand *hand) {
     Player::hand = hand;
 }
 
+// setsTerritories
 void Player::setTerritories(const vector<Territory *> &territories) {
     Player::territories = territories;
 }
 
+// sets Player's name
 void Player::setPlayerName(const string &playerName) {
     Player::playerName = playerName;
 }
 
-int Player::getPlayerId() const {
-    return playerID;
-}
-
-void Player::setPlayerId(int playerId) {
-    playerID = playerId;
-}
-
-
+// sets orderlist
 void Player::setOrdersList(OrderList *ordersList) {
     Player::ordersList = ordersList;
 }

@@ -77,6 +77,6 @@ public:
 
 };
 
-void testPlayer();
+void testPlayers();
 
 #endif //COMP345_WARZONE_PROJECT_PLAYER_H
