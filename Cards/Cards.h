@@ -31,8 +31,6 @@ public:
 //the play method that removes a card from the hand and returns it to the deck
     void play(int card, Hand& h, Deck& d);
 
-//friend ostream& operator<<(ostream& display, const Card&);
-
 private:
     WarzoneCard card1;
 };
@@ -59,8 +57,6 @@ public:
 //returns a card to deck
     void returnCard(Card& c);
 
-//friend ostream& operator<<(ostream& display, const Deck& d);
-
 private:
 
     vector<Card*> vectorDeck;
@@ -85,8 +81,6 @@ public:
 
 //to show/print hand cards
     void displayHand();
-
-//friend ostream& operator<<(ostream& display, const Hand& h);
 
 private:
     vector<Card*> vectorHand;
