@@ -1571,7 +1571,7 @@ CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.obj: ../Players/PlayerDriver.c
   ../Orders/Orders.h \
   ../Cards/Cards.h
 
-CMakeFiles/Project_1.dir/mainDriver.cpp.obj: ../mainDriver.cpp \
+CMakeFiles/Project_1.dir/mainDriver.cpp.obj: ../MainDriver.cpp \
   ../Map/Map.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/iostream \
   C:/Program\ Files/JetBrains/CLion\ 2022.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
@@ -2354,4 +2354,4 @@ C:/Program\ Files/JetBrains/CLion\ 2022.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/1
 
 ../Players/PlayerDriver.cpp:
 
-../mainDriver.cpp:
+../MainDriver.cpp:

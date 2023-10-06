@@ -180,19 +180,19 @@ CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.s"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Players\PlayerDriver.cpp" -o CMakeFiles\Project_1.dir\Players\PlayerDriver.cpp.s
 
-CMakeFiles/Project_1.dir/mainDriver.cpp.obj: CMakeFiles/Project_1.dir/flags.make
-CMakeFiles/Project_1.dir/mainDriver.cpp.obj: ../mainDriver.cpp
-CMakeFiles/Project_1.dir/mainDriver.cpp.obj: CMakeFiles/Project_1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Project_1.dir/mainDriver.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/mainDriver.cpp.obj -MF CMakeFiles\Project_1.dir\mainDriver.cpp.obj.d -o CMakeFiles\Project_1.dir\mainDriver.cpp.obj -c "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\mainDriver.cpp"
+CMakeFiles/Project_1.dir/MainDriver.cpp.obj: CMakeFiles/Project_1.dir/flags.make
+CMakeFiles/Project_1.dir/MainDriver.cpp.obj: ../MainDriver.cpp
+CMakeFiles/Project_1.dir/MainDriver.cpp.obj: CMakeFiles/Project_1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Project_1.dir/MainDriver.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/MainDriver.cpp.obj -MF CMakeFiles\Project_1.dir\MainDriver.cpp.obj.d -o CMakeFiles\Project_1.dir\MainDriver.cpp.obj -c "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\MainDriver.cpp"
 
-CMakeFiles/Project_1.dir/mainDriver.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project_1.dir/mainDriver.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\mainDriver.cpp" > CMakeFiles\Project_1.dir\mainDriver.cpp.i
+CMakeFiles/Project_1.dir/MainDriver.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project_1.dir/MainDriver.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\MainDriver.cpp" > CMakeFiles\Project_1.dir\MainDriver.cpp.i
 
-CMakeFiles/Project_1.dir/mainDriver.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_1.dir/mainDriver.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\mainDriver.cpp" -o CMakeFiles\Project_1.dir\mainDriver.cpp.s
+CMakeFiles/Project_1.dir/MainDriver.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_1.dir/MainDriver.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\MainDriver.cpp" -o CMakeFiles\Project_1.dir\MainDriver.cpp.s
 
 CMakeFiles/Project_1.dir/GameEngine.cpp.obj: CMakeFiles/Project_1.dir/flags.make
 CMakeFiles/Project_1.dir/GameEngine.cpp.obj: ../GameEngine.cpp
@@ -232,7 +232,7 @@ Project_1_OBJECTS = \
 "CMakeFiles/Project_1.dir/Orders/OrdersDriver.cpp.obj" \
 "CMakeFiles/Project_1.dir/Players/Player.cpp.obj" \
 "CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.obj" \
-"CMakeFiles/Project_1.dir/mainDriver.cpp.obj" \
+"CMakeFiles/Project_1.dir/MainDriver.cpp.obj" \
 "CMakeFiles/Project_1.dir/GameEngine.cpp.obj" \
 "CMakeFiles/Project_1.dir/GameEngineDriver.cpp.obj"
 
@@ -247,7 +247,7 @@ Project_1.exe: CMakeFiles/Project_1.dir/Orders/Orders.cpp.obj
 Project_1.exe: CMakeFiles/Project_1.dir/Orders/OrdersDriver.cpp.obj
 Project_1.exe: CMakeFiles/Project_1.dir/Players/Player.cpp.obj
 Project_1.exe: CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.obj
-Project_1.exe: CMakeFiles/Project_1.dir/mainDriver.cpp.obj
+Project_1.exe: CMakeFiles/Project_1.dir/MainDriver.cpp.obj
 Project_1.exe: CMakeFiles/Project_1.dir/GameEngine.cpp.obj
 Project_1.exe: CMakeFiles/Project_1.dir/GameEngineDriver.cpp.obj
 Project_1.exe: CMakeFiles/Project_1.dir/build.make

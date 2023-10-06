@@ -103,6 +103,9 @@
 		<Unit filename="C:/Users/ahmad/Desktop/Courses/Fall 2023/COMP 345/COMP345-Warzone/GameEngineDriver.h">
 			<Option target="Project_1"/>
 		</Unit>
+		<Unit filename="C:/Users/ahmad/Desktop/Courses/Fall 2023/COMP 345/COMP345-Warzone/MainDriver.cpp">
+			<Option target="Project_1"/>
+		</Unit>
 		<Unit filename="C:/Users/ahmad/Desktop/Courses/Fall 2023/COMP 345/COMP345-Warzone/Map/Map.cpp">
 			<Option target="Project_1"/>
 		</Unit>
@@ -128,9 +131,6 @@
 			<Option target="Project_1"/>
 		</Unit>
 		<Unit filename="C:/Users/ahmad/Desktop/Courses/Fall 2023/COMP 345/COMP345-Warzone/Players/PlayerDriver.cpp">
-			<Option target="Project_1"/>
-		</Unit>
-		<Unit filename="C:/Users/ahmad/Desktop/Courses/Fall 2023/COMP 345/COMP345-Warzone/mainDriver.cpp">
 			<Option target="Project_1"/>
 		</Unit>
 		<Unit filename="C:/Users/ahmad/Desktop/Courses/Fall 2023/COMP 345/COMP345-Warzone/CMakeLists.txt">

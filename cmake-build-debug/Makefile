@@ -224,6 +224,30 @@ GameEngineDriver.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/GameEngineDriver.cpp.s
 .PHONY : GameEngineDriver.cpp.s
 
+MainDriver.obj: MainDriver.cpp.obj
+.PHONY : MainDriver.obj
+
+# target to build an object file
+MainDriver.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/MainDriver.cpp.obj
+.PHONY : MainDriver.cpp.obj
+
+MainDriver.i: MainDriver.cpp.i
+.PHONY : MainDriver.i
+
+# target to preprocess a source file
+MainDriver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/MainDriver.cpp.i
+.PHONY : MainDriver.cpp.i
+
+MainDriver.s: MainDriver.cpp.s
+.PHONY : MainDriver.s
+
+# target to generate assembly for a file
+MainDriver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/MainDriver.cpp.s
+.PHONY : MainDriver.cpp.s
+
 Map/Map.obj: Map/Map.cpp.obj
 .PHONY : Map/Map.obj
 
@@ -368,30 +392,6 @@ Players/PlayerDriver.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.s
 .PHONY : Players/PlayerDriver.cpp.s
 
-mainDriver.obj: mainDriver.cpp.obj
-.PHONY : mainDriver.obj
-
-# target to build an object file
-mainDriver.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/mainDriver.cpp.obj
-.PHONY : mainDriver.cpp.obj
-
-mainDriver.i: mainDriver.cpp.i
-.PHONY : mainDriver.i
-
-# target to preprocess a source file
-mainDriver.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/mainDriver.cpp.i
-.PHONY : mainDriver.cpp.i
-
-mainDriver.s: mainDriver.cpp.s
-.PHONY : mainDriver.s
-
-# target to generate assembly for a file
-mainDriver.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/mainDriver.cpp.s
-.PHONY : mainDriver.cpp.s
-
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -413,6 +413,9 @@ help:
 	@echo ... GameEngineDriver.obj
 	@echo ... GameEngineDriver.i
 	@echo ... GameEngineDriver.s
+	@echo ... MainDriver.obj
+	@echo ... MainDriver.i
+	@echo ... MainDriver.s
 	@echo ... Map/Map.obj
 	@echo ... Map/Map.i
 	@echo ... Map/Map.s
@@ -431,9 +434,6 @@ help:
 	@echo ... Players/PlayerDriver.obj
 	@echo ... Players/PlayerDriver.i
 	@echo ... Players/PlayerDriver.s
-	@echo ... mainDriver.obj
-	@echo ... mainDriver.i
-	@echo ... mainDriver.s
 .PHONY : help
 
 
