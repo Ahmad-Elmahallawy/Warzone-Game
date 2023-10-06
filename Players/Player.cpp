@@ -22,50 +22,49 @@ Player::Player(Player &player) {
 
 }
 
-Player::~Player() {
 
+Player::~Player() {
+    delete this->hand;
+    delete this->ordersList;
 }
 
+// returns player's territories
 const vector<Territory *> &Player::getTerritories() const {
     return territories;
 }
 
+// returns player name
 const string &Player::getPlayerName() const {
     return playerName;
 }
 
-
+// return's user's orderlist
 OrderList* Player::getOrdersList() const {
     return this->ordersList;
 }
 
+// returns player hand
 Hand* Player::getHand() const
 {
     return  this->hand;
-    //return *hand;
 }
 
+// sets player's hand
 void Player::setHand(Hand *hand) {
     Player::hand = hand;
 }
 
+// setsTerritories
 void Player::setTerritories(const vector<Territory *> &territories) {
     Player::territories = territories;
 }
 
+// sets Player's name
 void Player::setPlayerName(const string &playerName) {
     Player::playerName = playerName;
 }
 
-int Player::getPlayerId() const {
-    return playerID;
-}
-
-void Player::setPlayerId(int playerId) {
-    playerID = playerId;
-}
-
-
+// sets orderlist
 void Player::setOrdersList(OrderList *ordersList) {
     Player::ordersList = ordersList;
 }
@@ -104,6 +103,29 @@ vector<Territory*> Player::toAttack() const{
     cout << t1->getTerritoryName() + ", " + t2->getTerritoryName() + ", " + t3->getTerritoryName();
     return {t1,t2,t3};
 }
+
+ostream &operator<<(ostream &os, const Player &player) {
+    os << "hand: " << player.hand << " playerName: " << player.playerName
+       << " playerID: " << player.playerID << " ordersList: " << player.ordersList;
+    for (int i = 0; i < player.territories.size(); i++) {
+        os << player.territories[i];
+        if (i < player.territories.size() - 1) {
+            os << ", "; // Add a comma and space for elements other than the last one
+        }
+
+        return os;
+    }
+}
+
+    bool Player::operator==(const Player &rhs) const {
+        return hand == rhs.hand &&
+               territories == rhs.territories &&
+               playerName == rhs.playerName &&
+               playerID == rhs.playerID &&
+               ordersList == rhs.ordersList;
+    }
+
+
 
 
 

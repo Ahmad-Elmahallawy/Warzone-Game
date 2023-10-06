@@ -200,6 +200,54 @@ GameEngine.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/GameEngine.cpp.s
 .PHONY : GameEngine.cpp.s
 
+GameEngineDriver.obj: GameEngineDriver.cpp.obj
+.PHONY : GameEngineDriver.obj
+
+# target to build an object file
+GameEngineDriver.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/GameEngineDriver.cpp.obj
+.PHONY : GameEngineDriver.cpp.obj
+
+GameEngineDriver.i: GameEngineDriver.cpp.i
+.PHONY : GameEngineDriver.i
+
+# target to preprocess a source file
+GameEngineDriver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/GameEngineDriver.cpp.i
+.PHONY : GameEngineDriver.cpp.i
+
+GameEngineDriver.s: GameEngineDriver.cpp.s
+.PHONY : GameEngineDriver.s
+
+# target to generate assembly for a file
+GameEngineDriver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/GameEngineDriver.cpp.s
+.PHONY : GameEngineDriver.cpp.s
+
+MainDriver.obj: MainDriver.cpp.obj
+.PHONY : MainDriver.obj
+
+# target to build an object file
+MainDriver.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/MainDriver.cpp.obj
+.PHONY : MainDriver.cpp.obj
+
+MainDriver.i: MainDriver.cpp.i
+.PHONY : MainDriver.i
+
+# target to preprocess a source file
+MainDriver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/MainDriver.cpp.i
+.PHONY : MainDriver.cpp.i
+
+MainDriver.s: MainDriver.cpp.s
+.PHONY : MainDriver.s
+
+# target to generate assembly for a file
+MainDriver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/MainDriver.cpp.s
+.PHONY : MainDriver.cpp.s
+
 Map/Map.obj: Map/Map.cpp.obj
 .PHONY : Map/Map.obj
 
@@ -362,6 +410,12 @@ help:
 	@echo ... GameEngine.obj
 	@echo ... GameEngine.i
 	@echo ... GameEngine.s
+	@echo ... GameEngineDriver.obj
+	@echo ... GameEngineDriver.i
+	@echo ... GameEngineDriver.s
+	@echo ... MainDriver.obj
+	@echo ... MainDriver.i
+	@echo ... MainDriver.s
 	@echo ... Map/Map.obj
 	@echo ... Map/Map.i
 	@echo ... Map/Map.s

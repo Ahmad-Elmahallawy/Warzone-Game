@@ -6,6 +6,7 @@
 
 #include <string>
 #include <vector>
+#include <ostream>
 #include "../Map/Map.h"
 #include "../Orders/Orders.h"
 #include "../Cards/Cards.h"
@@ -32,7 +33,7 @@ public:
     Player(Player &player);
 
     Player(Hand *hand, const vector<Territory *> &territories, const string &playerName, int playerId,
-           OrderList *ordersList) : hand(hand), territories(territories), playerName(playerName), playerID(playerId),
+           OrderList *ordersList) : hand(hand), territories(territories), playerName(playerName),
                                     ordersList(ordersList) {}
 
 
@@ -75,8 +76,13 @@ public:
 
     OrderList* getOrdersList() const;
 
+    friend ostream &operator<<(ostream &os, const Player &player);
+
+    bool operator==(const Player &rhs) const;
+
+    bool operator!=(const Player &rhs) const;
 };
 
-void testPlayer();
+void testPlayers();
 
 #endif //COMP345_WARZONE_PROJECT_PLAYER_H

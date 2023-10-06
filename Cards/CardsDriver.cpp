@@ -1,5 +1,7 @@
 #include "Cards.h"
 #include <stdlib.h>
+#include <iostream>
+using namespace std;
 
 void testCards() {
     Deck* deck = new Deck();
@@ -19,6 +21,7 @@ void testCards() {
     hand-> returnCard(*card5);
 
 //method just to make sure our hand gets cards
+    cout << "the hand currently has" << endl;
     hand-> displayHand();
 
     int handSize = hand->getCard().size();
