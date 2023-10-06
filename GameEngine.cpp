@@ -2,11 +2,15 @@
 #include "Map/Map.h"
 #include "GameEngine.h"
 #include "Players/Player.h"
+#include "Orders/Orders.h"
+#include "Cards/Cards.h"
 
 int main() {
-    std::cout << "Hello hello! test" << std::endl;
     testLoadMaps();
-//    testPlayer();
+    testPlayer();
+    testOrdersLists();
+    testCards();
+
     return 0;
 }
 

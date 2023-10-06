@@ -127,3 +127,5 @@ public:
 private:
     vector<Order*> vec_order_list; //store the orders in the list
 };
+
+void testOrdersLists();

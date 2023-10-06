@@ -28,7 +28,7 @@ void testPlayer()
     cout << "\nPLAYER 1'S ATTACK LIST" << endl;
     cout << "***********************************************************" << endl;
     p1->toAttack();
-    cout << "***********************************************************" << endl;
+    cout << endl;
 
     cout << "\nPLAYER 1'S DEFEND LIST" << endl;
     cout << "***********************************************************" << endl;

@@ -73,12 +73,9 @@ void Player::setOrdersList(OrderList *ordersList) {
 // creates a new order
 void Player::issueOrder() {
     Order *order = new Order(*new Deploy());
-cout << "an Issue has been ordered called. The orders are: \n";
+    cout << "player 1 player has issued an order";
     ordersList->add_order_list(order);
-    for(int i = 0 ; i < ordersList->get_order_list()->size() ; i++){
-        cout << ordersList->get_order_list()->at(i)->get_type() << endl;
-        cout<< "";
-    }
+
 }
 
 // currently just a static territories to defend
