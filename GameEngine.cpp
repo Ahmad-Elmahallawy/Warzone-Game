@@ -2,8 +2,10 @@
 #include "GameEngine.h"
 
 GameEngine::GameEngine() {
+    // current state when the game runs
     currentState = START;
 
+    // Initialize the state transition map
     stateTransitions[START] = {{CMD_START, MAP_LOADED}};
     stateTransitions[MAP_LOADED] = {{CMD_LOAD_MAP, MAP_LOADED}, {CMD_VALIDATE_MAP, MAP_VALIDATED}};
     stateTransitions[MAP_VALIDATED] = {{CMD_ADD_PLAYER, PLAYERS_ADDED}};
@@ -14,6 +16,7 @@ GameEngine::GameEngine() {
     stateTransitions[WIN] = {{CMD_PLAY, START}, {CMD_END, END}};
 }
 
+// function definition to check if the command is valid to transition to the next state
 bool GameEngine::isValidTransition(Command command) {
     for (const auto &transition : stateTransitions[currentState]) {
         if (transition.command == command) {
@@ -23,6 +26,8 @@ bool GameEngine::isValidTransition(Command command) {
     return false;
 }
 
+
+// transition to the next state if the command is valid
 void GameEngine::transition(Command command) {
     if (isValidTransition(command)) {
         for (const auto &transition : stateTransitions[currentState]) {
@@ -36,10 +41,12 @@ void GameEngine::transition(Command command) {
     }
 }
 
+// returns the current state of the game
 State GameEngine::getCurrentState() {
     return currentState;
 }
 
+// display the valid commands user can enter
 void GameEngine::printValidCommands() {
     std::cout << "Valid commands for state " << stateToString(currentState) << ":" << std::endl;
     for (const auto &transition : stateTransitions[currentState]) {
@@ -47,10 +54,12 @@ void GameEngine::printValidCommands() {
     }
 }
 
+// returns true if the state is equal to end
 bool GameEngine::isGameComplete() {
     return currentState == END;
 }
 
+// converts state enum value to string
 std::string stateToString(State state) {
     switch (state) {
         case START: return "start";
@@ -66,6 +75,7 @@ std::string stateToString(State state) {
     }
 }
 
+// converts command to string
 std::string commandToString(Command command) {
     switch (command) {
         case CMD_START: return "start";

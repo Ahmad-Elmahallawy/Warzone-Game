@@ -4,17 +4,21 @@
 #include <iostream>
 #include <string>
 
+// function that runs the game engine
 void testGameStates() {
     GameEngine gameEngine;
 
+    // keep looping as long as the state is not end
     while (!gameEngine.isGameComplete()) {
         std::cout << "Current state: " << stateToString(gameEngine.getCurrentState()) << std::endl;
         gameEngine.printValidCommands();
 
+        // to take user input
         std::string userInput;
         std::cout << "Enter a command: ";
         std::cin >> userInput;
 
+        // converts command string to command enum value
         Command command;
         if (userInput == "start") {
             command = CMD_START;
@@ -47,6 +51,7 @@ void testGameStates() {
             continue;
         }
 
+        // state transition based on the command
         gameEngine.transition(command);
     }
 

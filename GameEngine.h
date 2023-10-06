@@ -10,6 +10,7 @@
 #include <vector>
 #include <string>
 
+// Define the possible game states as an enum
 enum State {
     START,
     MAP_LOADED,
@@ -22,6 +23,7 @@ enum State {
     END
 };
 
+// Define the possible commands as an enum
 enum Command {
     CMD_START,
     CMD_LOAD_MAP,
@@ -38,6 +40,7 @@ enum Command {
     CMD_EXEC_ORDER
 };
 
+// Define a struct to represent state transitions
 struct Transition {
     Command command;
     State nextState;
@@ -45,16 +48,16 @@ struct Transition {
 
 class GameEngine {
 private:
-    State currentState;
-    std::map<State, std::vector<Transition>> stateTransitions;
+    State currentState; // current game state
+    std::map<State, std::vector<Transition>> stateTransitions; // State transition map
 
 public:
-    GameEngine();
-    bool isValidTransition(Command command);
-    void transition(Command command);
-    State getCurrentState();
-    void printValidCommands();
-    bool isGameComplete();
+    GameEngine(); // constructor
+    bool isValidTransition(Command command); // check if the transition is valid
+    void transition(Command command); // do state transition
+    State getCurrentState(); // to get the current game state
+    void printValidCommands(); // to print the next commands a user is allowed to enter for the transition
+    bool isGameComplete(); // to check if the game is complete
 };
 
 std::string stateToString(State state);
