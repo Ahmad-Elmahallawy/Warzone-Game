@@ -47,6 +47,7 @@ class Map{
 public:
     Map(int v);
     ~Map();
+    Map(Map const &m);
     bool validate();
     bool checkContinent();
     bool DFS();

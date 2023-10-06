@@ -28,6 +28,7 @@ Card::WarzoneCard Card::getCard() const {
     return this-> card1;
 }
 
+// play method
 void Card::play(int card, Hand& hand, Deck& deck) {
     Card* cardToRemove = hand.removeFromHand(card);
     deck.returnCard(*cardToRemove);
@@ -135,9 +136,9 @@ void Hand::displayHand() {
     else {
         for(size_t i = 0; i < vectorHand.size(); i++) {
             if (i == vectorHand.size() - 1)
-                std:: cout << vectorHand.at(i) -> getCard() << " ";
+                std:: cout << vectorHand.at(i) -> getCard() << " " << endl;
             else
-                std:: cout << vectorHand.at(i) -> getCard() << ", ";
+                std:: cout << vectorHand.at(i) -> getCard() << ", " << endl;
 
         }
     }

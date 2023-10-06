@@ -11,7 +11,7 @@
 #include <vector>
 #include "../Players/Player.h"
 using namespace std;
-int Territory::viableVertexNumber =0;
+int Territory::viableVertexNumber =0;//a variable that is used to assign vertex numbers to territories
 Territory::Territory(int xCoordinate, int yCoordinate, std::string territoryName, std::string continent) {
     this->xCoordinate = xCoordinate;
     this->yCoordinate = yCoordinate;
@@ -65,8 +65,13 @@ void Territory::setContinentName(std::string cName) {
 void Territory::setVertexNumber() {
     this->vertexNumber = getViableVertexNumber();
 }
+Map::Map(Map const &m) {
+    this->listOfTerritories = m.listOfTerritories;
+    this->numberOfVertices = m.numberOfVertices;
+
+}
 Map::Map(int v) {
-    this->adjlist = new list<Territory> [v];
+    this->adjlist = new list<Territory> [v];//instantiating the adjacency list representing the graph
     this->numberOfVertices = v;
 }
 
@@ -75,13 +80,13 @@ Map::~Map() {
 }
 
 void Map::addEdge(Territory t1, Territory t2) {
-    adjlist[t1.getVertexNumber()].push_back(t2);
+    adjlist[t1.getVertexNumber()].push_back(t2);//method to link two territores(nodes) with an edge
 }
 
 void Map::print() {
     for(int i = 0;i<this->numberOfVertices;i++){
         cout<<i<<"-->";
-        for(auto x:this->adjlist[i]){
+        for(auto x:this->adjlist[i]){//for each loop to go through every vertex and print their adjacent nodes
             cout<<x.getTerritoryName()<<" ";
         }
         cout<<endl;
@@ -92,8 +97,7 @@ void Map::print() {
 bool Map::checkContinent() {
     for (int i = 0; i < this->listOfTerritories.size(); ++i) {
         int count = std::count(this->listOfTerritories.begin(),this->listOfTerritories.end(), this->listOfTerritories[i]);
-        if(count>1){
-            cout<<this->listOfTerritories[i].getTerritoryName();
+        if(count>1){//checks if a given Territory appears more than once in the map
             return false;
         }
     }
@@ -101,21 +105,21 @@ bool Map::checkContinent() {
 }
 
 void Map::DFSUtil(Territory& v, std::vector<bool> &visited) {
-    if(v.getVertexNumber() >= visited.size()){
+    if(v.getVertexNumber() >= visited.size()){//if there is a vertex with a vertex number greater than the array size do not access it and return
         return;
     }
-    visited[v.getVertexNumber()] = true;
+    visited[v.getVertexNumber()] = true;//node has been visited
     for(auto neighbor: adjlist[v.getVertexNumber()]){
-        if(!visited[neighbor.getVertexNumber()]){
+        if(!visited[neighbor.getVertexNumber()]){//if any of the adjacent nodes of this territory are not visited then visit them
             DFSUtil(neighbor, visited);
         }
     }
 }
 bool Map::DFS() {
     std::vector<bool>visited(this->numberOfVertices, false);
-    DFSUtil(adjlist->front(), visited);
+    DFSUtil(adjlist->front(), visited);//start DFS from the beginning
 
-    for(bool v: visited){
+    for(bool v: visited){//if any of the nodes have not been visited return false else return true
         if(!v){
             return false;
         }
@@ -129,7 +133,7 @@ MapLoader::MapLoader(int n,string fileName) {
     this->fileName = fileName;
     this->numberOfTerritories = n;
     try{
-        this->gameMap = new Map(n);
+        this->gameMap = new Map(n);//instantiate Map object which contains the graph
     }catch(bad_alloc&){
         cout<<"bad";
     }
@@ -147,7 +151,7 @@ void MapLoader::firstRun() {
     string myline = "";
     bool past = false;
     std::ifstream myFile;
-    myFile.open(fileName);
+    myFile.open(fileName);//opening file
     string word;
     vector<string> tokens;
     if (myFile.is_open()) {
@@ -161,12 +165,12 @@ void MapLoader::firstRun() {
                 word = "";
                 tokens.clear();
                 stringstream ss(myline);
-                while (!ss.eof()) {
+                while (!ss.eof()) {//seperates line into words given they are comma seperated and add them to array
                     getline(ss, word, ',');
                     tokens.push_back(word);
                 }
                 Territory t(stoi(tokens[1]), stoi(tokens[2]),tokens[0],tokens[3]);
-                this->gameMap->listOfTerritories.push_back(t);
+                this->gameMap->listOfTerritories.push_back(t);//create territory based on information in array and push it into another array
             }
         }
     }
@@ -192,7 +196,7 @@ void MapLoader::secondRun() {
             }
             std::getline(myFile, myline);
             if (past && myline != "") {
-                std::cout<<myline<<'\n';
+//                std::cout<<myline<<'\n';
                 word = "";
                 tokens.clear();
                 stringstream ss(myline);
@@ -201,10 +205,14 @@ void MapLoader::secondRun() {
                     tokens.push_back(word);
 //                    cout<<word<<endl;
                 }
-                primary = this->findTerritory(tokens[0]);
+                primary = this->findTerritory(tokens[0]);//searches for territory to check if it exists
                 for (int i = 4; i < tokens.size(); ++i) {
-                    adjacent = this->findTerritory(tokens[i]);
-                    this->gameMap->addEdge(primary,adjacent);
+                    adjacent = this->findTerritory(tokens[i]);//searches for adjacent territory to check if it exists
+                    if(adjacent.getTerritoryName() == "Not found"){
+                        cout<<"Graph is not connected, invalid map file";
+                        exit(0);
+                    }
+                    this->gameMap->addEdge(primary,adjacent);//if both exist then link them via an edge
                 }
             }
         }
@@ -217,7 +225,7 @@ void MapLoader::secondRun() {
     if(continentCheck){
         cout<<"Continent test has passed: every territory belongs to only one continent"<<endl;
         if(connectivityCheck){
-            cout<<"Connectivity test has passed: Map is a connected graph and every continent is a connected subgraph";
+            cout<<"Connectivity test has passed: Map is a connected graph and every continent is a connected subgraph"<<endl;
         } else{
             cout<<"Connectivity test has failed: Map is not  a connected graph and not every continent is a connected subgraph";
             exit(0);
@@ -247,7 +255,7 @@ int MapLoader::getNumberOfTerritoriesFromFile() {
                 past = true;
             }
             std::getline(myFile,myline);
-            if(past && myline != ""){
+            if(past && myline != ""){//goes through every line in file if it contains a territory it increments variable representing number of vertices
                 n++;
             }
         }

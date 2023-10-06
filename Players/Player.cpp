@@ -24,7 +24,8 @@ Player::Player(Player &player) {
 
 
 Player::~Player() {
-
+    delete this->hand;
+    delete this->ordersList;
 }
 
 // returns player's territories
@@ -102,6 +103,29 @@ vector<Territory*> Player::toAttack() const{
     cout << t1->getTerritoryName() + ", " + t2->getTerritoryName() + ", " + t3->getTerritoryName();
     return {t1,t2,t3};
 }
+
+ostream &operator<<(ostream &os, const Player &player) {
+    os << "hand: " << player.hand << " playerName: " << player.playerName
+       << " playerID: " << player.playerID << " ordersList: " << player.ordersList;
+    for (int i = 0; i < player.territories.size(); i++) {
+        os << player.territories[i];
+        if (i < player.territories.size() - 1) {
+            os << ", "; // Add a comma and space for elements other than the last one
+        }
+
+        return os;
+    }
+}
+
+    bool Player::operator==(const Player &rhs) const {
+        return hand == rhs.hand &&
+               territories == rhs.territories &&
+               playerName == rhs.playerName &&
+               playerID == rhs.playerID &&
+               ordersList == rhs.ordersList;
+    }
+
+
 
 
 
