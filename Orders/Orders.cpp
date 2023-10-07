@@ -1,15 +1,11 @@
 #include "Orders.h"
 
-//Order&Order ::operator = (const Order&O)
-//{
-//	
-//}
 
-Order::Order()
+Order::Order() //constructor
 {
 }
 
-Order::Order(Order& order)
+Order::Order(Order& order) //copy constructor
 {
     this->action = order.action;
 }
@@ -17,30 +13,26 @@ Order::Order(Order& order)
 Order::~Order()
 {
 }
-//Order::Order(const Order& O) 
-//{
-//	this->vec_type1 = *new vector<string>(O.vec_type1);
-//	this->type_id = new string(*(O.type_id));
-//}
-bool Order::validate()
+
+bool Order::validate()  //validate method, condition to be implemented after
 {
     cout << "validate if the order is valid" << endl;
     return true;
 }
 
-void Order::execute()
+void Order::execute()  //execute method, to be overriden by the subclasses
 {
     if (this->validate() == true) {
         cout << "executes the action..." << endl;
     }
 }
 
-void Order::set_type_id(int num)
+void Order::set_type_id(int num) //setting the type to the order 
 {
     type_id = num;
 }
 
-string Order::get_type()
+string Order::get_type() //returning the type id of the order
 {
     return vec_type1.at(type_id);
 }
@@ -51,15 +43,15 @@ string Order::get_type()
 
 void OrderList::add_order_list(Order* an_order)
 {
-    vec_order_list.push_back(an_order); //add an order
+    vec_order_list.push_back(an_order); //add an order to the list
 }
 
-vector<Order*>* OrderList::get_order_list()
+vector<Order*>* OrderList::get_order_list() //returning the ordered list
 {
     return &vec_order_list;
 }
 
-void OrderList::remove(Order* oneOrder)
+void OrderList::remove(Order* oneOrder) //removing an order based on its type
 {
     for (int i = 0; i < vec_order_list.size(); i++) {
         if (oneOrder->get_type() == vec_order_list.at(i)->get_type()) {
@@ -71,7 +63,7 @@ void OrderList::remove(Order* oneOrder)
     }
 }
 
-void OrderList::move(int position, int new_position)
+void OrderList::move(int position, int new_position) //moving an order from old to new position
 {
     if (position >= 0 && position < vec_order_list.size() && new_position >= 0 && new_position < vec_order_list.size())
     {
@@ -89,7 +81,14 @@ void OrderList::move(int position, int new_position)
 }
 
 
-//subclasses of order
+/*
+Subclasses of order
+The different kinds of orders are: deploy, advance,
+bomb, blockade, airlift, and negotiate. All orders must have a validate() method that verifies if the order is valid.
+All orders must have an execute() method that will result in some game action being implemented (see the
+project description document).
+
+*/
 
 Deploy::Deploy()
 {
@@ -97,9 +96,9 @@ Deploy::Deploy()
     set_type_id(0);
 }
 
-Deploy::Deploy(Deploy& deploy)
+Deploy::Deploy(Deploy& deploy)   
 {
-    this->action = deploy.action;
+    this->action = deploy.action; //refers to the private action string declared in the header file (Orders.h)
 }
 
 Deploy::~Deploy()
