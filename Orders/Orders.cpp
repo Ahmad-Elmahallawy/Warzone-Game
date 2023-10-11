@@ -1,85 +1,55 @@
 #include "Orders.h"
+#include <iostream>
+#include <string>
 
+//   ---   Order class   ---
 
-Order::Order() //constructor
+// default constructor
+Order::Order()
 {
+
 }
 
-Order::Order(Order& order) //copy constructor
+// destructor
+Order::~Order() {}
+
+// copy constructor
+Order::Order(const Order& order)
 {
     this->action = order.action;
 }
 
-Order::~Order()
+// validate method
+bool Order::validate() { return true; }
+
+// execute method
+void Order::execute() { this->executed = true; }
+
+// assignment operator
+Order& Order::operator=(const Order& order)
 {
+    this->action = order.action;
+    this->executed = order.executed;
+
+    return *this;
 }
 
-bool Order::validate()  //validate method, condition to be implemented after
+// print helper method for stream insertion operator overload
+void Order::print(std::ostream& output) const
 {
-    cout << "validate if the order is valid" << endl;
-    return true;
+    output << "Order" << std::endl;
 }
 
-void Order::execute()  //execute method, to be overriden by the subclasses
+// stream insertion operator overload
+std::ostream& operator<<(std::ostream& output, const Order& order)
 {
-    if (this->validate() == true) {
-        cout << "executes the action..." << endl;
-    }
-}
-
-void Order::set_type_id(int num) //setting the type to the order 
-{
-    type_id = num;
-}
-
-string Order::get_type() //returning the type id of the order
-{
-    return vec_type1.at(type_id);
-}
-
-
-
-
-
-void OrderList::add_order_list(Order* an_order)
-{
-    vec_order_list.push_back(an_order); //add an order to the list
-}
-
-vector<Order*>* OrderList::get_order_list() //returning the ordered list
-{
-    return &vec_order_list;
-}
-
-void OrderList::remove(Order* oneOrder) //removing an order based on its type
-{
-    for (int i = 0; i < vec_order_list.size(); i++) {
-        if (oneOrder->get_type() == vec_order_list.at(i)->get_type()) {
-            cout << "  deleting the order: " << oneOrder->get_type() << endl;
-            vec_order_list.erase(vec_order_list.begin() + i);
-
-            return;
-        }
-    }
-}
-
-void OrderList::move(int position, int new_position) //moving an order from old to new position
-{
-    if (position >= 0 && position < vec_order_list.size() && new_position >= 0 && new_position < vec_order_list.size())
+    order.print(output);
+    if (order.executed)
     {
-        vec_order_list.insert(vec_order_list.begin() + new_position, vec_order_list.at(position));
-        vec_order_list.erase(vec_order_list.begin() + position);
+        output << order.action << std::endl;
     }
-    else if (new_position == vec_order_list.size())
-    {
-        vec_order_list.push_back(vec_order_list.at(position));
-        vec_order_list.erase(vec_order_list.begin() + position);
-    }
-    else {
-        cout << "\n error, not valid position" << endl;
-    }
+    return output;
 }
-
 
 /*
 Subclasses of order
@@ -87,186 +57,465 @@ The different kinds of orders are: deploy, advance,
 bomb, blockade, airlift, and negotiate. All orders must have a validate() method that verifies if the order is valid.
 All orders must have an execute() method that will result in some game action being implemented (see the
 project description document).
-
 */
 
+
+//   ---   Deploy class   ---
+
+// default constructor
 Deploy::Deploy()
 {
-    cout << "deploy added" << endl;
-    set_type_id(0);
+    std::cout << "Deploy is added\n" << std::endl;
 }
 
-Deploy::Deploy(Deploy& deploy)   
+// copy constructor
+Deploy::Deploy(const Deploy& deploy)
 {
-    this->action = deploy.action; //refers to the private action string declared in the header file (Orders.h)
+    this->action = deploy.action;
 }
 
-Deploy::~Deploy()
-{
-}
+// destructor
+Deploy::~Deploy() {}
 
+// validate method override
 bool Deploy::validate()
 {
-    cout << "deploy class is valid" << endl;
+    std::cout << "deploy class is valid" << std::endl;
     return true;
 }
 
+// execute method override
 void Deploy::execute()
 {
-    if (this->validate() == true)
+    if (this->validate())
     {
-        cout << "executing Order deploy" << endl;
-        cout << "order: " + this->action;
+        std::cout << "executing Order Deploy" << std::endl;
+        this->executed = true;
     }
 }
 
-string* Deploy::get_type()
+// assignment operator
+Deploy& Deploy::operator=(const Deploy& deploy)
 {
-    return &type1;
+    this->action = deploy.action;
+    this->executed = deploy.executed;
+
+    return *this;
 }
 
+// print helper method for stream insertion overload
+void Deploy::print(std::ostream& output) const
+{
+    output << "Deploy" << std::endl;
+}
 
+// stream insertion operator overload
+std::ostream& operator<<(std::ostream& output, const Deploy& deploy)
+{
+    deploy.print(output);
+    if (deploy.executed)
+    {
+        output << deploy.action << std::endl;
+    }
+    return output;
+}
+
+//   ---   Advance class   ---
+
+// default constructor
 Advance::Advance()
 {
-    cout << "advance is added" << endl;
-    set_type_id(1);
+    std::cout << "Advance is added\n" << std::endl;
 }
 
-Advance::Advance(Advance& advance)
+// copy constructor
+Advance::Advance(const Advance& existingAdvance)
 {
-    this->action = advance.action;
+    this->action = existingAdvance.action;
+    std::cout << "Advance is added" << std::endl;
 }
 
-Advance::~Advance()
-{
-}
+// destructor
+Advance::~Advance() {}
 
+// validate method override
 bool Advance::validate()
 {
-    cout << "Advance class is valid" << endl;
+    std::cout << "Advance class is valid" << std::endl;
     return true;
 }
 
+// execute method override
 void Advance::execute()
 {
-    if (this->validate() == true)
+    if (this->validate())
     {
-        cout << "executing Order Advance" << endl;
-        cout << "order: " + this->action;
+        std::cout << "executing Order advance" << std::endl;
+        this->executed = true;
     }
 }
 
+// assignment operator
+Advance& Advance::operator=(const Advance& advance)
+{
+    this->action = advance.action;
+    this->executed = advance.executed;
+
+    return *this;
+}
+
+// print helper method for stream insertion overload
+void Advance::print(std::ostream& output) const
+{
+    output << "Advance" << std::endl;
+}
+
+// stream insertion operator overload
+std::ostream& operator<<(std::ostream& output, const Advance& advance)
+{
+    advance.print(output);
+    if (advance.executed)
+    {
+        output << advance.action << std::endl;
+    }
+    return output;
+}
+
+//   ---   Bomb class   ---
+
+// default constructor
 Bomb::Bomb()
 {
-    cout << "bomb is added" << endl;
-    set_type_id(2);
+    std::cout << "Bomb is added\n" << std::endl;
 }
 
-Bomb::Bomb(Bomb& bomb)
+// copy constructor
+Bomb::Bomb(const Bomb& existingBomb)
 {
-    this->action = bomb.action;
+    this->action = existingBomb.action;
 }
 
-Bomb::~Bomb()
-{
-}
+// destructor
+Bomb::~Bomb() {}
 
+// validate method override
 bool Bomb::validate()
 {
-    cout << "Bomb class is valid" << endl;
+    std::cout << "Bomb class is valid\n" << std::endl;
     return true;
 }
 
+// execute method override
 void Bomb::execute()
 {
-    if (this->validate() == true)
+    if (this->validate())
     {
-        cout << "executing Bomb deploy" << endl;
-        cout << "order: " + this->action;
+        std::cout << "executing Order Bomb" << std::endl;
+        this->executed = true;
     }
 }
 
-Blockade::Blockade()
+// assignment operator
+Bomb& Bomb::operator=(const Bomb& bomb)
 {
-    cout << "blockade is added" << endl;
-    set_type_id(3);
+    this->action = bomb.action;
+    this->executed = bomb.executed;
+
+    return *this;
 }
 
-Blockade::Blockade(Blockade& blockade)
+// print helper method for stream insertion overload
+void Bomb::print(std::ostream& output) const
+{
+    output << "Bomb" << std::endl;
+}
+
+// stream insertion operator overload
+std::ostream& operator<<(std::ostream& output, const Bomb& bomb)
+{
+    bomb.print(output);
+    if (bomb.executed)
+    {
+        output << bomb.action << std::endl;
+    }
+    return output;
+}
+
+//   ---   Blockade class   ---
+
+// default constructor
+Blockade::Blockade()
+{
+    std::cout << "Blockade is added\n" << std::endl;
+}
+
+// copy constructor
+Blockade::Blockade(const Blockade& blockade)
 {
     this->action = blockade.action;
 }
 
-Blockade::~Blockade()
-{
-}
+// destructor
+Blockade::~Blockade() {}
 
+// validate method override
 bool Blockade::validate()
 {
-    cout << "Blockade class is valid" << endl;
+    std::cout << "Blockade class is valid" << std::endl;
     return true;
 }
 
+// execute method override
 void Blockade::execute()
 {
-    if (this->validate() == true)
+    if (this->validate())
     {
-        cout << "executing Order Blockade" << endl;
-        cout << "order: " + this->action;
+        std::cout << "executing Order Blockade" << std::endl;
+        this->executed = true;
     }
 }
 
+// assignment operator
+Blockade& Blockade::operator=(const Blockade& blockade)
+{
+    this->action = blockade.action;
+    this->executed = blockade.executed;
+
+    return *this;
+}
+
+// print helper method for stream insertion overload
+void Blockade::print(std::ostream& output) const
+{
+    output << "Blockade" << std::endl;
+}
+
+// stream insertion operator overload
+std::ostream& operator<<(std::ostream& output, const Blockade& blockade)
+{
+    blockade.print(output);
+    if (blockade.executed)
+    {
+        output << blockade.action << std::endl;
+    }
+    return output;
+}
+
+//   ---   Airlift class   ---
+
+// default constructor
 Airlift::Airlift()
 {
-    cout << "airlift is added" << endl;
-    set_type_id(4);
+    std::cout << "Airlift is added\n" << std::endl;
 }
 
-Airlift::Airlift(Airlift& airlift)
+// copy constructor
+Airlift::Airlift(const Airlift& existingAirlift)
 {
-    this->action = airlift.action;
+    this->action = existingAirlift.action;
 }
 
-Airlift::~Airlift()
-{
-}
+// destructor
+Airlift::~Airlift() {}
 
+// validate method override
 bool Airlift::validate()
 {
-    cout << "Airlift class is valid" << endl;
+    std::cout << "validate() called in an Airlift object" << std::endl;
     return true;
 }
 
+// execute method override
 void Airlift::execute()
 {
-    if (this->validate() == true)
+    if (this->validate())
     {
-        cout << "executing Order Airlift" << endl;
-        cout << "order: " + this->action;
+        std::cout << "execute() called in an Airlift object" << std::endl;
+        this->executed = true;
     }
 }
 
+// assignment operator
+Airlift& Airlift::operator=(const Airlift& airlift)
+{
+    this->action = airlift.action;
+    this->executed = airlift.executed;
+
+    return *this;
+}
+
+// print helper method for stream insertion overload
+void Airlift::print(std::ostream& output) const
+{
+    output << "Airlift" << std::endl;
+}
+
+// stream insertion operator overload
+std::ostream& operator<<(std::ostream& output, const Airlift& airlift)
+{
+    airlift.print(output);
+    if (airlift.executed)
+    {
+        output << airlift.action << std::endl;
+    }
+    return output;
+}
+
+//   ---   Negotiate class   ---
+
+// default constructor
 Negotiate::Negotiate()
 {
-    cout << "negotiate is added" << endl;
-    set_type_id(5);
+    std::cout << "Negotiate is added\n" << std::endl;
 }
 
-Negotiate::~Negotiate()
+// copy constructor
+Negotiate::Negotiate(const Negotiate& existingNegotiate)
 {
+    this->action = existingNegotiate.action;
 }
 
+// destructor
+Negotiate::~Negotiate() {}
+
+// validate method override
 bool Negotiate::validate()
 {
-    cout << "Negotiate class is valid" << endl;
+    std::cout << "Negotiate class is valid" << std::endl;
     return true;
 }
 
+// execute method override
 void Negotiate::execute()
 {
-    if (this->validate() == true)
+    if (this->validate())
     {
-        cout << "executing Order Negotiate" << endl;
-        cout << "order: " + this->action;
+        this->executed = true;
     }
+}
+
+// assignment operator
+Negotiate& Negotiate::operator=(const Negotiate& negotiate)
+{
+    this->action = negotiate.action;
+    this->executed = negotiate.executed;
+
+    return *this;
+}
+
+// print helper method for stream insertion overload
+void Negotiate::print(std::ostream& output) const
+{
+    output << "Negotiate" << std::endl;
+}
+
+// stream insertion operator overload
+std::ostream& operator<<(std::ostream& output, const Negotiate& negotiate)
+{
+    negotiate.print(output);
+    if (negotiate.executed)
+    {
+        output << negotiate.action << std::endl;
+    }
+    return output;
+}
+
+
+
+// default constructor
+OrdersList::OrdersList()
+{
+    std::cout << "OrdersList created " << std::endl;
+}
+
+// copy constructor
+OrdersList::OrdersList(const OrdersList& ordersList)
+{
+    this->ordersList = ordersList.ordersList;
+}
+
+OrdersList::~OrdersList()
+{
+    // change all the pointers to nullptr
+    for (Order* order : ordersList)
+    {
+        order = nullptr;
+    }
+}
+
+// add an order to the list
+void OrdersList::addOrder(Order* order)
+{
+    this->ordersList.push_back(order);
+}
+
+// get next order on the list
+Order* OrdersList::getNextOrder()
+{
+    std::cout << "getNextOrder() was called\n" << std::endl;
+
+    // if list not empty, pop and return next order
+    if (!ordersList.empty())
+    {
+        Order* nextOrderPtr = ordersList.front();
+        ordersList.pop_front();
+        return nextOrderPtr;
+    }
+    else
+    {   // if list is empty, print a message
+        std::cout << " -- Order list is empty !" << std::endl;
+        return nullptr;
+    }
+}
+
+// remove an order from the list [takes an int, which is a menu number]
+void OrdersList::remove(int num)
+{
+    // index is one less than menu numbering
+    num--;
+
+    this->ordersList.erase(this->ordersList.begin() + num);
+
+    std::cout << "an order was removed\n" << std::endl;
+}
+
+// swap two orders in the list [takes two ints, which are menu numbers]
+void OrdersList::move(int a, int b)
+{
+    // index is one less than menu numbering
+    a--;
+    b--;
+
+    Order* temp = this->ordersList[a];
+
+    this->ordersList[a] = this->ordersList[b];
+    this->ordersList[b] = temp;
+
+    std::cout << "orders were swapped\n" << std::endl;
+}
+
+// assignment operator
+OrdersList& OrdersList::operator=(const OrdersList& orderslist)
+{
+    this->ordersList = orderslist.ordersList;
+
+    return *this;
+}
+
+// stream insertion operator overload
+std::ostream& operator<<(std::ostream& output, const OrdersList& orderslist)
+{
+    // creates a temporary copy of orderlist and traverse it to print it out
+    std::deque<Order*> temp = orderslist.ordersList;
+    int i = 1;
+    while (!temp.empty())
+    {
+        Order* tempObj = temp.front();
+        std::cout << std::to_string(i) + ": ";
+        std::cout << *tempObj << std::endl;
+        temp.pop_front();
+        i++;
+    }
+
+    return output;
 }

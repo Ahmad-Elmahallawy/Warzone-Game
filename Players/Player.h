@@ -21,7 +21,7 @@ private:
     vector<Territory*> territories; //territories owned by a Players
     string playerName;
     int playerID;
-    OrderList* ordersList;
+    OrdersList* ordersList;
 
 
 // public attributes
@@ -33,7 +33,7 @@ public:
     Player(Player &player);
 
     Player(Hand *hand, const vector<Territory *> &territories, const string &playerName, int playerId,
-           OrderList *ordersList) : hand(hand), territories(territories), playerName(playerName),
+           OrdersList *ordersList) : hand(hand), territories(territories), playerName(playerName),
                                     ordersList(ordersList) {}
 
 
@@ -72,9 +72,9 @@ public:
 
     void setPlayerId(int playerId);
 
-    void setOrdersList(OrderList *ordersList);
+    void setOrdersList(OrdersList *ordersList);
 
-    OrderList* getOrdersList() const;
+    OrdersList* getOrdersList() const;
 
     friend ostream &operator<<(ostream &os, const Player &player);
 

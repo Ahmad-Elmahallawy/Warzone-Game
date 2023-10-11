@@ -1,59 +1,59 @@
+
 /*
 contains a free function named testOrdersLists() that creates a list of orders and demonstrates that the OrdersList implemented
 Here : remove, move of the orderlist will be tested, expected result shown commented
 
 */
+
 #include "Orders.h"
 
-using namespace std;
 
 void testOrdersLists()
 {
-    cout << "test OrderDriver...\n" << endl;
-    OrderList anOrderList;
+    std::cout << "test OrderDriver" << std::endl;
 
-    Deploy aDeploy;
-    Advance anadvance;
-    Bomb abomb;
-    Blockade ablockade;
-    Airlift anairlift;
-    Negotiate anegotiate;
-
-    anOrderList.add_order_list(&aDeploy);
-    anOrderList.add_order_list(&anadvance);
-    anOrderList.add_order_list(&abomb);
-    anOrderList.add_order_list(&ablockade);
-    anOrderList.add_order_list(&anairlift);
-    anOrderList.add_order_list(&anegotiate);
-
-    //validate and execute
-    cout << "  " << anOrderList.get_order_list()->at(0)->validate() << endl;
-    anOrderList.get_order_list()->at(3)->execute();
+    Deploy deploy_test = Deploy();
+    Advance advance_test = Advance();
+    Bomb bomb_test = Bomb();
+    Blockade blockade_test = Blockade();
+    Airlift airlift_test = Airlift();
+    Negotiate negotiate_test = Negotiate();
 
 
-    //print orderlist
-    cout << "\n the orderlist contains: " << endl;
-    for (int i = 0; i < anOrderList.get_order_list()->size(); i++) {
-        cout << "  " << anOrderList.get_order_list()->at(i)->get_type() << endl;
-    }
 
-    //removing an order
-    anOrderList.remove(&aDeploy);
+    // create an OrdersList object to hold the orders
+    std::cout << "create an OrdersList :\n" << std::endl;
+    OrdersList orderslist_test = OrdersList();
 
-    //check output
-    cout << "\n the orderlist contains: " << endl;
-    for (int i = 0; i < anOrderList.get_order_list()->size(); i++) {
-        cout << "  " << anOrderList.get_order_list()->at(i)->get_type() << endl;
-    }
+    std::cout << std::endl;
 
-    anOrderList.move(0, 4); //expected result= will move advance in the list
+    // place pointers to all the action objects in the list
+    orderslist_test.addOrder(&deploy_test);
+    orderslist_test.addOrder(&advance_test);
+    orderslist_test.addOrder(&bomb_test);
+    orderslist_test.addOrder(&blockade_test);
+    orderslist_test.addOrder(&airlift_test);
+    orderslist_test.addOrder(&negotiate_test);
 
-    anOrderList.move(0, 8);//expected result= result in error since there is not 8 position
 
-    //check result
-    cout << "\n the orderlist contains: " << endl;
-    for (int i = 0; i < anOrderList.get_order_list()->size(); i++) {
-        cout << "  " << anOrderList.get_order_list()->at(i)->get_type() << endl;
-    }
+
+    // print out the contents of the orderlist
+    std::cout << "\n the orderslist contains :\n" << std::endl;
+    std::cout << orderslist_test << std::endl;
+
+    // removing blockade
+    std::cout << " -- removing blockade Order from the list :\n" << std::endl;
+    orderslist_test.remove(4);
+    std::cout << orderslist_test << std::endl;
+
+    // swapping orders
+    orderslist_test.move(3, 1);
+    std::cout << orderslist_test << std::endl;
+
+  //check result
+    Order* nextOrder = orderslist_test.getNextOrder();
+    nextOrder->execute();
+    std::cout << std::endl << orderslist_test << std::endl;
+
 
 }

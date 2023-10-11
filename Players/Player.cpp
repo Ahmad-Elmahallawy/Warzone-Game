@@ -8,7 +8,7 @@ Player::Player() {
     this->hand = new Hand();
     this->territories = vector<Territory *>();
     this->playerName = "no name";
-    this->ordersList = new OrderList();
+    this->ordersList = new OrdersList();
 }
 
 
@@ -17,7 +17,7 @@ Player::Player() {
 Player::Player(Player &player) {
     hand = new Hand(*player.hand);
     territories = vector<Territory*>(player.territories);
-    ordersList = new OrderList(*player.ordersList);
+    ordersList = new OrdersList(*player.ordersList);
     playerName = player.playerName;
 
 }
@@ -39,7 +39,7 @@ const string &Player::getPlayerName() const {
 }
 
 // return's user's orderlist
-OrderList* Player::getOrdersList() const {
+OrdersList* Player::getOrdersList() const {
     return this->ordersList;
 }
 
@@ -65,7 +65,7 @@ void Player::setPlayerName(const string &playerName) {
 }
 
 // sets orderlist
-void Player::setOrdersList(OrderList *ordersList) {
+void Player::setOrdersList(OrdersList *OrdersList) {
     Player::ordersList = ordersList;
 }
 
@@ -73,7 +73,7 @@ void Player::setOrdersList(OrderList *ordersList) {
 void Player::issueOrder() {
     Order *order = new Order(*new Deploy());
     cout << "player 1 player has issued an order";
-    ordersList->add_order_list(order);
+    ordersList->addOrder(order);
 
 }
 
