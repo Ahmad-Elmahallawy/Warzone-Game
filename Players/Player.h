@@ -21,7 +21,7 @@ private:
     vector<Territory*> territories; //territories owned by a Players
     string playerName;
     int playerID;
-    OrdersList* ordersList;
+    OrdersList* ordersList= nullptr;
 
 
 // public attributes
@@ -72,9 +72,7 @@ public:
 
     void setPlayerId(int playerId);
 
-    void setOrdersList(OrdersList *ordersList);
-
-    OrdersList* getOrdersList() const;
+    OrdersList* getOrdersList() ;
 
     friend ostream &operator<<(ostream &os, const Player &player);
 

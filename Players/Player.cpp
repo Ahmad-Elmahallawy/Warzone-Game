@@ -39,7 +39,9 @@ const string &Player::getPlayerName() const {
 }
 
 // return's user's orderlist
-OrdersList* Player::getOrdersList() const {
+OrdersList *Player::getOrdersList(){
+    std::cout << "\n the orderlist contains :" << std::endl;
+   // std::cout << ordersList  << std::endl;
     return this->ordersList;
 }
 
@@ -64,17 +66,12 @@ void Player::setPlayerName(const string &playerName) {
     Player::playerName = playerName;
 }
 
-// sets orderlist
-void Player::setOrdersList(OrdersList *OrdersList) {
-    Player::ordersList = ordersList;
-}
-
 // creates a new order
 void Player::issueOrder() {
     Order *order = new Order(*new Deploy());
     cout << "player 1 player has issued an order";
     ordersList->addOrder(order);
-
+    cout << "player 1 player has issued an order";
 }
 
 // currently just a static territories to defend

@@ -10,6 +10,8 @@ void testPlayers()
     Player* p1 = new Player();
     cout << endl;
 
+
+
     // issuing orders by player created
     cout << "PLAYER 1'S COMMANDS" << endl;
     cout << "***********************************************************" << endl;
@@ -17,6 +19,8 @@ void testPlayers()
     p1->issueOrder();
     p1->issueOrder();
 
+    //getting Orderlistsofar
+    cout<<"P1 next order: "<< p1->getOrdersList()<<endl;
     cout << endl;
 
     // testing the toAttack method
