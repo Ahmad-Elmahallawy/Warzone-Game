@@ -20,7 +20,7 @@ void testPlayers()
     p1->issueOrder();
 
     //getting Orderlistsofar
-    cout<<"P1 next order: "<< p1->getOrdersList()<<endl;
+    cout<<"Player 1'S next order: "<< p1->getOrdersList()<<endl;
     cout << endl;
 
     // testing the toAttack method

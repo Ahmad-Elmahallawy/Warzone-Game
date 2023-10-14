@@ -72,7 +72,7 @@ public:
 
     void setPlayerId(int playerId);
 
-    OrdersList* getOrdersList() ;
+    OrdersList & getOrdersList() ;
 
     friend ostream &operator<<(ostream &os, const Player &player);
 
