@@ -21,17 +21,25 @@ void testCards() {
     hand-> returnCard(*card5);
 
 //method just to make sure our hand gets cards
-    cout << "the hand currently has" << endl;
+    cout << "The hand currently has:" << endl;
     hand-> displayHand();
+
+    deck->getDeckSize();
 
     int handSize = hand->getCard().size();
 
 //looping to play all cards randomly until the hand is empty
+
     for(size_t i = 0; i < handSize; i++) {
-        int randomNum = rand() % (hand-> getCard().size());
+        srand (time(0));
+        int randomNum = rand() % hand->getCard().size();
+        cout << randomNum << " batee5" << endl;
         hand -> getCard()[randomNum]->play(randomNum, *hand, *deck);
+        hand->displayHand();
     }
 
+    deck->getDeckSize();
+    hand -> getHandSize();
     hand -> displayHand();
 
     delete deck;

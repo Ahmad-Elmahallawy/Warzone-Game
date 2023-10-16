@@ -1,6 +1,7 @@
 #ifndef CARDS_H
 #define CARDS_H
 #include <vector>
+#include <string>
 
 using namespace std;
 class Deck;
@@ -9,6 +10,8 @@ class Hand;
 class Card {
 public:
     enum WarzoneCard {  Bomb,  Reinforcement, Blockade, Airlift, Diplomacy, end };
+
+    const string cardType[5];
 
 // constructor
     Card();
@@ -27,6 +30,9 @@ public:
 
 // getter method
     WarzoneCard getCard() const;
+
+
+    static string warzoneCardToString(WarzoneCard type);
 
 //the play method that removes a card from the hand and returns it to the deck
     void play(int card, Hand& h, Deck& d);
@@ -57,6 +63,9 @@ public:
 //returns a card to deck
     void returnCard(Card& c);
 
+//size to get the size of the deck
+    void getDeckSize();
+
 private:
 
     vector<Card*> vectorDeck;
@@ -81,6 +90,8 @@ public:
 
 //to show/print hand cards
     void displayHand();
+
+    void getHandSize();
 
 private:
     vector<Card*> vectorHand;

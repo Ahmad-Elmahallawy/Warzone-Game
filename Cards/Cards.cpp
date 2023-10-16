@@ -25,15 +25,32 @@ Card& Card::operator=(const Card& card) {
 
 //getter method return the card
 Card::WarzoneCard Card::getCard() const {
+
     return this-> card1;
+}
+
+// Helper function to convert WarzoneCard enum to string
+ string Card::warzoneCardToString(Card::WarzoneCard type) {
+    switch (type) {
+        case Card::WarzoneCard::Bomb: return "Bomb";
+        case Card::WarzoneCard::Reinforcement: return "Reinforcement";
+        case Card::WarzoneCard::Blockade: return "Blockade";
+        case Card::WarzoneCard::Airlift: return "Airlift";
+        case Card::WarzoneCard::Diplomacy: return "Diplomacy";
+        default: return "Unknown";
+    }
 }
 
 // play method
 void Card::play(int card, Hand& hand, Deck& deck) {
     Card* cardToRemove = hand.removeFromHand(card);
+    std::cout << warzoneCardToString(cardToRemove->getCard()) << " was played." << std::endl;
     deck.returnCard(*cardToRemove);
 }
 
+
+
+string cardType[5] = {"Bomb", "Reinforcement", "Blockade", "Airlift", "Diplomacy"};
 
 Deck::Deck() {
 
@@ -66,8 +83,10 @@ Card* Deck::draw() {
         return 0;
     }
     else {
+        srand (time(0));
         int size = vectorDeck.size();
         int randomNum = rand() % size;
+
         Card* card = vectorDeck.at(randomNum);
         vectorDeck.erase(vectorDeck.begin() + randomNum);
         return card;
@@ -92,6 +111,10 @@ void Deck::returnCard(Card& card) {
 vector<Card*> Deck::getCard()
 {
     return this->vectorDeck;
+}
+
+void Deck::getDeckSize() {
+    cout << "The deck size is " << vectorDeck.size() << "." << endl;
 }
 
 Hand::Hand() {}
@@ -123,6 +146,7 @@ Card* Hand::removeFromHand(int i) {
         if(x == i)
             vectorHand.erase(vectorHand.begin() + i);
     }
+
     return card;
 }
 
@@ -136,11 +160,15 @@ void Hand::displayHand() {
     else {
         for(size_t i = 0; i < vectorHand.size(); i++) {
             if (i == vectorHand.size() - 1)
-                std:: cout << vectorHand.at(i) -> getCard() << " " << endl;
+                std:: cout << cardType
+                [vectorHand.at(i) -> getCard()] << " " << endl;
             else
-                std:: cout << vectorHand.at(i) -> getCard() << ", " << endl;
+                std:: cout << cardType[vectorHand.at(i) -> getCard()] << ", " << endl;
 
         }
     }
 }
 
+void Hand::getHandSize() {
+    cout << "The hand size is " << vectorHand.size() <<"." << endl;
+}
