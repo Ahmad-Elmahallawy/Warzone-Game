@@ -68,7 +68,7 @@ void Player::setPlayerName(const string &playerName) {
 
 // creates a new order
 void Player::issueOrder() {
-    Order *order = new Order(*new Deploy());
+    Order *order = new Deploy(*new Deploy());
     cout << "player 1 player has issued an order\n";
     ordersList->addOrder(order);
 
