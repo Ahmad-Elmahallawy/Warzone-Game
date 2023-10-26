@@ -6,12 +6,14 @@ using namespace std;
 // default constructor
 Player::Player() {
     this->hand = new Hand();
-    this->territories = vector<Territory *>();
+    this->territories = {new Territory(), new Territory()};
     this->playerName = "no name";
     this->ordersList = new OrdersList();
 }
 
-
+Player::Player(Hand *hand, const vector<Territory *> &territories, const string &playerName, int playerId,
+               OrdersList *ordersList) : hand(hand), territories(territories), playerName(playerName),
+                                         playerID(playerId), ordersList(ordersList) {}
 
 // copy constructor
 Player::Player(Player &player) {
@@ -24,14 +26,19 @@ Player::Player(Player &player) {
 
 
 Player::~Player() {
+    cout << "Player deleted" << endl;
     delete this->hand;
+    cout << "hand deleted" << endl;
     delete this->ordersList;
+    cout << "orderslist deleted" << endl;
+
 }
 
 // returns player's territories
 const vector<Territory *> &Player::getTerritories() const {
     return territories;
 }
+
 
 // returns player name
 const string &Player::getPlayerName() const {
@@ -41,7 +48,6 @@ const string &Player::getPlayerName() const {
 // return's user's orderlist
 OrdersList& Player::getOrdersList(){
     std::cout << "\nthe orderlist contains :" << std::endl;
-   // std::cout << ordersList  << std::endl;
     return *ordersList;
 }
 
@@ -84,7 +90,7 @@ vector<Territory*> Player::toDefend() const{
     t1->setTerritoryName("Belgium");
     t2->setTerritoryName("Canada");
     t3->setTerritoryName("Italy");
-    cout << t1->getTerritoryName() + ", " + t2->getTerritoryName() + ", " + t3->getTerritoryName();
+    cout << t1->getTerritoryName() + ", " + t2->getTerritoryName() + ", " + t3->getTerritoryName() << endl;
     return {t1, t2, t3};
 }
 
@@ -102,25 +108,34 @@ vector<Territory*> Player::toAttack() const{
 }
 
 ostream &operator<<(ostream &os, const Player &player) {
-    os << "hand: " << player.hand << " playerName: " << player.playerName
-       << " playerID: " << player.playerID << " ordersList: " << player.ordersList;
-    for (int i = 0; i < player.territories.size(); i++) {
-        os << player.territories[i];
-        if (i < player.territories.size() - 1) {
-            os << ", "; // Add a comma and space for elements other than the last one
-        }
+    os << "Player Name: " << player.playerName << ", Player ID: " << player.playerID << '\n';
+    os << "Hand: " << *(player.hand) << '\n';
 
-        return os;
+    os << "Territories: ";
+    const std::vector<Territory *> vector1 = player.territories;
+    for(size_t i = 0; i < player.territories.size(); i++) {
+        if (i == player.territories.size() - 1)
+            std:: cout << vector1[i]->getTerritoryName();
+        else
+            std:: cout << vector1[i]->getTerritoryName() << ", ";
+
     }
+
+    os << '\n';
+
+    os << "Orders List: " << *(player.ordersList);
+
+    return os;
 }
 
-    bool Player::operator==(const Player &rhs) const {
-        return hand == rhs.hand &&
-               territories == rhs.territories &&
-               playerName == rhs.playerName &&
-               playerID == rhs.playerID &&
-               ordersList == rhs.ordersList;
-    }
+Player& Player::operator=(const Player& rhs) {
+    cout << "Player assignment operator called." << endl;
+    hand = rhs.hand;
+    ordersList = rhs.ordersList;
+    territories = rhs.territories;
+
+    return *this;
+}
 
 
 

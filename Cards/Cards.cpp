@@ -29,26 +29,16 @@ Card::WarzoneCard Card::getCard() const {
     return this-> card1;
 }
 
-// Helper function to convert WarzoneCard enum to string
- string Card::warzoneCardToString(Card::WarzoneCard type) {
-    switch (type) {
-        case Card::WarzoneCard::Bomb: return "Bomb";
-        case Card::WarzoneCard::Reinforcement: return "Reinforcement";
-        case Card::WarzoneCard::Blockade: return "Blockade";
-        case Card::WarzoneCard::Airlift: return "Airlift";
-        case Card::WarzoneCard::Diplomacy: return "Diplomacy";
-        default: return "Unknown";
-    }
+ostream& operator<<(std::ostream& os, const Card& obj) {
+    os << "This is the card" << obj.card1;
 }
 
 // play method
 void Card::play(int card, Hand& hand, Deck& deck) {
     Card* cardToRemove = hand.removeFromHand(card);
-    std::cout << warzoneCardToString(cardToRemove->getCard()) << " was played." << std::endl;
+
     deck.returnCard(*cardToRemove);
 }
-
-
 
 string cardType[5] = {"Bomb", "Reinforcement", "Blockade", "Airlift", "Diplomacy"};
 
@@ -117,6 +107,23 @@ void Deck::getDeckSize() {
     cout << "The deck size is " << vectorDeck.size() << "." << endl;
 }
 
+// Implement the friend function for overloading the << operator.
+ostream& operator<<(std::ostream& os, const Deck& obj) {
+    os << "The deck has {";
+
+    const std::vector<Card*>& vector1 = obj.vectorDeck;
+    for (size_t i = 0; i < vector1.size(); ++i) {
+        os << vector1[i];
+        if (i < vector1.size() - 1) {
+            os << ", ";
+        }
+    }
+
+    os << "}";
+    return os;
+}
+
+
 Hand::Hand() {}
 
 Hand::~Hand() {
@@ -142,6 +149,7 @@ vector<Card*> Hand::getCard() {
 Card* Hand::removeFromHand(int i) {
     Card* card = vectorHand.at(i);
 
+    cout << cardType[i] << " was played." << endl;
     for(size_t x = 0; x < vectorHand.size(); x++) {
         if(x == i)
             vectorHand.erase(vectorHand.begin() + i);
@@ -171,4 +179,27 @@ void Hand::displayHand() {
 
 void Hand::getHandSize() {
     cout << "The hand size is " << vectorHand.size() <<"." << endl;
+}
+
+ostream& operator<<(std::ostream& os, const Hand& obj) {
+    if(obj.vectorHand.empty())
+        std :: cout << "The hand is empty." << endl;
+
+    else {
+        os << "The hand has {";
+
+        const std::vector<Card *> &vector1 = obj.vectorHand;
+        for(size_t i = 0; i < obj.vectorHand.size(); i++) {
+            if (i == obj.vectorHand.size() - 1)
+                std:: cout << cardType
+                [obj.vectorHand.at(i) -> getCard()] << " ";
+            else
+                std:: cout << cardType[obj.vectorHand.at(i) -> getCard()] << ", ";
+
+        }
+        os << "}";
+    }
+
+
+    return os;
 }

@@ -28,21 +28,15 @@ private:
 public:
     Player();
 
-    Player(Hand *hand, const vector<Territory *> &territories, const string &playerName, Order *ordersList);
-
     Player(Player &player);
 
+
     Player(Hand *hand, const vector<Territory *> &territories, const string &playerName, int playerId,
-           OrdersList *ordersList) : hand(hand), territories(territories), playerName(playerName),
-                                    ordersList(ordersList) {}
+           OrdersList *ordersList);
 
 
     ~Player();   // deconstruct
 
-
-    void setName(string name);
-
-    string getName();
 
     // toDefend() and toAttack() methods return a list of territories
     std::vector<Territory*> toDefend() const;
@@ -76,9 +70,10 @@ public:
 
     friend ostream &operator<<(ostream &os, const Player &player);
 
-    bool operator==(const Player &rhs) const;
+    bool operator=(const Player &rhs) const;
 
-    bool operator!=(const Player &rhs) const;
+    Player& operator=(const Player& rhs);
+
 };
 
 void testPlayers();

@@ -28,23 +28,23 @@ Territory::Territory() {
 Territory::~Territory(){
 
 }
-int Territory::getXCoordinate() {
+int Territory::getXCoordinate() const{
     return this->xCoordinate;
 }
-int Territory::getYCoordinate(){
+int Territory::getYCoordinate() const{
     return this->yCoordinate;
 }
-string Territory::getTerritoryName() {
+string Territory::getTerritoryName() const{
     return this->territoryName;
 }
-string Territory::getContinentName() {
+string Territory::getContinentName() const{
     return this->continent;
 }
 
-int Territory::getVertexNumber() {
+int Territory::getVertexNumber() const{
     return this->vertexNumber;
 }
-int Territory::getViableVertexNumber() {
+int Territory::getViableVertexNumber() const{
     return Territory::viableVertexNumber++;
 }
 void Territory::setXCoordinate(int x) {
@@ -64,6 +64,12 @@ void Territory::setContinentName(std::string cName) {
 
 void Territory::setVertexNumber() {
     this->vertexNumber = getViableVertexNumber();
+}
+
+std::ostream& operator<<(std::ostream& os, const Territory& territory) {
+    os << "Territory Name: " << territory.getTerritoryName() << ", Continent: " << territory.getContinentName();
+    // Include any other information you want to print for a Territory
+    return os;
 }
 Map::Map(Map const &m) {
     this->listOfTerritories = m.listOfTerritories;
@@ -126,6 +132,23 @@ bool Map::DFS() {
     }
     return true;
 }
+
+std::ostream& operator<<(std::ostream& os, const Map& map){
+    os << "Number of vertices: " << map.numberOfVertices;
+    return os;
+}
+
+// Assignment operator for Map class
+Map& Map::operator=(const Map& other) {
+    if (this == &other) {
+        return *this; // Handle self-assignment
+    }
+    this->listOfTerritories = other.listOfTerritories;
+    this->numberOfVertices = other.numberOfVertices;
+    // Include any other member variables you want to copy
+    return *this;
+}
+
 MapLoader::MapLoader(std::string fileName) {
     this->fileName = fileName;
 }
@@ -144,7 +167,7 @@ MapLoader::~MapLoader(){
 void MapLoader::setNumberOfTerritories(int n) {
     this->numberOfTerritories = n;
 }
-int MapLoader::getNumberOfTerritories() {
+int MapLoader::getNumberOfTerritories() const{
     return this->numberOfTerritories;
 }
 void MapLoader::firstRun() {
@@ -186,9 +209,7 @@ void MapLoader::secondRun() {
     myFile.open(fileName);
     string word;
     vector<string> tokens;
-//    for(int j = 0;j<this->gameMap->listOfTerritories.size();j++){
-//        cout<<this->gameMap->listOfTerritories[j].getTerritoryName()<<endl;
-//    }
+
     if(myFile.is_open()){
         while (!myFile.eof()){
             if (myline == "[Territories]") {
@@ -217,9 +238,7 @@ void MapLoader::secondRun() {
             }
         }
     }
-//    for(int j = 0;j<this->gameMap->listOfTerritories.size();j++){
-//        cout<<this->gameMap->listOfTerritories[j].getTerritoryName()<<endl;
-//    }
+
     bool continentCheck = this->gameMap->checkContinent();
     bool connectivityCheck = this->gameMap->DFS();
     if(continentCheck){
@@ -236,14 +255,10 @@ void MapLoader::secondRun() {
     }
     this->gameMap->print();
 
-//    cout<<this->gameMap->listOfTerritories.size();
-//    for(int j = 0;j<this->gameMap->listOfTerritories.size();j++){
-//        cout<<this->gameMap->listOfTerritories[j].getTerritoryName()<<endl;
-//    }
     myFile.close();
 }
 
-int MapLoader::getNumberOfTerritoriesFromFile() {
+int MapLoader::getNumberOfTerritoriesFromFile() const{
     string myline;
     int n = 0;
     std::ifstream myFile;
@@ -284,4 +299,12 @@ Territory MapLoader::findTerritory(std::string tName) {
     t.setTerritoryName("Not found");
     t.setVertexNumber();
     return t;
+}
+
+// Stream insertion operator for MapLoader class
+std::ostream& operator<<(std::ostream& os, const MapLoader& loader) {
+    os << "MapLoader Contents:" << std::endl;
+    os << "File Name: " << loader.fileName << std::endl;
+    os << "Number of Territories: " << loader.getNumberOfTerritories() << std::endl;
+    return os;
 }

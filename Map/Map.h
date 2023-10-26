@@ -19,17 +19,18 @@ public:
     Territory(int xCoordinate,int yCoordinate,string territoryName,string continent);
     Territory();
     ~Territory();
-    int getXCoordinate();
+    int getXCoordinate() const;
     void setXCoordinate(int x);
-    int getYCoordinate();
+    int getYCoordinate() const;
     void setYCoordinate(int y);
-    string getTerritoryName();
+    string getTerritoryName() const;
     void setTerritoryName(string tName);
-    string getContinentName();
+    string getContinentName() const;
     void setContinentName(string cName);
-    int getVertexNumber();
+    int getVertexNumber() const;
     void setVertexNumber();
-    int getViableVertexNumber();
+    int getViableVertexNumber() const;
+    friend std::ostream& operator<<(std::ostream& os, const Territory& territory);
     bool operator==(const Territory& other) const {
         return this->territoryName == other.territoryName;
     }
@@ -55,6 +56,8 @@ public:
     void addEdge(Territory t1,Territory t2);
     vector<Territory> listOfTerritories;
     void print();
+    friend std::ostream& operator<<(std::ostream& os, const Map& map);
+    Map& operator=(const Map& other);
 
 private:
     list<Territory> *adjlist;
@@ -66,13 +69,13 @@ public:
     MapLoader(string fileName);
     MapLoader(int n,std::string fileName);
     ~MapLoader();
-    int getNumberOfTerritoriesFromFile();
+    int getNumberOfTerritoriesFromFile() const;
     bool territoryExists(string tName);//finds out if given territory exists
     Territory findTerritory(string tName);
     void setNumberOfTerritories(int n);
     void firstRun();
     void secondRun();
-    int getNumberOfTerritories();
+    int getNumberOfTerritories() const;
     string fileName;
 private:
     int numberOfTerritories;
