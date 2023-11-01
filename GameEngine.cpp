@@ -1,5 +1,7 @@
 // GameEngine.cpp
 #include "GameEngine.h"
+#include "players\player.h"
+#include "Map\Map.h"
 
 GameEngine::GameEngine() {
     // current state when the game runs
@@ -78,19 +80,97 @@ std::string stateToString(State state) {
 // converts command to string
 std::string commandToString(Command command) {
     switch (command) {
-        case CMD_START: return "start";
-        case CMD_LOAD_MAP: return "loadmap";
-        case CMD_VALIDATE_MAP: return "validatemap";
-        case CMD_ADD_PLAYER: return "addplayer";
-        case CMD_ASSIGN_COUNTRIES: return "assigncountries";
-        case CMD_ISSUE_ORDER: return "issueorder";
-        case CMD_END_ISSUE_ORDER: return "endissueorder";
-        case CMD_EXECUTE_ORDERS: return "executeorders";
-        case CMD_END_EXEC_ORDERS: return "endexecorders";
-        case CMD_WIN: return "win";
-        case CMD_END: return "end";
-        case CMD_PLAY: return "play";
-        case CMD_EXEC_ORDER: return "execorder";
-        default: return "UNKNOWN_COMMAND";
+        case CMD_START:
+            return "start";
+        case CMD_LOAD_MAP:
+            return "loadmap";
+        case CMD_VALIDATE_MAP:
+            return "validatemap";
+        case CMD_ADD_PLAYER:
+            return "addplayer";
+        case CMD_ASSIGN_COUNTRIES:
+            return "assigncountries";
+        case CMD_ISSUE_ORDER:
+            return "issueorder";
+        case CMD_END_ISSUE_ORDER:
+            return "endissueorder";
+        case CMD_EXECUTE_ORDERS:
+            return "executeorders";
+        case CMD_END_EXEC_ORDERS:
+            return "endexecorders";
+        case CMD_WIN:
+            return "win";
+        case CMD_END:
+            return "end";
+        case CMD_PLAY:
+            return "play";
+        case CMD_EXEC_ORDER:
+            return "execorder";
+        default:
+            return "UNKNOWN_COMMAND";
     }
 }
+//Part 4: Mahanaim Rubin Yo
+void GameEngine::mainGameLoop() {
+    int numPlayers = 2;
+    Player *players[5] = {};
+    bool firstRound = true;
+
+    //the loop continues until one person owns all territories on map
+    while (numPlayers != 1) {
+        //If a players territoryList size is 0, he/she is removed from the game because he/she no longer controls at least 1 territory
+        //Iterating through GameEngine's list of players
+        for (int i = 0; i < PLAYERS_ADDED; i++) {
+            if (players[i]->getTerritories().empty()) {
+                std::cout << " Sorry you have lost all your territories and is therefore eliminated\n" << std::endl;
+            }
+        }
+
+        if (!firstRound)// reinforcement phase is skipped during the first round
+        {
+            // Reinforcement Phase
+            reinforcementPhase();
+        }
+
+        // Issuing Orders Phase
+        issueOrdersPhase();
+
+        // Orders Execution Phase
+        ordersExecutionPhase();
+
+        firstRound = false;
+
+    }
+}
+
+
+void GameEngine:: reinforcementPhase() {
+//The player decides which neighboring territories are to be attacked in priority (as a list return by the
+//toAttack() method), and which of their own territories are to be defended in priority (as a list returned by
+//the toDefend() method
+    for (int i = 0; i < players.size(); i++)
+    {
+
+    }
+
+
+}
+
+void GameEngineissueOrdersPhase() {
+
+
+}
+
+void GameEngine::ordersExecutionPhase() {
+
+
+}
+
+
+
+
+
+
+
+
+

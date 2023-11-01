@@ -9,6 +9,8 @@
 #include <map>
 #include <vector>
 #include <string>
+#include "Cards/Cards.h"
+#include "Players/Player.h"
 
 // Define the possible game states as an enum
 enum State {
@@ -50,14 +52,27 @@ class GameEngine {
 private:
     State currentState; // current game state
     std::map<State, std::vector<Transition>> stateTransitions; // State transition map
-
+    int numPlayers;
+    vector<Player *> players;
+    Deck *deck;
 public:
+
     GameEngine(); // constructor
     bool isValidTransition(Command command); // check if the transition is valid
     void transition(Command command); // do state transition
     State getCurrentState(); // to get the current game state
     void printValidCommands(); // to print the next commands a user is allowed to enter for the transition
     bool isGameComplete(); // to check if the game is complete
+
+    void setRound(bool round);
+    Player* getPlayerByID(int id);
+    bool getRound();
+    Deck* getDeck();
+
+    void mainGameLoop();
+    void reinforcementPhase();
+    void issueOrdersPhase();
+    void ordersExecutionPhase();
 };
 
 std::string stateToString(State state);
