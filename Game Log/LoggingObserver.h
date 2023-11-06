@@ -2,6 +2,7 @@
 #define PROJECT_1_LOGGINGOBSERVER_H
 
 #include <ostream>
+#include <list>
 
 using namespace std;
 
@@ -36,7 +37,21 @@ protected:
 
 };
 
-class Subject;
+class Subject {
+public:
+
+    Subject(); //default constructor
+    Subject(const Subject& s1); // copy constructor
+    virtual ~Subject(); // destructor
+    void attach(Observer* o1); // use to attach an observer to the subject
+    void detach(Observer* o1); // use to detach an observer from the subject
+    virtual void Notify(ILoggable* i1);
+    friend ostream& operator<<(ostream& os, const Subject& s1);
+
+private:
+
+    list<Observer*> listObservers;
+};
 
 class LoggingObserver: public Observer{
 
