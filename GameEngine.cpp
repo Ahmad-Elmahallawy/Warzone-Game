@@ -17,7 +17,7 @@ GameEngine::GameEngine() {
 }
 
 // function definition to check if the command is valid to transition to the next state
-bool GameEngine::isValidTransition(Command command) {
+bool GameEngine::isValidTransition(Commands command) {
     for (const auto &transition : stateTransitions[currentState]) {
         if (transition.command == command) {
             return true;
@@ -28,7 +28,7 @@ bool GameEngine::isValidTransition(Command command) {
 
 
 // transition to the next state if the command is valid
-void GameEngine::transition(Command command) {
+void GameEngine::transition(Commands command) {
     if (isValidTransition(command)) {
         for (const auto &transition : stateTransitions[currentState]) {
             if (transition.command == command) {
@@ -76,7 +76,7 @@ std::string stateToString(State state) {
 }
 
 // converts command to string
-std::string commandToString(Command command) {
+std::string commandToString(Commands command) {
     switch (command) {
         case CMD_START: return "start";
         case CMD_LOAD_MAP: return "loadmap";

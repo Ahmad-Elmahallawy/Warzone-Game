@@ -24,7 +24,7 @@ enum State {
 };
 
 // Define the possible commands as an enum
-enum Command {
+enum Commands {
     CMD_START,
     CMD_LOAD_MAP,
     CMD_VALIDATE_MAP,
@@ -42,7 +42,7 @@ enum Command {
 
 // Define a struct to represent state transitions
 struct Transition {
-    Command command;
+    Commands command;
     State nextState;
 };
 
@@ -53,14 +53,14 @@ private:
 
 public:
     GameEngine(); // constructor
-    bool isValidTransition(Command command); // check if the transition is valid
-    void transition(Command command); // do state transition
+    bool isValidTransition(Commands command); // check if the transition is valid
+    void transition(Commands command); // do state transition
     State getCurrentState(); // to get the current game state
     void printValidCommands(); // to print the next commands a user is allowed to enter for the transition
     bool isGameComplete(); // to check if the game is complete
 };
 
 std::string stateToString(State state);
-std::string commandToString(Command command);
+std::string commandToString(Commands command);
 
 #endif //PROJECT_1_GAMEENGINE_H
