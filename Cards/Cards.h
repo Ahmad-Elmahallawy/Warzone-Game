@@ -62,8 +62,6 @@ public:
 //returns a card to deck
     void returnCard(Card& c);
 
-    friend ostream& operator<<(std::ostream& os, const Deck& obj);
-
 //size to get the size of the deck
     void getDeckSize();
 
@@ -92,10 +90,7 @@ public:
 //to show/print hand cards
     void displayHand();
 
-    friend ostream& operator<<(std::ostream& os, const Hand& obj);
-
     void getHandSize();
-
 
 private:
     vector<Card*> vectorHand;

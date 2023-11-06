@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Project_1.dir/GameEngine.cpp.obj.d"
   "CMakeFiles/Project_1.dir/GameEngineDriver.cpp.obj"
   "CMakeFiles/Project_1.dir/GameEngineDriver.cpp.obj.d"
+  "CMakeFiles/Project_1.dir/Game_Log/LogObserver.cpp.obj"
+  "CMakeFiles/Project_1.dir/Game_Log/LogObserver.cpp.obj.d"
   "CMakeFiles/Project_1.dir/MainDriver.cpp.obj"
   "CMakeFiles/Project_1.dir/MainDriver.cpp.obj.d"
   "CMakeFiles/Project_1.dir/Map/Map.cpp.obj"
