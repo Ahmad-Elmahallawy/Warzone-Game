@@ -3,7 +3,7 @@
 #include "Orders/Orders.h"
 #include "Cards/Cards.h"
 #include "GameEngineDriver.h"
-
+#include "Command/CommandProcessing.h"
 // the main function of the program
 // This project executes all the test*() functions for Assignment 1
 int main() {
