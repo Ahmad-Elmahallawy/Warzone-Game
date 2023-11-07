@@ -22,6 +22,8 @@ private:
     string playerName;
     int playerID;
     OrdersList* ordersList= nullptr;
+    int reinforcementPool;
+    string phase;
 
 
 // public attributes
@@ -47,7 +49,7 @@ public:
     // getters and setters
     Hand *getHand() const;
 
-    void issueOrder();
+    void issueOrder(string orderName);
 
     const vector<Territory *> &getTerritories() const;
 
@@ -73,6 +75,15 @@ public:
     bool operator=(const Player &rhs) const;
 
     Player& operator=(const Player& rhs);
+
+    void setReinforcementPool(int n);
+
+    bool ownAllTerritoryInContinent();
+
+    int getReinforcementPool();
+
+    void setPhase(string ph);
+    string getPhase();
 
 };
 

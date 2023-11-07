@@ -97,7 +97,6 @@ public:
     void getHandSize();
 
 
-private:
     vector<Card*> vectorHand;
 
 };

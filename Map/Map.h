@@ -25,7 +25,7 @@ public:
     void setYCoordinate(int y);
     string getTerritoryName() const;
     void setTerritoryName(string tName);
-    string getContinentName() const;
+    string getContinentName() const; //continent is a string of territory
     void setContinentName(string cName);
     int getVertexNumber() const;
     void setVertexNumber();

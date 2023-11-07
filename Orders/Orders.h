@@ -12,8 +12,11 @@ bomb, blockade, airlift, and negotiate. All orders must have a validate() method
 
 #include <iostream>
 #include <deque>
+#include <string>
 
 //   ---   Order class    ---   [each ORDER type (below) inherits from this class and overrides execute() and validate()]
+
+
 
 class Order
 {
@@ -49,6 +52,8 @@ public:
     // stream insertion operator
     friend std::ostream& operator<<(std::ostream& output, const Order& order);
 
+    virtual std::string getLabel() const = 0;
+
 };
 
 // order types:
@@ -63,6 +68,7 @@ private:
 
     // boolean set true if action object has been executed
     bool executed = false;
+    const static std::string label;
 
 public:
     // default constructor
@@ -88,6 +94,8 @@ public:
 
     // stream insertion operator
     friend std::ostream& operator<<(std::ostream& output, const Deploy& deploy);
+
+    std::string getLabel() const override;
 };
 
 //   ---   Advance class   ---
@@ -100,6 +108,7 @@ private:
 
     // boolean set true if action object has been executed
     bool executed = false;
+    const static std::string label;
 
 public:
     // default constructor
@@ -125,6 +134,8 @@ public:
 
     // stream insertion operator
     friend std::ostream& operator<<(std::ostream& output, const Advance& advance);
+
+    std::string getLabel() const override;
 };
 
 //   ---   Bomb class   ---
@@ -137,6 +148,7 @@ private:
 
     // boolean set true if action object has been executed
     bool executed = false;
+    const static std::string label;
 
 public:
     // default constructor
@@ -162,6 +174,8 @@ public:
 
     // stream insertion operator
     friend std::ostream& operator<<(std::ostream& output, const Bomb& bomb);
+
+    std::string getLabel() const override;
 };
 
 //   ---   Blockade class   ---
@@ -171,6 +185,7 @@ class Blockade : public Order
 private:
     // action of Blockade
     std::string action = "effect in Blockade Order class";
+    const static std::string label;
 
     // boolean set true if action object has been executed
     bool executed = false;
@@ -199,6 +214,8 @@ public:
 
     // stream insertion operator
     friend std::ostream& operator<<(std::ostream& output, const Blockade& blockade);
+
+    std::string getLabel() const override;
 };
 
 //   ---   Airlift class  ---
@@ -211,6 +228,7 @@ private:
 
     // boolean set true if action object has been executed
     bool executed = false;
+    const static std::string label;
 
 public:
     // default constructor
@@ -236,6 +254,8 @@ public:
 
     // stream insertion operator
     friend std::ostream& operator<<(std::ostream& output, const Airlift& airlift);
+
+    std::string getLabel() const override;
 };
 
 //   ---   Negotiate class  ---
@@ -248,6 +268,7 @@ private:
 
     // boolean set true if action object has been executed
     bool executed = false;
+    const static std::string label;
 
 public:
     // default constructor
@@ -273,6 +294,8 @@ public:
 
     // stream insertion operator
     friend std::ostream& operator<<(std::ostream& output, const Negotiate& negotiate);
+
+    std::string getLabel() const override;
 };
 
 // end of order types!
@@ -303,6 +326,11 @@ public:
 
     // get next order on the list
     Order* getNextOrder();
+    //get order according to index
+    Order* getOrder(int index);
+
+    //get size of list
+    int getOrdersListSize();
 
     // delete an order from the list (use menu number)
     void remove(int num);

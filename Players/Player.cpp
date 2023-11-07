@@ -73,12 +73,69 @@ void Player::setPlayerName(const string &playerName) {
 }
 
 // creates a new order
-void Player::issueOrder() {
+void Player::issueOrder(string orderName) {
     Order *order = new Deploy(*new Deploy());
-    cout << "player 1 player has issued an order\n";
-    ordersList->addOrder(order);
+    int amount, sourceID, destID, pID;
+    basic_string<char> id;
+
+    if(orderName == "deploy") {
+
+        cout << "Input a territory Name where you wish to deploy your armies!" << endl;
+        cin >> id;
+
+
+        cout << "Input the number of armies you want to deploy" << endl;
+        cin >> amount;
+
+        //vector<Territory*> gameMapTerritoryList = gameEngine->getMap()->Territories;
+
+        for (int i = 0; i < territories.size(); i++) {
+            //cout << territoryList[i]->getTerritoryID() << endl;
+            if (territories[i]->getTerritoryName() == id) {
+                cout << "Adding territory " << territories[i]->getTerritoryName() <<
+                     " (" << territories[i]->getTerritoryName() << ") " << "to defendList" << endl;
+                defendList.push_back(territories[i]);
+                cout << "\nYour defend list will now look like this" << endl;
+                printDefendList();
+                cout << "\nAdding order to order list" << endl;
+                ordersList->addOrder(new Deploy);
+            }
+        }
+    }
 
 }
+int Player::getPlayerId() const
+{
+    return playerID;
+}
+
+
+/*
+ * Setting player's reinforcement pool
+ */
+void Player::setReinforcementPool(int n)
+{
+    reinforcementPool = n;
+}
+
+/*
+ * Getting player's reinforcement pool
+ */
+int Player::getReinforcementPool()
+{
+    return reinforcementPool;
+}
+
+void Player::setPhase(string ph)
+{
+    phase = ph;
+}
+
+string Player::getPhase()
+{
+    return phase;
+}
+
 
 // currently just a static territories to defend
 vector<Territory*> Player::toDefend() const{
@@ -135,6 +192,29 @@ Player& Player::operator=(const Player& rhs) {
     territories = rhs.territories;
 
     return *this;
+}
+
+bool Player::ownAllTerritoryInContinent()
+{//go through all the territories, keep count of how many different territories in different continents, counter-1 for each
+    for(int i = 0; i < playerID->getMap()->Continents.size(); i++)
+    {
+        int numOfTerritoriesInContinentMap = gameEngine->getMap()->Continents[i]->territories.size();
+        int playerTerritoryIsInContinentCount;
+
+        for(int j = 0; j < territories.size(); j++)
+        {
+            if(territories.at(j)->getContinent() == gameEngine->getMap()->Continents[i]->getContinentName())
+            {
+                playerTerritoryIsInContinentCount++;
+            }
+        }
+
+        if(playerTerritoryIsInContinentCount == numOfTerritoriesInContinentMap)
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 

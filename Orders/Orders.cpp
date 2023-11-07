@@ -4,6 +4,16 @@
 
 //   ---   Order class   ---
 
+/**
+ *  The labels of the orders, which are constant and static.
+ */
+const std::string Deploy::label = "deploy";
+const std::string Advance::label = "advance";
+const std::string Bomb::label = "bomb";
+const std::string Blockade::label = "blockade";
+const std::string Airlift::label = "airlift";
+const std::string Negotiate::label = "negotiate";
+
 // default constructor
 Order::Order()
 {
@@ -493,6 +503,17 @@ void OrdersList::move(int a, int b)
 
     std::cout << "orders were swapped\n" << std::endl;
 }
+//get how many orders are in orderslist
+int OrdersList::getOrdersListSize() {
+    return ordersList.size();
+}
+
+Order* OrdersList::getOrder(int index) {
+    if (index < getOrdersListSize() && index >= 0) {
+        return ordersList[index];
+    }
+    return nullptr;
+}
 
 // assignment operator
 OrdersList& OrdersList::operator=(const OrdersList& orderslist)
@@ -518,4 +539,58 @@ std::ostream& operator<<(std::ostream& output, const OrdersList& orderslist)
     }
 
     return output;
+}
+
+/**
+ * Returns the label of the order.
+ * @return
+ */
+std::string Deploy::getLabel() const
+{
+    return label;
+}
+
+/**
+ * Returns the label of the order.
+ * @return
+ */
+std::string Advance::getLabel() const
+{
+    return label;
+}
+
+/**
+ * Returns the label of the order.
+ * @return
+ */
+std::string Bomb::getLabel() const
+{
+    return label;
+}
+
+/**
+ * Returns the label of the order.
+ * @return
+ */
+std::string Blockade::getLabel() const
+{
+    return label;
+}
+
+/**
+ * Returns the label of the order.
+ * @return
+ */
+std::string Airlift::getLabel() const
+{
+    return label;
+}
+
+/**
+ * Returns the label of the order.
+ * @return
+ */
+std::string Negotiate::getLabel() const
+{
+    return label;
 }

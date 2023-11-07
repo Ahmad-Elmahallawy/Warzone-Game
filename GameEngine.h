@@ -55,6 +55,7 @@ private:
     int numPlayers;
     vector<Player *> players;
     Deck *deck;
+
 public:
 
     GameEngine(); // constructor
@@ -73,6 +74,7 @@ public:
     void reinforcementPhase();
     void issueOrdersPhase();
     void ordersExecutionPhase();
+    void getMaps();
 };
 
 std::string stateToString(State state);
