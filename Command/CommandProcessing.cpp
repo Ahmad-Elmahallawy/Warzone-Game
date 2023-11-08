@@ -22,9 +22,25 @@ string Command::getEffect() {
 }
 
 Command* CommandProcessor::readCommand() {
+    string keyboard1;
     string keyboard;
+    cout<<"If you want to read the command from the console press -console, if you want it from a file type in -file <filename>";
+    cin>>keyboard1;
+    if(keyboard1 != "-console"){
+        vector<string> readFromFileComponents;
+        string fileReadComponent;
+        stringstream ssfr(keyboard1);
+        while(!ssfr.eof()){
+            getline(ssfr,fileReadComponent,' ');
+            readFromFileComponents.push_back(fileReadComponent);
+        }
+        FileCommandProcessorAdapter fcpa(readFromFileComponents[1]);
+        Command* cmd1;
+        cmd1 = fcpa.readCommand();
+        return cmd1;
+    }
     cout<<"Please enter a command: "<<endl;
-    cin>>keyboard;
+    cout<<keyboard;
     vector<string> commandComponents;
     string component;
     stringstream ss(keyboard);
