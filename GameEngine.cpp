@@ -241,7 +241,7 @@ void GameEngineissueOrdersPhase() {
                 cout << currentPlayerHandCards.size() << endl;
 
                 // If hand is empty output error message
-                if(currentPlayerHandCards.size() == 0)
+                if(currentPlayerHandCards.empty())
                 {
                     cout << "Invalid order! Your hand is empty!!" << endl;
                 }
@@ -249,9 +249,9 @@ void GameEngineissueOrdersPhase() {
                 // looping through player's hand to find appropriate card
                 for (int j = 0; j < currentPlayerHandCards.size(); j++)
                 {
-                    if (currentPlayerHandCards[j]->getCard() == type)
+                    if (getCardType((currentPlayerHandCards[j]->getCard())) == type)
                     {
-                        play(currentPlayerHandCards[j],currentPlayerHandCards,deck);
+                        play(0,currentPlayerHandCards[j],deck);
                     }
 
                     else

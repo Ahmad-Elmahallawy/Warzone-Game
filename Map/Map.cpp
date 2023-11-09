@@ -175,6 +175,7 @@ void MapLoader::setNumberOfTerritories(int n) {
 int MapLoader::getNumberOfTerritories() const{
     return this->numberOfTerritories;
 }
+
 void MapLoader::firstRun() {
     string myline = "";
     bool past = false;

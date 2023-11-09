@@ -33,12 +33,28 @@ ostream& operator<<(std::ostream& os, const Card& obj) {
     os << "This is the card" << obj.card1;
 }
 
-// play method
-void Card::play(int card, Hand& hand, Deck& deck) {
-    Card* cardToRemove = hand.removeFromHand(card);
-
-    deck.returnCard(*cardToRemove);
+// Helper function to convert WarzoneCard enum to string
+string Card::warzoneCardToString(Card::WarzoneCard type) {
+    switch (type) {
+        case Card::WarzoneCard::Bomb: return "Bomb";
+        case Card::WarzoneCard::Reinforcement: return "Reinforcement";
+        case Card::WarzoneCard::Blockade: return "Blockade";
+        case Card::WarzoneCard::Airlift: return "Airlift";
+        case Card::WarzoneCard::Diplomacy: return "Diplomacy";
+        default: return "Unknown";
+    }
 }
+string Card::getCardType(Card::WarzoneCard)
+{
+    return warzoneCardToString(card1);
+}
+
+// play method
+//void Card::play(int card, Hand& hand, Deck& deck) {
+//    Card* cardToRemove = hand.removeFromHand(card);
+//
+//    deck.returnCard(*cardToRemove);
+//}
 
 string cardType[5] = {"Bomb", "Reinforcement", "Blockade", "Airlift", "Diplomacy"};
 

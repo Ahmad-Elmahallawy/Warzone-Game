@@ -83,6 +83,8 @@ public:
     string fileName;
 private:
     int numberOfTerritories;
+
+    int getNumberOfContinents() const;
 };
 
 void testLoadMaps();

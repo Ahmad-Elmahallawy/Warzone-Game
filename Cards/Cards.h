@@ -19,6 +19,8 @@ public:
 //destructor for cards
     ~Card();
 
+    string getCardType(Card::WarzoneCard);
+
 //constructor that takes a WarzoneCard parameter
     Card(WarzoneCard wc);
 
@@ -34,10 +36,12 @@ public:
     friend ostream& operator<<(std::ostream& os, const Card& obj);
 
 //the play method that removes a card from the hand and returns it to the deck
-    void play(int card, Hand& h, Deck& d);
+    //void play(int card, Hand& h, Deck& d);
 
 private:
     WarzoneCard card1;
+
+    string warzoneCardToString(WarzoneCard type);
 };
 
 class Deck {
