@@ -7,5 +7,6 @@ using namespace std;
 #include "CommandProcessing.h"
 
 void testCommandProcessor(){
-
+    CommandProcessor cp;
+    Command* cmd = cp.getCommand();
 }
