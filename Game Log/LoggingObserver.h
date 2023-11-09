@@ -26,7 +26,7 @@ class Observer {
 public:
     
     virtual ~Observer(); // destructor
-    virtual void update(ILoggable* i1) = 0; // update view whose observer observers
+    virtual void Update(ILoggable* i1) = 0; // update view whose observer observers
     friend ostream& operator<<(ostream& os, Observer& o1); //insertion operator
 
 protected:
@@ -43,14 +43,15 @@ public:
     Subject(); //default constructor
     Subject(const Subject& s1); // copy constructor
     virtual ~Subject(); // destructor
-    void attach(Observer* o1); // use to attach an observer to the subject
-    void detach(Observer* o1); // use to detach an observer from the subject
+    void Attach(Observer* o1); // use to attach an observer to the subject
+    void Detach(Observer* o1); // use to detach an observer from the subject
     virtual void Notify(ILoggable* i1);
     friend ostream& operator<<(ostream& os, const Subject& s1);
 
 private:
 
     list<Observer*> listObservers;
+    Subject& operator=(const Subject& c);
 };
 
 class LoggingObserver: public Observer{
@@ -63,7 +64,7 @@ public:
     ~LoggingObserver() override; // destructor
     friend ostream& operator<<(ostream& os, const LoggingObserver& log1); // insertion operator
     LoggingObserver& operator=(const LoggingObserver& log1); // assignment operator
-    void update(ILoggable* i1); // to update the views
+    void Update(ILoggable* i1); // to update the views
 
 private:
 

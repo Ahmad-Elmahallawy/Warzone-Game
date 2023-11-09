@@ -91,13 +91,16 @@
 		<Unit filename="C:/Users/khale/COMP345-Warzone/Cards/CardsDriver.cpp">
 			<Option target="Project_1"/>
 		</Unit>
-		<Unit filename="C:/Users/khale/COMP345-Warzone/Game Log/ILoggable.h">
+		<Unit filename="C:/Users/khale/COMP345-Warzone/Game Log/FileWriter.cpp">
 			<Option target="Project_1"/>
 		</Unit>
-		<Unit filename="C:/Users/khale/COMP345-Warzone/Game Log/LogObserver.cpp">
+		<Unit filename="C:/Users/khale/COMP345-Warzone/Game Log/FileWriter.h">
 			<Option target="Project_1"/>
 		</Unit>
-		<Unit filename="C:/Users/khale/COMP345-Warzone/Game Log/LogObserver.h">
+		<Unit filename="C:/Users/khale/COMP345-Warzone/Game Log/LoggingObserver.cpp">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/khale/COMP345-Warzone/Game Log/LoggingObserver.h">
 			<Option target="Project_1"/>
 		</Unit>
 		<Unit filename="C:/Users/khale/COMP345-Warzone/GameEngine.cpp">
