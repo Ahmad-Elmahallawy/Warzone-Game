@@ -71,6 +71,11 @@ std::ostream& operator<<(std::ostream& os, const Territory& territory) {
     // Include any other information you want to print for a Territory
     return os;
 }
+
+int Territory::getNumberOfArmies() const {
+    return numberOfArmies;
+}
+
 Map::Map(Map const &m) {
     this->listOfTerritories = m.listOfTerritories;
     this->numberOfVertices = m.numberOfVertices;

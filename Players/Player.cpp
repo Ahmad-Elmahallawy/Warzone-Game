@@ -72,6 +72,44 @@ void Player::setPlayerName(const string &playerName) {
     Player::playerName = playerName;
 }
 
+// List of territories that are going to be defended
+vector<Territory *> Player::toDefend()
+{
+    return defendList;
+}
+
+//Print function for Player's list of territories to be defended
+void Player::printDefendList()
+{
+    // Declare and initialize defendList
+    //vector<Territory *> defendList = toDefend();
+    for (auto t : defendList)
+    {
+        std::cout << "Territory Name: " << t->getTerritoryName() << " | ";
+        std::cout << "Continent Name: " << t->getContinentName() << " | ";
+        std::cout << "Number of Armies: " << t->getNumberOfArmies() << "\n";
+    }
+}
+
+// Player's list of territories that are going to be attacked
+vector<Territory *> Player::toAttack()
+{
+    return attackList;
+}
+
+// Print function for Player's list of territories to be attacked
+void Player::printAttackList()
+{
+    //vector<Territory *> attackList = toAttack();
+    for (auto t : attackList)
+    {
+        std::cout << "Territory Name: " << t->getTerritoryName() << " | ";
+        std::cout << "Continent Name: " << t->getContinentName() << " | ";
+        std::cout << "Number of Armies: " << t->getNumberOfArmies() << "\n";
+    }
+}
+
+
 // creates a new order
 void Player::issueOrder(string orderName) {
     Order *order = new Deploy(*new Deploy());
@@ -185,6 +223,8 @@ ostream &operator<<(ostream &os, const Player &player) {
     return os;
 }
 
+
+
 Player& Player::operator=(const Player& rhs) {
     cout << "Player assignment operator called." << endl;
     hand = rhs.hand;
@@ -196,14 +236,14 @@ Player& Player::operator=(const Player& rhs) {
 
 bool Player::ownAllTerritoryInContinent()
 {//go through all the territories, keep count of how many different territories in different continents, counter-1 for each
-    for(int i = 0; i < playerID->getMap()->Continents.size(); i++)
+    for(int i = 0; i < Continents.size(); i++)
     {
         int numOfTerritoriesInContinentMap = gameEngine->getMap()->Continents[i]->territories.size();
         int playerTerritoryIsInContinentCount;
 
         for(int j = 0; j < territories.size(); j++)
         {
-            if(territories.at(j)->getContinent() == gameEngine->getMap()->Continents[i]->getContinentName())
+            if(territories.at(j)->getContinentName() == getMap()->Continents[i]->getContinentName())
             {
                 playerTerritoryIsInContinentCount++;
             }

@@ -208,12 +208,12 @@ void GameEngineissueOrdersPhase() {
      */
 
     int numPlayers = 2;
-
+    Deck *deck = new Deck();
 
     Player *players[5] = {};
     bool firstRound = true;
 
-    for (int i = 0; i < players.size(); i++)
+    for (int i = 0; i < numPlayers; i++)
     {
         players[i]->setPhase("Issue Orders");
 
@@ -251,12 +251,12 @@ void GameEngineissueOrdersPhase() {
                 {
                     if (currentPlayerHandCards[j]->getCard() == type)
                     {
-                        players[i]->play(deck, currentPlayerHandCards[j]);
+                        play(currentPlayerHandCards[j],currentPlayerHandCards,deck);
                     }
 
                     else
                     {
-                        cout << "Such a card does not exist in your deck!" << endl;
+                        cout << "card does not exist in your deck!" << endl;
                     }
                 }
             }
@@ -287,7 +287,7 @@ void GameEngine::ordersExecutionPhase() {
     {
         players[i]->setPhase("Execute Orders DEPLOY (1st priority)");
 
-        beforeTerritoryListSize = players[i]->getTerritoryList()->size();
+        beforeTerritoryListSize = players[i]->getTerritories().size();
         OrdersList currentPlayerOrdersList = players[i]->getOrdersList();
 
         // If player's order list is empty do not display
@@ -306,7 +306,7 @@ void GameEngine::ordersExecutionPhase() {
                 currentPlayerOrdersList.getNextOrder()->execute();
             }
         }
-        afterTerritoryListSize = players[i]->getTerritoryList()->size();
+        afterTerritoryListSize = players[i]->getTerritories().size();
         if(afterTerritoryListSize - beforeTerritoryListSize){ // if the player conquered at least one territory, they can draw a card
             deck->draw();
         }
@@ -317,7 +317,7 @@ void GameEngine::ordersExecutionPhase() {
     {
         if(players[i]->getOrdersList().getOrdersListSize() != 0)
         {
-            players[i]->setPhase("Execute Orders: AIRLIFT (2nd priority)");
+            players[i]->setPhase("Execute Orders: AIRLIFT(2)");
 
         }
 
@@ -338,7 +338,7 @@ void GameEngine::ordersExecutionPhase() {
     {
         if(players[i]->getOrdersList().getOrdersListSize() != 0)
         {
-            players[i]->setPhase("Execute Orders: BLOCKADE (3rd priority)");
+            players[i]->setPhase("Execute Orders: BLOCKADE (3rd)");
 
         }
 

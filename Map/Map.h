@@ -42,6 +42,10 @@ private:
     static int viableVertexNumber;
     int vertexNumber;
     int numberOfArmies;
+public:
+    int getNumberOfArmies() const;
+
+private:
     Player *owningPlayer;
 };
 class Map{

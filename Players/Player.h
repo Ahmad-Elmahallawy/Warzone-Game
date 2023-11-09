@@ -24,6 +24,8 @@ private:
     OrdersList* ordersList= nullptr;
     int reinforcementPool;
     string phase;
+    vector<Territory*> attackList;
+    vector<Territory*> defendList;
 
 
 // public attributes
@@ -85,6 +87,13 @@ public:
     void setPhase(string ph);
     string getPhase();
 
+    vector<Territory *> toDefend();
+
+    void printDefendList();
+
+    void printAttackList();
+
+    vector<Territory *> toAttack();
 };
 
 void testPlayers();
