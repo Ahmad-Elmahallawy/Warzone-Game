@@ -42,4 +42,6 @@ public:
 private:
 
 };
+
+void testCommandProcessor();
 #endif //PROJECT_1_COMMANDPROCESSING_H

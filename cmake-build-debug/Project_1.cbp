@@ -97,6 +97,9 @@
 		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/Command/CommandProcessing.h">
 			<Option target="Project_1"/>
 		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/Command/commandProcessingDriver.cpp">
+			<Option target="Project_1"/>
+		</Unit>
 		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/GameEngine.cpp">
 			<Option target="Project_1"/>
 		</Unit>

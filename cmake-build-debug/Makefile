@@ -200,6 +200,30 @@ Command/CommandProcessing.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.s
 .PHONY : Command/CommandProcessing.cpp.s
 
+Command/commandProcessingDriver.obj: Command/commandProcessingDriver.cpp.obj
+.PHONY : Command/commandProcessingDriver.obj
+
+# target to build an object file
+Command/commandProcessingDriver.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/Command/commandProcessingDriver.cpp.obj
+.PHONY : Command/commandProcessingDriver.cpp.obj
+
+Command/commandProcessingDriver.i: Command/commandProcessingDriver.cpp.i
+.PHONY : Command/commandProcessingDriver.i
+
+# target to preprocess a source file
+Command/commandProcessingDriver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/Command/commandProcessingDriver.cpp.i
+.PHONY : Command/commandProcessingDriver.cpp.i
+
+Command/commandProcessingDriver.s: Command/commandProcessingDriver.cpp.s
+.PHONY : Command/commandProcessingDriver.s
+
+# target to generate assembly for a file
+Command/commandProcessingDriver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/Command/commandProcessingDriver.cpp.s
+.PHONY : Command/commandProcessingDriver.cpp.s
+
 GameEngine.obj: GameEngine.cpp.obj
 .PHONY : GameEngine.obj
 
@@ -434,6 +458,9 @@ help:
 	@echo ... Command/CommandProcessing.obj
 	@echo ... Command/CommandProcessing.i
 	@echo ... Command/CommandProcessing.s
+	@echo ... Command/commandProcessingDriver.obj
+	@echo ... Command/commandProcessingDriver.i
+	@echo ... Command/commandProcessingDriver.s
 	@echo ... GameEngine.obj
 	@echo ... GameEngine.i
 	@echo ... GameEngine.s

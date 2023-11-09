@@ -49,9 +49,9 @@ struct Transition {
 class GameEngine {
 private:
     State currentState; // current game state
-    std::map<State, std::vector<Transition>> stateTransitions; // State transition map
 
 public:
+    static std::map<State, std::vector<Transition>> stateTransitions; // State transition map
     GameEngine(); // constructor
     bool isValidTransition(Commands command); // check if the transition is valid
     void transition(Commands command); // do state transition

@@ -1,19 +1,50 @@
 // GameEngine.cpp
 #include "GameEngine.h"
 
+
+
+// Definition and initialization of the static member
+std::map<State, std::vector<Transition>> GameEngine::stateTransitions = {
+        {State::START, {
+                               {CMD_START, State::MAP_LOADED}
+                       }},
+        {State::MAP_LOADED, {
+                               {CMD_LOAD_MAP, State::MAP_LOADED},
+                               {CMD_VALIDATE_MAP, State::MAP_VALIDATED}
+                       }},
+        {State::MAP_VALIDATED, {
+                               {CMD_ADD_PLAYER, State::PLAYERS_ADDED}
+                       }},
+        {State::PLAYERS_ADDED, {
+                               {CMD_ADD_PLAYER, State::PLAYERS_ADDED},
+                               {CMD_ASSIGN_COUNTRIES, State::ASSIGN_REINFORCEMENTS}
+                       }},
+        {State::ASSIGN_REINFORCEMENTS, {
+                               {CMD_ISSUE_ORDER, State::ISSUE_ORDERS}
+                       }},
+        {State::ISSUE_ORDERS, {
+                               {CMD_ISSUE_ORDER, State::ISSUE_ORDERS},
+                               {CMD_END_ISSUE_ORDER, State::EXECUTE_ORDERS}
+                       }},
+        {State::EXECUTE_ORDERS, {
+                               {CMD_EXEC_ORDER, State::EXECUTE_ORDERS},
+                               {CMD_END_EXEC_ORDERS, State::ASSIGN_REINFORCEMENTS},
+                               {CMD_WIN, State::WIN}
+                       }},
+        {State::WIN, {
+                               {CMD_PLAY, State::START},
+                               {CMD_END, State::END}
+                       }},
+};
+
+
+
+
+
+
 GameEngine::GameEngine() {
     // current state when the game runs
     currentState = START;
-
-    // Initialize the state transition map
-    stateTransitions[START] = {{CMD_START, MAP_LOADED}};
-    stateTransitions[MAP_LOADED] = {{CMD_LOAD_MAP, MAP_LOADED}, {CMD_VALIDATE_MAP, MAP_VALIDATED}};
-    stateTransitions[MAP_VALIDATED] = {{CMD_ADD_PLAYER, PLAYERS_ADDED}};
-    stateTransitions[PLAYERS_ADDED] = {{CMD_ADD_PLAYER, PLAYERS_ADDED}, {CMD_ASSIGN_COUNTRIES, ASSIGN_REINFORCEMENTS}};
-    stateTransitions[ASSIGN_REINFORCEMENTS] = {{CMD_ISSUE_ORDER, ISSUE_ORDERS}};
-    stateTransitions[ISSUE_ORDERS] = {{CMD_ISSUE_ORDER, ISSUE_ORDERS}, {CMD_END_ISSUE_ORDER, EXECUTE_ORDERS}};
-    stateTransitions[EXECUTE_ORDERS] = {{CMD_EXEC_ORDER, EXECUTE_ORDERS}, {CMD_END_EXEC_ORDERS, ASSIGN_REINFORCEMENTS}, {CMD_WIN, WIN}};
-    stateTransitions[WIN] = {{CMD_PLAY, START}, {CMD_END, END}};
 }
 
 // function definition to check if the command is valid to transition to the next state

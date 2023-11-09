@@ -4,6 +4,7 @@
 using namespace std;
 #include <bits/stdc++.h>
 #include "CommandProcessing.h"
+#include "../GameEngine.h"
 
 Command::Command(std::string command) : command(command){}
 
@@ -71,7 +72,24 @@ Command *CommandProcessor::getCommand() {
 }
 
 bool CommandProcessor::validate(Command *command, State state) {
-
+    std::array<string,13> validCommands = {"start","loadmap","validatemap","addplayer","assigncountries","issueorder","endissueorder","executeorders","endexecorders","win","end","play","execorder"};
+    bool validCommand = false;
+    for(int i = 0;i<validCommands.size();i++){
+        if(command->getCommand() == validCommands[i]){
+            validCommand = true;
+        }
+    }
+    if(!validCommand){
+        cout<<"Command: "+command->getCommand()+" is not in the valid list of command."<<endl;
+        return false;
+    }
+    for(const auto &transition: GameEngine::stateTransitions[state]){
+        if(commandToString(transition.command) == command->getCommand()){
+            return true;
+        }
+    }
+    cout << "Invalid state transition." << endl;
+    return false;
 }
 
 FileCommandProcessorAdapter::FileCommandProcessorAdapter(std::string fileName) :fileName(fileName){}
