@@ -7,11 +7,12 @@ using namespace std;
 #include "Map.h"
 
 int getNumberOfTerritoriesFromFile(string fileName);
-void testLoadMaps() {//goes through map file twice and creates graph and map object
-    int n = getNumberOfTerritoriesFromFile(R"(C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Map\Alberta.map)");//number of territrories
-    MapLoader loader(n,R"(C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Map\Alberta.map)");
-   loader.firstRun();
-   loader.secondRun();
+int testLoadMaps(string filename) {//goes through map file twice and creates graph and map object
+    int n = getNumberOfTerritoriesFromFile(filename);//number of territrories
+    return n;
+//    MapLoader loader(n,filename);
+//   loader.firstRun();
+//   loader.secondRun();
 //    loader.~MapLoader();
 
 }

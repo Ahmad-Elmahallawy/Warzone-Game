@@ -5,10 +5,17 @@
 #ifndef PROJECT_1_GAMEENGINE_H
 #define PROJECT_1_GAMEENGINE_H
 
+#include "Command/CommandProcessor.h"
+
+
+
 #include <iostream>
 #include <map>
 #include <vector>
 #include <string>
+#include "Players/Player.h"
+#include "Map/Map.h"
+#include "Cards/Cards.h"
 
 // Define the possible game states as an enum
 enum State {
@@ -49,18 +56,29 @@ struct Transition {
 class GameEngine {
 private:
     State currentState; // current game state
-    std::map<State, std::vector<Transition>> stateTransitions; // State transition map
+    CommandProcessor* commandProcessor;  // Member variable as a pointer to store the CommandProcessor
+    vector<Player*> AddedPlayerList; // Holds the players added to keep track of how many players are added;
+    Map* currentMap;
+
+
+
 
 public:
+    static std::map<State, std::vector<Transition>> stateTransitions; // State transition map
     GameEngine(); // constructor
+    ~GameEngine(); // Destructor to clean up the dynamically allocated CommandProcessor
     bool isValidTransition(Commands command); // check if the transition is valid
     void transition(Commands command); // do state transition
     State getCurrentState(); // to get the current game state
     void printValidCommands(); // to print the next commands a user is allowed to enter for the transition
     bool isGameComplete(); // to check if the game is complete
+    void addPlayer(string playerName);
+    void gameStart();
+    void startupPhase();
 };
 
 std::string stateToString(State state);
 std::string commandToString(Commands command);
+Commands commandToEnum(std::string command);
 
 #endif //PROJECT_1_GAMEENGINE_H

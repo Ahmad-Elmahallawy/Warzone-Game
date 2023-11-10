@@ -91,6 +91,12 @@
 		<Unit filename="C:/Users/ahmad/Desktop/Courses/Fall 2023/COMP 345/COMP345-Warzone/Cards/CardsDriver.cpp">
 			<Option target="Project_1"/>
 		</Unit>
+		<Unit filename="C:/Users/ahmad/Desktop/Courses/Fall 2023/COMP 345/COMP345-Warzone/Command/CommandProcessor.cpp">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/ahmad/Desktop/Courses/Fall 2023/COMP 345/COMP345-Warzone/Command/CommandProcessor.h">
+			<Option target="Project_1"/>
+		</Unit>
 		<Unit filename="C:/Users/ahmad/Desktop/Courses/Fall 2023/COMP 345/COMP345-Warzone/GameEngine.cpp">
 			<Option target="Project_1"/>
 		</Unit>
