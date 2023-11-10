@@ -10,7 +10,7 @@ void testPlayers()
     std::vector<Territory *> playerTerritories = {t1}; // Initialize with territories
     string playerName = "John Doe"; // Specify the player's name
     int playerID = 1;
-    OrdersList* playerOrdersList = new OrdersList(/* Initialize the OrdersList object as needed */);
+    orderlist* playerOrdersList = new orderlist(/* Initialize the OrdersList object as needed */);
 
     Player* p1 = new Player(playerHand, playerTerritories, playerName, playerID, playerOrdersList);
     cout << p1->getPlayerName() << " has landed!";

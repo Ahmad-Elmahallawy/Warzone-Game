@@ -4,11 +4,13 @@
 
 #ifndef COMPP345WARZONE_MAP_H
 #define COMPP345WARZONE_MAP_H
+
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <stack>
 #include <list>
+
 #include <fstream>
 #include <vector>
 class Player;
@@ -23,13 +25,36 @@ public:
     void setXCoordinate(int x);
     int getYCoordinate() const;
     void setYCoordinate(int y);
+    //int getArmySize();//me
+    //void setArmySize(int size);//me
     string getTerritoryName() const;
     void setTerritoryName(string tName);
     string getContinentName() const;
     void setContinentName(string cName);
     int getVertexNumber() const;
     void setVertexNumber();
+    Player * getTerritoryOwner();
+    void setTerritoryOwner(Player *player);
     int getViableVertexNumber() const;
+    // Add a new territory to the territory's neighbors
+    void addNeighbor(Territory* n);
+    // Get a neighbor of the territory (by name)
+    Territory* getNeighbor(string name);
+    // Set an owner for the territory
+    void setOwner(Player* newOwner);
+    string getName() const;
+    // Set a name for the territory
+    void setName(string newName);
+    // Set a list of neighbors for the territory
+    //void setNeighbors(unordered_map<string, Territory*> newNeighbors);             //fix
+    // Return the neighbors of the territory
+   // unordered_map<string, Territory*> getNeighbors() const;
+    // Return the number of armies that is on the territory
+    int getNumOfArmies() const;
+    // Return the owner of the territory
+    Player* getOwner() const;
+    // Set the number of armies for the territory
+    void setNumOfArmies(int newArmies);
     friend std::ostream& operator<<(std::ostream& os, const Territory& territory);
     bool operator==(const Territory& other) const {
         return this->territoryName == other.territoryName;
@@ -43,6 +68,8 @@ private:
     int vertexNumber;
     int numberOfArmies;
     Player *owningPlayer;
+    string name_;
+   // unordered_map<string, Territory*> neighbors_;
 };
 class Map{
 public:
@@ -58,14 +85,15 @@ public:
     void print();
     friend std::ostream& operator<<(std::ostream& os, const Map& map);
     Map& operator=(const Map& other);
-
+    //bool isTerritoryAdjacent(const Territory& target) const;
+    bool isAdjacent(const Territory& t1, const Territory& t2) const;
 private:
     list<Territory> *adjlist;
     int numberOfVertices;
 };
 class MapLoader{
 public:
-    Map *gameMap;
+   static Map *gameMap;
     MapLoader(string fileName);
     MapLoader(int n,std::string fileName);
     ~MapLoader();
@@ -77,6 +105,7 @@ public:
     void secondRun();
     int getNumberOfTerritories() const;
     string fileName;
+
 private:
     int numberOfTerritories;
 };

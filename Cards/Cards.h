@@ -2,7 +2,7 @@
 #define CARDS_H
 #include <vector>
 #include <string>
-
+#include "../Map/Map.h"
 using namespace std;
 class Deck;
 class Hand;
@@ -80,7 +80,8 @@ public:
     ~Hand();
     Hand(const Hand& h);
     Hand& operator=(const Hand&);
-
+    bool hasBombCard() const;
+    void playBombCard(Player* player, Territory* target);
     vector<Card*>getCard();
 
 //used in the draw and play methods to remove card from hand

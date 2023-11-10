@@ -1,324 +1,235 @@
-
-/*
-Part 3: Orders List
-Orders are created by the Players during their turn and placed into the Players’s list of orders. By default, each order is placed
-in the list sequentially. After orders are put in the list, the Players can move them around in the list (using the
-move() method) or delete them (using the remove() method). The different kinds of orders are: deploy, advance,
-bomb, blockade, airlift, and negotiate. All orders must have a validate() method that verifies if the order is valid.
-*/
-
 #ifndef ORDERS_H
 #define ORDERS_H
 
 #include <iostream>
 #include <deque>
+#include "../Players/Player.h"
+#include "../Map/Map.h"
 
-//   ---   Order class    ---   [each ORDER type (below) inherits from this class and overrides execute() and validate()]
 
-class Order
-{
-private:
-    // action of the Order
-    std::string action = "String describing the order";
+class Player;
 
-    // boolean set true if action object has been executed
-    bool executed = false;
+class order {
 
+protected:
+    string type;
+    Player* owner;
 public:
-    // default constructor
-    Order();
-
-    // copy constructor
-    Order(const Order& order);
-
-    // virtual destructor
-    virtual ~Order();
-
-    // virtual method to execute order (implemented in subclasses)
-    virtual void execute();
-
-    // virtual method to validate order (implemented in subclasses)
     virtual bool validate();
-
-    // assignment operator
-    Order& operator=(const Order& order);
-
-    // print helper method for stream insertion overload
-    virtual void print(std::ostream& output) const;
-
-    // stream insertion operator
-    friend std::ostream& operator<<(std::ostream& output, const Order& order);
-
-};
-
-// order types:
-
-//   ---   Deploy class   ---
-
-class Deploy : public Order
-{
-private:
-    // action of Deploy
-    std::string action = "effect in Deploy Order class";
-
-    // boolean set true if action object has been executed
-    bool executed = false;
-
-public:
-    // default constructor
-    Deploy();
-
-    // copy constructor
-    Deploy(const Deploy& deploy);
-
-    // default destructor
-    ~Deploy();
-
-    // execute method override
-    void execute() override;
-
-    // validate method override
-    bool validate() override;
-
-    // assignment operator
-    Deploy& operator=(const Deploy& deploy);
-
-    // print helper method for stream insertion overload
-    void print(std::ostream& output) const override;
-
-    // stream insertion operator
-    friend std::ostream& operator<<(std::ostream& output, const Deploy& deploy);
-};
-
-//   ---   Advance class   ---
-
-class Advance : public Order
-{
-private:
-    // action of Advance
-    std::string action = "effect in Advance Order class";
-
-    // boolean set true if action object has been executed
-    bool executed = false;
-
-public:
-    // default constructor
-    Advance();
-
-    // copy constructor
-    Advance(const Advance& advance);
-
-    // default destructor
-    ~Advance();
-
-    // execute method override
-    void execute() override;
-
-    // validate method override
-    bool validate() override;
-
-    // assignment operator
-    Advance& operator=(const Advance& advance);
-
-    // print helper method for stream insertion overload
-    void print(std::ostream& output) const override;
-
-    // stream insertion operator
-    friend std::ostream& operator<<(std::ostream& output, const Advance& advance);
-};
-
-//   ---   Bomb class   ---
-
-class Bomb : public Order
-{
-private:
-    // action of Bomb
-    std::string action = "effect in Bomb Order class";
-
-    // boolean set true if action object has been executed
-    bool executed = false;
-
-public:
-    // default constructor
-    Bomb();
-
-    // copy constructor
-    Bomb(const Bomb& bomb);
-
-    // default destructor
-    ~Bomb();
-
-    // execute method override
-    void execute() override;
-
-    // validate method override
-    bool validate() override;
-
-    // assignment operator
-    Bomb& operator=(const Bomb& bomb);
-
-    // print helper method for stream insertion overload
-    void print(std::ostream& output) const override;
-
-    // stream insertion operator
-    friend std::ostream& operator<<(std::ostream& output, const Bomb& bomb);
-};
-
-//   ---   Blockade class   ---
-
-class Blockade : public Order
-{
-private:
-    // action of Blockade
-    std::string action = "effect in Blockade Order class";
-
-    // boolean set true if action object has been executed
-    bool executed = false;
-
-public:
-    // default constructor
-    Blockade();
-
-    // copy constructor
-    Blockade(const Blockade& blockade);
-
-    // default destructor
-    ~Blockade();
-
-    // execute method override
-    virtual void execute() override;
-
-    // validate method override
-    virtual bool validate() override;
-
-    // assignment operator
-    Blockade& operator=(const Blockade& blockade);
-
-    // print helper method for stream insertion overload
-    void print(std::ostream& output) const override;
-
-    // stream insertion operator
-    friend std::ostream& operator<<(std::ostream& output, const Blockade& blockade);
-};
-
-//   ---   Airlift class  ---
-
-class Airlift : public Order
-{
-private:
-    // action of Airlift
-    std::string action = "effect in Airlift Order class";
-
-    // boolean set true if action object has been executed
-    bool executed = false;
-
-public:
-    // default constructor
-    Airlift();
-
-    // copy constructor
-    Airlift(const Airlift& airlift);
-
-    // default destructor
-    ~Airlift();
-
-    // execute method override
-    void execute() override;
-
-    // validate method override
-    bool validate() override;
-
-    // assignment operator
-    Airlift& operator=(const Airlift& airlift);
-
-    // print helper method for stream insertion overload
-    void print(std::ostream& output) const override;
-
-    // stream insertion operator
-    friend std::ostream& operator<<(std::ostream& output, const Airlift& airlift);
-};
-
-//   ---   Negotiate class  ---
-
-class Negotiate : public Order
-{
-private:
-    /// action of Negotiate
-    std::string action = "effect in Negotiate Order class";
-
-    // boolean set true if action object has been executed
-    bool executed = false;
-
-public:
-    // default constructor
-    Negotiate();
-
-    // copy constructor
-    Negotiate(const Negotiate& negotiate);
-
-    // default destructor
-    ~Negotiate();
-
-    // execute method override
-    void execute() override;
-
-    // validate method override
-    bool validate() override;
-
-    // assignment operator
-    Negotiate& operator=(const Negotiate& negotiate);
-
-    // print helper method for stream insertion overload
-    void print(std::ostream& output) const override;
-
-    // stream insertion operator
-    friend std::ostream& operator<<(std::ostream& output, const Negotiate& negotiate);
-};
-
-// end of order types!
-
-
-//   ---   OrdersList class   ---   [a class to create and manage a list of orders]
-
-class OrdersList
-{
-private:
-
-    // a list of pointers to Order objects
-    std::deque<Order*> ordersList;
-
-public:
-
-    // default constructor
-    OrdersList();
-
-    // copy constructor
-    OrdersList(const OrdersList& ordersList);
-
-    // destructor
-    ~OrdersList();
-
-    // add an order to the list
-    void addOrder(Order* order);
-
-    // get next order on the list
-    Order* getNextOrder();
-
-    // delete an order from the list (use menu number)
-    void remove(int num);
-
-    // move around an order in the list (use menu numbers)
-    void move(int a, int b);
-
-    // assignment operator
-    OrdersList& operator=(const OrdersList& ordersList);
-
+    virtual void execute()=0;
+    // clone method to create deep copy of order
+    virtual order* clone();
+    //defalt constructor
+    order();
+    //copy construcotr
+    order(const order& ord);
+    virtual ~order();
     //stream insertion operator
-    friend std::ostream& operator<<(std::ostream& output, const OrdersList& ordersList);
+    friend ostream& operator<<(ostream& cout, order& ord);
+    //method wil be inherited and used inside the srtream insertion operatio to print right object
+    virtual void write(std::ostream&);
+    //assignemnt operator
+    order& operator =(const order& ord);
+    Player* getOwner();
+    string getType();
+};
+void testOrdersLists();
+void testOrderExecution();
+class deploy : public order {
+private:
+    int numbOfArmies;
+    Territory* target;
+public:
+    //prarameterized constructer;
+    deploy(int numbOfarmies, Territory& target, Player* P);
+    //stream insertion operator
+    friend ostream& operator<<(ostream& cout, deploy& d);
+    //destrucotr
+    ~deploy();
+    //copy constructor
+    deploy(deploy* dep);
+    bool validate();
+    void execute();
+    //clone to create a deep copy
+    deploy *clone();
+    deploy();
+    void write(std::ostream&);
+    int getNumOfArmies() const;
+    Territory* getTerrority();
+    Player* getOwner();
+    //assignemnt operator
+    deploy& operator=(const deploy& d);
+};
+class advancee : public order {
+private:
+    int numbOfarmies; Territory* source; Territory* target;
 
+public:
+    bool validate();
+    void execute();
+    //assignment operator
+    advancee& operator=(const advancee& adv);
+    //copy consdtructor
+    advancee(advancee* adv);
+    //parameter constructor
+    advancee(int numbOfarmies, Territory& source, Territory& to, Player* p);
+
+    //destructor
+    ~advancee();
+    //default constructor
+    advancee();
+    Territory* getSourceTerrority();
+    Territory* getTargetTerrority();
+    void setSourceTerritory(Territory* sourceTerritory);
+    void setTargetTerritory(Territory* targetTerritory);
+    void setNumOfArmy(int n);
+    //to create depp copy
+    advancee* clone();
+    void write(std::ostream&);
+    //stream inseretion operator
+    friend ostream& operator<<(ostream& cout, advancee& ss);
+};
+class bomb:public order {
+private:
+    Territory* target;
+public:
+    //assignment operator
+    bomb& operator=(const bomb& bom);
+    //defauly constructor
+    bomb();
+    //parameterized
+    bomb(Territory& target, Player* p);
+    //destructor
+    ~bomb();
+    //stream insertion operator
+    friend ostream& operator<<(ostream& cout, bomb& b);
+    //copy constructor
+    bomb(bomb* bom);
+    void execute();
+    bool validate();
+    //deep copy
+    Territory* getTerritory();
+    void setTargetTerritory(Territory* targetTerritory);
+    bomb* clone();
+    bool validateCard();
+};
+
+
+class blockade :public order {
+private:
+    Territory* target;
+    Player* neutralPlayer;
+public:
+    //assighnment operator
+    blockade& operator=(const blockade& block);
+    void execute();
+    bool validate();
+    bool validateCard();
+    //default constructor
+    blockade();
+    //clone for deep copy
+    blockade* clone();
+    //parameterized constructor
+    blockade(Territory& target, Player* p, Player* neutralPlayer);
+    //destructor
+    ~blockade();
+    //copy constructor
+    blockade(blockade* bl);
+    Territory* getTerritory();
+    void setTargetTerritory(Territory* targetTerritory);
+    //stream instertion operator
+    friend ostream& operator<<(ostream& cout, blockade& b);
 
 };
-//free function to test OrdersList methods
-    void testOrdersLists();
+class negotiate : public order {
 
+private:
+    //private members of the class
+    Player* TargetPlayer;
+public:
+    negotiate& operator=(const negotiate& n);
+    //default constructor
+    negotiate();
+    //constructor with one parameters
+    negotiate(Player* target, Player* source);
+    //destructor
+    ~negotiate();
+    //overload stream insertion operaation to be able to print an object by cout
+    friend ostream& operator<<(ostream& cout, negotiate& n);
+    //copy constructor
+    negotiate(negotiate * neg);
+    //execute inherited from order
+    void execute();
+    Player* getTargetPlayer();
+    void setTargetPlayer(Player* P);
+    //validate inherited from order
+    bool validate();
+    bool validateCard();
+    // clone method inherited form order to ba able to deep copy the object in orderlist vector
+    negotiate* clone();
+};
+//airlift class subclass of order
+class airlift : public order {
+
+private:
+    //private members of the class
+    int numbOfarmies; Territory* source; Territory* target;
+public:
+    airlift& operator=(const airlift& air);
+    //default constructor
+    airlift();
+    //constructor with three parameters
+    airlift(int numbOfarmies, Territory& source, Territory& target, Player* p);
+    //destructor
+    ~airlift();
+    //overload stream insertion operaation to be able to print an object by cout
+    friend ostream& operator<<(ostream& cout, airlift& ai);
+    //copy constructor
+    airlift(airlift* air);
+    //execute inherited from order
+    void execute();
+    Territory* getSourceTerritory();
+    Territory* getTargetTerritory();
+
+    void setTargetTerritory(Territory* targetTerritory);
+    void setSourceTerritory(Territory* sourceTerritory);
+    void setNumOfArmy(int n);
+    //validate inherited from order
+    bool validate();
+    bool validateCard();
+    // clone method inherited form order to ba able to deep copy the object in orderlist vector
+    airlift* clone();
+};
+
+class orderlist {
+private://vector of orders pointers
+    vector <order*> list;
+public:
+    //destructor
+    ~orderlist();
+    //assignemnt operator
+    orderlist& operator=(const orderlist& list);
+    //remove from an list given index
+    void remove(int num);
+    // move from one postion to another
+    void move(int position1, int position2);
+    //default conmstructor
+    orderlist();
+    //copy constructor
+    orderlist(const orderlist& ord);
+    //add a new order in to the list
+    void addOrder(order* ord);
+    //get First order of list
+    order* getFirstOrder();
+    vector <order*> getList();
+    //insetion operator
+    friend ostream& operator<<(ostream& cout, const orderlist& l);
+    //getsize of the vector
+    int getsize();
+    //show execut and validate from all object of the list
+    void showmethods();
+    //override stringToLog
+    string stringToLog();
+    void reset();
+};
 #endif

@@ -4,56 +4,58 @@ contains a free function named testOrdersLists() that creates a list of orders a
 Here : remove, move of the orderlist will be tested, expected result shown commented
 
 */
+#include "../Map/Map.h"
+#include "../Orders/Orders.h"
+#include "../Players/Player.h"
+#include "Orders.h"
+#include <iostream>
+
+// OrdersDriver.cpp
 
 #include "Orders.h"
 
+void testOrdersLists() {
+    //create objects of order and its subclasses
 
-void testOrdersLists()
-{
-    std::cout << "test OrderDriver" << std::endl;
+    bomb* b1 = new bomb();
+    deploy * d1 = new deploy();
+    airlift *a1 = new airlift();
+    negotiate *n = new negotiate();
+    blockade* bk = new blockade();
+    advancee* adv = new advancee();
+    //create order list
+    orderlist list;
+    //use push method
+    list.addOrder(a1);
+    list.addOrder(b1);
+    list.addOrder(d1);
+    list.addOrder(n);
+    list.addOrder(bk);
+    list.addOrder(adv);
+    cout << "--use stream insertion operator of list--\n";
+    cout << list;
+    cout << "-------------------\n";
+    cout << "use validate and execut with all objects";
+    list.showmethods();
+    cout << "-------------------\n";
 
-    Deploy deploy_test = Deploy();
-    Advance advance_test = Advance();
-    Bomb bomb_test = Bomb();
-    Blockade blockade_test = Blockade();
-    Airlift airlift_test = Airlift();
-    Negotiate negotiate_test = Negotiate();
+    list.move(4, 1);
+    cout << "--move position 4 to 1--\n";
 
+    cout << list;
+    cout << "-------------------\n";
+    cout << "--remove--order in position 4\n";
+    list.remove(4);
+    cout << list;
+    cout << "-------------------\n";
 
+    orderlist list2 = list;
+    cout << "---using copy constructor---\n";
 
-    // create an OrdersList object to hold the orders
-    std::cout << "create an OrdersList :\n" << std::endl;
-    OrdersList orderslist_test = OrdersList();
-
-    std::cout << std::endl;
-
-    // place pointers to all the action objects in the list
-    orderslist_test.addOrder(&deploy_test);
-    orderslist_test.addOrder(&advance_test);
-    orderslist_test.addOrder(&bomb_test);
-    orderslist_test.addOrder(&blockade_test);
-    orderslist_test.addOrder(&airlift_test);
-    orderslist_test.addOrder(&negotiate_test);
-
-
-
-    // print out the contents of the orderlist
-    std::cout << "\n the orderslist contains :\n" << std::endl;
-    std::cout << orderslist_test << std::endl;
-
-    // removing blockade
-    std::cout << " -- removing blockade Order from the list :\n" << std::endl;
-    orderslist_test.remove(4);
-    std::cout << orderslist_test << std::endl;
-
-    // swapping orders
-    orderslist_test.move(3, 1);
-    std::cout << orderslist_test << std::endl;
-
-  //check result
-    Order* nextOrder = orderslist_test.getNextOrder();
-    nextOrder->execute();
-    std::cout << std::endl << orderslist_test << std::endl;
-
-
+    cout << list2;
+    cout << "-------------------\n";
+    orderlist list3;
+    list3 = list2;
+    cout << "---using assignement operator---\n";
+    cout << list2;
 }

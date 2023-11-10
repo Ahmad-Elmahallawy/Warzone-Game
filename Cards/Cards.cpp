@@ -1,4 +1,5 @@
 #include "Cards.h"
+#include "../Map/Map.h"
 #include <iostream>
 #include <stdlib.h>
 
@@ -21,6 +22,7 @@ Card::Card(const Card& card) {
 // operator that assigns a new value to an exisiting object
 Card& Card::operator=(const Card& card) {
     this-> card1 = card.card1;
+    return *this;
 }
 
 //getter method return the card
@@ -140,6 +142,7 @@ Hand::Hand(const Hand& hand) {
 
 Hand& Hand::operator=(const Hand& hand) {
     this -> vectorHand = hand.vectorHand;
+    return *this;
 }
 
 vector<Card*> Hand::getCard() {

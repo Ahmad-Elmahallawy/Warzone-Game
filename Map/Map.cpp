@@ -5,19 +5,22 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <stack>
 #include <list>
 #include <bits/stdc++.h>
 #include <vector>
 #include "../Players/Player.h"
 using namespace std;
+
 int Territory::viableVertexNumber =0;//a variable that is used to assign vertex numbers to territories
-Territory::Territory(int xCoordinate, int yCoordinate, std::string territoryName, std::string continent) {
-    this->xCoordinate = xCoordinate;
-    this->yCoordinate = yCoordinate;
-    this->territoryName = territoryName;
-    this->continent = continent;
-    this->vertexNumber = getViableVertexNumber();
+Territory::Territory(int xCoordinate, int yCoordinate, std::string territoryName, std::string continent)
+ {
+     this->xCoordinate = xCoordinate;
+     this->yCoordinate = yCoordinate;
+     this->territoryName = territoryName;
+     this->continent = continent;
+     this->vertexNumber = getViableVertexNumber();
+
+
 }
 Territory::Territory() {
     this->xCoordinate = 0;
@@ -33,6 +36,10 @@ int Territory::getXCoordinate() const{
 }
 int Territory::getYCoordinate() const{
     return this->yCoordinate;
+}
+
+Player * Territory:: getTerritoryOwner(){
+    return this->owningPlayer;
 }
 string Territory::getTerritoryName() const{
     return this->territoryName;
@@ -65,12 +72,61 @@ void Territory::setContinentName(std::string cName) {
 void Territory::setVertexNumber() {
     this->vertexNumber = getViableVertexNumber();
 }
-
+void Territory::setTerritoryOwner(Player* player) {
+    owningPlayer = player;
+}
 std::ostream& operator<<(std::ostream& os, const Territory& territory) {
     os << "Territory Name: " << territory.getTerritoryName() << ", Continent: " << territory.getContinentName();
     // Include any other information you want to print for a Territory
     return os;
 }
+
+/*int Territory::getArmySize() {
+    return this->numberOfArmies;
+}
+
+void Territory::setArmySize(int size) {
+this->numberOfArmies= size;
+}
+*/
+// Set a name for the territory
+void Territory::setName(string newName) {
+    name_ = newName;
+}
+
+// Return the name of the territory
+string Territory::getName() const {
+    return name_;
+}
+
+/*// Return the neighbors of the territory
+unordered_map<string, Territory*> Territory::getNeighbors() const {
+    return neighbors_;
+}*/
+
+// Return the number of armies that is on the territory
+int Territory::getNumOfArmies() const {
+    return numberOfArmies;
+}
+void Territory::setNumOfArmies(int newArmies) {
+    if (newArmies < 0) {
+        newArmies = 0;
+    }
+    numberOfArmies = newArmies;
+}
+// Return the owner of the territory
+Player* Territory::getOwner() const {
+    return owningPlayer;
+}
+
+void Territory::setOwner(Player* newOwner) {
+    owningPlayer = newOwner;
+}
+// Set a list of neighbors for the territory
+//void Territory::setNeighbors(unordered_map<string, Territory*> newNeighbors) {
+ //   neighbors_ = newNeighbors;
+//}
+
 Map::Map(Map const &m) {
     this->listOfTerritories = m.listOfTerritories;
     this->numberOfVertices = m.numberOfVertices;
@@ -131,6 +187,38 @@ bool Map::DFS() {
         }
     }
     return true;
+}
+/*bool Map::isTerritoryAdjacent(const Territory& target) const {
+    for (const Territory& territory : listOfTerritories) {
+        if (territory == target) {
+            continue;  // Skip the target territory itself.
+        }
+
+        // Check if 'target' is adjacent to 'territory'
+        if (isAdjacent(target, territory)) {
+            return true;
+        }
+    }
+    return false;  // 'target' is not adjacent to any territory on the map.
+}*/
+bool Map::isAdjacent(const Territory& t1, const Territory& t2) const {
+    // Retrieve the vertex numbers of the two territories.
+    int vertexNumber1 = t1.getVertexNumber();
+    int vertexNumber2 = t2.getVertexNumber();
+
+    // Check if t2 is in the adjacency list of t1 or vice versa.
+    for (const Territory& adjacentTerritory : adjlist[vertexNumber1]) {
+        if (adjacentTerritory == t2) {
+            return true;
+        }
+    }
+    for (const Territory& adjacentTerritory : adjlist[vertexNumber2]) {
+        if (adjacentTerritory == t1) {
+            return true;
+        }
+    }
+    // If neither of the above conditions is met, t1 and t2 are not adjacent.
+    return false;
 }
 
 std::ostream& operator<<(std::ostream& os, const Map& map){
