@@ -3,11 +3,11 @@
 contains a free function named testOrdersLists() that creates a list of orders and demonstrates that the OrdersList implemented
 Here : remove, move of the orderlist will be tested, expected result shown commented
 */
-
-#include <iostream>
 #include "../Map/Map.h"
 #include "../Orders/Orders.h"
 #include "../Players/Player.h"
+#include <iostream>
+
 
 void testOrderExecution() {
     // Assuming you have a Map object

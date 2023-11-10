@@ -157,12 +157,9 @@ CMakeFiles/Project_1.dir/Orders/OrdersDriver.cpp.obj: \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_bvector.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/vector.tcc \
  C:/Users/mazen/CLionProjects/COMP345-Warzone/Orders/Orders.h \
+ C:/Users/mazen/CLionProjects/COMP345-Warzone/Map/Map.h \
  C:/Users/mazen/CLionProjects/COMP345-Warzone/Players/Player.h \
  C:/Users/mazen/CLionProjects/COMP345-Warzone/Map/Map.h \
  C:/Users/mazen/CLionProjects/COMP345-Warzone/Orders/Orders.h \
  C:/Users/mazen/CLionProjects/COMP345-Warzone/Cards/Cards.h \
- C:/Users/mazen/CLionProjects/COMP345-Warzone/Map/Map.h \
- C:/Users/mazen/CLionProjects/COMP345-Warzone/Players/Player.h \
- C:/Users/mazen/CLionProjects/COMP345-Warzone/Map/Map.h \
- C:/Users/mazen/CLionProjects/COMP345-Warzone/Players/Player.h \
- C:\Users\mazen\CLionProjects\COMP345-Warzone\Orders\Orders.h
+ C:/Users/mazen/CLionProjects/COMP345-Warzone/Map/Map.h
