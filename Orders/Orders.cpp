@@ -205,10 +205,50 @@ bool advancee::validate()
 }
 
 void advancee::execute() {
-    if (validate()) {
+    if (!validate()) {
+        // Output error message or handle invalid order
+        cout << "Invalid advance order." << endl;
+        return;
+    }
 
-       // executed = true;
+    // If the source and target territory both belong to the player, move armies
+    if (owner == target->getOwner()) {
+        source->setNumOfArmies(source->getNumOfArmies() - numbOfarmies);
+        target->setNumOfArmies(target->getNumOfArmies() + numbOfarmies);
+    } else {
+        // Simulate an attack
+        int attackingArmies = numbOfarmies;
+        int defendingArmies = target->getNumOfArmies();
 
+        // Simulate battle
+        for (int i = 0; i < attackingArmies; ++i) {
+            if (rand() % 100 < 60) {
+                // Attacking army kills defending army
+                defendingArmies--;
+            }
+        }
+
+        for (int i = 0; i < defendingArmies; ++i) {
+            if (rand() % 100 < 70) {
+                // Defending army kills attacking army
+                attackingArmies--;
+            }
+        }
+
+        // If all defender's armies are eliminated, attacker captures the territory
+        if (defendingArmies == 0) {
+            target->setOwner(owner);
+            target->setNumOfArmies(attackingArmies);
+        } else {
+            // Set remaining armies after battle
+            source->setNumOfArmies(source->getNumOfArmies() - (numbOfarmies - attackingArmies));
+            target->setNumOfArmies(defendingArmies);
+        }
+
+        // Check if the player successfully conquered at least one territory to receive a card
+        if (defendingArmies == 0) {
+            owner->getCard(); // Assuming there's a method in the Player class to add a card
+        }
     }
 }
 

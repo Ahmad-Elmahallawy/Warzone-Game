@@ -55,6 +55,10 @@ public:
     Player* getOwner() const;
     // Set the number of armies for the territory
     void setNumOfArmies(int newArmies);
+    // Check if this territory is adjacent to another territory
+    bool isAdjacent(const Territory& other) const;
+    // Method to add an adjacent territory
+    void addAdjacentTerritory(Territory* adjacent);
     friend std::ostream& operator<<(std::ostream& os, const Territory& territory);
     bool operator==(const Territory& other) const {
         return this->territoryName == other.territoryName;
@@ -69,6 +73,7 @@ private:
     int numberOfArmies;
     Player *owningPlayer;
     string name_;
+    vector<Territory*> adjacentTerritories;
    // unordered_map<string, Territory*> neighbors_;
 };
 class Map{

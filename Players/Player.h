@@ -52,7 +52,7 @@ public:
 
     // getters and setters
     Hand *getHand() const;
-
+    vector<Card *> getCard();
     void issueOrder();
     vector <Territory*> getterriortiesOwned();// getter for terriorties owned
     const vector<Territory *> &getTerritories();

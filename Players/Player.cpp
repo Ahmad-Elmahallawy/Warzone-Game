@@ -71,6 +71,10 @@ Hand* Player::getHand() const
 void Player::setHand(Hand *hand) {
     Player::hand = hand;
 }
+vector<Card *> Player::getCard() {
+    // Assuming you have a Hand class, get a card from the hand
+    return hand->getCard();
+}
 int Player:: getPlayerID() {// getter for playerID
     return id;
 }
