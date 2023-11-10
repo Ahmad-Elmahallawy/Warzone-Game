@@ -4,7 +4,7 @@
 //
 using namespace std;
 #include <bits/stdc++.h>
-#include "../GameEngine.h"
+#include "CommandProcessor.h"
 
 Command::Command(std::string command) : command(command){}
 
@@ -71,7 +71,7 @@ Command *CommandProcessor::getCommand() {
     return cmd;
 }
 
-bool CommandProcessor::validate(Command *command, State state) {
+bool CommandProcessor::validate(Command* command, GameEngine::State state) {
     std::array<string,13> validCommands = {"start","loadmap","validatemap","addplayer","assigncountries","issueorder","endissueorder","executeorders","endexecorders","win","end","play","execorder"};
     bool validCommand = false;
     for(int i = 0;i<validCommands.size();i++){

@@ -5,7 +5,6 @@
 #ifndef PROJECT_1_GAMEENGINE_H
 #define PROJECT_1_GAMEENGINE_H
 
-#include "Command/CommandProcessor.h"
 
 
 
@@ -20,7 +19,7 @@
 
 
 
-
+class CommandProcessor;
 // Define the possible commands as an enum
 enum Commands {
     CMD_START,
@@ -77,7 +76,7 @@ public:
     static std::map<State, std::vector<Transition>> stateTransitions; // State transition map
 
 private:
-    State currentState; // current game state
+    GameEngine::State currentState; // current game state
     CommandProcessor* commandProcessor;  // Member variable as a pointer to store the CommandProcessor
     vector<Player*> AddedPlayerList; // Holds the players added to keep track of how many players are added;
     Map* currentMap;
@@ -90,7 +89,7 @@ private:
 
 
 
-std::string stateToString(State state);
+std::string stateToString(GameEngine::State state);
 std::string commandToString(Commands command);
 Commands commandToEnum(std::string command);
 

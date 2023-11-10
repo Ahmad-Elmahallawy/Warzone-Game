@@ -190,7 +190,7 @@ void GameEngine::startupPhase() {
 
 
         // Validate the command
-        if (!commandProcessor->validate()) {
+        if (!commandProcessor->validate(this->commandProcessor->getCommand(),this->currentState)) {
             std::cout << "Invalid command. Try again." << std::endl;
             continue;
         }
@@ -218,7 +218,7 @@ void GameEngine::startupPhase() {
     std::cout << "Game has ended." << std::endl;
 }
 // returns the current state of the game
-State GameEngine::getCurrentState() {
+GameEngine::State GameEngine::getCurrentState() {
     return currentState;
 }
 
@@ -238,15 +238,15 @@ bool GameEngine::isGameComplete() {
 // converts state enum value to string
 std::string stateToString(GameEngine::State state) {
     switch (state) {
-        case START: return "start";
-        case MAP_LOADED: return "map loaded";
-        case MAP_VALIDATED: return "map validated";
-        case PLAYERS_ADDED: return "players added";
-        case ASSIGN_REINFORCEMENTS: return "assign reinforcement";
-        case ISSUE_ORDERS: return "issue orders";
-        case EXECUTE_ORDERS: return "execute orders";
-        case WIN: return "win";
-        case END: return "end";
+        case GameEngine::State::START: return "start";
+        case GameEngine::State::MAP_LOADED: return "map loaded";
+        case GameEngine::State::MAP_VALIDATED: return "map validated";
+        case GameEngine::State::PLAYERS_ADDED: return "players added";
+        case GameEngine::State::ASSIGN_REINFORCEMENTS: return "assign reinforcement";
+        case GameEngine::State::ISSUE_ORDERS: return "issue orders";
+        case GameEngine::State::EXECUTE_ORDERS: return "execute orders";
+        case GameEngine::State::WIN: return "win";
+        case GameEngine::State::END: return "end";
         default: return "UNKNOWN_STATE";
     }
 }

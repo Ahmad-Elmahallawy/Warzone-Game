@@ -7,7 +7,8 @@
 using namespace std;
 #include <iostream>
 #include <list>
-enum State;
+#include "../GameEngine.h"
+
 class Command{
 public:
     string effect;
@@ -20,13 +21,15 @@ public:
 private:
     string command;
 };
+
+
 class CommandProcessor{
 public:
     list<Command*> lc;
     Command* readCommand();
     void saveCommand(Command* command);
     Command* getCommand();
-    bool validate(Command* command, State state);
+    bool validate(Command* command, GameEngine::State state);
 private:
 
 };
