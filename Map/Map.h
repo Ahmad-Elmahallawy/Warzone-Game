@@ -25,8 +25,6 @@ public:
     void setXCoordinate(int x);
     int getYCoordinate() const;
     void setYCoordinate(int y);
-    //int getArmySize();//me
-    //void setArmySize(int size);//me
     string getTerritoryName() const;
     void setTerritoryName(string tName);
     string getContinentName() const;
@@ -45,11 +43,6 @@ public:
     string getName() const;
     // Set a name for the territory
     void setName(string newName);
-    // Set a list of neighbors for the territory
-    //void setNeighbors(unordered_map<string, Territory*> newNeighbors);             //fix
-    // Return the neighbors of the territory
-   // unordered_map<string, Territory*> getNeighbors() const;
-    // Return the number of armies that is on the territory
     int getNumOfArmies() const;
     // Return the owner of the territory
     Player* getOwner() const;
@@ -62,6 +55,13 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const Territory& territory);
     bool operator==(const Territory& other) const {
         return this->territoryName == other.territoryName;
+        // Set a list of neighbors for the territory
+        //void setNeighbors(unordered_map<string, Territory*> newNeighbors);             //fix
+        // Return the neighbors of the territory
+        // unordered_map<string, Territory*> getNeighbors() const;
+        // Return the number of armies that is on the territory
+        //int getArmySize();
+        //void setArmySize(int size);
     }
 private:
     int xCoordinate;//horizontal coordinate of territory on the map

@@ -9,53 +9,59 @@ Here : remove, move of the orderlist will be tested, expected result shown comme
 #include "../Players/Player.h"
 #include "Orders.h"
 #include <iostream>
-
 // OrdersDriver.cpp
 
-#include "Orders.h"
+void testOrderExecution() {
+    // Assuming you have a Map object
+    Map *gameMap;
 
-void testOrdersLists() {
-    //create objects of order and its subclasses
+    // Assuming you have two players
+    Player player1((Player &) "Player1");
+    Player player2((Player &) "Player2");
 
-    bomb* b1 = new bomb();
-    deploy * d1 = new deploy();
-    airlift *a1 = new airlift();
-    negotiate *n = new negotiate();
-    blockade* bk = new blockade();
-    advancee* adv = new advancee();
-    //create order list
-    orderlist list;
-    //use push method
-    list.addOrder(a1);
-    list.addOrder(b1);
-    list.addOrder(d1);
-    list.addOrder(n);
-    list.addOrder(bk);
-    list.addOrder(adv);
-    cout << "--use stream insertion operator of list--\n";
-    cout << list;
-    cout << "-------------------\n";
-    cout << "use validate and execut with all objects";
-    list.showmethods();
-    cout << "-------------------\n";
+    // Assuming you have some territories on the map
+    Territory territory1(1, 2, "Territory1", "Continent1");
+    Territory territory2(2, 3, "Territory2", "Continent2");
 
-    list.move(4, 1);
-    cout << "--move position 4 to 1--\n";
+    // Assign territories to players
+    player1.addTerriorty(&territory1);
+    player2.addTerriorty(&territory2);
 
-    cout << list;
-    cout << "-------------------\n";
-    cout << "--remove--order in position 4\n";
-    list.remove(4);
-    cout << list;
-    cout << "-------------------\n";
+    // Create orders
+    deploy deployOrder(5, territory1, &player1);
+    advancee myAdvanceeObject(3, territory1, territory2, &player1);
+    bomb bombOrder(territory2, &player2);
+    airlift airliftOrder(4, territory1, territory2, &player1);
+    negotiate negotiateOrder(&player2, &player1);
+    blockade blockadeOrder(territory1, &player1, nullptr);
 
-    orderlist list2 = list;
-    cout << "---using copy constructor---\n";
+    // Create order list
+    orderlist orderList;
 
-    cout << list2;
-    cout << "-------------------\n";
-    orderlist list3;
-    list3 = list2;
-    cout << "---using assignement operator---\n";
-    cout << list2;
+    // Add orders to the list
+    orderList.addOrder(&deployOrder);
+    orderList.addOrder(&myAdvanceeObject);
+    orderList.addOrder(&bombOrder);
+    orderList.addOrder(&airliftOrder);
+    orderList.addOrder(&negotiateOrder);
+    orderList.addOrder(&blockadeOrder);
+
+    // Display map and players before execution
+    std::cout << "-- Map (Before Execution) --\n";
+   // gameMap.printMap();
+
+    std::cout << "-- Players (Before Execution) --\n";
+    std::cout << "Player1 Territories: " << player1.getTerritoriesString() << "\n";
+    std::cout << "Player2 Territories: " << player2.getTerritoriesString() << "\n";
+
+    // Validate and execute orders
+    //orderList.validateAndExecute(gameMap);
+
+    // Display map and players after execution
+    //std::cout << "-- Map (After Execution) --\n";
+    //gameMap.printMap();
+
+    std::cout << "-- Players (After Execution) --\n";
+    std::cout << "Player1 Territories: " << player1.getTerritoriesString() << "\n";
+    std::cout << "Player2 Territories: " << player2.getTerritoriesString() << "\n";
 }

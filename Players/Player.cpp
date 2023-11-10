@@ -78,18 +78,13 @@ vector<Card *> Player::getCard() {
 int Player:: getPlayerID() {// getter for playerID
     return id;
 }
-int Player::getReinforcementPool() {
-    return reinforcementPool;
-}
-void Player::setReinforcementPool(int n) {
-    this->reinforcementPool = n;
-}
+
 void Player::setTerriorty(vector <Territory*> terriorties) {// setter for terriorties owned
     this->terriortiesOwned= terriorties;
 }
-void Player::addTerriorty(Territory* t) {//adds a terriorty to the player terriortiesowned
-    terriortiesOwned.push_back(t);
-    t->setOwner(this);
+void Player::addTerriorty(Territory* Territory) {//adds a terriorty to the player terriortiesowned
+    terriortiesOwned.push_back(Territory);
+    Territory->setOwner(this);
 }
 // creates a new order
 void Player::issueOrder() {
@@ -193,6 +188,48 @@ Player& Player::operator=(const Player& rhs) {
 
     return *this;
 }
+
+
+/*int Player::getReinforcementPool() {
+    return reinforcementPool;
+}
+void Player::setReinforcementPool(int n) {
+    this->reinforcementPool = n;
+}*/
+
+/*void Player::issueBombOrder(Territory* target, int numbOfArmies) {
+    if (target->getTerritoryOwner() == this) {
+        // Handle the case where the target territory belongs to the same player.
+        std::cout << "Bomb order is invalid: Target territory belongs to the same player." << std::endl;
+    } else if (isUnderDiplomacyWith(*target->getTerritoryOwner())) {
+        // Handle the case where there's a diplomatic agreement with the target player.
+        std::cout << "Bomb order is invalid: Diplomatic agreement with the target player." << std::endl;
+    } else {
+        // Create a Bomb order if no diplomatic agreement and the target territory doesn't belong to the same player.
+        bomb* bombOrder = new bomb(this, target, numbOfArmies);
+
+        if (bombOrder->validate()) {
+            // Add the bomb order to the player's orders list.
+            this->ordersList->addOrder(bombOrder);
+        } else {
+            // Handle the case where the order is invalid.
+            delete bombOrder;
+        }
+    }
+}
+ void Player::issueDeployOrder(Territory* target, int numbOfarmies) {
+    order* deployOrder = new deploy(this, *target, numbOfarmies);
+    if (deployOrder->validate()) {
+        // Add the deploy order to the player's orders list (you should have a list for orders)
+        ordersList->addOrder(deployOrder);
+    } else {
+        // Handle the case where the order is invalid
+        delete deployOrder;
+    }
+}
+
+ */
+/*
 PlayerStrategy::PlayerStrategy() {
 }
 
@@ -247,36 +284,4 @@ vector<Territory*> NeutralPlayerStrategy::toDefend() {
     // Neutral player never defends
     return vector<Territory*>();
 }
-
-/*void Player::issueBombOrder(Territory* target, int numbOfArmies) {
-    if (target->getTerritoryOwner() == this) {
-        // Handle the case where the target territory belongs to the same player.
-        std::cout << "Bomb order is invalid: Target territory belongs to the same player." << std::endl;
-    } else if (isUnderDiplomacyWith(*target->getTerritoryOwner())) {
-        // Handle the case where there's a diplomatic agreement with the target player.
-        std::cout << "Bomb order is invalid: Diplomatic agreement with the target player." << std::endl;
-    } else {
-        // Create a Bomb order if no diplomatic agreement and the target territory doesn't belong to the same player.
-        bomb* bombOrder = new bomb(this, target, numbOfArmies);
-
-        if (bombOrder->validate()) {
-            // Add the bomb order to the player's orders list.
-            this->ordersList->addOrder(bombOrder);
-        } else {
-            // Handle the case where the order is invalid.
-            delete bombOrder;
-        }
-    }
-}
- void Player::issueDeployOrder(Territory* target, int numbOfarmies) {
-    order* deployOrder = new deploy(this, *target, numbOfarmies);
-    if (deployOrder->validate()) {
-        // Add the deploy order to the player's orders list (you should have a list for orders)
-        ordersList->addOrder(deployOrder);
-    } else {
-        // Handle the case where the order is invalid
-        delete deployOrder;
-    }
-}
-
- */
+*/

@@ -667,14 +667,14 @@ bool bomb::validate()
             return false;
         }
     }
-    Territory* adjacentTerritory = nullptr;
+    Territory* isAdjacent = nullptr;
     for (int i = 0; i < temp.size(); i++) {
-        adjacentTerritory = temp[i]->getNeighbor(target->getName());
-        if (adjacentTerritory != nullptr) {
+        isAdjacent = temp[i]->getNeighbor(target->getName());
+        if (isAdjacent != nullptr) {
             break;
         }
     }
-    if (adjacentTerritory == nullptr) {
+    if (isAdjacent == nullptr) {
         return false;
     }
     return true;

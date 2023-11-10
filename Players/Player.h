@@ -40,7 +40,7 @@ public:
 
     Player(Player &player);
 
-    Player(Hand *hand, const vector<Territory *> &territories, const string &playerName, int playerId,
+    Player(Hand *hand, const vector<Territory *> &territories, const std::string &playerName, int playerId,
            orderlist *ordersList);
 
     ~Player();   // deconstruct
@@ -49,7 +49,7 @@ public:
     std::vector<Territory *> toDefend() const;
 
     std::vector<Territory *> toAttack() const;
-
+    std::vector<Territory*> territoriesOwned;
     // getters and setters
     Hand *getHand() const;
     vector<Card *> getCard();
@@ -110,52 +110,28 @@ public:
     void removeTerritory(int index);
     void addnegotiationlist(Player *p);
     void clearnegotiationlist();
-    int getReinforcementPool(); //Return player's reinforcement pool
-    void setReinforcementPool(int n);
     vector< Player*> getnegotiateList();// getter for negotiate list
     string getName();
     void setName(string name);
     void setTerriorty(vector <Territory*>);// setter for terriorties owned
-    //void setPlayerStrategy(PlayerStrategy* newPS);
-    PlayerStrategy* getPlayerStrategy() const;
     bool conquer = false;
     vector<Territory*> terriortiesOwned;
+    // Function to get a string representation of territories
+    string getTerritoriesString() const {
+        string result = "Territories owned by player: ";
+        for (const auto& territory : territories) {
+            result += territory->getName() + " ";
+        }
+        return result;
+    }
+
+    //int getReinforcementPool(); //Return player's reinforcement pool
+    // void setReinforcementPool(int n);
+    //void setPlayerStrategy(PlayerStrategy* newPS);
+    //PlayerStrategy* getPlayerStrategy() const;
 };
 
-class PlayerStrategy  {
 
-protected:
-    Player* p;
-    string type;
-    PlayerStrategy();
-    PlayerStrategy(string type);
-    PlayerStrategy(const PlayerStrategy& p);
-    PlayerStrategy& operator=(PlayerStrategy& ps);
-
-public:
-    // Set a player to the strategy
-    void setPlayer(Player* inputPlayer);
-    // Destructor
-    virtual ~PlayerStrategy();
-    // Issue order
-    virtual bool issueOrder(vector<Player*> AddedPlayerList) = 0;
-    virtual vector<Territory*> toAttack() = 0;
-    virtual vector<Territory*> toDefend() = 0;
-    string getType();
-    friend ostream& operator<<(ostream& os, PlayerStrategy& player);
-};
-
-class NeutralPlayerStrategy : public PlayerStrategy {
-public:
-    NeutralPlayerStrategy& operator&=(NeutralPlayerStrategy& p);
-    NeutralPlayerStrategy();
-    NeutralPlayerStrategy(const NeutralPlayerStrategy& p);
-    ~NeutralPlayerStrategy();
-    bool issueOrder(vector<Player*> AddedPlayerList);
-    vector<Territory*> toAttack();
-    vector<Territory*> toDefend();
-    friend ostream& operator<<(ostream& os, NeutralPlayerStrategy& player);
-};
 void testPlayers();
 
 #endif //COMP345_WARZONE_PROJECT_PLAYER_H//

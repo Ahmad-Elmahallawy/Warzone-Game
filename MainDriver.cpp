@@ -20,7 +20,7 @@ int main() {
     // Part 3
     cout << "OrdersList Section" << endl;
     cout << "**********************************************************" << endl;
-    testOrdersLists();
+    testOrderExecution();
 
     // Part 4
     cout << "Cards Section" << endl;
