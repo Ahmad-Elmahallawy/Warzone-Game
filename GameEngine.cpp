@@ -8,7 +8,7 @@ using namespace std;
 #include "gameengine.h"
 
 // Definition and initialization of the static member
-std::map<State, std::vector<Transition>> GameEngine::stateTransitions = {
+std::map<GameEngine::State, std::vector<GameEngine::Transition>> GameEngine::stateTransitions = {
         {State::START, {
                                {CMD_START, State::MAP_LOADED}
                        }},
@@ -44,7 +44,7 @@ std::map<State, std::vector<Transition>> GameEngine::stateTransitions = {
 
 GameEngine::GameEngine() {
     // current state when the game runs
-    currentState = START;
+    State currentState = START;
 }
 
 // function definition to check if the command is valid to transition to the next state
@@ -236,7 +236,7 @@ bool GameEngine::isGameComplete() {
 }
 
 // converts state enum value to string
-std::string stateToString(State state) {
+std::string stateToString(GameEngine::State state) {
     switch (state) {
         case START: return "start";
         case MAP_LOADED: return "map loaded";

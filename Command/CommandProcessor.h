@@ -5,11 +5,9 @@
 // Created by oimbs on 11/6/2023.
 //
 using namespace std;
-#include "../GameEngine.h"
 #include <iostream>
 #include <list>
-#ifndef PROJECT_1_COMMANDPROCESSING_H
-#define PROJECT_1_COMMANDPROCESSING_H
+enum State;
 class Command{
 public:
     string effect;
@@ -47,5 +45,5 @@ private:
 };
 
 void testCommandProcessor();
-#endif //PROJECT_1_COMMANDPROCESSING_H
-#endif //PROJECT_1_COMMANDPROCESSOR_H
+
+#endif PROJECT_1_COMMANDPROCESSOR_H
