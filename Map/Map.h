@@ -49,7 +49,7 @@ public:
     // Set the number of armies for the territory
     void setNumOfArmies(int newArmies);
     // Check if this territory is adjacent to another territory
-    bool isAdjacent(const Territory& other) const;
+    bool isAdjacent(const Territory& other) ;
     // Method to add an adjacent territory
     void addAdjacentTerritory(Territory* adjacent);
     friend std::ostream& operator<<(std::ostream& os, const Territory& territory);
@@ -98,7 +98,7 @@ private:
 };
 class MapLoader{
 public:
-   static Map *gameMap;
+    Map *gameMap;
     MapLoader(string fileName);
     MapLoader(int n,std::string fileName);
     ~MapLoader();

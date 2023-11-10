@@ -1,7 +1,8 @@
 // part 2
 // this is the Players.cpp file where all the definitions are done
 #include <iostream>
-#include "Player.h"
+#include "../Players/Player.h"
+#include "../Orders/Orders.h"
 using namespace std;
 // default constructor
 int Player:: playerId = 1;

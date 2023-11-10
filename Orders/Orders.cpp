@@ -1,7 +1,6 @@
 #include "../Map/Map.h"
 #include "../Orders/Orders.h"
 #include "../Players/Player.h"
-//#include "../Cards/Cards.h"
 #include <iostream>
 #include <string>
 //order
@@ -629,52 +628,23 @@ bomb::~bomb()
     target = NULL;
 }
 
-void bomb::execute()
-{
-    Territory* target = getTerritory();
-    int old = target->getNumOfArmies();
-    if (validateCard()) {// first checks if the player doesn't have the bomb card or not
-        if (validate()) {// it checks if the target terriorty is adjacnet and not owned by the player then it executes
-            target->setNumOfArmies(target->getNumOfArmies() / 2);
-            //PlayerStrategy* strategyPlayer = target->getOwner()->getPlayerStrategy(); //fix
-            cout << "The bomb order is executed " << endl;
-            cout << "Before the territory got attacked it had " << old <<
-                 " armies but now after it got attacked, half of its army is gone, it has " << target->getNumOfArmies() << " armies.";
-        }
-        else {
-            cout << "Can't execute the bomb order because the player issuing bomb on his territory ";
-        }
-    }
-    else {
-        cout << "The player doesn't have the bomb card in his hand";
-    }
+void bomb::execute() {
+    if (this->validate()) {
+        std::cout << "Executing Bomb Order" << std::endl;
+        // Remove half of the army units from the target territory
+        int currentArmies = target->getNumOfArmies();
+        int halfArmies = currentArmies / 2;
+        target->setNumOfArmies(halfArmies);
 
+        std::cout << "Half of the army units removed from " << target->getTerritoryName() << std::endl;
+
+        this->executed = true;
+    }
 }
 
-bool bomb::validate()
-{
-    Territory* target = getTerritory();
-    Player* p = getOwner();
-    vector <Territory*> temp = p->getterriortiesOwned();
-    vector<Player*> negotiationlist = this->getOwner()->getnegotiateList();
-    for (int x = 0; x < negotiationlist.size(); x++) {
-        if (negotiationlist[x]->getPlayerID() == target->getOwner()->getPlayerID())
-            return false;
-    }
-    for (int i = 0; i < temp.size(); i++) {
-        if (temp[i] == target)
-        {
-            return false;
-        }
-    }
-    Territory* isAdjacent = nullptr;
-    for (int i = 0; i < temp.size(); i++) {
-        isAdjacent = temp[i]->getNeighbor(target->getName());
-        if (isAdjacent != nullptr) {
-            break;
-        }
-    }
-    if (isAdjacent == nullptr) {
+bool bomb::validate() {
+    if (!target || target->getOwner() == this->getOwner() || !this->getTerritory()->isAdjacent(*target)) {
+        std::cout << "Bomb order is invalid" << std::endl;
         return false;
     }
     return true;
@@ -725,91 +695,63 @@ orderlist::~orderlist()
     this->list.clear();
 
 }
-//assigenemnt same function as copy constructor
-orderlist& orderlist::operator=(const orderlist& list)
+//default constructor
+orderlist::orderlist()
 {
-    for (int x = 0; x < list.list.size(); x++) {
-        this->list.push_back(list.list[x]->clone());
-    }
-    return *this;
+    std::cout << "OrdersList created " << std::endl;
 }
-//remove method that is given an index and it removes the order from the list
+
+// copy constructor
+orderlist::orderlist(const orderlist& ordersList)
+{
+    this->list = ordersList.list;
+}
+
+// add an order to the list
+void orderlist::addOrder(order* order)
+{
+    this->list.push_back(order);
+}
+
+// get next order on the list
+order* orderlist::getFirstOrder()
+{
+    return list.back();
+    }
+
+// remove an order from the list [takes an int, which is a menu number]
 void orderlist::remove(int num)
 {
-    delete list[num];//delete the order from heap when removed
-    this->list.erase(list.begin() + (num));
+    delete list[num];  // delete the order from heap when removed
+    this->list.erase(this->list.begin() + num);
+
+    std::cout << "an order was removed\n" << std::endl;
 }
-//move method to move an object from position 1 to position 2
-void orderlist::move(int position1, int position2)
+
+// swap two orders in the list [takes two ints, which are menu numbers]
+void orderlist::move(int a, int b)
 {
-    order* temp = (list[position1]);
-    list[position1] = (list[position2]);
-    list[position2] = temp;
-    temp = NULL;
+    // index is one less than menu numbering
+    a--;
+    b--;
 
+    order* temp = this->list[a];
+
+    this->list[a] = this->list[b];
+    this->list[b] = temp;
+
+    std::cout << "orders were swapped\n" << std::endl;
 }
-//default constructor
-//it initialize all the list to null
-orderlist::orderlist() {
-    for (int x = 0; x < list.size(); x++) {
 
-        list[x] = NULL;
-
-    }
-}
-//copy constructor
-orderlist::orderlist(const orderlist& ord)
+// assignment operator
+orderlist& orderlist::operator=(const orderlist& orderslist)
 {
+    this->list = orderslist.list;
 
-    for (int x = 0; x < ord.list.size(); x++) {
-        //use copy constructor to create deep copy of the orders
-        this->list.push_back(ord.list[x]->clone());
+    return *this;
+}
 
-    }
-
-
-}
-void orderlist::reset() {
-    for (int i = 0; i < list.size(); i++) {
-        delete list[i];
-    }
-    list.clear();
-}
-//pushb the order in to the list by order
-void orderlist::addOrder(order* ord)
-{
-    list.push_back(ord);
-    //rotate(list.rbegin(), list.rbegin() + 1, list.rend());
-
-}
-int orderlist::getsize()
-{
-    return list.size();
-}
-//for visualizaton of execut and validate
-void orderlist::showmethods()
-{
-    for (int x = 0; x < list.size(); x++) {
-        //list[x]->execute();
-        list[x]->validate();
-    }
-}
-string orderlist::stringToLog() {
-    order* o = list.back();
-    string str = "Order Issued: Player " + to_string(o->getOwner()->getPlayerID()) + " added " + o->getType() + " order to their order list.\n Player " + to_string(o->getOwner()->getPlayerID()) +
-                 " now is: ";
-    str += ("\n{");
-    for (int i = 0; i < list.size(); i++) {
-        str += this->list.at(i)->getType();
-        if (i != this->getsize() - 1) {
-            str += ",";
-        }
-    }
-    str += "}";
-    return str;
-
-}
-//stream insertion operator
+// stream insertion operator overload
 ostream& operator<<(ostream& cout, const orderlist& l)
 {
     for (int x = 0; x < l.list.size(); x++) {
@@ -817,12 +759,4 @@ ostream& operator<<(ostream& cout, const orderlist& l)
         cout << *(l.list[x]);
     }
     return cout;
-}
-
-order* orderlist::getFirstOrder() {
-    return list.back();
-}
-
-vector <order*> orderlist::getList() {
-    return list;
 }

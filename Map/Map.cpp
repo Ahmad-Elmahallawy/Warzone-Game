@@ -126,7 +126,7 @@ void Territory::setOwner(Player* newOwner) {
 //void Territory::setNeighbors(unordered_map<string, Territory*> newNeighbors) {
  //   neighbors_ = newNeighbors;
 //}
-bool Territory::isAdjacent(const Territory& other) const {
+bool Territory::isAdjacent(const Territory& other)  {
     // Check if 'other' is in the list of adjacent territories
     return std::find(adjacentTerritories.begin(), adjacentTerritories.end(), &other) != adjacentTerritories.end();
 }

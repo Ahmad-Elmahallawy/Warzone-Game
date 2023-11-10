@@ -33,6 +33,7 @@ Card::WarzoneCard Card::getCard() const {
 
 ostream& operator<<(std::ostream& os, const Card& obj) {
     os << "This is the card" << obj.card1;
+    return os;
 }
 
 // play method

@@ -9,10 +9,6 @@
 #include "../Map/Map.h"
 #include "../Orders/Orders.h"
 #include "../Cards/Cards.h"
-//#include "Orders.h"
-#include "Player.h"
-
-
 using namespace std;
 
 class Player {
@@ -24,7 +20,6 @@ private:
     string playerName;
     int playerID;
     orderlist *ordersList;
-   // std::Map<std::string,bool>;diplomaticAgreements; fix
     std::vector<Territory *> conqueredTerritories;
     bool conqueredTerritoryThisTurn;
     int id;

@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <deque>
-#include "../Players/Player.h"
 #include "../Map/Map.h"
 
 
@@ -112,6 +111,8 @@ public:
     void setTargetTerritory(Territory* targetTerritory);
     bomb* clone();
     bool validateCard();
+
+    bool executed;
 };
 
 
@@ -202,34 +203,52 @@ public:
 };
 
 class orderlist {
-private://vector of orders pointers
-    vector <order*> list;
+private:
+    // vector of orders pointers
+    vector<order*> list;
+
 public:
-    //destructor
+    // destructor
     ~orderlist();
-    //assignemnt operator
+
+    // assignment operator
     orderlist& operator=(const orderlist& list);
-    //remove from an list given index
+
+    // remove from a list given index
     void remove(int num);
-    // move from one postion to another
+
+    // move from one position to another
     void move(int position1, int position2);
-    //default conmstructor
+
+    // default constructor
     orderlist();
-    //copy constructor
+
+    // copy constructor
     orderlist(const orderlist& ord);
-    //add a new order in to the list
+
+    // add a new order into the list
     void addOrder(order* ord);
-    //get First order of list
+
+    // get the first order of the list
     order* getFirstOrder();
-    vector <order*> getList();
-    //insetion operator
-    friend ostream& operator<<(ostream& cout, const orderlist& l);
-    //getsize of the vector
+
+    vector<order*> getList();
+
+    // insertion operator
+    friend std::ostream& operator<<(std::ostream& output, const orderlist& orderslist); // Stream insertion operator overload
+
+    // get size of the vector
     int getsize();
-    //show execut and validate from all object of the list
+
+    // show execute and validate from all objects of the list
     void showmethods();
-    //override stringToLog
+
+    // override stringToLog
     string stringToLog();
+
     void reset();
+
+    order* getNextOrder(); // Get the next order on the list
 };
+
 #endif

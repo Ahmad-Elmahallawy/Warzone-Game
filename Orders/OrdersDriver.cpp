@@ -3,12 +3,11 @@
 contains a free function named testOrdersLists() that creates a list of orders and demonstrates that the OrdersList implemented
 Here : remove, move of the orderlist will be tested, expected result shown commented
 */
+
+#include <iostream>
 #include "../Map/Map.h"
 #include "../Orders/Orders.h"
 #include "../Players/Player.h"
-#include "Orders.h"
-#include <iostream>
-// OrdersDriver.cpp
 
 void testOrderExecution() {
     // Assuming you have a Map object
@@ -20,7 +19,7 @@ void testOrderExecution() {
 
     // Assuming you have some territories on the map
     Territory territory1(1, 2, "Territory1", "Continent1");
-    Territory territory2(2, 3, "Territory2", "Continent2");
+    Territory territory2(3, 4, "Territory2", "Continent2");
 
     // Assign territories to players
     player1.addTerriorty(&territory1);
@@ -46,7 +45,7 @@ void testOrderExecution() {
     orderList.addOrder(&blockadeOrder);
 
     // Display map and players before execution
-    std::cout << "-- Map (Before Execution) --\n";
+    //std::cout << "-- Map (Before Execution) --\n";
    // gameMap.printMap();
 
     std::cout << "-- Players (Before Execution) --\n";
