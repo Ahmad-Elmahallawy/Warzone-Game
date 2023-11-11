@@ -26,11 +26,12 @@ public:
     //stream insertion operator
     friend ostream& operator<<(ostream& cout, order& ord);
     //method wil be inherited and used inside the srtream insertion operatio to print right object
-    virtual void write(std::ostream&);
     //assignemnt operator
     order& operator =(const order& ord);
     Player* getOwner();
     string getType();
+
+    void write(ostream &output) const;
 };
 void testOrdersLists();
 void testOrderExecution();
@@ -111,7 +112,7 @@ public:
     void setTargetTerritory(Territory* targetTerritory);
     bomb* clone();
     bool validateCard();
-
+    void write(std::ostream&);
     bool executed;
 };
 
@@ -141,6 +142,7 @@ public:
     //stream instertion operator
     friend ostream& operator<<(ostream& cout, blockade& b);
 
+    void write(ostream &);
 };
 class negotiate : public order {
 
@@ -168,6 +170,8 @@ public:
     bool validateCard();
     // clone method inherited form order to ba able to deep copy the object in orderlist vector
     negotiate* clone();
+
+    void write(ostream &);
 };
 //airlift class subclass of order
 class airlift : public order {
@@ -200,6 +204,8 @@ public:
     bool validateCard();
     // clone method inherited form order to ba able to deep copy the object in orderlist vector
     airlift* clone();
+
+    void write(ostream &);
 };
 
 class orderlist {

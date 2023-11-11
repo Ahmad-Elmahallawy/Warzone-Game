@@ -10,7 +10,6 @@ bool order::validate()
     cout << "validate from super class";
     return true;
 }
-
 order* order::clone()
 {
     return this;
@@ -38,12 +37,13 @@ string order::getType()
 {
     return type;
 }
-ostream& operator<<(ostream& cout, order& b)
+ostream& operator<<(ostream& cout, const order& b)
 {
     b.write(cout);
     return cout;
 }
 order::~order() {}
+
 //deploy
 deploy::deploy(int numbOfarmies, Territory& target, Player* p) : numbOfArmies(numbOfarmies)
 {
@@ -131,6 +131,10 @@ deploy& deploy::operator=(const deploy& d)
     this->target = d.target;
     return *this;
 
+}
+deploy* deploy::clone()
+{
+    return new deploy(this);
 }
 //advance
 //parameterized constructor
@@ -272,6 +276,7 @@ advancee::advancee(advancee* adv) {
     this->numbOfarmies = adv->numbOfarmies;
 
 }
+
 /////the comments are exactly the same as the other subclasses
 //blockade
 blockade* blockade::clone()
@@ -371,6 +376,10 @@ bool blockade::validateCard()
     }
     return false;
 }
+void blockade::write(std::ostream&)
+{
+    cout << "Triple the number of army units on a territory and make it a neutral territory\n";
+}
 /////the comments are exactly the same as the other subclasses
 //negotiate
 negotiate& negotiate::operator=(const negotiate& n)
@@ -458,6 +467,10 @@ bool negotiate::validateCard()
 negotiate* negotiate::clone()
 {
     return new negotiate(this);
+}
+void negotiate::write(std::ostream&)
+{
+    cout << "prevent attacks between the current player and another target player until the end of the turn.\n";
 }
 /////the comments are exactly the same as the other subclasses
 //airlift
@@ -601,6 +614,11 @@ ostream& operator<<(ostream& cout, airlift& ai)
     ai.write(cout);
     return cout;
 }
+void airlift::write(std::ostream&)
+{
+
+    cout << " advance " << this->numbOfarmies << " from a source territory to a target territory\n";
+}
 /////the comments are exactly the same as the other subclasses
 //bomb
 bomb& bomb::operator=(const bomb& bom)
@@ -680,6 +698,10 @@ bomb::bomb(bomb* bom) {
     this->type = bom->type;
 
 }
+void bomb::write(std::ostream&)
+{
+    cout << "destroy half of the army units located on a targett territory\n";
+}
 ostream& operator<<(ostream& cout, bomb& b)
 {
     b.write(cout);
@@ -752,11 +774,11 @@ orderlist& orderlist::operator=(const orderlist& orderslist)
 }
 
 // stream insertion operator overload
-ostream& operator<<(ostream& cout, const orderlist& l)
+ostream& operator<<(ostream& cout, const orderlist& b)
 {
-    for (int x = 0; x < l.list.size(); x++) {
+    for (int x = 0; x < b.list.size(); x++) {
 
-        cout << *(l.list[x]);
+        cout << *(b.list[x]);
     }
     return cout;
 }
