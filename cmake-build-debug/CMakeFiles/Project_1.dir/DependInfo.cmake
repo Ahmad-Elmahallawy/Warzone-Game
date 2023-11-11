@@ -10,6 +10,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/ahmad/Desktop/Courses/Fall 2023/COMP 345/COMP345-Warzone/Cards/Cards.cpp" "CMakeFiles/Project_1.dir/Cards/Cards.cpp.obj" "gcc" "CMakeFiles/Project_1.dir/Cards/Cards.cpp.obj.d"
   "C:/Users/ahmad/Desktop/Courses/Fall 2023/COMP 345/COMP345-Warzone/Cards/CardsDriver.cpp" "CMakeFiles/Project_1.dir/Cards/CardsDriver.cpp.obj" "gcc" "CMakeFiles/Project_1.dir/Cards/CardsDriver.cpp.obj.d"
+  "C:/Users/ahmad/Desktop/Courses/Fall 2023/COMP 345/COMP345-Warzone/Command/CommandProcessing.cpp" "CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.obj" "gcc" "CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.obj.d"
+  "C:/Users/ahmad/Desktop/Courses/Fall 2023/COMP 345/COMP345-Warzone/Command/CommandProcessingDriver.cpp" "CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.obj" "gcc" "CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.obj.d"
   "C:/Users/ahmad/Desktop/Courses/Fall 2023/COMP 345/COMP345-Warzone/GameEngine.cpp" "CMakeFiles/Project_1.dir/GameEngine.cpp.obj" "gcc" "CMakeFiles/Project_1.dir/GameEngine.cpp.obj.d"
   "C:/Users/ahmad/Desktop/Courses/Fall 2023/COMP 345/COMP345-Warzone/GameEngineDriver.cpp" "CMakeFiles/Project_1.dir/GameEngineDriver.cpp.obj" "gcc" "CMakeFiles/Project_1.dir/GameEngineDriver.cpp.obj.d"
   "C:/Users/ahmad/Desktop/Courses/Fall 2023/COMP 345/COMP345-Warzone/MainDriver.cpp" "CMakeFiles/Project_1.dir/MainDriver.cpp.obj" "gcc" "CMakeFiles/Project_1.dir/MainDriver.cpp.obj.d"

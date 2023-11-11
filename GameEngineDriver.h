@@ -2,6 +2,6 @@
 #define PROJECT_1_GAMEENGINEDRIVER_H
 
 // function declaration
-void testGameStates();
+void testStartupPhase();
 
 #endif //PROJECT_1_GAMEENGINEDRIVER_H

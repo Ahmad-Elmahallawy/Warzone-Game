@@ -222,6 +222,34 @@ CMakeFiles/Project_1.dir/GameEngineDriver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_1.dir/GameEngineDriver.cpp.s"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\GameEngineDriver.cpp" -o CMakeFiles\Project_1.dir\GameEngineDriver.cpp.s
 
+CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.obj: CMakeFiles/Project_1.dir/flags.make
+CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.obj: ../Command/CommandProcessing.cpp
+CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.obj: CMakeFiles/Project_1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.obj -MF CMakeFiles\Project_1.dir\Command\CommandProcessing.cpp.obj.d -o CMakeFiles\Project_1.dir\Command\CommandProcessing.cpp.obj -c "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Command\CommandProcessing.cpp"
+
+CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Command\CommandProcessing.cpp" > CMakeFiles\Project_1.dir\Command\CommandProcessing.cpp.i
+
+CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Command\CommandProcessing.cpp" -o CMakeFiles\Project_1.dir\Command\CommandProcessing.cpp.s
+
+CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.obj: CMakeFiles/Project_1.dir/flags.make
+CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.obj: ../Command/CommandProcessingDriver.cpp
+CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.obj: CMakeFiles/Project_1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.obj -MF CMakeFiles\Project_1.dir\Command\CommandProcessingDriver.cpp.obj.d -o CMakeFiles\Project_1.dir\Command\CommandProcessingDriver.cpp.obj -c "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Command\CommandProcessingDriver.cpp"
+
+CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Command\CommandProcessingDriver.cpp" > CMakeFiles\Project_1.dir\Command\CommandProcessingDriver.cpp.i
+
+CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Command\CommandProcessingDriver.cpp" -o CMakeFiles\Project_1.dir\Command\CommandProcessingDriver.cpp.s
+
 # Object files for target Project_1
 Project_1_OBJECTS = \
 "CMakeFiles/Project_1.dir/Map/Map.cpp.obj" \
@@ -234,7 +262,9 @@ Project_1_OBJECTS = \
 "CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.obj" \
 "CMakeFiles/Project_1.dir/MainDriver.cpp.obj" \
 "CMakeFiles/Project_1.dir/GameEngine.cpp.obj" \
-"CMakeFiles/Project_1.dir/GameEngineDriver.cpp.obj"
+"CMakeFiles/Project_1.dir/GameEngineDriver.cpp.obj" \
+"CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.obj" \
+"CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.obj"
 
 # External object files for target Project_1
 Project_1_EXTERNAL_OBJECTS =
@@ -250,11 +280,13 @@ Project_1.exe: CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.obj
 Project_1.exe: CMakeFiles/Project_1.dir/MainDriver.cpp.obj
 Project_1.exe: CMakeFiles/Project_1.dir/GameEngine.cpp.obj
 Project_1.exe: CMakeFiles/Project_1.dir/GameEngineDriver.cpp.obj
+Project_1.exe: CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.obj
+Project_1.exe: CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.obj
 Project_1.exe: CMakeFiles/Project_1.dir/build.make
 Project_1.exe: CMakeFiles/Project_1.dir/linklibs.rsp
 Project_1.exe: CMakeFiles/Project_1.dir/objects1.rsp
 Project_1.exe: CMakeFiles/Project_1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable Project_1.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable Project_1.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Project_1.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

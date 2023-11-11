@@ -176,6 +176,54 @@ Cards/CardsDriver.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/Cards/CardsDriver.cpp.s
 .PHONY : Cards/CardsDriver.cpp.s
 
+Command/CommandProcessing.obj: Command/CommandProcessing.cpp.obj
+.PHONY : Command/CommandProcessing.obj
+
+# target to build an object file
+Command/CommandProcessing.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.obj
+.PHONY : Command/CommandProcessing.cpp.obj
+
+Command/CommandProcessing.i: Command/CommandProcessing.cpp.i
+.PHONY : Command/CommandProcessing.i
+
+# target to preprocess a source file
+Command/CommandProcessing.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.i
+.PHONY : Command/CommandProcessing.cpp.i
+
+Command/CommandProcessing.s: Command/CommandProcessing.cpp.s
+.PHONY : Command/CommandProcessing.s
+
+# target to generate assembly for a file
+Command/CommandProcessing.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.s
+.PHONY : Command/CommandProcessing.cpp.s
+
+Command/CommandProcessingDriver.obj: Command/CommandProcessingDriver.cpp.obj
+.PHONY : Command/CommandProcessingDriver.obj
+
+# target to build an object file
+Command/CommandProcessingDriver.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.obj
+.PHONY : Command/CommandProcessingDriver.cpp.obj
+
+Command/CommandProcessingDriver.i: Command/CommandProcessingDriver.cpp.i
+.PHONY : Command/CommandProcessingDriver.i
+
+# target to preprocess a source file
+Command/CommandProcessingDriver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.i
+.PHONY : Command/CommandProcessingDriver.cpp.i
+
+Command/CommandProcessingDriver.s: Command/CommandProcessingDriver.cpp.s
+.PHONY : Command/CommandProcessingDriver.s
+
+# target to generate assembly for a file
+Command/CommandProcessingDriver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.s
+.PHONY : Command/CommandProcessingDriver.cpp.s
+
 GameEngine.obj: GameEngine.cpp.obj
 .PHONY : GameEngine.obj
 
@@ -407,6 +455,12 @@ help:
 	@echo ... Cards/CardsDriver.obj
 	@echo ... Cards/CardsDriver.i
 	@echo ... Cards/CardsDriver.s
+	@echo ... Command/CommandProcessing.obj
+	@echo ... Command/CommandProcessing.i
+	@echo ... Command/CommandProcessing.s
+	@echo ... Command/CommandProcessingDriver.obj
+	@echo ... Command/CommandProcessingDriver.i
+	@echo ... Command/CommandProcessingDriver.s
 	@echo ... GameEngine.obj
 	@echo ... GameEngine.i
 	@echo ... GameEngine.s
