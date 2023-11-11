@@ -7,6 +7,10 @@
 // function that runs the game engine
 void testGameStates() {
     GameEngine gameEngine;
+    //main game loop
+    gameEngine.mainGameLoop();
+
+
 
     // keep looping as long as the state is not end
     while (!gameEngine.isGameComplete()) {

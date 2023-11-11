@@ -18,7 +18,7 @@ Card::Card(const Card& card) {
     this-> card1 = card.card1;
 }
 
-// operator that assigns a new value to an exisiting object
+ //operator that assigns a new value to an exisiting object
 Card& Card::operator=(const Card& card) {
     this-> card1 = card.card1;
 }
@@ -50,11 +50,13 @@ string Card::getCardType(Card::WarzoneCard)
 }
 
 // play method
-//void Card::play(int card, Hand& hand, Deck& deck) {
-//    Card* cardToRemove = hand.removeFromHand(card);
-//
-//    deck.returnCard(*cardToRemove);
-//}
+void Card::play(int card, Hand& hand, Deck& deck) {
+    Card* cardToRemove = hand.removeFromHand(card);
+
+    deck.returnCard(*cardToRemove);
+}
+
+
 
 string cardType[5] = {"Bomb", "Reinforcement", "Blockade", "Airlift", "Diplomacy"};
 

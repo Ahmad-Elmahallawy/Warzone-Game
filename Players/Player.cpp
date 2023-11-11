@@ -2,7 +2,8 @@
 // this is the Players.cpp file where all the definitions are done
 #include <iostream>
 #include "Player.h"
-#include "Map\Map.h"
+
+
 using namespace std;
 // default constructor
 Player::Player() {
@@ -237,29 +238,29 @@ Player& Player::operator=(const Player& rhs) {
 
 
 
-bool Player::ownAllTerritoryInContinent()
-{//go through all the territories, keep count of how many different territories in different continents, counter-1 for each
-    for(int i = 0; i < getNumberOfTerritories(); i++)
-    {
-        int numOfTerritoriesInContinentMap = getMap()->Continents[i]->territories.size();
-        int playerTerritoryIsInContinentCount;
-
-        for(int j = 0; j < territories.size(); j++)
-        {
-            if(territories.at(j)->getContinentName() == getMap()->Continents[i]->getContinentName())
-            {
-                playerTerritoryIsInContinentCount++;
-            }
-        }
-
-        if(playerTerritoryIsInContinentCount == numOfTerritoriesInContinentMap)
-        {
-            return true;
-        }
-    }
-    return false;
+bool Player::ownAllTerritoryInContinent() {//go through all the territories, keep count of how many different territories in different continents, counter-1 for each
+//    for(int i = 0; i < t.getNumberOfTerritories(); i++)
+//    {
+//        int numOfTerritoriesInContinentMap = getMap()->Continents[i]->territories.size();
+//        int playerTerritoryIsInContinentCount;
+//
+//        for(int j = 0; j < territories.size(); j++)
+//        {
+//            if(territories.at(j)->getContinentName() == getMap()->Continents[i]->getContinentName())
+//            {
+//                playerTerritoryIsInContinentCount++;
+//            }
+//        }
+//
+//        if(playerTerritoryIsInContinentCount == numOfTerritoriesInContinentMap)
+//        {
+//            return true;
+//        }
+//    }
+//    return false;
+//}
+    return true;
 }
-
 
 
 

@@ -18,9 +18,9 @@ void testPlayers()
 
     // issuing orders by player created
     cout << "PLAYER 1'S COMMANDS:" << endl;
-    p1->issueOrder();
-    p1->issueOrder();
-    p1->issueOrder();
+//    p1->issueOrder();
+//    p1->issueOrder();
+//    p1->issueOrder();
 
     //getting Orderlistsofar
     cout<< p1->getOrdersList()<<endl;

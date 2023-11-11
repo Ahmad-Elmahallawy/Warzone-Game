@@ -36,7 +36,7 @@ public:
     friend ostream& operator<<(std::ostream& os, const Card& obj);
 
 //the play method that removes a card from the hand and returns it to the deck
-    //void play(int card, Hand& h, Deck& d);
+    void play(int card, Hand& h, Deck& d);
 
 private:
     WarzoneCard card1;

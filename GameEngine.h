@@ -70,11 +70,12 @@ public:
     bool getRound();
     Deck* getDeck();
 
+    //main game loop
     void mainGameLoop();
     void reinforcementPhase();
-    void issueOrdersPhase();
+    void issuingOrdersPhase();
     void ordersExecutionPhase();
-    void getMaps();
+
 };
 
 std::string stateToString(State state);

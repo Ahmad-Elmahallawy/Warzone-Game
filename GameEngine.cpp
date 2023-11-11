@@ -113,19 +113,9 @@ std::string commandToString(Command command) {
 }
 
 
-
-//void GameEngine::getMaps()
-//{
-//    for (int j = 0; j < Map.size(); j++)
-//    {
-//        int mapNb = j + 1;
-//        cout << mapNb << ": " << mapList[j] << endl;
-//    }
-//}
-
 void GameEngine::mainGameLoop() {
     //test local variables will change;
-    int numPlayers = 2;
+    int numPlayers = 5;
 
     players[numPlayers];
     Player *players[5] = {};
@@ -149,7 +139,7 @@ void GameEngine::mainGameLoop() {
         }
 
         // Issuing Orders Phase
-        issueOrdersPhase();
+        issuingOrdersPhase();
 
         // Orders Execution Phase
         ordersExecutionPhase();
@@ -196,7 +186,7 @@ void GameEngine:: reinforcementPhase() {
     }
 }
 
-void GameEngineissueOrdersPhase() {
+void GameEngine::issuingOrdersPhase() {
     /*deploy -> put armies in a territory
     advance -> moves a specified number of armies between adjacent territories, if its a player territory, armies get transferred
     to that territory, if its an enemy territory, an attack happens between the 2 territories
@@ -224,7 +214,8 @@ void GameEngineissueOrdersPhase() {
 
         while (answer != "n")
         {
-            cout << "Player " << pID << ", it is your turn to make a move! Make an order of your choice!\n" << endl;
+            cout << "Player " << pID << ", it is your turn\n" << endl;
+            cout << "type : advance|| deploy|| bomb || blockade || airlift||  ";
             cout << "Input your desired order here: ";
             cin >> type;
 
@@ -239,25 +230,12 @@ void GameEngineissueOrdersPhase() {
             else if(type == "bomb" || type == "blockade" || type == "airlift" || type == "negotiate")
             {
                 cout << currentPlayerHandCards.size() << endl;
+                players[i]->issueOrder(type);
 
                 // If hand is empty output error message
                 if(currentPlayerHandCards.empty())
                 {
                     cout << "Invalid order! Your hand is empty!!" << endl;
-                }
-
-                // looping through player's hand to find appropriate card
-                for (int j = 0; j < currentPlayerHandCards.size(); j++)
-                {
-                    if (getCardType((currentPlayerHandCards[j]->getCard())) == type)
-                    {
-                        play(0,currentPlayerHandCards[j],deck);
-                    }
-
-                    else
-                    {
-                        cout << "card does not exist in your deck!" << endl;
-                    }
                 }
             }
 
@@ -267,7 +245,7 @@ void GameEngineissueOrdersPhase() {
             }
 
             // asks user if he/she desires to issue a new order, if no, his or her turn ends and goes to next player in queue
-            cout << "Would you like to issue another order? Type y for YES or n for NO" << endl;
+            cout << "Would you like to issue another order? (yes or no)" << endl;
             cin >> answer;
             if(answer == "no")
             {
