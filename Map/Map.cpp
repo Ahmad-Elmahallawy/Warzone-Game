@@ -170,13 +170,24 @@ void MapLoader::setNumberOfTerritories(int n) {
 int MapLoader::getNumberOfTerritories() const{
     return this->numberOfTerritories;
 }
-void MapLoader::firstRun() {
+
+bool fileExists(const std::string& fileName) {
+    std::ifstream file(fileName);
+    return file.good();
+}
+
+bool MapLoader::firstRun() {
+    if (!fileExists(fileName)) {
+        std::cout << "File does not exist." << std::endl;
+        return false;
+    }
     string myline = "";
     bool past = false;
     std::ifstream myFile;
     myFile.open(fileName);//opening file
     string word;
     vector<string> tokens;
+
     if (myFile.is_open()) {
         while (myFile) {
             if (myline == "[Territories]") {
@@ -198,9 +209,10 @@ void MapLoader::firstRun() {
         }
     }
     myFile.close();
+    return true;
 }
 
-void MapLoader::secondRun() {
+bool MapLoader::secondRun() {
     string myline = "";
     Territory primary;
     Territory adjacent;
@@ -231,7 +243,7 @@ void MapLoader::secondRun() {
                     adjacent = this->findTerritory(tokens[i]);//searches for adjacent territory to check if it exists
                     if(adjacent.getTerritoryName() == "Not found"){
                         cout<<"Graph is not connected, invalid map file";
-                        exit(0);
+                        return false;
                     }
                     this->gameMap->addEdge(primary,adjacent);//if both exist then link them via an edge
                 }
@@ -247,15 +259,16 @@ void MapLoader::secondRun() {
             cout<<"Connectivity test has passed: Map is a connected graph and every continent is a connected subgraph"<<endl;
         } else{
             cout<<"Connectivity test has failed: Map is not  a connected graph and not every continent is a connected subgraph";
-            exit(0);
+            return false;
         }
     } else{
         cout<<"Continent test has failed: there exists one or more territories that belong to more than one continent"<<endl;
-        exit(0);
+        return false;
     }
     this->gameMap->print();
 
     myFile.close();
+    return true;
 }
 
 int MapLoader::getNumberOfTerritoriesFromFile() const{

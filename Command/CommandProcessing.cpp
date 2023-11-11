@@ -31,40 +31,53 @@ FileLineReader::~FileLineReader() {
 
 }
 
-Command* CommandProcessing::readCommand() {
-    string keyboard1;
+Command *CommandProcessing::readCommand() {
     string keyboard;
-    cout<<"If you want to read the command from the console press -console, if you want it from a file type in -file <filename>: " << endl;
-    cin>>keyboard1;
-    if(keyboard1 != "-console"){
-        vector<string> readFromFileComponents;
-        string fileReadComponent;
-        stringstream ssfr(keyboard1);
-        while(!ssfr.eof()){
-            getline(ssfr,fileReadComponent,' ');
-            readFromFileComponents.push_back(fileReadComponent);
-        }
-        FileCommandProcessorAdapter fcpa(readFromFileComponents[1]);
-        Command* cmd1;
-        cmd1 = fcpa.readCommand();
-        return cmd1;
-    }
-    cout << "Please enter a command: "<<endl;
-    cin >> keyboard;
+    cout << "If you want to read the command from the console press -console, if you want it from a file type in -file <filename>: " << endl;
+    getline(cin, keyboard);
+
     vector<string> commandComponents;
     string component;
     stringstream ss(keyboard);
-    while (!ss.eof()) {//seperates line into words given they are space seperated and add them to array
+
+    // Split the input into command and filename
+    while (!ss.eof()) {
         getline(ss, component, ' ');
         commandComponents.push_back(component);
     }
 
-    Command* cmd;
+    Command *cmd;
 
-    if(commandComponents.size() == 1){
-        cmd = new Command(commandComponents[0]);
-    }else {
-        cmd = new Command(commandComponents[0],commandComponents[1]);
+    if (keyboard != "-console") {
+        if (commandComponents.size() == 2) {
+            // The second part is the filename
+            cmd = new Command(commandComponents[0], commandComponents[1]);
+        } else {
+            cout << "Invalid input. Use format: -file <filename>" << endl;
+            exit(0);
+        }
+    } else {
+        cout << "Please enter a command: " << endl;
+        getline(cin, keyboard);
+
+
+        stringstream ss(keyboard);
+        commandComponents.clear();
+
+        // Split the input into command and parameter
+        while (!ss.eof()) {
+            getline(ss, component, ' ');
+            commandComponents.push_back(component);
+        }
+
+        if (commandComponents.size() == 1) {
+            cmd = new Command(commandComponents[0]);
+        } else if (commandComponents.size() == 2) {
+            cmd = new Command(commandComponents[0], commandComponents[1]);
+        } else {
+            cout << "Invalid input. Use format: -console or -file <filename>" << endl;
+            return nullptr;
+        }
     }
 
     return cmd;
@@ -85,40 +98,30 @@ bool CommandProcessing::validate(Command* command, GameEngine::State state) {
         return std::find(validCommands.begin(), validCommands.end(), command->getCommand()) != validCommands.end();
     };
 
-    // Print next valid commands based on the current state
-    std::cout << "Next valid commands:" << std::endl;
-
     switch (state) {
         case GameEngine::State::START:
-            if (isValidCommand({"loadmap", "quit"})) {
-                std::cout << "loadmap" << std::endl;
-                std::cout << "quit" << std::endl;
+            if (isValidCommand({"loadmap"})) {
                 return true;
             }
             break;
         case GameEngine::State::MAP_LOADED:
             if (isValidCommand({"loadmap", "validatemap"})) {
-                std::cout << "loadmap" << std::endl;
-                std::cout << "validatemap" << std::endl;
+
                 return true;
             }
             break;
         case GameEngine::State::MAP_VALIDATED:
             if (isValidCommand({"addplayer"})) {
-                std::cout << "addplayer" << std::endl;
                 return true;
             }
             break;
         case GameEngine::State::PLAYERS_ADDED:
-            if (isValidCommand({"addplayer"})) {
-                std::cout << "addplayer" << std::endl;
+            if (isValidCommand({"addplayer", "gamestart"})) {
                 return true;
             }
             break;
         case GameEngine::State::WIN:
             if (isValidCommand({"replay", "quit"})) {
-                std::cout << "replay" << std::endl;
-                std::cout << "quit" << std::endl;
                 return true;
             }
             break;

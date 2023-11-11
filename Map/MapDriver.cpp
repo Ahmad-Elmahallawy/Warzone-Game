@@ -8,31 +8,49 @@ using namespace std;
 
 int getNumberOfTerritoriesFromFile(string fileName);
 int testLoadMaps(string filename) {//goes through map file twice and creates graph and map object
-    int n = getNumberOfTerritoriesFromFile(filename);//number of territrories
-    return n;
+    try {
+        int n = getNumberOfTerritoriesFromFile(filename);
+        // Rest of your code here
+        return n;
+    } catch (const std::exception &e) {
+        std::cerr << "Exception: " << e.what() << std::endl;
+        std::cerr.flush();
+        // Handle the exception or exit the program if needed
+        exit(0);
+    }
 //    MapLoader loader(n,filename);
 //   loader.firstRun();
 //   loader.secondRun();
 //    loader.~MapLoader();
 
 }
-int getNumberOfTerritoriesFromFile(string fileName){
+int getNumberOfTerritoriesFromFile(string fileName) {
     string myline;
     int n = 0;
     std::ifstream myFile;
-    myFile.open(fileName);
-    bool past = false;
-    if(myFile.is_open()){
-        while (myFile){
-            if(myline == "[Territories]"){
+
+    try {
+        myFile.open(fileName);
+
+        if (!myFile.is_open()) {
+            throw std::runtime_error("Failed to open file: " + fileName);
+        }
+
+        bool past = false;
+        while (myFile) {
+            if (myline == "[Territories]") {
                 past = true;
             }
-            std::getline(myFile,myline);
-            if(past && myline != ""){
+            std::getline(myFile, myline);
+            if (past && myline != "") {
                 n++;
             }
         }
+        myFile.close();
+    } catch (const std::exception &e) {
+        std::cerr << "Exception: " << e.what() << std::endl;
+        std::cerr.flush();
     }
-    myFile.close();
+
     return n;
 }

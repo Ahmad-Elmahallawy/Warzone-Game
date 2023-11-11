@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/ahmad/Desktop/Courses/Fall 2023/COMP 345/COMP345-Warzone
+# Install script for directory: C:/Users/ahmad/Desktop/Courses/Fall2023/COMP345/COMP345-Warzone
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/ahmad/Desktop/Courses/Fall 2023/COMP 345/COMP345-Warzone/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/ahmad/Desktop/Courses/Fall2023/COMP345/COMP345-Warzone/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

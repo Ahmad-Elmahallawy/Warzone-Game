@@ -52,10 +52,10 @@ RM = "C:\Program Files\JetBrains\CLion 2022.1\bin\cmake\win\bin\cmake.exe" -E rm
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone"
+CMAKE_SOURCE_DIR = C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\cmake-build-debug"
+CMAKE_BINARY_DIR = C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Project_1.dir/depend.make
@@ -71,184 +71,184 @@ include CMakeFiles/Project_1.dir/flags.make
 CMakeFiles/Project_1.dir/Map/Map.cpp.obj: CMakeFiles/Project_1.dir/flags.make
 CMakeFiles/Project_1.dir/Map/Map.cpp.obj: ../Map/Map.cpp
 CMakeFiles/Project_1.dir/Map/Map.cpp.obj: CMakeFiles/Project_1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Project_1.dir/Map/Map.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/Map/Map.cpp.obj -MF CMakeFiles\Project_1.dir\Map\Map.cpp.obj.d -o CMakeFiles\Project_1.dir\Map\Map.cpp.obj -c "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Map\Map.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Project_1.dir/Map/Map.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/Map/Map.cpp.obj -MF CMakeFiles\Project_1.dir\Map\Map.cpp.obj.d -o CMakeFiles\Project_1.dir\Map\Map.cpp.obj -c C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Map\Map.cpp
 
 CMakeFiles/Project_1.dir/Map/Map.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project_1.dir/Map/Map.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Map\Map.cpp" > CMakeFiles\Project_1.dir\Map\Map.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Map\Map.cpp > CMakeFiles\Project_1.dir\Map\Map.cpp.i
 
 CMakeFiles/Project_1.dir/Map/Map.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_1.dir/Map/Map.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Map\Map.cpp" -o CMakeFiles\Project_1.dir\Map\Map.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Map\Map.cpp -o CMakeFiles\Project_1.dir\Map\Map.cpp.s
 
 CMakeFiles/Project_1.dir/Map/MapDriver.cpp.obj: CMakeFiles/Project_1.dir/flags.make
 CMakeFiles/Project_1.dir/Map/MapDriver.cpp.obj: ../Map/MapDriver.cpp
 CMakeFiles/Project_1.dir/Map/MapDriver.cpp.obj: CMakeFiles/Project_1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Project_1.dir/Map/MapDriver.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/Map/MapDriver.cpp.obj -MF CMakeFiles\Project_1.dir\Map\MapDriver.cpp.obj.d -o CMakeFiles\Project_1.dir\Map\MapDriver.cpp.obj -c "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Map\MapDriver.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Project_1.dir/Map/MapDriver.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/Map/MapDriver.cpp.obj -MF CMakeFiles\Project_1.dir\Map\MapDriver.cpp.obj.d -o CMakeFiles\Project_1.dir\Map\MapDriver.cpp.obj -c C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Map\MapDriver.cpp
 
 CMakeFiles/Project_1.dir/Map/MapDriver.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project_1.dir/Map/MapDriver.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Map\MapDriver.cpp" > CMakeFiles\Project_1.dir\Map\MapDriver.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Map\MapDriver.cpp > CMakeFiles\Project_1.dir\Map\MapDriver.cpp.i
 
 CMakeFiles/Project_1.dir/Map/MapDriver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_1.dir/Map/MapDriver.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Map\MapDriver.cpp" -o CMakeFiles\Project_1.dir\Map\MapDriver.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Map\MapDriver.cpp -o CMakeFiles\Project_1.dir\Map\MapDriver.cpp.s
 
 CMakeFiles/Project_1.dir/Cards/Cards.cpp.obj: CMakeFiles/Project_1.dir/flags.make
 CMakeFiles/Project_1.dir/Cards/Cards.cpp.obj: ../Cards/Cards.cpp
 CMakeFiles/Project_1.dir/Cards/Cards.cpp.obj: CMakeFiles/Project_1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Project_1.dir/Cards/Cards.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/Cards/Cards.cpp.obj -MF CMakeFiles\Project_1.dir\Cards\Cards.cpp.obj.d -o CMakeFiles\Project_1.dir\Cards\Cards.cpp.obj -c "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Cards\Cards.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Project_1.dir/Cards/Cards.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/Cards/Cards.cpp.obj -MF CMakeFiles\Project_1.dir\Cards\Cards.cpp.obj.d -o CMakeFiles\Project_1.dir\Cards\Cards.cpp.obj -c C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Cards\Cards.cpp
 
 CMakeFiles/Project_1.dir/Cards/Cards.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project_1.dir/Cards/Cards.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Cards\Cards.cpp" > CMakeFiles\Project_1.dir\Cards\Cards.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Cards\Cards.cpp > CMakeFiles\Project_1.dir\Cards\Cards.cpp.i
 
 CMakeFiles/Project_1.dir/Cards/Cards.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_1.dir/Cards/Cards.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Cards\Cards.cpp" -o CMakeFiles\Project_1.dir\Cards\Cards.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Cards\Cards.cpp -o CMakeFiles\Project_1.dir\Cards\Cards.cpp.s
 
 CMakeFiles/Project_1.dir/Cards/CardsDriver.cpp.obj: CMakeFiles/Project_1.dir/flags.make
 CMakeFiles/Project_1.dir/Cards/CardsDriver.cpp.obj: ../Cards/CardsDriver.cpp
 CMakeFiles/Project_1.dir/Cards/CardsDriver.cpp.obj: CMakeFiles/Project_1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Project_1.dir/Cards/CardsDriver.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/Cards/CardsDriver.cpp.obj -MF CMakeFiles\Project_1.dir\Cards\CardsDriver.cpp.obj.d -o CMakeFiles\Project_1.dir\Cards\CardsDriver.cpp.obj -c "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Cards\CardsDriver.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Project_1.dir/Cards/CardsDriver.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/Cards/CardsDriver.cpp.obj -MF CMakeFiles\Project_1.dir\Cards\CardsDriver.cpp.obj.d -o CMakeFiles\Project_1.dir\Cards\CardsDriver.cpp.obj -c C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Cards\CardsDriver.cpp
 
 CMakeFiles/Project_1.dir/Cards/CardsDriver.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project_1.dir/Cards/CardsDriver.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Cards\CardsDriver.cpp" > CMakeFiles\Project_1.dir\Cards\CardsDriver.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Cards\CardsDriver.cpp > CMakeFiles\Project_1.dir\Cards\CardsDriver.cpp.i
 
 CMakeFiles/Project_1.dir/Cards/CardsDriver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_1.dir/Cards/CardsDriver.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Cards\CardsDriver.cpp" -o CMakeFiles\Project_1.dir\Cards\CardsDriver.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Cards\CardsDriver.cpp -o CMakeFiles\Project_1.dir\Cards\CardsDriver.cpp.s
 
 CMakeFiles/Project_1.dir/Orders/Orders.cpp.obj: CMakeFiles/Project_1.dir/flags.make
 CMakeFiles/Project_1.dir/Orders/Orders.cpp.obj: ../Orders/Orders.cpp
 CMakeFiles/Project_1.dir/Orders/Orders.cpp.obj: CMakeFiles/Project_1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Project_1.dir/Orders/Orders.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/Orders/Orders.cpp.obj -MF CMakeFiles\Project_1.dir\Orders\Orders.cpp.obj.d -o CMakeFiles\Project_1.dir\Orders\Orders.cpp.obj -c "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Orders\Orders.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Project_1.dir/Orders/Orders.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/Orders/Orders.cpp.obj -MF CMakeFiles\Project_1.dir\Orders\Orders.cpp.obj.d -o CMakeFiles\Project_1.dir\Orders\Orders.cpp.obj -c C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Orders\Orders.cpp
 
 CMakeFiles/Project_1.dir/Orders/Orders.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project_1.dir/Orders/Orders.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Orders\Orders.cpp" > CMakeFiles\Project_1.dir\Orders\Orders.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Orders\Orders.cpp > CMakeFiles\Project_1.dir\Orders\Orders.cpp.i
 
 CMakeFiles/Project_1.dir/Orders/Orders.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_1.dir/Orders/Orders.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Orders\Orders.cpp" -o CMakeFiles\Project_1.dir\Orders\Orders.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Orders\Orders.cpp -o CMakeFiles\Project_1.dir\Orders\Orders.cpp.s
 
 CMakeFiles/Project_1.dir/Orders/OrdersDriver.cpp.obj: CMakeFiles/Project_1.dir/flags.make
 CMakeFiles/Project_1.dir/Orders/OrdersDriver.cpp.obj: ../Orders/OrdersDriver.cpp
 CMakeFiles/Project_1.dir/Orders/OrdersDriver.cpp.obj: CMakeFiles/Project_1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Project_1.dir/Orders/OrdersDriver.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/Orders/OrdersDriver.cpp.obj -MF CMakeFiles\Project_1.dir\Orders\OrdersDriver.cpp.obj.d -o CMakeFiles\Project_1.dir\Orders\OrdersDriver.cpp.obj -c "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Orders\OrdersDriver.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Project_1.dir/Orders/OrdersDriver.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/Orders/OrdersDriver.cpp.obj -MF CMakeFiles\Project_1.dir\Orders\OrdersDriver.cpp.obj.d -o CMakeFiles\Project_1.dir\Orders\OrdersDriver.cpp.obj -c C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Orders\OrdersDriver.cpp
 
 CMakeFiles/Project_1.dir/Orders/OrdersDriver.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project_1.dir/Orders/OrdersDriver.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Orders\OrdersDriver.cpp" > CMakeFiles\Project_1.dir\Orders\OrdersDriver.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Orders\OrdersDriver.cpp > CMakeFiles\Project_1.dir\Orders\OrdersDriver.cpp.i
 
 CMakeFiles/Project_1.dir/Orders/OrdersDriver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_1.dir/Orders/OrdersDriver.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Orders\OrdersDriver.cpp" -o CMakeFiles\Project_1.dir\Orders\OrdersDriver.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Orders\OrdersDriver.cpp -o CMakeFiles\Project_1.dir\Orders\OrdersDriver.cpp.s
 
 CMakeFiles/Project_1.dir/Players/Player.cpp.obj: CMakeFiles/Project_1.dir/flags.make
 CMakeFiles/Project_1.dir/Players/Player.cpp.obj: ../Players/Player.cpp
 CMakeFiles/Project_1.dir/Players/Player.cpp.obj: CMakeFiles/Project_1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Project_1.dir/Players/Player.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/Players/Player.cpp.obj -MF CMakeFiles\Project_1.dir\Players\Player.cpp.obj.d -o CMakeFiles\Project_1.dir\Players\Player.cpp.obj -c "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Players\Player.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Project_1.dir/Players/Player.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/Players/Player.cpp.obj -MF CMakeFiles\Project_1.dir\Players\Player.cpp.obj.d -o CMakeFiles\Project_1.dir\Players\Player.cpp.obj -c C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Players\Player.cpp
 
 CMakeFiles/Project_1.dir/Players/Player.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project_1.dir/Players/Player.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Players\Player.cpp" > CMakeFiles\Project_1.dir\Players\Player.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Players\Player.cpp > CMakeFiles\Project_1.dir\Players\Player.cpp.i
 
 CMakeFiles/Project_1.dir/Players/Player.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_1.dir/Players/Player.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Players\Player.cpp" -o CMakeFiles\Project_1.dir\Players\Player.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Players\Player.cpp -o CMakeFiles\Project_1.dir\Players\Player.cpp.s
 
 CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.obj: CMakeFiles/Project_1.dir/flags.make
 CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.obj: ../Players/PlayerDriver.cpp
 CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.obj: CMakeFiles/Project_1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.obj -MF CMakeFiles\Project_1.dir\Players\PlayerDriver.cpp.obj.d -o CMakeFiles\Project_1.dir\Players\PlayerDriver.cpp.obj -c "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Players\PlayerDriver.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.obj -MF CMakeFiles\Project_1.dir\Players\PlayerDriver.cpp.obj.d -o CMakeFiles\Project_1.dir\Players\PlayerDriver.cpp.obj -c C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Players\PlayerDriver.cpp
 
 CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Players\PlayerDriver.cpp" > CMakeFiles\Project_1.dir\Players\PlayerDriver.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Players\PlayerDriver.cpp > CMakeFiles\Project_1.dir\Players\PlayerDriver.cpp.i
 
 CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Players\PlayerDriver.cpp" -o CMakeFiles\Project_1.dir\Players\PlayerDriver.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Players\PlayerDriver.cpp -o CMakeFiles\Project_1.dir\Players\PlayerDriver.cpp.s
 
 CMakeFiles/Project_1.dir/MainDriver.cpp.obj: CMakeFiles/Project_1.dir/flags.make
 CMakeFiles/Project_1.dir/MainDriver.cpp.obj: ../MainDriver.cpp
 CMakeFiles/Project_1.dir/MainDriver.cpp.obj: CMakeFiles/Project_1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Project_1.dir/MainDriver.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/MainDriver.cpp.obj -MF CMakeFiles\Project_1.dir\MainDriver.cpp.obj.d -o CMakeFiles\Project_1.dir\MainDriver.cpp.obj -c "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\MainDriver.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Project_1.dir/MainDriver.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/MainDriver.cpp.obj -MF CMakeFiles\Project_1.dir\MainDriver.cpp.obj.d -o CMakeFiles\Project_1.dir\MainDriver.cpp.obj -c C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\MainDriver.cpp
 
 CMakeFiles/Project_1.dir/MainDriver.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project_1.dir/MainDriver.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\MainDriver.cpp" > CMakeFiles\Project_1.dir\MainDriver.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\MainDriver.cpp > CMakeFiles\Project_1.dir\MainDriver.cpp.i
 
 CMakeFiles/Project_1.dir/MainDriver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_1.dir/MainDriver.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\MainDriver.cpp" -o CMakeFiles\Project_1.dir\MainDriver.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\MainDriver.cpp -o CMakeFiles\Project_1.dir\MainDriver.cpp.s
 
 CMakeFiles/Project_1.dir/GameEngine.cpp.obj: CMakeFiles/Project_1.dir/flags.make
 CMakeFiles/Project_1.dir/GameEngine.cpp.obj: ../GameEngine.cpp
 CMakeFiles/Project_1.dir/GameEngine.cpp.obj: CMakeFiles/Project_1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Project_1.dir/GameEngine.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/GameEngine.cpp.obj -MF CMakeFiles\Project_1.dir\GameEngine.cpp.obj.d -o CMakeFiles\Project_1.dir\GameEngine.cpp.obj -c "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\GameEngine.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Project_1.dir/GameEngine.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/GameEngine.cpp.obj -MF CMakeFiles\Project_1.dir\GameEngine.cpp.obj.d -o CMakeFiles\Project_1.dir\GameEngine.cpp.obj -c C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\GameEngine.cpp
 
 CMakeFiles/Project_1.dir/GameEngine.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project_1.dir/GameEngine.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\GameEngine.cpp" > CMakeFiles\Project_1.dir\GameEngine.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\GameEngine.cpp > CMakeFiles\Project_1.dir\GameEngine.cpp.i
 
 CMakeFiles/Project_1.dir/GameEngine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_1.dir/GameEngine.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\GameEngine.cpp" -o CMakeFiles\Project_1.dir\GameEngine.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\GameEngine.cpp -o CMakeFiles\Project_1.dir\GameEngine.cpp.s
 
 CMakeFiles/Project_1.dir/GameEngineDriver.cpp.obj: CMakeFiles/Project_1.dir/flags.make
 CMakeFiles/Project_1.dir/GameEngineDriver.cpp.obj: ../GameEngineDriver.cpp
 CMakeFiles/Project_1.dir/GameEngineDriver.cpp.obj: CMakeFiles/Project_1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Project_1.dir/GameEngineDriver.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/GameEngineDriver.cpp.obj -MF CMakeFiles\Project_1.dir\GameEngineDriver.cpp.obj.d -o CMakeFiles\Project_1.dir\GameEngineDriver.cpp.obj -c "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\GameEngineDriver.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Project_1.dir/GameEngineDriver.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/GameEngineDriver.cpp.obj -MF CMakeFiles\Project_1.dir\GameEngineDriver.cpp.obj.d -o CMakeFiles\Project_1.dir\GameEngineDriver.cpp.obj -c C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\GameEngineDriver.cpp
 
 CMakeFiles/Project_1.dir/GameEngineDriver.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project_1.dir/GameEngineDriver.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\GameEngineDriver.cpp" > CMakeFiles\Project_1.dir\GameEngineDriver.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\GameEngineDriver.cpp > CMakeFiles\Project_1.dir\GameEngineDriver.cpp.i
 
 CMakeFiles/Project_1.dir/GameEngineDriver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_1.dir/GameEngineDriver.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\GameEngineDriver.cpp" -o CMakeFiles\Project_1.dir\GameEngineDriver.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\GameEngineDriver.cpp -o CMakeFiles\Project_1.dir\GameEngineDriver.cpp.s
 
 CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.obj: CMakeFiles/Project_1.dir/flags.make
 CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.obj: ../Command/CommandProcessing.cpp
 CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.obj: CMakeFiles/Project_1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.obj -MF CMakeFiles\Project_1.dir\Command\CommandProcessing.cpp.obj.d -o CMakeFiles\Project_1.dir\Command\CommandProcessing.cpp.obj -c "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Command\CommandProcessing.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.obj -MF CMakeFiles\Project_1.dir\Command\CommandProcessing.cpp.obj.d -o CMakeFiles\Project_1.dir\Command\CommandProcessing.cpp.obj -c C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Command\CommandProcessing.cpp
 
 CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Command\CommandProcessing.cpp" > CMakeFiles\Project_1.dir\Command\CommandProcessing.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Command\CommandProcessing.cpp > CMakeFiles\Project_1.dir\Command\CommandProcessing.cpp.i
 
 CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Command\CommandProcessing.cpp" -o CMakeFiles\Project_1.dir\Command\CommandProcessing.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Command\CommandProcessing.cpp -o CMakeFiles\Project_1.dir\Command\CommandProcessing.cpp.s
 
 CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.obj: CMakeFiles/Project_1.dir/flags.make
 CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.obj: ../Command/CommandProcessingDriver.cpp
 CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.obj: CMakeFiles/Project_1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.obj -MF CMakeFiles\Project_1.dir\Command\CommandProcessingDriver.cpp.obj.d -o CMakeFiles\Project_1.dir\Command\CommandProcessingDriver.cpp.obj -c "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Command\CommandProcessingDriver.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.obj -MF CMakeFiles\Project_1.dir\Command\CommandProcessingDriver.cpp.obj.d -o CMakeFiles\Project_1.dir\Command\CommandProcessingDriver.cpp.obj -c C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Command\CommandProcessingDriver.cpp
 
 CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Command\CommandProcessingDriver.cpp" > CMakeFiles\Project_1.dir\Command\CommandProcessingDriver.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Command\CommandProcessingDriver.cpp > CMakeFiles\Project_1.dir\Command\CommandProcessingDriver.cpp.i
 
 CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\Command\CommandProcessingDriver.cpp" -o CMakeFiles\Project_1.dir\Command\CommandProcessingDriver.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Command\CommandProcessingDriver.cpp -o CMakeFiles\Project_1.dir\Command\CommandProcessingDriver.cpp.s
 
 # Object files for target Project_1
 Project_1_OBJECTS = \
@@ -286,7 +286,7 @@ Project_1.exe: CMakeFiles/Project_1.dir/build.make
 Project_1.exe: CMakeFiles/Project_1.dir/linklibs.rsp
 Project_1.exe: CMakeFiles/Project_1.dir/objects1.rsp
 Project_1.exe: CMakeFiles/Project_1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable Project_1.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable Project_1.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Project_1.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -298,6 +298,6 @@ CMakeFiles/Project_1.dir/clean:
 .PHONY : CMakeFiles/Project_1.dir/clean
 
 CMakeFiles/Project_1.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone" "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone" "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\cmake-build-debug" "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\cmake-build-debug" "C:\Users\ahmad\Desktop\Courses\Fall 2023\COMP 345\COMP345-Warzone\cmake-build-debug\CMakeFiles\Project_1.dir\DependInfo.cmake" --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\cmake-build-debug C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\cmake-build-debug C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\cmake-build-debug\CMakeFiles\Project_1.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Project_1.dir/depend
 

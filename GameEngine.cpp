@@ -52,27 +52,6 @@ GameEngine::GameEngine():currentState(START), commandProcessor(new CommandProces
 
 
 
-// transition to the next state if the command is valid
-
-void GameEngine::transition(Commands command) {
-    auto transitionIterator = stateTransitions.find(currentState);
-
-    if (transitionIterator != stateTransitions.end()) {
-        for (const auto &transition : transitionIterator->second) {
-            std::cout << "Checking transition: " << stateToString(currentState)
-                      << " -> " << stateToString(transition.nextState)
-                      << " with command: " << commandToString(transition.command) << std::endl;
-            if (transition.command == command) {
-                currentState = transition.nextState;
-                std::cout << "Transitioning to state: " << stateToString(currentState) << std::endl;
-                return;
-            }
-        }
-    }
-
-    std::cout << "Invalid transition from state: " << stateToString(currentState)
-              << " with command: " << commandToString(command) << std::endl;
-}
 
 
 
@@ -80,7 +59,7 @@ void GameEngine::transition(Commands command) {
 // command to enter players in the game
 void GameEngine::addPlayer(string playerName)
 {
-
+    cout << "here";
     // check if a playername is empty
     if(playerName.empty())
     {
@@ -178,50 +157,91 @@ void GameEngine::gameStart() {
     cout << "\nDrew two cards from the deck for each player..." << endl;
 }
 
+// transition to the next state if the command is valid
+// transition to the next state if the command is valid
+GameEngine::State GameEngine::transition(Commands command) {
+    auto transitionIterator = stateTransitions.find(currentState);
+
+    if (transitionIterator != stateTransitions.end()) {
+        for (const auto &transition : transitionIterator->second) {
+            if (transition.command == command) {
+                std::cout << "Checking transition: " << stateToString(currentState)
+                          << " -> " << stateToString(transition.nextState)
+                          << " with command: " << commandToString(transition.command) << std::endl;
+
+                currentState = transition.nextState;  // Update the current state
+                std::cout << "Transitioning to state: " << stateToString(currentState) << std::endl;
+
+                return currentState;  // Return the new state
+            }
+        }
+    }
+
+    std::cout << "Invalid transition from state: " << stateToString(currentState)
+              << " with command: " << commandToString(command) << std::endl;
+
+    // Return the current state if no valid transition is found
+    return currentState;
+}
+
 
 // Implementation of GameEngine class
 void GameEngine::startupPhase() {
-
     while (currentState != ASSIGN_REINFORCEMENTS) {
-        Command* command = commandProcessor->getCommand();
+        Command *command = commandProcessor->getCommand();
 
-        if (command == NULL) {
+        if (command == nullptr) {
             cout << "No command was input." << endl;
             exit(0);
         }
 
-
         // Validate the command
-        if (!commandProcessor->validate(command,this->currentState)) {
+        if (!commandProcessor->validate(command, this->currentState)) {
             std::cout << "Invalid command. Try again." << std::endl;
             continue;
         }
-        currentState = stringToState(command->getCommand());
-        cout << "Current state: " << command->getCommand() << std::endl;
 
-        int numberOfVertices = testLoadMaps(command->secondParameter);
-        MapLoader ml(numberOfVertices, command->secondParameter);
+        cout << "Current command: " << command->getCommand() << std::endl;
+
         // Process the command and change game state accordingly
-        if (command->getCommand().compare("loadmap")) {
-            // Load the map
-            ml.firstRun();
-        } else if (command->getCommand().compare("validatemap")) {
-            // Validate the map
-            ml.secondRun();
-        } else if (command->getCommand().compare("addplayer")) {
-            addPlayer(command->secondParameter);
-        } else if (command->getCommand().compare("gamestart")) {
-            gameStart();
-        } else {
-            std::cout << "Invalid command. Try again." << std::endl;
+        switch (commandToEnum(command->getCommand())) {
+            case CMD_LOAD_MAP: {
+                int numberOfVertices = testLoadMaps(command->secondParameter);
+                MapLoader ml(numberOfVertices, command->secondParameter);
+                // Load the map
+                if (!ml.firstRun()) {
+                    continue;
+                }
+                cout << "map loaded successfully" << endl;
+                currentState = transition(CMD_LOAD_MAP);
+                break;
+            }
+            case CMD_VALIDATE_MAP: {
+                MapLoader ml(0, ""); // Dummy MapLoader
+                // Validate the map
+                if (!ml.secondRun()) {
+                    continue;
+                }
+                currentState = transition(CMD_VALIDATE_MAP);
+                break;
+            }
+            case CMD_ADD_PLAYER:
+                addPlayer(command->secondParameter);
+                currentState = transition(CMD_ADD_PLAYER);
+                break;
+//            case CMD_GAME_START:
+//                gameStart();
+//                currentState = transition(CMD_GAME_START);
+//                break;
+            default:
+                std::cout << "Invalid command. Try again." << std::endl;
+                break;
         }
-
-        transition(commandToEnum(command->getCommand()));
-
     }
 
     std::cout << "Game has ended." << std::endl;
 }
+
 // returns the current state of the game
 GameEngine::State GameEngine::getCurrentState() {
     return currentState;

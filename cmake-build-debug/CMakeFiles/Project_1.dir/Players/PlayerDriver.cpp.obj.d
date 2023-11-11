@@ -1,6 +1,6 @@
 CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.obj: \
- C:\Users\ahmad\Desktop\Courses\Fall\ 2023\COMP\ 345\COMP345-Warzone\Players\PlayerDriver.cpp \
- C:\Users\ahmad\Desktop\Courses\Fall\ 2023\COMP\ 345\COMP345-Warzone\Players\Player.h \
+ C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Players\PlayerDriver.cpp \
+ C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Players\Player.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/string \
  C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
@@ -135,7 +135,7 @@ CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.obj: \
  C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_facets.tcc \
  C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/basic_ios.tcc \
  C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/ostream.tcc \
- C:/Users/ahmad/Desktop/Courses/Fall\ 2023/COMP\ 345/COMP345-Warzone/Map/Map.h \
+ C:/Users/ahmad/Desktop/Courses/Fall2023/COMP345/COMP345-Warzone/Map/Map.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/iostream \
  C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/istream \
  C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/istream.tcc \
@@ -155,5 +155,5 @@ CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.obj: \
  C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/allocated_ptr.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ext/aligned_buffer.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/list.tcc \
- C:/Users/ahmad/Desktop/Courses/Fall\ 2023/COMP\ 345/COMP345-Warzone/Orders/Orders.h \
- C:/Users/ahmad/Desktop/Courses/Fall\ 2023/COMP\ 345/COMP345-Warzone/Cards/Cards.h
+ C:/Users/ahmad/Desktop/Courses/Fall2023/COMP345/COMP345-Warzone/Orders/Orders.h \
+ C:/Users/ahmad/Desktop/Courses/Fall2023/COMP345/COMP345-Warzone/Cards/Cards.h

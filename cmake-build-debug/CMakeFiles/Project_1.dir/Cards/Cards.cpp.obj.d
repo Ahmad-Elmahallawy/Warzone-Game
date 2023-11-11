@@ -1,6 +1,6 @@
 CMakeFiles/Project_1.dir/Cards/Cards.cpp.obj: \
- C:\Users\ahmad\Desktop\Courses\Fall\ 2023\COMP\ 345\COMP345-Warzone\Cards\Cards.cpp \
- C:\Users\ahmad\Desktop\Courses\Fall\ 2023\COMP\ 345\COMP345-Warzone\Cards\Cards.h \
+ C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Cards\Cards.cpp \
+ C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\COMP345-Warzone\Cards\Cards.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/vector \
  C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_algobase.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \

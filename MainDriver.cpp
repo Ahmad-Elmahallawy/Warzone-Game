@@ -30,7 +30,7 @@ int main() {
 //    // Part 5
 //    testGameStates();
     testStartupPhase();
-    //testCommandProcessor();
+   // testCommandProcessor();
 
     return 0;
 }
