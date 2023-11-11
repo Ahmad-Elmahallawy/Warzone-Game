@@ -1,4 +1,3 @@
-
 using namespace std;
 #include <bits/stdc++.h>
 #include "CommandProcessing.h"
@@ -26,58 +25,24 @@ string Command::getEffect() {
 FileCommandProcessorAdapter::~FileCommandProcessorAdapter() {
 
 }
-
-FileLineReader::~FileLineReader() {
-
-}
-
 Command *CommandProcessing::readCommand() {
     string keyboard;
-    cout << "If you want to read the command from the console press -console, if you want it from a file type in -file <filename>: " << endl;
-    getline(cin, keyboard);
-
+    cout<<"Please enter a command: "<<endl;
+    getline(cin,keyboard);
     vector<string> commandComponents;
     string component;
     stringstream ss(keyboard);
-
-    // Split the input into command and filename
-    while (!ss.eof()) {
+    while (!ss.eof()) {//seperates line into words given they are space seperated and add them to array
         getline(ss, component, ' ');
         commandComponents.push_back(component);
     }
 
-    Command *cmd;
+    Command* cmd;
 
-    if (keyboard != "-console") {
-        if (commandComponents.size() == 2) {
-            // The second part is the filename
-            cmd = new Command(commandComponents[0], commandComponents[1]);
-        } else {
-            cout << "Invalid input. Use format: -file <filename>" << endl;
-            exit(0);
-        }
-    } else {
-        cout << "Please enter a command: " << endl;
-        getline(cin, keyboard);
-
-
-        stringstream ss(keyboard);
-        commandComponents.clear();
-
-        // Split the input into command and parameter
-        while (!ss.eof()) {
-            getline(ss, component, ' ');
-            commandComponents.push_back(component);
-        }
-
-        if (commandComponents.size() == 1) {
-            cmd = new Command(commandComponents[0]);
-        } else if (commandComponents.size() == 2) {
-            cmd = new Command(commandComponents[0], commandComponents[1]);
-        } else {
-            cout << "Invalid input. Use format: -console or -file <filename>" << endl;
-            return nullptr;
-        }
+    if(commandComponents.size() == 1){
+        cmd = new Command(commandComponents[0]);
+    }else {
+        cmd = new Command(commandComponents[0],commandComponents[1]);
     }
 
     return cmd;
@@ -166,5 +131,3 @@ Command* FileCommandProcessorAdapter::readCommand() {
 
     return cmd;
 }
-
-

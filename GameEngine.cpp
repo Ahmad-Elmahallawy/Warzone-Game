@@ -26,7 +26,8 @@ std::map<GameEngine::State, std::vector<GameEngine::Transition>> GameEngine::sta
                                {CMD_ASSIGN_COUNTRIES, State::ASSIGN_REINFORCEMENTS}
                        }},
         {State::ASSIGN_REINFORCEMENTS, {
-                               {CMD_ISSUE_ORDER, State::ISSUE_ORDERS}
+                               {CMD_ISSUE_ORDER, State::ISSUE_ORDERS},
+                               {CMD_GAME_START, State::GAME_STARTED} // New transition for game start
                        }},
         {State::ISSUE_ORDERS, {
                                {CMD_ISSUE_ORDER, State::ISSUE_ORDERS},
@@ -41,6 +42,9 @@ std::map<GameEngine::State, std::vector<GameEngine::Transition>> GameEngine::sta
                                {CMD_PLAY, State::START},
                                {CMD_END, State::END}
                        }},
+        {State::GAME_STARTED, {
+                               {CMD_GAME_START, State::ASSIGN_REINFORCEMENTS} // New transition after game start
+                       }},
 };
 
 
@@ -52,50 +56,52 @@ GameEngine::GameEngine():currentState(START), commandProcessor(new CommandProces
 
 
 
-
-
-
-
 // command to enter players in the game
-void GameEngine::addPlayer(string playerName)
+bool GameEngine::addPlayer(string playerName)
 {
-    cout << "here";
+
     // check if a playername is empty
     if(playerName.empty())
     {
-        commandProcessor->getCommand()->saveEffect("Your name cannot be empty");
-        cout << commandProcessor->getCommand()->getEffect() << endl;
-        return;
+        cout << "Your name cannot be empty" << endl;
+        return false;
     }
 
     // check if there are more than 6 players
-    if(AddedPlayerList.size() > 6)
+    if(AddedPlayerList.size() == 6)
     {
-        commandProcessor->getCommand()->saveEffect("Number of players can not exceed 6. You can not add more players");
-        cout << commandProcessor->getCommand()->getEffect() << endl;
-        return;
+        cout << "Number of players can not exceed 6. You can not add more players" << endl;
+        return false;
     }
 
     for (Player* p : AddedPlayerList) {
         if (p->getPlayerName() == playerName) { //check if 2 names are the same
 
-            commandProcessor->getCommand()->saveEffect("The player's name is already taken");
-            cout << commandProcessor->getCommand()->getEffect() << endl;
-            return;
+
+            cout << "The player's name is already taken" << endl;
+            return false;
         }
     }
 
     // creating a player and adding it to the list of players
     Player* player = new Player(playerName);
     AddedPlayerList.push_back(player);
+    cout << AddedPlayerList.at(AddedPlayerList.size() - 1)->getPlayerName() << " has been added." << endl;
+    cout << "Current players: " << endl;
+    for(int i = 0; i < AddedPlayerList.size() ; i++)
+    {
+        cout << "Player #" << i+1 << ": " << AddedPlayerList.at(i)->getPlayerName() << endl;
+    }
+
+    return true;
 
 }
 
 
 void GameEngine::gameStart() {
     if (AddedPlayerList.size() < 2) {
-        commandProcessor->getCommand()->saveEffect("Cannot start the game with less than 2 players");
-        cout << commandProcessor->getCommand()->getEffect() << endl;
+
+        cout << "Cannot start the game with less than 2 players" << endl;
         return;
     }
 
@@ -192,7 +198,7 @@ void GameEngine::startupPhase() {
 
         if (command == nullptr) {
             cout << "No command was input." << endl;
-            exit(0);
+            continue;
         }
 
         // Validate the command
@@ -226,13 +232,16 @@ void GameEngine::startupPhase() {
                 break;
             }
             case CMD_ADD_PLAYER:
-                addPlayer(command->secondParameter);
+                if(!addPlayer(command->secondParameter)) {
+                    continue;
+                }
+                cout << command->getEffect();
                 currentState = transition(CMD_ADD_PLAYER);
                 break;
-//            case CMD_GAME_START:
-//                gameStart();
-//                currentState = transition(CMD_GAME_START);
-//                break;
+            case CMD_GAME_START:
+                gameStart();
+                currentState = transition(CMD_GAME_START);
+                break;
             default:
                 std::cout << "Invalid command. Try again." << std::endl;
                 break;
@@ -295,7 +304,7 @@ std::string stateToString(GameEngine::State state) {
         case GameEngine::State::MAP_LOADED: return "map loaded";
         case GameEngine::State::MAP_VALIDATED: return "map validated";
         case GameEngine::State::PLAYERS_ADDED: return "players added";
-        case GameEngine::State::ASSIGN_REINFORCEMENTS: return "assign reinforcement";
+        case GameEngine::State::GAME_STARTED: return "assign reinforcement";
         case GameEngine::State::ISSUE_ORDERS: return "issue orders";
         case GameEngine::State::EXECUTE_ORDERS: return "execute orders";
         case GameEngine::State::WIN: return "win";

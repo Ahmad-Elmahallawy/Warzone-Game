@@ -68,7 +68,7 @@ public:
     GameEngine::State getCurrentState(); // to get the current game state
     void printValidCommands(); // to print the next commands a user is allowed to enter for the transition
     bool isGameComplete(); // to check if the game is complete
-    void addPlayer(string playerName);
+    bool addPlayer(string playerName);
     void gameStart();
     void startupPhase();
 

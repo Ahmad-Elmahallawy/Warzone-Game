@@ -29,25 +29,15 @@ private:
 class CommandProcessing{
 public:
     ~CommandProcessing();
-
     list<Command*> lc;
     Command* readCommand();
     void saveCommand(Command* command);
     Command* getCommand();
     bool validate(Command* command, GameEngine::State state);
-private:
-
 };
-class FileLineReader{
-public:
-    void readLineFromFile();
-
-    virtual ~FileLineReader();
-};
-class FileCommandProcessorAdapter: CommandProcessing{
+class FileCommandProcessorAdapter: public CommandProcessing{
 public:
     Command* readCommand();
-    FileLineReader flr;
     string fileName;
     FileCommandProcessorAdapter(string fileName);
 

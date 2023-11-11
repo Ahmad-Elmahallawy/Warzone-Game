@@ -100,9 +100,6 @@
 		<Unit filename="C:/Users/ahmad/Desktop/Courses/Fall2023/COMP345/COMP345-Warzone/Command/CommandProcessingDriver.cpp">
 			<Option target="Project_1"/>
 		</Unit>
-		<Unit filename="C:/Users/ahmad/Desktop/Courses/Fall2023/COMP345/COMP345-Warzone/Command/CommandProcessingDriver.h">
-			<Option target="Project_1"/>
-		</Unit>
 		<Unit filename="C:/Users/ahmad/Desktop/Courses/Fall2023/COMP345/COMP345-Warzone/GameEngine.cpp">
 			<Option target="Project_1"/>
 		</Unit>

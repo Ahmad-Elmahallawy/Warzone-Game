@@ -1,8 +1,0 @@
-//
-// Created by ahmad on 11/10/2023.
-//
-
-#ifndef PROJECT_1_COMMANDPROCESSINGDRIVER_H
-#define PROJECT_1_COMMANDPROCESSINGDRIVER_H
-void testCommandProcessor();
-#endif //PROJECT_1_COMMANDPROCESSINGDRIVER_H
