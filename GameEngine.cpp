@@ -119,6 +119,7 @@ void GameEngine::mainGameLoop() {
 
     players[numPlayers];
     Player *players[5] = {};
+    //indicates its first round
     bool firstRound = true;
 
 
@@ -143,8 +144,9 @@ void GameEngine::mainGameLoop() {
 
         // Orders Execution Phase
         ordersExecutionPhase();
-
+        //not first round anymore after orders execution phase
         firstRound = false;
+
 
     }
 }
@@ -171,7 +173,7 @@ void GameEngine:: reinforcementPhase() {
             cout << players[i]->getReinforcementPool() << endl;
         }
 
-            //check if players owned number of territories matches a continent that hold n amount of territories in order to gain control bonus
+            //check if players owned all territories in continent
         else if (players[i]->ownAllTerritoryInContinent()) {
             cout << "| Player: " << players[i]->getPlayerId() << "'s updated Reinforcement Pool: ";
             players[i]->setReinforcementPool(players[i]->getReinforcementPool() + 10);

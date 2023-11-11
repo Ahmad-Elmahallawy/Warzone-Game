@@ -433,7 +433,29 @@ CMakeFiles/Project_1.dir/GameEngine.cpp.obj: C:/Users/Aru\ Tarunamihardja/CLionP
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_uninitialized.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_vector.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_bvector.h \
-  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/vector.tcc
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/vector.tcc \
+  C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/Cards/Cards.h \
+  C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/Players/Player.h \
+  C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/Map/Map.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/fstream \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/codecvt.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/basic_file.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/c++io.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/fstream.tcc \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/stack \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/deque \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_deque.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/deque.tcc \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_stack.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/list \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_list.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/allocated_ptr.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/list.tcc \
+  C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/Orders/Orders.h \
+  C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/Cards/Cards.h \
+  C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/Players/Player.h \
+  C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/Map/Map.h \
+  C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/Cards/Cards.h
 
 CMakeFiles/Project_1.dir/GameEngineDriver.cpp.obj: C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/GameEngineDriver.cpp \
   C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/GameEngine.h \
@@ -584,6 +606,25 @@ CMakeFiles/Project_1.dir/GameEngineDriver.cpp.obj: C:/Users/Aru\ Tarunamihardja/
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_vector.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_bvector.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/vector.tcc \
+  C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/Cards/Cards.h \
+  C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/Players/Player.h \
+  C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/Map/Map.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/fstream \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/codecvt.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/basic_file.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/c++io.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/fstream.tcc \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/stack \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/deque \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_deque.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/deque.tcc \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_stack.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/list \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_list.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/allocated_ptr.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/list.tcc \
+  C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/Orders/Orders.h \
+  C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/Cards/Cards.h \
   C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/GameEngineDriver.h
 
 CMakeFiles/Project_1.dir/MainDriver.cpp.obj: C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/MainDriver.cpp \
@@ -749,7 +790,14 @@ CMakeFiles/Project_1.dir/MainDriver.cpp.obj: C:/Users/Aru\ Tarunamihardja/CLionP
   C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/Cards/Cards.h \
   C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/Orders/Orders.h \
   C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/Cards/Cards.h \
-  C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/GameEngineDriver.h
+  C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/GameEngineDriver.h \
+  C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/GameEngine.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/map \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_tree.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_map.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tuple \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_multimap.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/erase_if.h
 
 CMakeFiles/Project_1.dir/Map/Map.cpp.obj: C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/Map/Map.cpp \
   C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/Map/Map.h \
@@ -2204,7 +2252,7 @@ C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32
 
 C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/erase_if.h:
 
-C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/GameEngineDriver.h:
+C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/Players/Player.h:
 
 C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/Map/Map.h:
 
@@ -2230,9 +2278,9 @@ C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32
 
 C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_list.h:
 
-C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/Players/Player.h:
-
 C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/Orders/Orders.h:
+
+C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/GameEngineDriver.h:
 
 C:/Users/Aru\ Tarunamihardja/CLionProjects/COMP345-WarzoneA1demo/Map/Map.cpp:
 

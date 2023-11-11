@@ -56,6 +56,7 @@ void testGameStates() {
         }
 
         // state transition based on the command
+
         gameEngine.transition(command);
     }
 
