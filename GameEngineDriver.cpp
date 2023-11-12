@@ -19,7 +19,7 @@ void testGameStates() {
         std::cin >> userInput;
 
         // converts command string to command enum value
-        Command command;
+        Commands command;
         if (userInput == "start") {
             command = CMD_START;
         } else if (userInput == "loadmap") {

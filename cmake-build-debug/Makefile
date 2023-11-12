@@ -176,6 +176,30 @@ Cards/CardsDriver.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/Cards/CardsDriver.cpp.s
 .PHONY : Cards/CardsDriver.cpp.s
 
+Command/CommandProcessor.obj: Command/CommandProcessor.cpp.obj
+.PHONY : Command/CommandProcessor.obj
+
+# target to build an object file
+Command/CommandProcessor.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/Command/CommandProcessor.cpp.obj
+.PHONY : Command/CommandProcessor.cpp.obj
+
+Command/CommandProcessor.i: Command/CommandProcessor.cpp.i
+.PHONY : Command/CommandProcessor.i
+
+# target to preprocess a source file
+Command/CommandProcessor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/Command/CommandProcessor.cpp.i
+.PHONY : Command/CommandProcessor.cpp.i
+
+Command/CommandProcessor.s: Command/CommandProcessor.cpp.s
+.PHONY : Command/CommandProcessor.s
+
+# target to generate assembly for a file
+Command/CommandProcessor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/Command/CommandProcessor.cpp.s
+.PHONY : Command/CommandProcessor.cpp.s
+
 GameEngine.obj: GameEngine.cpp.obj
 .PHONY : GameEngine.obj
 
@@ -224,53 +248,77 @@ GameEngineDriver.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/GameEngineDriver.cpp.s
 .PHONY : GameEngineDriver.cpp.s
 
-Game_Log/FileWriter.obj: Game_Log/FileWriter.cpp.obj
-.PHONY : Game_Log/FileWriter.obj
+GameLog/FileWriter.obj: GameLog/FileWriter.cpp.obj
+.PHONY : GameLog/FileWriter.obj
 
 # target to build an object file
-Game_Log/FileWriter.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/Game_Log/FileWriter.cpp.obj
-.PHONY : Game_Log/FileWriter.cpp.obj
+GameLog/FileWriter.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/GameLog/FileWriter.cpp.obj
+.PHONY : GameLog/FileWriter.cpp.obj
 
-Game_Log/FileWriter.i: Game_Log/FileWriter.cpp.i
-.PHONY : Game_Log/FileWriter.i
+GameLog/FileWriter.i: GameLog/FileWriter.cpp.i
+.PHONY : GameLog/FileWriter.i
 
 # target to preprocess a source file
-Game_Log/FileWriter.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/Game_Log/FileWriter.cpp.i
-.PHONY : Game_Log/FileWriter.cpp.i
+GameLog/FileWriter.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/GameLog/FileWriter.cpp.i
+.PHONY : GameLog/FileWriter.cpp.i
 
-Game_Log/FileWriter.s: Game_Log/FileWriter.cpp.s
-.PHONY : Game_Log/FileWriter.s
+GameLog/FileWriter.s: GameLog/FileWriter.cpp.s
+.PHONY : GameLog/FileWriter.s
 
 # target to generate assembly for a file
-Game_Log/FileWriter.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/Game_Log/FileWriter.cpp.s
-.PHONY : Game_Log/FileWriter.cpp.s
+GameLog/FileWriter.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/GameLog/FileWriter.cpp.s
+.PHONY : GameLog/FileWriter.cpp.s
 
-Game_Log/LoggingObserver.obj: Game_Log/LoggingObserver.cpp.obj
-.PHONY : Game_Log/LoggingObserver.obj
+GameLog/LoggingObserver.obj: GameLog/LoggingObserver.cpp.obj
+.PHONY : GameLog/LoggingObserver.obj
 
 # target to build an object file
-Game_Log/LoggingObserver.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/Game_Log/LoggingObserver.cpp.obj
-.PHONY : Game_Log/LoggingObserver.cpp.obj
+GameLog/LoggingObserver.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/GameLog/LoggingObserver.cpp.obj
+.PHONY : GameLog/LoggingObserver.cpp.obj
 
-Game_Log/LoggingObserver.i: Game_Log/LoggingObserver.cpp.i
-.PHONY : Game_Log/LoggingObserver.i
+GameLog/LoggingObserver.i: GameLog/LoggingObserver.cpp.i
+.PHONY : GameLog/LoggingObserver.i
 
 # target to preprocess a source file
-Game_Log/LoggingObserver.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/Game_Log/LoggingObserver.cpp.i
-.PHONY : Game_Log/LoggingObserver.cpp.i
+GameLog/LoggingObserver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/GameLog/LoggingObserver.cpp.i
+.PHONY : GameLog/LoggingObserver.cpp.i
 
-Game_Log/LoggingObserver.s: Game_Log/LoggingObserver.cpp.s
-.PHONY : Game_Log/LoggingObserver.s
+GameLog/LoggingObserver.s: GameLog/LoggingObserver.cpp.s
+.PHONY : GameLog/LoggingObserver.s
 
 # target to generate assembly for a file
-Game_Log/LoggingObserver.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/Game_Log/LoggingObserver.cpp.s
-.PHONY : Game_Log/LoggingObserver.cpp.s
+GameLog/LoggingObserver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/GameLog/LoggingObserver.cpp.s
+.PHONY : GameLog/LoggingObserver.cpp.s
+
+GameLog/LoggingObserverDriver.obj: GameLog/LoggingObserverDriver.cpp.obj
+.PHONY : GameLog/LoggingObserverDriver.obj
+
+# target to build an object file
+GameLog/LoggingObserverDriver.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/GameLog/LoggingObserverDriver.cpp.obj
+.PHONY : GameLog/LoggingObserverDriver.cpp.obj
+
+GameLog/LoggingObserverDriver.i: GameLog/LoggingObserverDriver.cpp.i
+.PHONY : GameLog/LoggingObserverDriver.i
+
+# target to preprocess a source file
+GameLog/LoggingObserverDriver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/GameLog/LoggingObserverDriver.cpp.i
+.PHONY : GameLog/LoggingObserverDriver.cpp.i
+
+GameLog/LoggingObserverDriver.s: GameLog/LoggingObserverDriver.cpp.s
+.PHONY : GameLog/LoggingObserverDriver.s
+
+# target to generate assembly for a file
+GameLog/LoggingObserverDriver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Project_1.dir\build.make CMakeFiles/Project_1.dir/GameLog/LoggingObserverDriver.cpp.s
+.PHONY : GameLog/LoggingObserverDriver.cpp.s
 
 MainDriver.obj: MainDriver.cpp.obj
 .PHONY : MainDriver.obj
@@ -455,18 +503,24 @@ help:
 	@echo ... Cards/CardsDriver.obj
 	@echo ... Cards/CardsDriver.i
 	@echo ... Cards/CardsDriver.s
+	@echo ... Command/CommandProcessor.obj
+	@echo ... Command/CommandProcessor.i
+	@echo ... Command/CommandProcessor.s
 	@echo ... GameEngine.obj
 	@echo ... GameEngine.i
 	@echo ... GameEngine.s
 	@echo ... GameEngineDriver.obj
 	@echo ... GameEngineDriver.i
 	@echo ... GameEngineDriver.s
-	@echo ... Game_Log/FileWriter.obj
-	@echo ... Game_Log/FileWriter.i
-	@echo ... Game_Log/FileWriter.s
-	@echo ... Game_Log/LoggingObserver.obj
-	@echo ... Game_Log/LoggingObserver.i
-	@echo ... Game_Log/LoggingObserver.s
+	@echo ... GameLog/FileWriter.obj
+	@echo ... GameLog/FileWriter.i
+	@echo ... GameLog/FileWriter.s
+	@echo ... GameLog/LoggingObserver.obj
+	@echo ... GameLog/LoggingObserver.i
+	@echo ... GameLog/LoggingObserver.s
+	@echo ... GameLog/LoggingObserverDriver.obj
+	@echo ... GameLog/LoggingObserverDriver.i
+	@echo ... GameLog/LoggingObserverDriver.s
 	@echo ... MainDriver.obj
 	@echo ... MainDriver.i
 	@echo ... MainDriver.s

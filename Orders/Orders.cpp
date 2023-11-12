@@ -1,6 +1,8 @@
-#include "Orders.h"
+
 #include <iostream>
 #include <string>
+#include "Orders.h"
+#include "../Players/Player.h"
 
 //   ---   Order class   ---
 
@@ -91,6 +93,7 @@ void Deploy::execute()
     {
         std::cout << "executing Order Deploy" << std::endl;
         this->executed = true;
+        Notify(this);
     }
 }
 
@@ -118,6 +121,17 @@ std::ostream& operator<<(std::ostream& output, const Deploy& deploy)
         output << deploy.action << std::endl;
     }
     return output;
+}
+
+string Deploy::stringToLog() {
+    string order;
+
+    if(validate()) {
+        order = "Order Executed: Deploy!";
+    }
+    else
+        order = "Invalid deploy execution! Territory doesn't belong to the player.";
+    return order;
 }
 
 //   ---   Advance class   ---
@@ -153,6 +167,7 @@ void Advance::execute()
         std::cout << "executing Order advance" << std::endl;
         this->executed = true;
     }
+    Notify(this);
 }
 
 // assignment operator
@@ -179,6 +194,17 @@ std::ostream& operator<<(std::ostream& output, const Advance& advance)
         output << advance.action << std::endl;
     }
     return output;
+}
+
+string Advance::stringToLog() {
+    string order;
+
+    if(validate()) {
+        order = "Order Executed: Advance!";
+    }
+    else
+        order = "Invalid advance execution! Source territory doesn't belong to the player that issued the order or target territory is not adjacent to the source territory, .";
+    return order;
 }
 
 //   ---   Bomb class   ---
@@ -213,6 +239,7 @@ void Bomb::execute()
         std::cout << "executing Order Bomb" << std::endl;
         this->executed = true;
     }
+    Notify(this);
 }
 
 // assignment operator
@@ -239,6 +266,17 @@ std::ostream& operator<<(std::ostream& output, const Bomb& bomb)
         output << bomb.action << std::endl;
     }
     return output;
+}
+
+string Bomb::stringToLog() {
+    string order;
+
+    if(validate()) {
+        order = "Order Executed: Bomb!";
+    }
+    else
+        order = "Invalid bomb execution! Target territory belongs to the player that issuing the order or target territory is not adjacent to one of the territory owned by the player issuing the order";
+    return order;
 }
 
 //   ---   Blockade class   ---
@@ -273,6 +311,7 @@ void Blockade::execute()
         std::cout << "executing Order Blockade" << std::endl;
         this->executed = true;
     }
+    Notify(this);
 }
 
 // assignment operator
@@ -299,6 +338,17 @@ std::ostream& operator<<(std::ostream& output, const Blockade& blockade)
         output << blockade.action << std::endl;
     }
     return output;
+}
+
+string Blockade::stringToLog() {
+    string order;
+
+    if(validate()) {
+        order = "Order Executed: Blockade!";
+    }
+    else
+        order = "Invalid blockade execution! Target territory belongs to an enemy player";
+    return order;
 }
 
 //   ---   Airlift class   ---
@@ -333,6 +383,7 @@ void Airlift::execute()
         std::cout << "execute() called in an Airlift object" << std::endl;
         this->executed = true;
     }
+    Notify(this);
 }
 
 // assignment operator
@@ -359,6 +410,17 @@ std::ostream& operator<<(std::ostream& output, const Airlift& airlift)
         output << airlift.action << std::endl;
     }
     return output;
+}
+
+string Airlift::stringToLog() {
+    string order;
+
+    if(validate()) {
+        order = "Order Executed: Airlift!";
+    }
+    else
+        order = "Invalid airlift execution! Source or target territory does not belong to the player that issued the order!";
+    return order;
 }
 
 //   ---   Negotiate class   ---
@@ -392,6 +454,7 @@ void Negotiate::execute()
     {
         this->executed = true;
     }
+    Notify(this);
 }
 
 // assignment operator
@@ -420,6 +483,16 @@ std::ostream& operator<<(std::ostream& output, const Negotiate& negotiate)
     return output;
 }
 
+string Negotiate::stringToLog() {
+    string order;
+
+    if(validate()) {
+        order = "Order Executed: Negotiate!";
+    }
+    else
+        order = "Invalid negotiate execution! Target is the player issuing the order!";
+    return order;
+}
 
 
 // default constructor
@@ -447,6 +520,7 @@ OrdersList::~OrdersList()
 void OrdersList::addOrder(Order* order)
 {
     this->ordersList.push_back(order);
+    Notify(this);
 }
 
 // get next order on the list
@@ -518,4 +592,25 @@ std::ostream& operator<<(std::ostream& output, const OrdersList& orderslist)
     }
 
     return output;
+}
+
+int OrdersList::getSize() {
+    return ordersList.size();
+}
+
+string Order::getAction() {
+    return this->action;
+}
+
+string OrdersList::stringToLog() {
+    Order* o1 = ordersList.back();
+    string s1 = "Order Issue: ";
+
+    for(int i = 0; i < ordersList.size(); i++) {
+        s1 += this->ordersList.at(i)->getAction();
+        if(i != this->getSize() - 1)
+            s1 += ", ";
+    }
+    s1 += ".";
+    return s1;
 }

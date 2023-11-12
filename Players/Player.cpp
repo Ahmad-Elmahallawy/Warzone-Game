@@ -11,6 +11,12 @@ Player::Player() {
     this->ordersList = new OrdersList();
 }
 
+
+Player::Player(string playerName) {
+    this->playerName = playerName;
+}
+
+
 Player::Player(Hand *hand, const vector<Territory *> &territories, const string &playerName, int playerId,
                OrdersList *ordersList) : hand(hand), territories(territories), playerName(playerName),
                                          playerID(playerId), ordersList(ordersList) {}
@@ -63,13 +69,19 @@ void Player::setHand(Hand *hand) {
 }
 
 // setsTerritories
-void Player::setTerritories(const vector<Territory *> &territories) {
-    Player::territories = territories;
+void Player::setTerritories(Territory* territories) {
+    Player::territories.push_back(territories);
 }
 
 // sets Player's name
 void Player::setPlayerName(const string &playerName) {
     Player::playerName = playerName;
+}
+
+
+// Adds specified number to the player's reinforcement pool
+void Player::addArmies(int num) {
+    this->reinforcementPool += num;
 }
 
 // creates a new order
@@ -109,7 +121,7 @@ vector<Territory*> Player::toAttack() const{
 
 ostream &operator<<(ostream &os, const Player &player) {
     os << "Player Name: " << player.playerName << ", Player ID: " << player.playerID << '\n';
-    os << "Hand: " << *(player.hand) << '\n';
+    os << "Hand: " << (player.hand) << '\n';
 
     os << "Territories: ";
     const std::vector<Territory *> vector1 = player.territories;
@@ -137,6 +149,13 @@ Player& Player::operator=(const Player& rhs) {
     return *this;
 }
 
+int Player::getReinforcementPool() const {
+    return reinforcementPool;
+}
+
+void Player::setReinforcementPool(int num) {
+    Player::reinforcementPool = reinforcementPool + num;
+}
 
 
 

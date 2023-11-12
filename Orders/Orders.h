@@ -13,10 +13,11 @@ bomb, blockade, airlift, and negotiate. All orders must have a validate() method
 #include <iostream>
 #include <deque>
 
+#include "../GameLog/LoggingObserver.h"
+
 //   ---   Order class    ---   [each ORDER type (below) inherits from this class and overrides execute() and validate()]
 
-class Order
-{
+class Order : public ILoggable, public Subject {
 private:
     // action of the Order
     std::string action = "String describing the order";
@@ -49,14 +50,14 @@ public:
     // stream insertion operator
     friend std::ostream& operator<<(std::ostream& output, const Order& order);
 
+    string getAction();
 };
 
 // order types:
 
 //   ---   Deploy class   ---
 
-class Deploy : public Order
-{
+class Deploy : public Order {
 private:
     // action of Deploy
     std::string action = "effect in Deploy Order class";
@@ -88,6 +89,8 @@ public:
 
     // stream insertion operator
     friend std::ostream& operator<<(std::ostream& output, const Deploy& deploy);
+
+    string stringToLog();
 };
 
 //   ---   Advance class   ---
@@ -125,6 +128,8 @@ public:
 
     // stream insertion operator
     friend std::ostream& operator<<(std::ostream& output, const Advance& advance);
+
+    string stringToLog();
 };
 
 //   ---   Bomb class   ---
@@ -162,6 +167,8 @@ public:
 
     // stream insertion operator
     friend std::ostream& operator<<(std::ostream& output, const Bomb& bomb);
+
+    string stringToLog();
 };
 
 //   ---   Blockade class   ---
@@ -199,6 +206,8 @@ public:
 
     // stream insertion operator
     friend std::ostream& operator<<(std::ostream& output, const Blockade& blockade);
+
+    string stringToLog();
 };
 
 //   ---   Airlift class  ---
@@ -236,6 +245,8 @@ public:
 
     // stream insertion operator
     friend std::ostream& operator<<(std::ostream& output, const Airlift& airlift);
+
+    string stringToLog();
 };
 
 //   ---   Negotiate class  ---
@@ -273,6 +284,8 @@ public:
 
     // stream insertion operator
     friend std::ostream& operator<<(std::ostream& output, const Negotiate& negotiate);
+
+    string stringToLog();
 };
 
 // end of order types!
@@ -280,8 +293,7 @@ public:
 
 //   ---   OrdersList class   ---   [a class to create and manage a list of orders]
 
-class OrdersList
-{
+class OrdersList : public ILoggable, public Subject {
 private:
 
     // a list of pointers to Order objects
@@ -316,7 +328,10 @@ public:
     //stream insertion operator
     friend std::ostream& operator<<(std::ostream& output, const OrdersList& ordersList);
 
+    string stringToLog();
 
+
+    int getSize();
 };
 //free function to test OrdersList methods
     void testOrdersLists();

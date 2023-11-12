@@ -11,6 +11,7 @@
 #include "../Orders/Orders.h"
 #include "../Cards/Cards.h"
 
+
 using namespace std;
 
 class Player {
@@ -22,6 +23,7 @@ private:
     string playerName;
     int playerID;
     OrdersList* ordersList= nullptr;
+    int reinforcementPool;
 
 
 // public attributes
@@ -29,6 +31,8 @@ public:
     Player();
 
     Player(Player &player);
+
+    Player(string playerName);
 
 
     Player(Hand *hand, const vector<Territory *> &territories, const string &playerName, int playerId,
@@ -55,12 +59,16 @@ public:
 
     void setHand(Hand *hand);
 
-    void setTerritories(const vector<Territory *> &territories);
 
+    void setTerritories(Territory* territories);
     void setPlayerName(const string &playerName);
 
     void setPlayerID(const int &playerID);
 
+
+    int getReinforcementPool() const;
+
+    void setReinforcementPool(int reinforcementPool);
 
     int getPlayerId() const;
 
@@ -74,6 +82,7 @@ public:
 
     Player& operator=(const Player& rhs);
 
+    void addArmies(int num);
 };
 
 void testPlayers();

@@ -5,26 +5,26 @@
 #ifndef PROJECT_1_GAMEENGINE_H
 #define PROJECT_1_GAMEENGINE_H
 
+
+
+
 #include <iostream>
 #include <map>
 #include <vector>
 #include <string>
+#include "Players/Player.h"
+#include "Map/Map.h"
+#include "Cards/Cards.h"
+#include "GameLog/LoggingObserver.h"
+#include "GameLog/FileWriter.h"
 
-// Define the possible game states as an enum
-enum State {
-    START,
-    MAP_LOADED,
-    MAP_VALIDATED,
-    PLAYERS_ADDED,
-    ASSIGN_REINFORCEMENTS,
-    ISSUE_ORDERS,
-    EXECUTE_ORDERS,
-    WIN,
-    END
-};
 
+
+
+class CommandProcessor;
 // Define the possible commands as an enum
-enum Command {
+enum Commands {
+    CMD_UNDEFINED,
     CMD_START,
     CMD_LOAD_MAP,
     CMD_VALIDATE_MAP,
@@ -37,30 +37,60 @@ enum Command {
     CMD_WIN,
     CMD_END,
     CMD_PLAY,
-    CMD_EXEC_ORDER
+    CMD_EXEC_ORDER,
+    CMD_REPLAY,
 };
 
-// Define a struct to represent state transitions
-struct Transition {
-    Command command;
-    State nextState;
-};
+class GameEngine: public ILoggable, public Subject {
 
-class GameEngine {
-private:
-    State currentState; // current game state
-    std::map<State, std::vector<Transition>> stateTransitions; // State transition map
 
 public:
+    // Define the possible game states as an enum inside the GameEngine class
+    enum State {
+        START,
+        MAP_LOADED,
+        MAP_VALIDATED,
+        PLAYERS_ADDED,
+        ASSIGN_REINFORCEMENTS,
+        ISSUE_ORDERS,
+        EXECUTE_ORDERS,
+        WIN,
+        END
+    };
+
+
     GameEngine(); // constructor
-    bool isValidTransition(Command command); // check if the transition is valid
-    void transition(Command command); // do state transition
-    State getCurrentState(); // to get the current game state
+    ~GameEngine(); // Destructor to clean up the dynamically allocated CommandProcessor
+    bool isValidTransition(Commands command); // check if the transition is valid
+    void transition(Commands command); // do state transition
+    GameEngine::State getCurrentState(); // to get the current game state
     void printValidCommands(); // to print the next commands a user is allowed to enter for the transition
     bool isGameComplete(); // to check if the game is complete
+    void addPlayer(string playerName);
+    void gameStart();
+    void startupPhase();
+    CommandProcessor* getCommandProcessor();
+
+    string stringToLog();
+
+
+    // Define a struct to represent state transitions
+    struct Transition {
+        Commands command;
+        State nextState;
+    };
+    static std::map<State, std::vector<Transition>> stateTransitions; // State transition map
+
+private:
+    GameEngine::State currentState; // current game state
+    CommandProcessor* commandProcessor;  // Member variable as a pointer to store the CommandProcessor
+    vector<Player*> AddedPlayerList; // Holds the players added to keep track of how many players are added;
+    Map* currentMap;
 };
 
-std::string stateToString(State state);
-std::string commandToString(Command command);
+
+std::string stateToString(GameEngine::State state);
+std::string commandToString(Commands command);
+Commands commandToEnum(std::string command);
 
 #endif //PROJECT_1_GAMEENGINE_H
