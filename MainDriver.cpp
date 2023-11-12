@@ -6,7 +6,7 @@
 #include "Command/CommandProcessing.h"
 // the main function of the program
 // This project executes all the test*() functions for Assignment 1
-int main() {
+//int main() {
     // Part 1
 //    cout << "Map Section" << endl;
 //    cout << "**********************************************************" << endl;
@@ -30,7 +30,6 @@ int main() {
 //    // Part 5
 //    testGameStates();
 //  testStartupPhase();
-    testCommandProcessor();
+//    testCommandProcessor();
 
-    return 0;
-}
+////}
