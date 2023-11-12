@@ -384,23 +384,23 @@ void GameEngine:: reinforcementPhase() {
 
     for (int i = 0; i < AddedPlayerList.size(); i++) {
         AddedPlayerList[i]->setPhase("Reinforcement");
-        cout << "Player: " << AddedPlayerList[i]->getPlayerId() << "'s old Reinforcement Pool: "
+        cout << "Player: " << AddedPlayerList[i]->getPlayerName() << "'s old Reinforcement Pool: "
              << AddedPlayerList[i]->getReinforcementPool();
         // if (number of territories owned) / 3 is less than 3, assigns 3 to the player reinforcement pool
         if (((AddedPlayerList[i]->getTerritories().size()) / 3) < 3) // removed round
         {
-            cout << "| Player: " << AddedPlayerList[i]->getPlayerId() << "'s updated Reinforcement Pool: ";
+            cout << "| Player: " << AddedPlayerList[i]->getPlayerName() << "'s updated Reinforcement Pool: ";
             AddedPlayerList[i]->setReinforcementPool(AddedPlayerList[i]->getReinforcementPool() + 3);
             cout << AddedPlayerList[i]->getReinforcementPool() << endl;
         }
 
             //check if players owned all territories in continent
         else if (AddedPlayerList[i]->ownAllTerritoryInContinent()) {
-            cout << "| Player: " << AddedPlayerList[i]->getPlayerId() << "'s updated Reinforcement Pool: ";
+            cout << "| Player: " << AddedPlayerList[i]->getPlayerName() << "'s updated Reinforcement Pool: ";
             AddedPlayerList[i]->setReinforcementPool(AddedPlayerList[i]->getReinforcementPool() + 10);
             cout << AddedPlayerList[i]->getReinforcementPool() << endl;
         } else {
-            cout << "| Player: " << AddedPlayerList[i]->getPlayerId() << "'s updated Reinforcement Pool: ";
+            cout << "| Player: " << AddedPlayerList[i]->getPlayerName() << "'s updated Reinforcement Pool: ";
             AddedPlayerList[i]->setReinforcementPool(AddedPlayerList[i]->getReinforcementPool() +
                                              ((AddedPlayerList[i]->getTerritories().size()) / 3)); // removed round
             cout << AddedPlayerList[i]->getReinforcementPool() << endl;
@@ -430,14 +430,14 @@ void GameEngine::issuingOrdersPhase() {
     {
         AddedPlayerList[i]->setPhase("Issue Orders");
 
-        int pID = AddedPlayerList[i]->getPlayerId();
+        string playerName = AddedPlayerList[i]->getPlayerName();
         vector<Card *> currentPlayerHandCards = AddedPlayerList[i]->getHand()->vectorHand;
         string type;
         string answer;
 
         while (answer != "n")
         {
-            cout << "Player " << pID << ", it is your turn\n" << endl;
+            cout << "Player " << playerName << ", it is your turn\n" << endl;
             cout << "type : advance|| deploy|| bomb || blockade || airlift||  ";
             cout << "Input your desired order here: ";
             cin >> type;

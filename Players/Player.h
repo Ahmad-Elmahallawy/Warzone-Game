@@ -11,6 +11,8 @@
 #include "../Orders/Orders.h"
 #include "../Cards/Cards.h"
 
+class OrdersList;
+
 using namespace std;
 
 class Player {
