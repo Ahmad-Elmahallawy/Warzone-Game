@@ -9,6 +9,73 @@
 using namespace std;
 
 #include "GameEngine.h"
+// converts state enum value to string
+std::string stateToString(GameEngine::State state) {
+    switch (state) {
+        case GameEngine::State::START: return "start";
+        case GameEngine::State::MAP_LOADED: return "map loaded";
+        case GameEngine::State::MAP_VALIDATED: return "map validated";
+        case GameEngine::State::PLAYERS_ADDED: return "players added";
+        case GameEngine::State::ASSIGN_REINFORCEMENTS: return "assign reinforcement";
+        case GameEngine::State::ISSUE_ORDERS: return "issue orders";
+        case GameEngine::State::EXECUTE_ORDERS: return "execute orders";
+        case GameEngine::State::WIN: return "win";
+        case GameEngine::State::END: return "end";
+    }
+}
+
+// converts command to string
+std::string commandToString(Commands command) {
+    switch (command) {
+        case CMD_START: return "start";
+        case CMD_LOAD_MAP: return "loadmap";
+        case CMD_VALIDATE_MAP: return "validatemap";
+        case CMD_ADD_PLAYER: return "addplayer";
+        case CMD_GAME_START: return "gamestart";
+        case CMD_ISSUE_ORDER: return "issueorder";
+        case CMD_END_ISSUE_ORDER: return "endissueorder";
+        case CMD_EXECUTE_ORDERS: return "executeorders";
+        case CMD_END_EXEC_ORDERS: return "endexecorders";
+        case CMD_WIN: return "win";
+        case CMD_END: return "end";
+        case CMD_PLAY: return "play";
+        case CMD_EXEC_ORDER: return "execorder";
+    }
+}
+
+// converts command string to enum
+Commands commandToEnum(const std::string commandStr) {
+    if (commandStr == "start") {
+        return CMD_START;
+    } else if (commandStr == "loadmap") {
+        return CMD_LOAD_MAP;
+    } else if (commandStr == "validatemap") {
+        return CMD_VALIDATE_MAP;
+    } else if (commandStr == "addplayer") {
+        return CMD_ADD_PLAYER;
+    }
+    else if (commandStr == "gamestart")
+    {
+        return CMD_GAME_START;
+    }
+    else if (commandStr == "issueorder") {
+        return CMD_ISSUE_ORDER;
+    } else if (commandStr == "endissueorder") {
+        return CMD_END_ISSUE_ORDER;
+    } else if (commandStr == "executeorders") {
+        return CMD_EXECUTE_ORDERS;
+    } else if (commandStr == "endexecorders") {
+        return CMD_END_EXEC_ORDERS;
+    } else if (commandStr == "win") {
+        return CMD_WIN;
+    } else if (commandStr == "end") {
+        return CMD_END;
+    } else if (commandStr == "play") {
+        return CMD_PLAY;
+    } else if (commandStr == "execorder") {
+        return CMD_EXEC_ORDER;
+    }
+}
 
 // Definition and initialization of the static member
 std::map<GameEngine::State, std::vector<GameEngine::Transition>> GameEngine::stateTransitions = {
@@ -50,6 +117,21 @@ GameEngine::GameEngine():currentState(START), commandProcessor(new CommandProces
 
 }
 
+GameEngine::~GameEngine() {
+    delete commandProcessor;
+    if (ml != nullptr) {
+        delete ml;
+        ml = nullptr;
+    }
+
+    for (int i = 0; i < AddedPlayerList.size(); i++)
+    {
+        delete AddedPlayerList[i];
+        AddedPlayerList[i] = nullptr; // Set to nullptr after deletion
+    }
+
+    AddedPlayerList.clear();
+}
 
 
 
@@ -153,13 +235,12 @@ void GameEngine::gameStart() {
         } else {
             std::cout << "Error: Unable to draw cards from the deck." << std::endl;
         }
-    }
 
+    }
 
     cout << "\nDrew two cards from the deck for each player..." << endl;
 }
 
-// transition to the next state if the command is valid
 // transition to the next state if the command is valid
 GameEngine::State GameEngine::transition(Commands command) {
     auto transitionIterator = stateTransitions.find(currentState);
@@ -265,19 +346,6 @@ bool GameEngine::isGameComplete() {
     return currentState == END;
 }
 
-GameEngine::~GameEngine() {
-    delete commandProcessor;
-    delete ml;
-
-    for (int i = 0; i < AddedPlayerList.size(); i++) {
-        delete AddedPlayerList[i];
-        AddedPlayerList[i] = NULL;
-    }
-
-
-    AddedPlayerList.clear();
-
-}
 
 GameEngine::State GameEngine::stringToState(string stateStr) {
     if (stateStr == "start") {
@@ -301,73 +369,4 @@ GameEngine::State GameEngine::stringToState(string stateStr) {
     }
 }
 
-// converts state enum value to string
-std::string stateToString(GameEngine::State state) {
-    switch (state) {
-        case GameEngine::State::START: return "start";
-        case GameEngine::State::MAP_LOADED: return "map loaded";
-        case GameEngine::State::MAP_VALIDATED: return "map validated";
-        case GameEngine::State::PLAYERS_ADDED: return "players added";
-        case GameEngine::State::ASSIGN_REINFORCEMENTS: return "assign reinforcement";
-        case GameEngine::State::ISSUE_ORDERS: return "issue orders";
-        case GameEngine::State::EXECUTE_ORDERS: return "execute orders";
-        case GameEngine::State::WIN: return "win";
-        case GameEngine::State::END: return "end";
-        default: return "UNKNOWN_STATE";
-    }
-}
-
-// converts command to string
-std::string commandToString(Commands command) {
-    switch (command) {
-        case CMD_START: return "start";
-        case CMD_LOAD_MAP: return "loadmap";
-        case CMD_VALIDATE_MAP: return "validatemap";
-        case CMD_ADD_PLAYER: return "addplayer";
-        case CMD_GAME_START: return "gamestart";
-        case CMD_ISSUE_ORDER: return "issueorder";
-        case CMD_END_ISSUE_ORDER: return "endissueorder";
-        case CMD_EXECUTE_ORDERS: return "executeorders";
-        case CMD_END_EXEC_ORDERS: return "endexecorders";
-        case CMD_WIN: return "win";
-        case CMD_END: return "end";
-        case CMD_PLAY: return "play";
-        case CMD_EXEC_ORDER: return "execorder";
-        default: return "UNKNOWN_COMMAND";
-    }
-}
-
-// converts command string to enum
-Commands commandToEnum(const std::string commandStr) {
-    if (commandStr == "start") {
-        return CMD_START;
-    } else if (commandStr == "loadmap") {
-        return CMD_LOAD_MAP;
-    } else if (commandStr == "validatemap") {
-        return CMD_VALIDATE_MAP;
-    } else if (commandStr == "addplayer") {
-        return CMD_ADD_PLAYER;
-    }
-    else if (commandStr == "gamestart")
-    {
-        return CMD_GAME_START;
-    }
-    else if (commandStr == "issueorder") {
-        return CMD_ISSUE_ORDER;
-    } else if (commandStr == "endissueorder") {
-        return CMD_END_ISSUE_ORDER;
-    } else if (commandStr == "executeorders") {
-        return CMD_EXECUTE_ORDERS;
-    } else if (commandStr == "endexecorders") {
-        return CMD_END_EXEC_ORDERS;
-    } else if (commandStr == "win") {
-        return CMD_WIN;
-    } else if (commandStr == "end") {
-        return CMD_END;
-    } else if (commandStr == "play") {
-        return CMD_PLAY;
-    } else if (commandStr == "execorder") {
-        return CMD_EXEC_ORDER;
-    }
-}
 

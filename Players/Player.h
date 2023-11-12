@@ -20,9 +20,9 @@ private:
     Hand* hand;
     vector<Territory*> territories; //territories owned by a Players
     string playerName;
-    int playerID;
+    int playerID{};
     OrdersList* ordersList= nullptr;
-    int reinforcementPool;
+    int reinforcementPool{};
 
 
 // public attributes

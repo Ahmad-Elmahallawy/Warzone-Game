@@ -29,8 +29,8 @@ int main() {
 //
 //    // Part 5
 //    testGameStates();
-  testStartupPhase();
-   // testCommandProcessor();
+//  testStartupPhase();
+    testCommandProcessor();
 
     return 0;
 }

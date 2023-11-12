@@ -27,6 +27,12 @@ public:
     void setTerritoryName(string tName);
     string getContinentName() const;
     void setContinentName(string cName);
+    int getNumberOfArmies() const;
+    void setNumberOfArmies(int numArmies);
+    void addArmies(int numArmies);
+    void removeArmies(int numArmies);
+    Player* getOwner() const;
+    void setOwner(Player* newOwner);
     int getVertexNumber() const;
     void setVertexNumber();
     int getViableVertexNumber() const;
@@ -54,6 +60,7 @@ public:
     bool DFS();
     void DFSUtil(Territory& v, std::vector<bool>& visited);
     void addEdge(Territory t1,Territory t2);
+    bool isAdjacent(const Territory& t1, const Territory& t2);
     vector<Territory> listOfTerritories;
     void print();
     friend std::ostream& operator<<(std::ostream& os, const Map& map);

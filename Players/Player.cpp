@@ -41,6 +41,9 @@ Player::~Player() {
     cout << "hand deleted" << endl;
     delete this->ordersList;
     cout << "orderslist deleted" << endl;
+    for (Territory* territory : territories) {
+        delete territory;
+    }
 
 }
 

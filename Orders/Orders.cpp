@@ -1,51 +1,55 @@
 #include "Orders.h"
 #include <iostream>
 #include <string>
-
 //   ---   Order class   ---
 
-// default constructor
-Order::Order()
-{
+// Default constructor
+Order::Order() : executed(false), player(nullptr), targetTerritory(nullptr), armiesToDeploy(0) {}
 
-}
+// Parameter constructor
+Order::Order(Player* player, Territory* targetTerritory, int armiesToDeploy)
+        : action("String describing the order"), executed(false), player(player), targetTerritory(targetTerritory), armiesToDeploy(armiesToDeploy) {}
 
-// destructor
+// Copy constructor
+Order::Order(const Order& order)
+        : action(order.action), executed(order.executed), player(order.player), targetTerritory(order.targetTerritory), armiesToDeploy(order.armiesToDeploy) {}
+
+// Destructor
 Order::~Order() {}
 
-// copy constructor
-Order::Order(const Order& order)
-{
-    this->action = order.action;
-}
-
-// validate method
+// Validate method
 bool Order::validate() { return true; }
 
-// execute method
+// Execute method
 void Order::execute() { this->executed = true; }
 
-// assignment operator
-Order& Order::operator=(const Order& order)
-{
-    this->action = order.action;
-    this->executed = order.executed;
+// Set the player associated with the order
+void Order::setPlayer(Player* player) { this->player = player; }
 
+// Get the player associated with the order
+Player* Order::getPlayer() const { return player; }
+
+// Assignment operator
+Order& Order::operator=(const Order& order) {
+    if (this != &order) {
+        this->action = order.action;
+        this->executed = order.executed;
+        this->player = order.player;
+        this->targetTerritory = order.targetTerritory;
+        this->armiesToDeploy = order.armiesToDeploy;
+    }
     return *this;
 }
 
-// print helper method for stream insertion operator overload
-void Order::print(std::ostream& output) const
-{
+// Print helper method for stream insertion operator overload
+void Order::print(std::ostream& output) const {
     output << "Order" << std::endl;
 }
 
-// stream insertion operator overload
-std::ostream& operator<<(std::ostream& output, const Order& order)
-{
+// Stream insertion operator overload
+std::ostream& operator<<(std::ostream& output, const Order& order) {
     order.print(output);
-    if (order.executed)
-    {
+    if (order.executed) {
         output << order.action << std::endl;
     }
     return output;
@@ -63,119 +67,131 @@ project description document).
 //   ---   Deploy class   ---
 
 // default constructor
-Deploy::Deploy()
-{
-    std::cout << "Deploy is added\n" << std::endl;
+
+// Default constructor for Deploy class
+Deploy::Deploy() : Order() {}
+
+// Parameter constructor for Deploy class
+Deploy::Deploy(Player* player, Territory* targetTerritory, int armiesToDeploy)
+        : Order(player, targetTerritory, armiesToDeploy) {
+    this->action = "effect in Deploy Order class";
 }
 
-// copy constructor
-Deploy::Deploy(const Deploy& deploy)
-{
-    this->action = deploy.action;
-}
+// Copy constructor for Deploy class
+Deploy::Deploy(const Deploy& deploy) : Order(deploy) {}
 
-// destructor
+// Destructor for Deploy class
 Deploy::~Deploy() {}
 
-// validate method override
-bool Deploy::validate()
-{
-    std::cout << "deploy class is valid" << std::endl;
-    return true;
-}
-
 // execute method override
-void Deploy::execute()
-{
-    if (this->validate())
-    {
-        std::cout << "executing Order Deploy" << std::endl;
+void Deploy::execute() {
+    if (this->validate()) {
+        // Deploy the specified number of army units to the target territory
+        targetTerritory->addArmies(armiesToDeploy);
+
+        // Set the order as executed
         this->executed = true;
+
+        std::cout << "Deploy order executed successfully." << std::endl;
     }
 }
 
-// assignment operator
-Deploy& Deploy::operator=(const Deploy& deploy)
-{
-    this->action = deploy.action;
-    this->executed = deploy.executed;
+// validate method override
+bool Deploy::validate() {
+    // Check if the target territory exists
+    if (!targetTerritory) {
+        std::cout << "Invalid Deploy order: Target territory does not exist." << std::endl;
+        return false;
+    }
 
+    // Check if the target territory belongs to the player issuing the order
+    if (targetTerritory->getOwner() != this->getPlayer()) {
+        std::cout << "Invalid Deploy order: Target territory does not belong to the player issuing the order." << std::endl;
+        return false;
+    }
+
+    // The order is valid
+    return true;
+}
+
+// Assignment operator override for Deploy class
+Deploy& Deploy::operator=(const Deploy& deploy) {
+    if (this != &deploy) {
+        Order::operator=(deploy);
+        // additional assignments specific to Deploy class, if any
+    }
     return *this;
 }
 
-// print helper method for stream insertion overload
-void Deploy::print(std::ostream& output) const
-{
+// Print helper method for stream insertion overload for Deploy class
+void Deploy::print(std::ostream& output) const {
     output << "Deploy" << std::endl;
 }
 
-// stream insertion operator overload
-std::ostream& operator<<(std::ostream& output, const Deploy& deploy)
-{
+// Stream insertion operator overload for Deploy class
+std::ostream& operator<<(std::ostream& output, const Deploy& deploy) {
     deploy.print(output);
-    if (deploy.executed)
-    {
+    if (deploy.executed) {
         output << deploy.action << std::endl;
     }
     return output;
 }
-
 //   ---   Advance class   ---
 
-// default constructor
-Advance::Advance()
-{
+// Default constructor for Advance class
+Advance::Advance() : Order() {
+    this -> sourceTerritory = nullptr;
     std::cout << "Advance is added\n" << std::endl;
 }
 
-// copy constructor
-Advance::Advance(const Advance& existingAdvance)
-{
+// Parameter constructor for Advance class
+Advance::Advance(Player* player, Territory* sourceTerritory, Territory* targetTerritory, int armiesToAdvance)
+        : Order(player, targetTerritory, armiesToAdvance) {
+    this->sourceTerritory = sourceTerritory;
+    this->action = "effect in Advance Order class";
+    std::cout << "Advance is added" << std::endl;
+}
+// Copy constructor for Advance class
+Advance::Advance(const Advance& existingAdvance) : Order(existingAdvance) {
+    this->sourceTerritory = existingAdvance.sourceTerritory;
     this->action = existingAdvance.action;
     std::cout << "Advance is added" << std::endl;
 }
 
-// destructor
+// Destructor for Advance class
 Advance::~Advance() {}
 
+// execute method override
+void Advance::execute() {
+
+}
+
 // validate method override
-bool Advance::validate()
-{
-    std::cout << "Advance class is valid" << std::endl;
+bool Advance::validate() {
+
+    // The order is valid
     return true;
 }
 
-// execute method override
-void Advance::execute()
-{
-    if (this->validate())
-    {
-        std::cout << "executing Order advance" << std::endl;
-        this->executed = true;
+
+// assignment operator override
+Advance& Advance::operator=(const Advance& advance) {
+    if (this != &advance) {
+        Order::operator=(advance);
+        this->sourceTerritory = advance.sourceTerritory;
     }
-}
-
-// assignment operator
-Advance& Advance::operator=(const Advance& advance)
-{
-    this->action = advance.action;
-    this->executed = advance.executed;
-
     return *this;
 }
 
 // print helper method for stream insertion overload
-void Advance::print(std::ostream& output) const
-{
+void Advance::print(std::ostream& output) const {
     output << "Advance" << std::endl;
 }
 
 // stream insertion operator overload
-std::ostream& operator<<(std::ostream& output, const Advance& advance)
-{
+std::ostream& operator<<(std::ostream& output, const Advance& advance) {
     advance.print(output);
-    if (advance.executed)
-    {
+    if (advance.executed) {
         output << advance.action << std::endl;
     }
     return output;

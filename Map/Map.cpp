@@ -58,6 +58,46 @@ void Territory::setTerritoryName(std::string tName) {
     this->territoryName = tName;
 }
 
+int Territory::getNumberOfArmies() const {
+    return this->numberOfArmies;
+}
+
+void Territory::setNumberOfArmies(int numArmies) {
+    // Setter method to set the number of armies
+    this->numberOfArmies = numArmies;
+}
+
+void Territory::addArmies(int numArmies) {
+    // Add the specified number of armies to the territory
+    this->numberOfArmies += numArmies;
+}
+void Territory::setOwner(Player* newOwner) {
+    owningPlayer = newOwner;
+}
+
+// Getter for the owner (player) of the territory
+Player* Territory::getOwner() const {
+    return owningPlayer;
+}
+
+
+void Territory::removeArmies(int numArmies) {
+    if (numArmies >= this->numberOfArmies) {
+        // If the number of armies to remove is greater than or equal to the current number of armies,
+        // set the number of armies to zero.
+        this->numberOfArmies = 0;
+    } else {
+        // Otherwise, subtract the specified number of armies.
+        this->numberOfArmies -= numArmies;
+
+        // Ensure the number of armies does not go below zero
+        if (this->numberOfArmies < 0) {
+            this->numberOfArmies = 0;
+            cout << "Can not set below 0";
+        }
+    }
+}
+
 void Territory::setContinentName(std::string cName) {
     this->continent = cName;
 }
@@ -109,6 +149,18 @@ bool Map::checkContinent() {
     }
     return true;
 }
+
+bool Map::isAdjacent(const Territory& t1, const Territory& t2) {
+    // Iterate through the adjacency list of t1
+    for (const auto& neighbor : adjlist[t1.getVertexNumber()]) {
+        // Check if t2 is present in the adjacency list of t1
+        if (neighbor.getTerritoryName() == t2.getTerritoryName()) {
+            return true; // t1 and t2 are adjacent
+        }
+    }
+    return false; // t1 and t2 are not adjacent
+}
+
 
 void Map::DFSUtil(Territory& v, std::vector<bool> &visited) {
     if(v.getVertexNumber() >= visited.size()){//if there is a vertex with a vertex number greater than the array size do not access it and return

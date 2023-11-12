@@ -12,21 +12,32 @@ bomb, blockade, airlift, and negotiate. All orders must have a validate() method
 
 #include <iostream>
 #include <deque>
+#include "../Players/Player.h"
+
+
+// Forward declaration for circular dependency
+class Territory;
 
 //   ---   Order class    ---   [each ORDER type (below) inherits from this class and overrides execute() and validate()]
 
 class Order
 {
-private:
+protected:
     // action of the Order
     std::string action = "String describing the order";
 
     // boolean set true if action object has been executed
     bool executed = false;
+    Player* player = nullptr;
+    Territory* targetTerritory;
+    Territory* sourceTerritory;
+    int armiesToDeploy;
 
 public:
     // default constructor
     Order();
+
+    Order(Player* player, Territory* targetTerritory, int armiesToDeploy);
 
     // copy constructor
     Order(const Order& order);
@@ -39,6 +50,12 @@ public:
 
     // virtual method to validate order (implemented in subclasses)
     virtual bool validate();
+
+    // Set the player associated with the order
+    void setPlayer(Player* player);
+
+    // Get the player associated with the order
+    Player* getPlayer() const;
 
     // assignment operator
     Order& operator=(const Order& order);
@@ -57,16 +74,15 @@ public:
 
 class Deploy : public Order
 {
-private:
-    // action of Deploy
-    std::string action = "effect in Deploy Order class";
 
-    // boolean set true if action object has been executed
-    bool executed = false;
 
 public:
     // default constructor
     Deploy();
+
+    // parameter constructor
+    Deploy(Player* player, Territory* targetTerritory, int armiesToDeploy);
+
 
     // copy constructor
     Deploy(const Deploy& deploy);
@@ -94,22 +110,18 @@ public:
 
 class Advance : public Order
 {
-private:
-    // action of Advance
-    std::string action = "effect in Advance Order class";
 
-    // boolean set true if action object has been executed
-    bool executed = false;
 
 public:
     // default constructor
     Advance();
 
+    // parameter constructor
+    Advance(Player* player, Territory* sourceTerritory, Territory* targetTerritory, int armiesToAdvance);
+    ~Advance() override;
+
     // copy constructor
     Advance(const Advance& advance);
-
-    // default destructor
-    ~Advance();
 
     // execute method override
     void execute() override;
@@ -125,6 +137,7 @@ public:
 
     // stream insertion operator
     friend std::ostream& operator<<(std::ostream& output, const Advance& advance);
+
 };
 
 //   ---   Bomb class   ---
@@ -319,6 +332,6 @@ public:
 
 };
 //free function to test OrdersList methods
-    void testOrdersLists();
+void testOrdersLists();
 
 #endif
