@@ -24,6 +24,7 @@ void testLoggingObserver() {
 
     Player p1;
     Player p2;
+    Player p3;
 
     Territory* t1 = new Territory();
     Territory* t2 = new Territory();
