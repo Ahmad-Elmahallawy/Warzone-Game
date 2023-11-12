@@ -28,6 +28,9 @@ private:
     string phase;
     vector<Territory*> attackList;
     vector<Territory*> defendList;
+    // Static member representing the neutral player
+    static Player* neutralPlayer;
+    bool capturedTerritoryThisTurn = false;
 
 
 // public attributes
@@ -38,13 +41,14 @@ public:
 
     Player(string playerName);
 
+    // Static method to get the neutral player instance
+    static Player* getNeutralPlayer();
 
     Player(Hand *hand, const vector<Territory *> &territories, const string &playerName, int playerId,
            OrdersList *ordersList);
 
 
     ~Player();   // deconstruct
-
 
     // toDefend() and toAttack() methods return a list of territories
     std::vector<Territory*> toDefend() const;
@@ -69,6 +73,7 @@ public:
 
     void setPlayerID(const int &playerID);
 
+    void setCapturedTerritoryThisTurn(bool update);
 
     int getReinforcementPool() const;
 

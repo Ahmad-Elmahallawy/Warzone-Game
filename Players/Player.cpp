@@ -4,6 +4,10 @@
 #include "Player.h"
 using namespace std;
 // default constructor
+
+// Static method to get the neutral player instance
+static Player* getNeutralPlayer();
+
 Player::Player() {
     this->hand = new Hand();
     this->territories = {};
@@ -91,6 +95,18 @@ void Player::setReinforcementPool(int num) {
     this->reinforcementPool += num;
 }
 
+// Static method to get the neutral player instance
+Player* Player::getNeutralPlayer() {
+    // If neutralPlayer is not created, create it
+    if (!neutralPlayer) {
+        neutralPlayer = new Player("Neutral"); // Adjust the constructor as needed
+    }
+    return neutralPlayer;
+}
+void Player::setCapturedTerritoryThisTurn(bool update)
+{
+    this->capturedTerritoryThisTurn = update;
+}
 // List of territories that are going to be defended
 vector<Territory *> Player::toDefend()
 {

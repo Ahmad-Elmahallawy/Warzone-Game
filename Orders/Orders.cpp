@@ -89,10 +89,16 @@ void Deploy::execute() {
         // Deploy the specified number of army units to the target territory
         targetTerritory->addArmies(armiesToDeploy);
 
+        // subtract from the reinforcement pool
+        this->player->setReinforcementPool(-this->armiesToDeploy);
+
+        // setting the action string
+        this->action = this->player->getPlayerName() + " deployed " + to_string(this->armiesToDeploy) + " to " + this->targetTerritory->getTerritoryName();
         // Set the order as executed
         this->executed = true;
 
         std::cout << "Deploy order executed successfully." << std::endl;
+        std::cout << this->action;
     }
 }
 
@@ -107,6 +113,12 @@ bool Deploy::validate() {
     // Check if the target territory belongs to the player issuing the order
     if (targetTerritory->getOwner() != this->getPlayer()) {
         std::cout << "Invalid Deploy order: Target territory does not belong to the player issuing the order." << std::endl;
+        return false;
+    }
+
+    // if the number of armies to deploy is greater than the reinforcement pool
+    if (this->armiesToDeploy > this->getPlayer()->getReinforcementPool()) {
+        std::cout << "Invalid Deploy  order: Can not deploy more army than what is in the pool";
         return false;
     }
 
@@ -164,19 +176,23 @@ Advance::~Advance() {}
 // Advance order execute method
 void Advance::execute() {
     if (this->validate()) {
+
+        bool conqueredTerritory = false;
+        // Simulate battle
+        int attackerUnits = armiesToDeploy;
+        int defenderUnits = targetTerritory->getNumberOfArmies();
         // Check if the target territory belongs to another player
         if (targetTerritory->getOwner() != this->getPlayer()) {
-            // Simulate battle
-            int attackerUnits = armiesToDeploy;
-            int defenderUnits = targetTerritory->getNumberOfArmies();
 
             while (attackerUnits > 0 && defenderUnits > 0) {
                 // Simulate each round of battle
+                // 60% success rate
                 if (rand() % 100 < 60) {
                     // Attacker kills one defender
                     defenderUnits--;
                 }
 
+                // 70% success rate
                 if (rand() % 100 < 70) {
                     // Defender kills one attacker
                     attackerUnits--;
@@ -184,26 +200,42 @@ void Advance::execute() {
             }
 
             // If all defenders are eliminated, the attacker captures the territory
-            if (defenderUnits == 0) {
+            if (defenderUnits <= 0 && attackerUnits > 0) {
                 std::cout << "Attack successful! " << this->getPlayer()->getPlayerName()
                           << " captured " << targetTerritory->getTerritoryName() << std::endl;
 
                 // Move remaining attacker units to the conquered territory
                 targetTerritory->setOwner(this->getPlayer());
                 targetTerritory->addArmies(attackerUnits);
+                sourceTerritory->addArmies(-this->armiesToDeploy);
+                action = this->getPlayer()->getPlayerName() + " captured " + this->targetTerritory->getTerritoryName();
+                // Set conqueredTerritory to true
+                conqueredTerritory = true;
+                this->getPlayer()->setCapturedTerritoryThisTurn(conqueredTerritory);
+
             } else {
-                std::cout << "Attack failed! " << targetTerritory->getTerritoryName() << " defended successfully." << std::endl;
+                this-> action = "Attack failed! " + targetTerritory->getTerritoryName() + " defended successfully.";
             }
         } else {
             // Move army units from source to target territory
             sourceTerritory->removeArmies(armiesToDeploy);
             targetTerritory->addArmies(armiesToDeploy);
+            this->action = this->player->getPlayerName() + " advanced " + std::to_string(this->armiesToDeploy) + " units from " + this->sourceTerritory->getTerritoryName() + " to " + this->targetTerritory->getTerritoryName();
+
         }
 
         // Set the order as executed
         this->executed = true;
+        // Check if a territory is conquered during the turn to determine card eligibility
+        if (conqueredTerritory) {
+            Deck deck{};
+            Card* c1 = deck.draw();
+            // Award a card to the player at the end of their turn
+            this->getPlayer()->getHand()->returnCard(*c1);
+        }
 
         std::cout << "Advance order executed successfully." << std::endl;
+        cout << action << endl;
     }
 }
 
@@ -231,6 +263,11 @@ bool Advance::validate() {
     if (!sourceTerritory->isAdjacent(targetTerritory)) {
         std::cout << "Invalid Advance order: Source and target territories are not adjacent." << std::endl;
         return false;
+    }
+
+    if (this->armiesToDeploy > this->getPlayer()->getReinforcementPool())
+    {
+        std::cout << "Invalid Advance  order: Can not advance more army than what is in the pool";
     }
 
     // The order is valid
@@ -280,19 +317,49 @@ Bomb::Bomb(const Bomb& existingBomb)
 Bomb::~Bomb() {}
 
 // validate method override
-bool Bomb::validate()
-{
-    std::cout << "Bomb class is valid\n" << std::endl;
+bool Bomb::validate() {
+    // Check if the target territory exists
+    if (!targetTerritory) {
+        std::cout << "Invalid Bomb order: Target territory does not exist." << std::endl;
+        return false;
+    }
+
+    // Check if the target territory belongs to the player issuing the order
+    if (targetTerritory->getOwner() == this->getPlayer()) {
+        std::cout << "Invalid Bomb order: Target territory belongs to the player issuing the order." << std::endl;
+        return false;
+    }
+
+    // Check if the target territory is adjacent to one of the player's territories
+    bool isAdjacent = false;
+    for (Territory* playerTerritory : this->getPlayer()->getTerritories()) {
+        if (playerTerritory->isAdjacent(targetTerritory)) {
+            isAdjacent = true;
+            break;
+        }
+    }
+
+    if (!isAdjacent) {
+        std::cout << "Invalid Bomb order: Target territory is not adjacent to any of the player's territories." << std::endl;
+        return false;
+    }
+
+    // The order is valid
     return true;
 }
 
 // execute method override
-void Bomb::execute()
-{
-    if (this->validate())
-    {
-        std::cout << "executing Order Bomb" << std::endl;
+void Bomb::execute() {
+    if (this->validate()) {
+        // Remove half of the army units from the target territory
+        int remainingArmies = targetTerritory->getNumberOfArmies() / 2;
+        targetTerritory->addArmies(remainingArmies);
+
+        // Set the order as executed
         this->executed = true;
+
+        std::cout << "Bomb order executed successfully. Half of the army units removed from "
+                  << targetTerritory->getTerritoryName() << "." << std::endl;
     }
 }
 
@@ -339,22 +406,55 @@ Blockade::Blockade(const Blockade& blockade)
 // destructor
 Blockade::~Blockade() {}
 
+// execute method override
+void Blockade::execute() {
+    if (this->validate()) {
+        // Create the neutral player instance
+        Player* neutralPlayer = Player::getNeutralPlayer();
+
+        // Double the number of army units on the target territory
+        int currentArmies = targetTerritory->getNumberOfArmies();
+        targetTerritory->addArmies(currentArmies);
+
+        // Transfer the ownership of the territory to the Neutral player
+        targetTerritory->setOwner(neutralPlayer);
+
+        // Set the order as executed
+        this->executed = true;
+
+        std::cout << "Blockade order executed successfully." << std::endl;
+    }
+}
+
+// --- Blockade class validate method ---
+
 // validate method override
-bool Blockade::validate()
-{
-    std::cout << "Blockade class is valid" << std::endl;
+bool Blockade::validate() {
+    // Check if the target territory exists
+    if (!targetTerritory) {
+        std::cout << "Invalid Blockade order: Target territory does not exist." << std::endl;
+        return false;
+    }
+
+    // Check if the target territory belongs to the player issuing the order
+    if (targetTerritory->getOwner() != this->getPlayer()) {
+        std::cout << "Invalid Blockade order: Target territory does not belong to the player issuing the order." << std::endl;
+        return false;
+    }
+
+    // Check if the target territory belongs to the neutral player
+    Player* neutralPlayer = Player::getNeutralPlayer();
+    if (targetTerritory->getOwner() == neutralPlayer) {
+        std::cout << "Invalid Blockade order: Target territory already belongs to the Neutral player." << std::endl;
+        return false;
+    }
+
+    // The order is valid
     return true;
 }
 
-// execute method override
-void Blockade::execute()
-{
-    if (this->validate())
-    {
-        std::cout << "executing Order Blockade" << std::endl;
-        this->executed = true;
-    }
-}
+
+
 
 // assignment operator
 Blockade& Blockade::operator=(const Blockade& blockade)
@@ -400,19 +500,53 @@ Airlift::Airlift(const Airlift& existingAirlift)
 Airlift::~Airlift() {}
 
 // validate method override
-bool Airlift::validate()
-{
-    std::cout << "validate() called in an Airlift object" << std::endl;
+bool Airlift::validate() {
+    // Check if the source territory exists
+    if (!sourceTerritory) {
+        action = "Invalid Airlift order: Source territory does not exist.";
+        cout << action << endl;
+        return false;
+    }
+
+    // Check if the target territory exists
+    if (!targetTerritory) {
+        action = "Invalid Airlift order: Target territory does not exist.";
+        cout << action << endl;
+        return false;
+    }
+
+    // Check if the source territory belongs to the player issuing the order
+    if (sourceTerritory->getOwner() != this->getPlayer()) {
+        action = "Invalid Airlift order: Source territory does not belong to the player issuing the order.";
+        cout << action << endl;
+        return false;
+    }
+
+    // Check if the target territory belongs to the player issuing the order
+    if (targetTerritory->getOwner() != this->getPlayer()) {
+        action = "Invalid Airlift order: Target territory does not belong to the player issuing the order.";
+        cout << action << endl;
+        return false;
+    }
+
+    // The order is valid
     return true;
 }
 
 // execute method override
-void Airlift::execute()
-{
-    if (this->validate())
-    {
-        std::cout << "execute() called in an Airlift object" << std::endl;
+void Airlift::execute() {
+    if (this->validate()) {
+        // Move army units from source to target territory
+        sourceTerritory->removeArmies(armiesToDeploy);
+        targetTerritory->addArmies(armiesToDeploy);
+
+        // Set the order as executed
         this->executed = true;
+        action = this->getPlayer()->getPlayerName() + " has ordered an Airlist, army units will move from " + sourceTerritory->getTerritoryName() + " to " + targetTerritory->getTerritoryName()
+                + ". The number of units moved: " + to_string(armiesToDeploy);
+
+        std::cout << "Airlift order executed successfully." << std::endl;
+        cout << action << endl;
     }
 }
 

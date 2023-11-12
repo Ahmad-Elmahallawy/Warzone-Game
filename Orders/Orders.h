@@ -111,7 +111,6 @@ public:
 class Advance : public Order
 {
 
-
 public:
     // default constructor
     Advance();
@@ -231,6 +230,7 @@ public:
 
     // copy constructor
     Airlift(const Airlift& airlift);
+
 
     // default destructor
     ~Airlift();
