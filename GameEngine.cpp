@@ -487,61 +487,114 @@ void GameEngine::issuingOrdersPhase() {
 //orders executionPhase
 
 void GameEngine::ordersExecutionPhase() {
-    int beforeTerritoryListSize;
-    int afterTerritoryListSize;
-    // 1:deploy NEED TO CHECK IF REINFORCEMENT POOL IS EMPTY OTHERWISE CANNOT EXECUTE OTHER ORDERS
-//    for (int i = 0; i < AddedPlayerList.size(); i++)
-//    {
-//        AddedPlayerList[i]->setPhase("Execute Orders DEPLOY (1st priority)");
-//
-//        beforeTerritoryListSize = AddedPlayerList[i]->getTerritories().size();
-//        OrdersList currentPlayerOrdersList = AddedPlayerList[i]->getOrdersList();
-//
-//        // If player's order list is empty do not display
-//        if(AddedPlayerList[i]->getOrdersList().getOrdersListSize() != 0)
-//        {
-//            AddedPlayerList[i]->setPhase("Execute Orders DEPLOY (1st priority)");
-//
-//        }
-//
-//        // looping through player's order list
-//        for (int j = 0; j < currentPlayerOrdersList.getOrdersListSize(); j++)
-//        {
-//            if (currentPlayerOrdersList.getOrder(j)->getLabel() == "deploy")
-//            {
-//                //execute deploy actions here
-//                currentPlayerOrdersList.getNextOrder()->execute();
-//            }
-//        }
-//        afterTerritoryListSize = AddedPlayerList[i]->getTerritories().size();
-//        if(afterTerritoryListSize - beforeTerritoryListSize){ // if the player conquered at least one territory, they can draw a card
-//            deck->draw();
-//        }
-//    }
-//
-//    // 2: airlift
-//    for (int i = 0; i < AddedPlayerList.size(); i++)
-//    {
-//        if(AddedPlayerList[i]->getOrdersList().getOrdersListSize() != 0)
-//        {
-//            AddedPlayerList[i]->setPhase("Execute Orders: AIRLIFT(2)");
-//
-//        }
-//
-//        OrdersList currentPlayerOrdersList = AddedPlayerList[i]->getOrdersList();
-//
-//        for (int j = 0; j < currentPlayerOrdersList.getOrdersListSize(); j++)
-//        {
-//            if (currentPlayerOrdersList.getNextOrder()->getLabel() == "airlift")
-//            {
-//                //execute airlift actions here
-//                currentPlayerOrdersList.getNextOrder()->execute();
-//            }
-//        }
-//    }
+    Deck *deck = new Deck();
+    int beforeTerritoryListSize; //how many territories owned before
+    int afterTerritoryListSize;  //how many territories owned after
+
+     //1:deploy NEED TO CHECK IF REINFORCEMENT POOL IS EMPTY OTHERWISE CANNOT EXECUTE OTHER ORDERS
+    for (int i = 0; i < AddedPlayerList.size(); i++)
+    {
+        AddedPlayerList[i]->setPhase("Execute Orders DEPLOY (1st priority)");
+
+        beforeTerritoryListSize = AddedPlayerList[i]->getTerritories().size();
+        OrdersList currentPlayerOrdersList = AddedPlayerList[i]->getOrdersList();
+
+        // If player's order list is empty do not display
+        if(AddedPlayerList[i]->getOrdersList().getOrdersListSize() != 0)
+        {
+            AddedPlayerList[i]->setPhase("Execute Orders DEPLOY (1st priority)");
+
+        }
+
+        // looping through player's order list
+        for (int j = 0; j < currentPlayerOrdersList.getOrdersListSize(); j++)
+        {
+            if (currentPlayerOrdersList.getOrder(j)->getLabel() == "deploy")
+            {
+                //execute deploy actions here
+                currentPlayerOrdersList.getNextOrder()->execute();
+            }
+        }
+        afterTerritoryListSize = AddedPlayerList[i]->getTerritories().size();
+        if(afterTerritoryListSize - beforeTerritoryListSize){ // player receives card at end of turn if they conquer at least one territory during thier turn
+            deck->draw();
+        }
+    }
+
+    // 2: airlift
+    for (int i = 0; i < AddedPlayerList.size(); i++)
+    {
+        if(AddedPlayerList[i]->getOrdersList().getOrdersListSize() != 0)
+        {
+            AddedPlayerList[i]->setPhase("Execute Orders: AIRLIFT(2)");
+
+        }
+
+        OrdersList currentPlayerOrdersList = AddedPlayerList[i]->getOrdersList();
+
+        for (int j = 0; j < currentPlayerOrdersList.getOrdersListSize(); j++)
+        {
+            if (currentPlayerOrdersList.getNextOrder()->getLabel() == "airlift")
+            {
+                //execute airlift actions here
+                currentPlayerOrdersList.getNextOrder()->execute();
+            }
+        }
+    }
 
     // 3: blockade and the others
+    for (int i = 0; i < AddedPlayerList.size(); i++)
+    {
+        if(AddedPlayerList[i]->getOrdersList().getOrdersListSize() != 0)
+        {
+            AddedPlayerList[i]->setPhase("Execute Orders: BLOCKADE (3rd)");
 
+        }
+
+        OrdersList currentPlayerOrdersList = AddedPlayerList[i]->getOrdersList();
+
+        for (int j = 0; j < currentPlayerOrdersList.getOrdersListSize(); j++)
+        {
+            if (currentPlayerOrdersList.getOrder(j)->getLabel() == "blockade")
+            {
+                //execute blockade actions here
+                currentPlayerOrdersList.getOrder(j)->execute();
+            }
+        }
+    }
+
+    // 4: rest of the orders executed in this block
+    for (int i = 0; i < AddedPlayerList.size(); i++)
+    {
+        if(AddedPlayerList[i]->getOrdersList().getOrdersListSize() != 0)
+        {
+            AddedPlayerList[i]->setPhase("Execute Orders: executing the rest according to their order in the list");
+
+        }
+
+        OrdersList currentPlayerOrdersList = AddedPlayerList[i]->getOrdersList();
+
+        for (int j = 0; j < currentPlayerOrdersList.getOrdersListSize(); j++)
+        {
+            if (currentPlayerOrdersList.getOrder(j)->getLabel() == "advance")
+            {
+                //execute advance actions here
+                currentPlayerOrdersList.getOrder(j)->execute();
+            }
+
+            if (currentPlayerOrdersList.getOrder(j)->getLabel() == "bomb")
+            {
+                //execute bomb actions here
+                currentPlayerOrdersList.getOrder(j)->execute();
+            }
+
+            if (currentPlayerOrdersList.getOrder(j)->getLabel() == "negotiate")
+            {
+                //execute negotiate actions here
+                currentPlayerOrdersList.getOrder(j)->execute();
+            }
+        }
+    }
 
 }
 
