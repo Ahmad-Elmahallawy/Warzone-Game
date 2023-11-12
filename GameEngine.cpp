@@ -44,7 +44,8 @@ std::map<GameEngine::State, std::vector<GameEngine::Transition>> GameEngine::sta
 };
 
 
-GameEngine::GameEngine():currentState(START), commandProcessor(new CommandProcessing()), currentMap(nullptr) {
+GameEngine::GameEngine():currentState(START), commandProcessor(new CommandProcessing()), ml(nullptr) {
+    srand(time(nullptr));
 
 }
 
@@ -104,17 +105,17 @@ void GameEngine::gameStart() {
     cout << "Part a: Distributing territories " << endl;
 
     // Allocates one territory to each player. Each territory allocated are equidistant from each other
-//    int numTerritories = (int)this->currentMap->listOfTerritories.size();
-//    int gap = numTerritories / (int)AddedPlayerList.size();
-//    int playersIndex = 0;
-//
-//    for(int i = 0; i < numTerritories ; i++)
-//    {
-//        Territory* t = &(currentMap->listOfTerritories[i]);
-//        AddedPlayerList[playersIndex % AddedPlayerList.size()]->setTerritories(t);
-//        playersIndex++;
-//        delete t;
-//    }
+    int numTerritories = ml->getNumberOfTerritories();
+    int gap = numTerritories / (int)AddedPlayerList.size();
+    int playersIndex = 0;
+
+    for(int i = 0; i < numTerritories ; i++)
+    {
+        Territory* t = &(ml->gameMap->listOfTerritories[i]);
+        AddedPlayerList[playersIndex % AddedPlayerList.size()]->setTerritories(t);
+        playersIndex++;
+        delete t;
+    }
 
     // Randomizes the order of players
     vector<Player*> orderedPlayers;
@@ -140,23 +141,21 @@ void GameEngine::gameStart() {
     cout << "\nAdded 50 armies to each player's reinforcement pool..." << endl;
 
     // Draws two cards from the deck for each player
-    Deck* deck = new Deck();
+//    Deck deck;
+//
+//    Card* card1, *card2;
+//    for(int i = 0; i < orderedPlayers.size() ; i++)
+//    {
+//        card1 = deck.draw();
+//        card2 = deck.draw();
+//        if (card1 && card2) {
+//            orderedPlayers[i]->getHand()->returnCard(*card1);
+//            orderedPlayers[i]->getHand()->returnCard(*card2);
+//        } else {
+//            std::cout << "Error: Unable to draw cards from the deck." << std::endl;
+//        }
+//    }
 
-    Card* card1, *card2;
-    for(int i = 0; i < orderedPlayers.size() ; i++)
-    {
-        card1 = deck->draw();
-        card2 = deck->draw();
-        if (card1 && card2) {
-            orderedPlayers[i]->getHand()->returnCard(*card1);
-            orderedPlayers[i]->getHand()->returnCard(*card2);
-        } else {
-            // Handle error or log a message
-        }
-    }
-    delete deck;
-    delete card1;
-    delete card2;
 
     cout << "\nDrew two cards from the deck for each player..." << endl;
 }
@@ -211,9 +210,9 @@ void GameEngine::startupPhase() {
         switch (commandToEnum(command->getCommand())) {
             case CMD_LOAD_MAP: {
                 int numberOfVertices = testLoadMaps(command->secondParameter);
-                MapLoader ml(numberOfVertices, command->secondParameter);
+                ml->setNumberOfTerritories(numberOfVertices);
                 // Load the map
-                if (!ml.firstRun()) {
+                if (!ml->firstRun()) {
                     continue;
                 }
                 cout << "map loaded successfully" << endl;
@@ -221,9 +220,8 @@ void GameEngine::startupPhase() {
                 break;
             }
             case CMD_VALIDATE_MAP: {
-                MapLoader ml(0, ""); // Dummy MapLoader
                 // Validate the map
-                if (!ml.secondRun()) {
+                if (!ml->secondRun()) {
                     continue;
                 }
                 currentState = transition(CMD_VALIDATE_MAP);
@@ -243,7 +241,9 @@ void GameEngine::startupPhase() {
                 std::cout << "Invalid command. Try again." << std::endl;
                 break;
         }
+        delete command;
     }
+
 
     std::cout << "Game has ended." << std::endl;
 }
@@ -268,10 +268,15 @@ bool GameEngine::isGameComplete() {
 
 GameEngine::~GameEngine() {
     delete commandProcessor;
-    delete currentMap;
-    for (Player* player : AddedPlayerList) {
-        delete player;
+    delete ml;
+
+    for (int i = 0; i < AddedPlayerList.size(); i++) {
+        delete AddedPlayerList[i];
+        AddedPlayerList[i] = NULL;
     }
+
+
+    AddedPlayerList.clear();
 
 }
 

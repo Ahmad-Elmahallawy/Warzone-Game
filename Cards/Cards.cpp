@@ -15,7 +15,7 @@ Card::Card(WarzoneCard card) {
 
 // compy constructor
 Card::Card(const Card& card) {
-    this-> card1 = card.card1;
+    this->card1 = card.card1;
 }
 
 // operator that assigns a new value to an exisiting object
@@ -53,7 +53,11 @@ Deck::Deck() {
     }
 }
 
-Deck::~Deck() {}
+Deck::~Deck() {
+    for (Card* card : vectorDeck) {
+        delete card;
+    }
+}
 
 Deck::Deck(const Deck& deck) {
     for(size_t i = 0; i < deck.vectorDeck.size(); i++) {
@@ -70,8 +74,9 @@ Card* Deck::draw() {
 
     if(vectorDeck.empty()) {
         std:: cout << "No more cards are in the deck.";
-        return 0;
+        return nullptr;
     }
+
     else {
         srand (time(0));
         int size = vectorDeck.size();
@@ -159,8 +164,9 @@ Card* Hand::removeFromHand(int i) {
 }
 
 void Hand::returnCard(Card& card) {
-    this -> vectorHand.push_back(&card);
+    this->vectorHand.push_back(new Card(card));  // Copy the card to manage its memory
 }
+
 
 void Hand::displayHand() {
     if(vectorHand.empty())

@@ -84,7 +84,7 @@ private:
     GameEngine::State currentState; // current game state
     CommandProcessing* commandProcessor;  // Member variable as a pointer to store the CommandProcessing
     vector<Player*> AddedPlayerList; // Holds the players added to keep track of how many players are added;
-    Map* currentMap;
+    MapLoader* ml;
 
 
 };
