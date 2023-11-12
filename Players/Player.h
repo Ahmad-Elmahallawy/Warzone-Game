@@ -59,7 +59,7 @@ public:
     void setHand(Hand *hand);
 
 
-    void setTerritories(Territory* territories);
+    void setTerritories(Territory territories);
     void setPlayerName(const string &playerName);
 
     void setPlayerID(const int &playerID);

@@ -69,8 +69,8 @@ void Player::setHand(Hand *hand) {
 }
 
 // setsTerritories
-void Player::setTerritories(Territory* territories) {
-    Player::territories.push_back(territories);
+void Player::setTerritories(Territory territories) {
+    Player::territories.push_back(&territories);
 }
 
 // sets Player's name

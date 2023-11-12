@@ -4,10 +4,11 @@
 #include <iostream>
 #include <vector>
 #include <algorithm> // include for case-insensitive string comparison
+#include <random>
 
 using namespace std;
 
-#include "gameengine.h"
+#include "GameEngine.h"
 
 // Definition and initialization of the static member
 std::map<GameEngine::State, std::vector<GameEngine::Transition>> GameEngine::stateTransitions = {
@@ -44,7 +45,7 @@ std::map<GameEngine::State, std::vector<GameEngine::Transition>> GameEngine::sta
 };
 
 
-GameEngine::GameEngine():currentState(START), commandProcessor(new CommandProcessing()), ml(nullptr) {
+GameEngine::GameEngine():currentState(START), commandProcessor(new CommandProcessing()) {
     srand(time(nullptr));
 
 }
@@ -111,50 +112,53 @@ void GameEngine::gameStart() {
 
     for(int i = 0; i < numTerritories ; i++)
     {
-        Territory* t = &(ml->gameMap->listOfTerritories[i]);
+        Territory t = ml->gameMap->listOfTerritories[i];
         AddedPlayerList[playersIndex % AddedPlayerList.size()]->setTerritories(t);
+
         playersIndex++;
-        delete t;
     }
 
     // Randomizes the order of players
-    vector<Player*> orderedPlayers;
-    while(AddedPlayerList.size() != 0) {
-        int index = rand() % AddedPlayerList.size();
-        orderedPlayers.push_back(AddedPlayerList[index]);
-        AddedPlayerList.erase(AddedPlayerList.begin() + index);
+    for (int i = AddedPlayerList.size() - 1; i > 0; --i) {
+        int j = rand() % (i + 1);
+        std::swap(AddedPlayerList[i], AddedPlayerList[j]);
     }
 
-    this->AddedPlayerList = orderedPlayers;
+//    while(AddedPlayerList.size() != 0) {
+//        int index = rand() % AddedPlayerList.size();
+//        AddedPlayerList.push_back(AddedPlayerList[index]);
+//        AddedPlayerList.erase(AddedPlayerList.begin() + index);
+//    }
+
+//    this->AddedPlayerList = orderedPlayers;
 
     cout << "Determined the order of play is shown below: " << endl;
-    for(int i = 0; i < orderedPlayers.size() ; i++) {
-        cout << "Player #: " << i + 1 << " with name " << orderedPlayers[i]->getPlayerName() << endl;
+    for(int i = 0; i < AddedPlayerList.size() ; i++) {
+        cout << "Player #: " << i + 1 << " with name " << AddedPlayerList[i]->getPlayerName() << endl;
     }
 
     // add 50 armies to each player's reinforcement pool
-    for (int i = 0; i < orderedPlayers.size(); i++)
+    for (int i = 0; i < AddedPlayerList.size(); i++)
     {
-        orderedPlayers[i]->setReinforcementPool(50);
+        AddedPlayerList[i]->setReinforcementPool(50);
     }
 
     cout << "\nAdded 50 armies to each player's reinforcement pool..." << endl;
 
     // Draws two cards from the deck for each player
-//    Deck deck;
-//
-//    Card* card1, *card2;
-//    for(int i = 0; i < orderedPlayers.size() ; i++)
-//    {
-//        card1 = deck.draw();
-//        card2 = deck.draw();
-//        if (card1 && card2) {
-//            orderedPlayers[i]->getHand()->returnCard(*card1);
-//            orderedPlayers[i]->getHand()->returnCard(*card2);
-//        } else {
-//            std::cout << "Error: Unable to draw cards from the deck." << std::endl;
-//        }
-//    }
+    Deck deck;
+    Card* card1, *card2;
+    for(int i = 0; i < AddedPlayerList.size() ; i++)
+    {
+        card1 = deck.draw();
+        card2 = deck.draw();
+        if (card1 && card2) {
+            AddedPlayerList[i]->getHand()->returnCard(*card1);
+            AddedPlayerList[i]->getHand()->returnCard(*card2);
+        } else {
+            std::cout << "Error: Unable to draw cards from the deck." << std::endl;
+        }
+    }
 
 
     cout << "\nDrew two cards from the deck for each player..." << endl;
@@ -210,7 +214,7 @@ void GameEngine::startupPhase() {
         switch (commandToEnum(command->getCommand())) {
             case CMD_LOAD_MAP: {
                 int numberOfVertices = testLoadMaps(command->secondParameter);
-                ml->setNumberOfTerritories(numberOfVertices);
+                ml = new MapLoader(numberOfVertices,command->secondParameter);
                 // Load the map
                 if (!ml->firstRun()) {
                     continue;
