@@ -161,17 +161,82 @@ Advance::Advance(const Advance& existingAdvance) : Order(existingAdvance) {
 // Destructor for Advance class
 Advance::~Advance() {}
 
-// execute method override
+// Advance order execute method
 void Advance::execute() {
+    if (this->validate()) {
+        // Check if the target territory belongs to another player
+        if (targetTerritory->getOwner() != this->getPlayer()) {
+            // Simulate battle
+            int attackerUnits = armiesToDeploy;
+            int defenderUnits = targetTerritory->getNumberOfArmies();
 
+            while (attackerUnits > 0 && defenderUnits > 0) {
+                // Simulate each round of battle
+                if (rand() % 100 < 60) {
+                    // Attacker kills one defender
+                    defenderUnits--;
+                }
+
+                if (rand() % 100 < 70) {
+                    // Defender kills one attacker
+                    attackerUnits--;
+                }
+            }
+
+            // If all defenders are eliminated, the attacker captures the territory
+            if (defenderUnits == 0) {
+                std::cout << "Attack successful! " << this->getPlayer()->getPlayerName()
+                          << " captured " << targetTerritory->getTerritoryName() << std::endl;
+
+                // Move remaining attacker units to the conquered territory
+                targetTerritory->setOwner(this->getPlayer());
+                targetTerritory->addArmies(attackerUnits);
+            } else {
+                std::cout << "Attack failed! " << targetTerritory->getTerritoryName() << " defended successfully." << std::endl;
+            }
+        } else {
+            // Move army units from source to target territory
+            sourceTerritory->removeArmies(armiesToDeploy);
+            targetTerritory->addArmies(armiesToDeploy);
+        }
+
+        // Set the order as executed
+        this->executed = true;
+
+        std::cout << "Advance order executed successfully." << std::endl;
+    }
 }
 
-// validate method override
+// Advance order validate method
 bool Advance::validate() {
+    // Check if the source territory exists
+    if (!sourceTerritory) {
+        std::cout << "Invalid Advance order: Source territory does not exist." << std::endl;
+        return false;
+    }
+
+    // Check if the source territory belongs to the player issuing the order
+    if (sourceTerritory->getOwner() != this->getPlayer()) {
+        std::cout << "Invalid Advance order: Source territory does not belong to the player issuing the order." << std::endl;
+        return false;
+    }
+
+    // Check if the target territory exists
+    if (!targetTerritory) {
+        std::cout << "Invalid Advance order: Target territory does not exist." << std::endl;
+        return false;
+    }
+
+    // Check if the target territory is adjacent to the source territory
+    if (!sourceTerritory->isAdjacent(targetTerritory)) {
+        std::cout << "Invalid Advance order: Source and target territories are not adjacent." << std::endl;
+        return false;
+    }
 
     // The order is valid
     return true;
 }
+
 
 
 // assignment operator override

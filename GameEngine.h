@@ -67,7 +67,7 @@ public:
     void printValidCommands(); // to print the next commands a user is allowed to enter for the transition
     bool isGameComplete(); // to check if the game is complete
     bool addPlayer(string playerName);
-    void gameStart();
+    bool gameStart();
     void startupPhase();
     //main game loop
     void mainGameLoop();
@@ -88,7 +88,7 @@ private:
     GameEngine::State currentState; // current game state
     CommandProcessing* commandProcessor;  // Member variable as a pointer to store the CommandProcessing
     vector<Player*> AddedPlayerList; // Holds the players added to keep track of how many players are added;
-    MapLoader* ml;
+    MapLoader* ml; // MapLoader object to load a map, check if it is valid or not and display it
 
 
 };

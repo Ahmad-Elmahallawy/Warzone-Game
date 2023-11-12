@@ -113,7 +113,6 @@ std::map<GameEngine::State, std::vector<GameEngine::Transition>> GameEngine::sta
 
 
 GameEngine::GameEngine():currentState(START), commandProcessor(new CommandProcessing()) {
-    srand(time(nullptr));
 
 }
 
@@ -178,11 +177,11 @@ bool GameEngine::addPlayer(string playerName)
 }
 
 
-void GameEngine::gameStart() {
+bool GameEngine::gameStart() {
     if (AddedPlayerList.size() < 2) {
 
         cout << "Cannot start the game with less than 2 players" << endl;
-        return;
+        return false;
     }
 
     cout << "Part a: Distributing territories " << endl;
@@ -216,6 +215,7 @@ void GameEngine::gameStart() {
     for (int i = 0; i < AddedPlayerList.size(); i++)
     {
         AddedPlayerList[i]->setReinforcementPool(50);
+        cout << AddedPlayerList[i]->getPlayerName() << " has " << AddedPlayerList[i]->getReinforcementPool() << " in the reinforcement pool" << endl;
     }
 
     cout << "\nAdded 50 armies to each player's reinforcement pool..." << endl;
@@ -234,11 +234,13 @@ void GameEngine::gameStart() {
 
         } else {
             std::cout << "Error: Unable to draw cards from the deck." << std::endl;
+            return false;
         }
 
     }
 
     cout << "\nDrew two cards from the deck for each player..." << endl;
+    return true;
 }
 
 // transition to the next state if the command is valid
@@ -314,7 +316,10 @@ void GameEngine::startupPhase() {
                 currentState = transition(CMD_ADD_PLAYER);
                 break;
             case CMD_GAME_START:
-                gameStart();
+                if(!gameStart())
+                {
+                    continue;
+                }
                 currentState = transition(CMD_GAME_START);
                 break;
             default:
@@ -325,7 +330,6 @@ void GameEngine::startupPhase() {
     }
 
 
-    std::cout << "Game has ended." << std::endl;
 }
 
 // returns the current state of the game
