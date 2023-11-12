@@ -150,16 +150,6 @@ bool Map::checkContinent() {
     return true;
 }
 
-bool Map::isAdjacent(const Territory& t1, const Territory& t2) {
-    // Iterate through the adjacency list of t1
-    for (const auto& neighbor : adjlist[t1.getVertexNumber()]) {
-        // Check if t2 is present in the adjacency list of t1
-        if (neighbor.getTerritoryName() == t2.getTerritoryName()) {
-            return true; // t1 and t2 are adjacent
-        }
-    }
-    return false; // t1 and t2 are not adjacent
-}
 
 
 void Map::DFSUtil(Territory& v, std::vector<bool> &visited) {

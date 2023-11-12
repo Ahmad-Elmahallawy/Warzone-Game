@@ -60,7 +60,6 @@ public:
     bool DFS();
     void DFSUtil(Territory& v, std::vector<bool>& visited);
     void addEdge(Territory t1,Territory t2);
-    bool isAdjacent(const Territory& t1, const Territory& t2);
     vector<Territory> listOfTerritories;
     void print();
     friend std::ostream& operator<<(std::ostream& os, const Map& map);
