@@ -45,6 +45,11 @@ std::map<GameEngine::State, std::vector<GameEngine::Transition>> GameEngine::sta
 GameEngine::GameEngine() {
     // current state when the game runs
     State currentState = START;
+    CommandProcessor* c1 = new CommandProcessor();
+}
+
+GameEngine::~GameEngine() {
+
 }
 
 // function definition to check if the command is valid to transition to the next state
@@ -301,6 +306,7 @@ Commands commandToEnum(const std::string commandStr) {
     } else if (commandStr == "execorder") {
         return CMD_EXEC_ORDER;
     }
+    return CMD_UNDEFINED;
 }
 
 string GameEngine::stringToLog() {

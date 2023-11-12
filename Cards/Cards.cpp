@@ -21,6 +21,7 @@ Card::Card(const Card& card) {
 // operator that assigns a new value to an exisiting object
 Card& Card::operator=(const Card& card) {
     this-> card1 = card.card1;
+    return *this;
 }
 
 //getter method return the card
@@ -31,6 +32,7 @@ Card::WarzoneCard Card::getCard() const {
 
 ostream& operator<<(std::ostream& os, const Card& obj) {
     os << "This is the card" << obj.card1;
+    return os;
 }
 
 // play method
@@ -108,10 +110,10 @@ void Deck::getDeckSize() {
 }
 
 // Implement the friend function for overloading the << operator.
-ostream& operator<<(std::ostream& os, const Deck& obj) {
+ostream& operator<<(std::ostream& os, Deck obj) {
     os << "The deck has {";
 
-    const std::vector<Card*>& vector1 = obj.vectorDeck;
+    const std::vector<Card*>& vector1 = obj.getCard();
     for (size_t i = 0; i < vector1.size(); ++i) {
         os << vector1[i];
         if (i < vector1.size() - 1) {
@@ -140,6 +142,7 @@ Hand::Hand(const Hand& hand) {
 
 Hand& Hand::operator=(const Hand& hand) {
     this -> vectorHand = hand.vectorHand;
+    return *this;
 }
 
 vector<Card*> Hand::getCard() {
@@ -181,20 +184,20 @@ void Hand::getHandSize() {
     cout << "The hand size is " << vectorHand.size() <<"." << endl;
 }
 
-ostream& operator<<(std::ostream& os, const Hand& obj) {
-    if(obj.vectorHand.empty())
+ostream& operator<<(std::ostream& os,  Hand& obj) {
+    if(obj.getCard().empty())
         std :: cout << "The hand is empty." << endl;
 
     else {
         os << "The hand has {";
 
-        const std::vector<Card *> &vector1 = obj.vectorHand;
-        for(size_t i = 0; i < obj.vectorHand.size(); i++) {
-            if (i == obj.vectorHand.size() - 1)
+        const std::vector<Card *> &vector1 = obj.getCard();
+        for(size_t i = 0; i < obj.getCard().size(); i++) {
+            if (i == obj.getCard().size() - 1)
                 std:: cout << cardType
-                [obj.vectorHand.at(i) -> getCard()] << " ";
+                [obj.getCard().at(i) -> getCard()] << " ";
             else
-                std:: cout << cardType[obj.vectorHand.at(i) -> getCard()] << ", ";
+                std:: cout << cardType[obj.getCard().at(i) -> getCard()] << ", ";
 
         }
         os << "}";

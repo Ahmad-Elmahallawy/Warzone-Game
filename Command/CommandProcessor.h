@@ -28,20 +28,12 @@ private:
 class CommandProcessor : public ILoggable, public Subject{
 public:
 
+    Commands getEnumCommands();
     Command* readCommand();
     void saveCommand(Command* command);
     Command* getCommand();
     bool validate(Command* command, GameEngine::State state);
     string stringToLog();
-
-    std::map<Commands, std::string> commandToStringMap = {
-            {CMD_LOAD_MAP, "loadmap"},
-            {CMD_VALIDATE_MAP, "validatemap"},
-            {CMD_ADD_PLAYER, "addplayer"},
-            {CMD_START, "addplayer"},
-            {CMD_REPLAY, "replay"},
-            {CMD_END, "quit"},
-    };
 
 private:
     list<Command*> lc;
@@ -62,4 +54,4 @@ private:
 
 void testCommandProcessor();
 
-#endif PROJECT_1_COMMANDPROCESSOR_H
+#endif //PROJECT_1_COMMANDPROCESSOR_H

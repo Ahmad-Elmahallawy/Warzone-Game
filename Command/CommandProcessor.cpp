@@ -160,3 +160,12 @@ string CommandProcessor::stringToLog() {
     return temp;
 }
 
+Commands CommandProcessor::getEnumCommands() {
+    Command* command = this->getCommand();
+    if (command == nullptr) {
+        // Handle the case where no command is available
+        return CMD_UNDEFINED;
+    }
+    return commandToEnum(command->getCommand());
+}
+

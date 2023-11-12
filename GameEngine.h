@@ -20,8 +20,8 @@
 
 
 
-
 class CommandProcessor;
+
 // Define the possible commands as an enum
 enum Commands {
     CMD_UNDEFINED,

@@ -49,6 +49,7 @@ public:
     ~Deck();
     Deck(const Deck& d);
     Deck& operator=(const Deck& d);
+    friend ostream& operator<<(std::ostream& os, const Deck& obj);
 
 // returns a copy of the vector of pointers that make up the deck
     vector<Card*>getCard();
@@ -79,6 +80,7 @@ public:
     Hand(const Hand& h);
     Hand& operator=(const Hand&);
 
+    friend ostream& operator<<(std::ostream& os, Hand& obj);
     vector<Card*>getCard();
 
 //used in the draw and play methods to remove card from hand
