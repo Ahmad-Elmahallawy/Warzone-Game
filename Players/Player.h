@@ -23,6 +23,9 @@ private:
     int playerID{};
     OrdersList* ordersList= nullptr;
     int reinforcementPool{};
+    string phase;
+    vector<Territory*> attackList;
+    vector<Territory*> defendList;
 
 
 // public attributes
@@ -50,7 +53,7 @@ public:
     // getters and setters
     Hand *getHand() const;
 
-    void issueOrder();
+    void issueOrder(string orderName);
 
     const vector<Territory *> &getTerritories() const;
 
@@ -69,6 +72,21 @@ public:
 
     void setReinforcementPool(int reinforcementPool);
 
+    bool ownAllTerritoryInContinent();
+
+    void setPhase(string ph);
+
+    string getPhase();
+
+    vector<Territory *> toDefend();
+
+    vector<Territory *> toAttack();
+
+    void printDefendList();
+
+    void printAttackList();
+
+
     int getPlayerId() const;
 
     void setPlayerId(int playerId);
@@ -80,6 +98,7 @@ public:
     bool operator=(const Player &rhs) const;
 
     Player& operator=(const Player& rhs);
+
 
 };
 

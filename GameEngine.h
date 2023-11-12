@@ -69,7 +69,11 @@ public:
     bool addPlayer(string playerName);
     void gameStart();
     void startupPhase();
-
+    //main game loop
+    void mainGameLoop();
+    void reinforcementPhase();
+    void issuingOrdersPhase();
+    void ordersExecutionPhase();
 
 
     // Define a struct to represent state transitions

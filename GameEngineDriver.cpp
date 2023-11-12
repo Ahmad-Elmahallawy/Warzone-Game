@@ -8,6 +8,7 @@
 void testStartupPhase() {
     GameEngine gameEngine;
     gameEngine.startupPhase();
+    gameEngine.mainGameLoop();
 }
 
 

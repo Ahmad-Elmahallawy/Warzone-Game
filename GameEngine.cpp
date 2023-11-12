@@ -369,4 +369,212 @@ GameEngine::State GameEngine::stringToState(string stateStr) {
     }
 }
 
+//////////////////////////////Main Game Loop Part 3////////////////////////////////////
 
+//reinforcement phase
+
+void GameEngine:: reinforcementPhase() {
+    /*Players are given a number of army units that depends on the number of
+    territories they own, (# of territories owned divided by 3, rounded down). If the player owns all the
+    territories of an entire continent, the player is given a number of army units corresponding to the
+    continent’s control bonus value. In any case, the minimal number of reinforcement army units per turn for
+    any player is 3. These army units are placed in the player’s reinforcement pool. This must be
+    implemented in a function/method named reinforcementPhase() in the game engine.
+     */
+
+    for (int i = 0; i < AddedPlayerList.size(); i++) {
+        AddedPlayerList[i]->setPhase("Reinforcement");
+        cout << "Player: " << AddedPlayerList[i]->getPlayerId() << "'s old Reinforcement Pool: "
+             << AddedPlayerList[i]->getReinforcementPool();
+        // if (number of territories owned) / 3 is less than 3, assigns 3 to the player reinforcement pool
+        if (((AddedPlayerList[i]->getTerritories().size()) / 3) < 3) // removed round
+        {
+            cout << "| Player: " << AddedPlayerList[i]->getPlayerId() << "'s updated Reinforcement Pool: ";
+            AddedPlayerList[i]->setReinforcementPool(AddedPlayerList[i]->getReinforcementPool() + 3);
+            cout << AddedPlayerList[i]->getReinforcementPool() << endl;
+        }
+
+            //check if players owned all territories in continent
+        else if (AddedPlayerList[i]->ownAllTerritoryInContinent()) {
+            cout << "| Player: " << AddedPlayerList[i]->getPlayerId() << "'s updated Reinforcement Pool: ";
+            AddedPlayerList[i]->setReinforcementPool(AddedPlayerList[i]->getReinforcementPool() + 10);
+            cout << AddedPlayerList[i]->getReinforcementPool() << endl;
+        } else {
+            cout << "| Player: " << AddedPlayerList[i]->getPlayerId() << "'s updated Reinforcement Pool: ";
+            AddedPlayerList[i]->setReinforcementPool(AddedPlayerList[i]->getReinforcementPool() +
+                                             ((AddedPlayerList[i]->getTerritories().size()) / 3)); // removed round
+            cout << AddedPlayerList[i]->getReinforcementPool() << endl;
+        }
+
+    }
+}
+
+void GameEngine::issuingOrdersPhase() {
+    /*deploy -> put armies in a territory
+    advance -> moves a specified number of armies between adjacent territories, if its a player territory, armies get transferred
+    to that territory, if its an enemy territory, an attack happens between the 2 territories
+    bomb -> destroy half of the armies located on an opponent's territory that is adjacent to one of player's territory
+    blockade -> triple number of armies on one of player's current territory and make it a neutral territory (cannot be attacked?)
+    airlift ->
+    negotiate -> prevent attacks between current and another player until end of turn
+
+     */
+
+    //int numPlayers = 2;
+    //Deck *deck = new Deck();
+
+    //Player *players[5] = {};
+    //bool firstRound = true;
+
+    for (int i = 0; i < AddedPlayerList.size(); i++)
+    {
+        AddedPlayerList[i]->setPhase("Issue Orders");
+
+        int pID = AddedPlayerList[i]->getPlayerId();
+        vector<Card *> currentPlayerHandCards = AddedPlayerList[i]->getHand()->vectorHand;
+        string type;
+        string answer;
+
+        while (answer != "n")
+        {
+            cout << "Player " << pID << ", it is your turn\n" << endl;
+            cout << "type : advance|| deploy|| bomb || blockade || airlift||  ";
+            cout << "Input your desired order here: ";
+            cin >> type;
+
+            // If input is advance or deploy it calls issueOrder
+            if (type == "advance" || type == "deploy")
+            {
+                AddedPlayerList[i]->issueOrder(type);
+            }
+
+                // If input is any of these it will loop through player's hands to see if card exists and play it as well as add it
+                // to orders list
+            else if(type == "bomb" || type == "blockade" || type == "airlift" || type == "negotiate")
+            {
+                cout << currentPlayerHandCards.size() << endl;
+                AddedPlayerList[i]->issueOrder(type);
+
+                // If hand is empty output error message
+                if(currentPlayerHandCards.empty())
+                {
+                    cout << "Invalid order! Your hand is empty!!" << endl;
+                }
+            }
+
+            else
+            {
+                cout << "Invalid order!" << endl;
+            }
+
+            // asks user if he/she desires to issue a new order, if no, his or her turn ends and goes to next player in queue
+            cout << "Would you like to issue another order? (yes or no)" << endl;
+            cin >> answer;
+            if(answer == "no")
+            {
+                break;
+            }
+            cout << "\n" << endl;
+        }
+    }
+
+}
+
+//orders executionPhase
+
+void GameEngine::ordersExecutionPhase() {
+    int beforeTerritoryListSize;
+    int afterTerritoryListSize;
+    // 1:deploy NEED TO CHECK IF REINFORCEMENT POOL IS EMPTY OTHERWISE CANNOT EXECUTE OTHER ORDERS
+//    for (int i = 0; i < AddedPlayerList.size(); i++)
+//    {
+//        AddedPlayerList[i]->setPhase("Execute Orders DEPLOY (1st priority)");
+//
+//        beforeTerritoryListSize = AddedPlayerList[i]->getTerritories().size();
+//        OrdersList currentPlayerOrdersList = AddedPlayerList[i]->getOrdersList();
+//
+//        // If player's order list is empty do not display
+//        if(AddedPlayerList[i]->getOrdersList().getOrdersListSize() != 0)
+//        {
+//            AddedPlayerList[i]->setPhase("Execute Orders DEPLOY (1st priority)");
+//
+//        }
+//
+//        // looping through player's order list
+//        for (int j = 0; j < currentPlayerOrdersList.getOrdersListSize(); j++)
+//        {
+//            if (currentPlayerOrdersList.getOrder(j)->getLabel() == "deploy")
+//            {
+//                //execute deploy actions here
+//                currentPlayerOrdersList.getNextOrder()->execute();
+//            }
+//        }
+//        afterTerritoryListSize = AddedPlayerList[i]->getTerritories().size();
+//        if(afterTerritoryListSize - beforeTerritoryListSize){ // if the player conquered at least one territory, they can draw a card
+//            deck->draw();
+//        }
+//    }
+//
+//    // 2: airlift
+//    for (int i = 0; i < AddedPlayerList.size(); i++)
+//    {
+//        if(AddedPlayerList[i]->getOrdersList().getOrdersListSize() != 0)
+//        {
+//            AddedPlayerList[i]->setPhase("Execute Orders: AIRLIFT(2)");
+//
+//        }
+//
+//        OrdersList currentPlayerOrdersList = AddedPlayerList[i]->getOrdersList();
+//
+//        for (int j = 0; j < currentPlayerOrdersList.getOrdersListSize(); j++)
+//        {
+//            if (currentPlayerOrdersList.getNextOrder()->getLabel() == "airlift")
+//            {
+//                //execute airlift actions here
+//                currentPlayerOrdersList.getNextOrder()->execute();
+//            }
+//        }
+//    }
+
+    // 3: blockade and the others
+
+
+}
+
+void GameEngine::mainGameLoop() {
+    //test local variables will change;
+    int numPlayers = AddedPlayerList.size();
+
+
+
+    //indicates its first round
+    bool firstRound = true;
+
+
+    //the loop continues until one person owns all territories on map
+    while (numPlayers != 1) {
+        //If a players territoryList size is 0, he/she is removed from the game because he/she no longer controls at least 1 territory
+        //Iterating through GameEngine's list of players
+        for (int i = 0; i < AddedPlayerList.size(); i++) {
+            if (AddedPlayerList[i]->getTerritories().empty()) {
+                std::cout << " you have lost all your territories and have been eliminated\n" << std::endl;
+            }
+        }
+
+        if (!firstRound)// reinforcement phase is skipped during the first round
+        {
+            // Reinforcement Phase
+            reinforcementPhase();
+        }
+
+        // Issuing Orders Phase
+        issuingOrdersPhase();
+
+        // Orders Execution Phase
+        ordersExecutionPhase();
+        //not first round anymore after orders execution phase
+        firstRound = false;
+
+
+    }
+}
