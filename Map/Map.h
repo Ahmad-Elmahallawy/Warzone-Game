@@ -55,6 +55,7 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const Territory& territory);
     bool operator==(const Territory& other) const {
         return this->territoryName == other.territoryName;
+        int armyUnits;
         // Set a list of neighbors for the territory
         //void setNeighbors(unordered_map<string, Territory*> newNeighbors);             //fix
         // Return the neighbors of the territory
@@ -62,6 +63,7 @@ public:
         // Return the number of armies that is on the territory
         //int getArmySize();
         //void setArmySize(int size);
+        //int armyUnits;
     }
 private:
     int xCoordinate;//horizontal coordinate of territory on the map
@@ -85,7 +87,7 @@ public:
     bool checkContinent();
     bool DFS();
     void DFSUtil(Territory& v, std::vector<bool>& visited);
-    void addEdge(Territory t1,Territory t2);
+    void addEdge(Territory& t1,Territory& t2);
     vector<Territory> listOfTerritories;
     void print();
     friend std::ostream& operator<<(std::ostream& os, const Map& map);
@@ -95,6 +97,7 @@ public:
 private:
     list<Territory> *adjlist;
     int numberOfVertices;
+
 };
 class MapLoader{
 public:

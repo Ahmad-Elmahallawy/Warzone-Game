@@ -27,7 +27,7 @@ private:
     vector<Player* >negotiateList;
     static int playerId;// static player ID
     string name;
-
+    int armyUnits;
 
 // public attributes
 public:
@@ -109,7 +109,6 @@ public:
     string getName();
     void setName(string name);
     void setTerriorty(vector <Territory*>);// setter for terriorties owned
-    bool conquer = false;
     vector<Territory*> terriortiesOwned;
     // Function to get a string representation of territories
     string getTerritoriesString() const {
@@ -119,11 +118,8 @@ public:
         }
         return result;
     }
-
-    //int getReinforcementPool(); //Return player's reinforcement pool
-    // void setReinforcementPool(int n);
-    //void setPlayerStrategy(PlayerStrategy* newPS);
-    //PlayerStrategy* getPlayerStrategy() const;
+    void setArmyUnits(int units);
+    void receiveRandomCard();
 };
 
 

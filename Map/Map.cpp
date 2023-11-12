@@ -27,6 +27,7 @@ Territory::Territory() {
     this->yCoordinate = 0;
     this->territoryName = "";
     this->continent = "";
+    numberOfArmies = 0;
 }
 Territory::~Territory(){
 
@@ -149,7 +150,7 @@ Map::~Map() {
     delete[] this->adjlist;
 }
 
-void Map::addEdge(Territory t1, Territory t2) {
+void Map::addEdge(Territory& t1, Territory& t2) {
     adjlist[t1.getVertexNumber()].push_back(t2);//method to link two territores(nodes) with an edge
 }
 

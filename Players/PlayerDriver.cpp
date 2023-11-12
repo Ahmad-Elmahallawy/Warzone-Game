@@ -23,7 +23,7 @@ void testPlayers()
     p1->issueOrder();
 
     //getting Orderlistsofar
-    cout<< p1->getOrdersList()<<endl;
+//    cout<< p1->getOrdersList()<<endl;
 
     // testing the toAttack method
     cout << "PLAYER 1'S ATTACK LIST" << endl;

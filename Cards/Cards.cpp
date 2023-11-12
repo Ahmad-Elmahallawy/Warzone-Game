@@ -31,10 +31,11 @@ Card::WarzoneCard Card::getCard() const {
     return this-> card1;
 }
 
-ostream& operator<<(std::ostream& os, const Card& obj) {
-    os << "This is the card" << obj.card1;
-    return os;
-}
+//ostream& operator<<(std::ostream& os, const Card& obj) {
+//    os << "This is the card" << obj.card1;
+//    return os;
+//}
+
 
 // play method
 void Card::play(int card, Hand& hand, Deck& deck) {
@@ -43,7 +44,7 @@ void Card::play(int card, Hand& hand, Deck& deck) {
     deck.returnCard(*cardToRemove);
 }
 
-string cardType[5] = {"Bomb", "Reinforcement", "Blockade", "Airlift", "Diplomacy"};
+const string cardType[] = {"Bomb", "Reinforcement", "Blockade", "Airlift", "Diplomacy"};
 
 Deck::Deck() {
 
@@ -55,7 +56,10 @@ Deck::Deck() {
         vectorDeck.push_back(new Card(Card::WarzoneCard::Diplomacy));
     }
 }
-
+ostream& operator<<(ostream& os, const Card& obj) {
+    os << cardType[obj.getCard()];
+    return os;
+}
 Deck::~Deck() {}
 
 Deck::Deck(const Deck& deck) {

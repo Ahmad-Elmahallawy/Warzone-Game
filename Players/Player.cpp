@@ -1,8 +1,11 @@
 // part 2
 // this is the Players.cpp file where all the definitions are done
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include "../Players/Player.h"
 #include "../Orders/Orders.h"
+#include "../Cards/Cards.h"
 using namespace std;
 // default constructor
 int Player:: playerId = 1;
@@ -29,6 +32,7 @@ Player::Player(Player &player) {
     this->hand = player.hand;
    // this->ps = player.ps;
     reinforcementPool = 0;
+    this->armyUnits = 0;
 }
 
 Player::~Player() {
@@ -133,6 +137,34 @@ void Player::setName(string name)
 {
     this->name = name;
 }
+//void Player::checkAndGiveCardForConquest(Deck& deck) {
+//    if (conqueredTerritoryThisTurn) {
+//        Card* card = deck.draw(); // Draw a card from the deck
+//        if (card != nullptr) {
+//            hand->returnCard(*card); // Add the card to the player's hand
+//            std::cout << "Player " << playerName << " received a card: " << *card << std::endl;
+//        }
+//        conqueredTerritoryThisTurn = false; // Reset the flag
+//    }
+//}
+
+void Player::receiveRandomCard() {
+    // Seed the random number generator
+    srand(static_cast<unsigned int>(time(nullptr)));
+
+    // Generate a random card type, excluding 'end'
+    Card::WarzoneCard randomCardType = static_cast<Card::WarzoneCard>(rand() % Card::WarzoneCard::end);
+
+    // Create a new Card object with the random type
+    Card* newCard = new Card(randomCardType);
+
+    // Add the card to the player's hand
+    this->hand->returnCard(*newCard);
+
+    // Optional: Print out the received card
+    std::cout << "Received a " << *newCard << " card." << std::endl;
+}
+
 // currently just a static territories to defend
 vector<Territory*> Player::toDefend() const{
 
@@ -176,7 +208,7 @@ ostream &operator<<(ostream &os, const Player &player) {
 
     os << '\n';
 
-    os << "Orders List: " << *(player.ordersList);
+//    os << "Orders List: " << *(player.ordersList);
 
     return os;
 }
@@ -190,99 +222,6 @@ Player& Player::operator=(const Player& rhs) {
     return *this;
 }
 
-
-/*int Player::getReinforcementPool() {
-    return reinforcementPool;
+void Player::setArmyUnits(int units) {
+    this->armyUnits = units; // Set the army units to the provided value
 }
-void Player::setReinforcementPool(int n) {
-    this->reinforcementPool = n;
-}*/
-
-/*void Player::issueBombOrder(Territory* target, int numbOfArmies) {
-    if (target->getTerritoryOwner() == this) {
-        // Handle the case where the target territory belongs to the same player.
-        std::cout << "Bomb order is invalid: Target territory belongs to the same player." << std::endl;
-    } else if (isUnderDiplomacyWith(*target->getTerritoryOwner())) {
-        // Handle the case where there's a diplomatic agreement with the target player.
-        std::cout << "Bomb order is invalid: Diplomatic agreement with the target player." << std::endl;
-    } else {
-        // Create a Bomb order if no diplomatic agreement and the target territory doesn't belong to the same player.
-        bomb* bombOrder = new bomb(this, target, numbOfArmies);
-
-        if (bombOrder->validate()) {
-            // Add the bomb order to the player's orders list.
-            this->ordersList->addOrder(bombOrder);
-        } else {
-            // Handle the case where the order is invalid.
-            delete bombOrder;
-        }
-    }
-}
- void Player::issueDeployOrder(Territory* target, int numbOfarmies) {
-    order* deployOrder = new deploy(this, *target, numbOfarmies);
-    if (deployOrder->validate()) {
-        // Add the deploy order to the player's orders list (you should have a list for orders)
-        ordersList->addOrder(deployOrder);
-    } else {
-        // Handle the case where the order is invalid
-        delete deployOrder;
-    }
-}
-
- */
-/*
-PlayerStrategy::PlayerStrategy() {
-}
-
-PlayerStrategy::PlayerStrategy(string type): type(type) {
-}
-
-PlayerStrategy::PlayerStrategy(const PlayerStrategy& ps): p(nullptr), type(ps.type) {
-    p = new Player(*ps.p);
-}
-
-PlayerStrategy& PlayerStrategy::operator=(PlayerStrategy& ps)
-
-{
-    this->p = ps.p;
-    this->type = ps.type;
-    return *this;
-}
-
-PlayerStrategy::~PlayerStrategy() {
-}
-
-string PlayerStrategy::getType() {
-    return type;
-}
-
-void PlayerStrategy::setPlayer(Player* inputPlayer) {
-    p = inputPlayer;
-}
-NeutralPlayerStrategy& NeutralPlayerStrategy::operator&=(NeutralPlayerStrategy& p)
-{
-    PlayerStrategy :: operator=(p);
-    return*this;
-}
-//Neutral Player class
-NeutralPlayerStrategy::NeutralPlayerStrategy() : PlayerStrategy("Neutral") {}
-
-NeutralPlayerStrategy::NeutralPlayerStrategy(const NeutralPlayerStrategy& nPlayer) : PlayerStrategy(nPlayer) {}
-
-NeutralPlayerStrategy::~NeutralPlayerStrategy() {}
-
-bool NeutralPlayerStrategy::issueOrder(vector<Player*> AddedPlayerList) {
-    // Never issue an order
-    cout << "---------------Neutral Player is issuing orders---------------"<< endl;
-    cout << "[Neutral] Finish issuing issue an order" << endl;
-    return false;
-}
-vector<Territory*> NeutralPlayerStrategy::toAttack() {
-    // Neutral player never attacks
-    return vector<Territory*>();
-}
-vector<Territory*> NeutralPlayerStrategy::toDefend() {
-    // Neutral player never defends
-    return vector<Territory*>();
-}
-*/

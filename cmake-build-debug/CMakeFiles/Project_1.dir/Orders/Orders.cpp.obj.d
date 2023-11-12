@@ -162,4 +162,10 @@ CMakeFiles/Project_1.dir/Orders/Orders.cpp.obj: \
  C:/Users/mazen/CLionProjects/COMP345-Warzone/Map/Map.h \
  C:/Users/mazen/CLionProjects/COMP345-Warzone/Orders/Orders.h \
  C:/Users/mazen/CLionProjects/COMP345-Warzone/Cards/Cards.h \
- C:/Users/mazen/CLionProjects/COMP345-Warzone/Map/Map.h
+ C:/Users/mazen/CLionProjects/COMP345-Warzone/Map/Map.h \
+ C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/algorithm \
+ C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_algo.h \
+ C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/algorithmfwd.h \
+ C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_heap.h \
+ C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uniform_int_dist.h \
+ C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_tempbuf.h

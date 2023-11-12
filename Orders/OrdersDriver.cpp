@@ -6,60 +6,86 @@ Here : remove, move of the orderlist will be tested, expected result shown comme
 #include "../Map/Map.h"
 #include "../Orders/Orders.h"
 #include "../Players/Player.h"
+#include "../Cards/Cards.h"
 #include <iostream>
 
-
 void testOrderExecution() {
-    // Assuming you have a Map object
-    Map *gameMap;
+    // Setup phase
+    Map gameMap(5); // Assuming a map with 5 territories
+    Player player1, player2, neutralPlayer;
+    Territory territory1, territory2, territory3;
 
-    // Assuming you have two players
-    Player player1((Player &) "Player1");
-    Player player2((Player &) "Player2");
+    // Initialize territories and players
+    // Note: Adjust these setups as per your game's initialization logic
+    territory1.setName("Territory1");
+    territory2.setName("Territory2");
+    territory3.setName("Territory3");
 
-    // Assuming you have some territories on the map
-    Territory territory1(1, 2, "Territory1", "Continent1");
-    Territory territory2(3, 4, "Territory2", "Continent2");
+    gameMap.addEdge(territory1, territory2);
+    gameMap.addEdge(territory2, territory3);
 
-    // Assign territories to players
     player1.addTerriorty(&territory1);
     player2.addTerriorty(&territory2);
+    neutralPlayer.addTerriorty(&territory3);
+// Assuming territory1 and territory2 are instances of Territory
+    territory1.addAdjacentTerritory(&territory2);
+    territory2.addAdjacentTerritory(&territory1);
 
-    // Create orders
+// Now, territory1 and territory2 are adjacent to each other.
+
+    player1.setArmyUnits(10);
+    player2.setArmyUnits(10);
+
+
+
+    // Execution phase
+    // 1. Test each order and its validation
+    std::cout << "Testing Order Execution and Validation:" << std::endl;
+
+    // Deploy order
     deploy deployOrder(5, territory1, &player1);
-    advancee myAdvanceeObject(3, territory1, territory2, &player1);
-    bomb bombOrder(territory2, &player2);
-    airlift airliftOrder(4, territory1, territory2, &player1);
-    negotiate negotiateOrder(&player2, &player1);
-    blockade blockadeOrder(territory1, &player1, nullptr);
+    deployOrder.execute();
+    std::cout << "Deploy Order Executed" << std::endl;
 
-    // Create order list
-    orderlist orderList;
+    // Advance order with territory conquest
+    advancee advanceOrder(3, territory1, territory2, &player1);
+    advanceOrder.execute();
+    std::cout << "Advance Order Executed (Conquest)" << std::endl;
 
-    // Add orders to the list
-    orderList.addOrder(&deployOrder);
-    orderList.addOrder(&myAdvanceeObject);
-    orderList.addOrder(&bombOrder);
-    orderList.addOrder(&airliftOrder);
-    orderList.addOrder(&negotiateOrder);
-    orderList.addOrder(&blockadeOrder);
+    // Test card giving for territory conquest
+    // Assuming a function in player class that handles card giving
+    player1.receiveRandomCard();
+    // Negotiate order
+    negotiate negotiateOrder(&player1, &player2);
+    negotiateOrder.execute();
+    std::cout << "Negotiate Order Executed" << std::endl;
 
-    // Display map and players before execution
-    //std::cout << "-- Map (Before Execution) --\n";
-   // gameMap.printMap();
+    // Blockade order
+    blockade blockadeOrder(territory2, &player2, &neutralPlayer);
+    blockadeOrder.execute();
+    std::cout << "Blockade Order Executed" << std::endl;
 
-    std::cout << "-- Players (Before Execution) --\n";
-    std::cout << "Player1 Territories: " << player1.getTerritoriesString() << "\n";
-    std::cout << "Player2 Territories: " << player2.getTerritoriesString() << "\n";
+    std::cout << "\nChecking Adjacency between territories:" << std::endl;
+    if (gameMap.isAdjacent(territory1, territory2)) {
+        std::cout << "Territory1 and Territory2 are adjacent." << std::endl;
+    } else {
+        std::cout << "Territory1 and Territory2 are not adjacent." << std::endl;
+    }
 
-    // Validate and execute orders
-    //orderList.validateAndExecute(gameMap);
+// Bomb order
+    bomb bombOrder(territory1, &player2); // Assuming bombOrder targets territory1 and is issued by player2
+    if (bombOrder.validate()) {
+        bombOrder.execute();
+        std::cout << "Bomb Order Executed: Half of the army units removed from " << territory1.getName() << std::endl;
+        std::cout << "Remaining armies in " << territory1.getName() << ": " << territory1.getNumOfArmies() << std::endl;
+    } else {
+        std::cout << "Bomb Order Invalid: Target territory is either owned by the player or not adjacent." << std::endl;
+    }
 
-    // Display map and players after execution
-    //std::cout << "-- Map (After Execution) --\n";
-    //gameMap.printMap();
-
-    std::cout << "-- Players (After Execution) --\n";
-    std::cout << "Player1 Territories: " << player1.getTerritoriesString() << "\n";
-    std::cout << "Player2 Territories: " << player2.getTerritoriesString() << "\n";
 }
+int main() {
+    testOrderExecution();
+    return 0;
+}
+
+

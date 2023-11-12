@@ -1420,7 +1420,13 @@ CMakeFiles/Project_1.dir/Orders/Orders.cpp.obj: C:/Users/mazen/CLionProjects/COM
   C:/Users/mazen/CLionProjects/COMP345-Warzone/Map/Map.h \
   C:/Users/mazen/CLionProjects/COMP345-Warzone/Orders/Orders.h \
   C:/Users/mazen/CLionProjects/COMP345-Warzone/Cards/Cards.h \
-  C:/Users/mazen/CLionProjects/COMP345-Warzone/Map/Map.h
+  C:/Users/mazen/CLionProjects/COMP345-Warzone/Map/Map.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/algorithm \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_algo.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/algorithmfwd.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_heap.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uniform_int_dist.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_tempbuf.h
 
 CMakeFiles/Project_1.dir/Orders/OrdersDriver.cpp.obj: C:/Users/mazen/CLionProjects/COMP345-Warzone/Orders/OrdersDriver.cpp \
   C:/Users/mazen/CLionProjects/COMP345-Warzone/Map/Map.h \
@@ -1585,7 +1591,8 @@ CMakeFiles/Project_1.dir/Orders/OrdersDriver.cpp.obj: C:/Users/mazen/CLionProjec
   C:/Users/mazen/CLionProjects/COMP345-Warzone/Map/Map.h \
   C:/Users/mazen/CLionProjects/COMP345-Warzone/Orders/Orders.h \
   C:/Users/mazen/CLionProjects/COMP345-Warzone/Cards/Cards.h \
-  C:/Users/mazen/CLionProjects/COMP345-Warzone/Map/Map.h
+  C:/Users/mazen/CLionProjects/COMP345-Warzone/Map/Map.h \
+  C:/Users/mazen/CLionProjects/COMP345-Warzone/Cards/Cards.h
 
 CMakeFiles/Project_1.dir/Players/Player.cpp.obj: C:/Users/mazen/CLionProjects/COMP345-Warzone/Players/Player.cpp \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iostream \
@@ -1722,6 +1729,7 @@ CMakeFiles/Project_1.dir/Players/Player.cpp.obj: C:/Users/mazen/CLionProjects/CO
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ostream.tcc \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/istream \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/istream.tcc \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ctime \
   C:/Users/mazen/CLionProjects/COMP345-Warzone/Players/Player.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/vector \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_uninitialized.h \
@@ -1749,7 +1757,8 @@ CMakeFiles/Project_1.dir/Players/Player.cpp.obj: C:/Users/mazen/CLionProjects/CO
   C:/Users/mazen/CLionProjects/COMP345-Warzone/Map/Map.h \
   C:/Users/mazen/CLionProjects/COMP345-Warzone/Cards/Cards.h \
   C:/Users/mazen/CLionProjects/COMP345-Warzone/Map/Map.h \
-  C:/Users/mazen/CLionProjects/COMP345-Warzone/Orders/Orders.h
+  C:/Users/mazen/CLionProjects/COMP345-Warzone/Orders/Orders.h \
+  C:/Users/mazen/CLionProjects/COMP345-Warzone/Cards/Cards.h
 
 CMakeFiles/Project_1.dir/Players/PlayerDriver.cpp.obj: C:/Users/mazen/CLionProjects/COMP345-Warzone/Players/PlayerDriver.cpp \
   C:/Users/mazen/CLionProjects/COMP345-Warzone/Players/Player.h \
