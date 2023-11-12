@@ -27,7 +27,6 @@ std::map<GameEngine::State, std::vector<GameEngine::Transition>> GameEngine::sta
                        }},
         {State::ASSIGN_REINFORCEMENTS, {
                                {CMD_ISSUE_ORDER, State::ISSUE_ORDERS},
-                               {CMD_GAME_START, State::GAME_STARTED} // New transition for game start
                        }},
         {State::ISSUE_ORDERS, {
                                {CMD_ISSUE_ORDER, State::ISSUE_ORDERS},
@@ -41,9 +40,6 @@ std::map<GameEngine::State, std::vector<GameEngine::Transition>> GameEngine::sta
         {State::WIN, {
                                {CMD_PLAY, State::START},
                                {CMD_END, State::END}
-                       }},
-        {State::GAME_STARTED, {
-                               {CMD_GAME_START, State::ASSIGN_REINFORCEMENTS} // New transition after game start
                        }},
 };
 
@@ -108,16 +104,17 @@ void GameEngine::gameStart() {
     cout << "Part a: Distributing territories " << endl;
 
     // Allocates one territory to each player. Each territory allocated are equidistant from each other
-    int numTerritories = (int)this->currentMap->listOfTerritories.size();
-    int gap = numTerritories / (int)AddedPlayerList.size();
-    int playersIndex = 0;
-
-    for(int i = 0; i < numTerritories ; i++)
-    {
-        Territory* t = &(currentMap->listOfTerritories[i]);
-        AddedPlayerList[playersIndex % AddedPlayerList.size()]->setTerritories(t);
-        playersIndex++;
-    }
+//    int numTerritories = (int)this->currentMap->listOfTerritories.size();
+//    int gap = numTerritories / (int)AddedPlayerList.size();
+//    int playersIndex = 0;
+//
+//    for(int i = 0; i < numTerritories ; i++)
+//    {
+//        Territory* t = &(currentMap->listOfTerritories[i]);
+//        AddedPlayerList[playersIndex % AddedPlayerList.size()]->setTerritories(t);
+//        playersIndex++;
+//        delete t;
+//    }
 
     // Randomizes the order of players
     vector<Player*> orderedPlayers;
@@ -131,7 +128,7 @@ void GameEngine::gameStart() {
 
     cout << "Determined the order of play is shown below: " << endl;
     for(int i = 0; i < orderedPlayers.size() ; i++) {
-        cout << "Player #: " << i + 1 << " with name " << orderedPlayers[i]->getPlayerName();
+        cout << "Player #: " << i + 1 << " with name " << orderedPlayers[i]->getPlayerName() << endl;
     }
 
     // add 50 armies to each player's reinforcement pool
@@ -150,15 +147,16 @@ void GameEngine::gameStart() {
     {
         card1 = deck->draw();
         card2 = deck->draw();
-        orderedPlayers[i]->getHand()->returnCard(*card1);
-        orderedPlayers[i]->getHand()->returnCard(*card2);
+        if (card1 && card2) {
+            orderedPlayers[i]->getHand()->returnCard(*card1);
+            orderedPlayers[i]->getHand()->returnCard(*card2);
+        } else {
+            // Handle error or log a message
+        }
     }
     delete deck;
-    deck = nullptr;
     delete card1;
-    card1 = nullptr;
     delete card2;
-    card2 = nullptr;
 
     cout << "\nDrew two cards from the deck for each player..." << endl;
 }
@@ -271,6 +269,9 @@ bool GameEngine::isGameComplete() {
 GameEngine::~GameEngine() {
     delete commandProcessor;
     delete currentMap;
+    for (Player* player : AddedPlayerList) {
+        delete player;
+    }
 
 }
 
@@ -303,7 +304,7 @@ std::string stateToString(GameEngine::State state) {
         case GameEngine::State::MAP_LOADED: return "map loaded";
         case GameEngine::State::MAP_VALIDATED: return "map validated";
         case GameEngine::State::PLAYERS_ADDED: return "players added";
-        case GameEngine::State::GAME_STARTED: return "assign reinforcement";
+        case GameEngine::State::ASSIGN_REINFORCEMENTS: return "assign reinforcement";
         case GameEngine::State::ISSUE_ORDERS: return "issue orders";
         case GameEngine::State::EXECUTE_ORDERS: return "execute orders";
         case GameEngine::State::WIN: return "win";
@@ -342,9 +343,12 @@ Commands commandToEnum(const std::string commandStr) {
         return CMD_VALIDATE_MAP;
     } else if (commandStr == "addplayer") {
         return CMD_ADD_PLAYER;
-    } else if (commandStr == "assigncountries") {
-        return CMD_ASSIGN_COUNTRIES;
-    } else if (commandStr == "issueorder") {
+    }
+    else if (commandStr == "gamestart")
+    {
+        return CMD_GAME_START;
+    }
+    else if (commandStr == "issueorder") {
         return CMD_ISSUE_ORDER;
     } else if (commandStr == "endissueorder") {
         return CMD_END_ISSUE_ORDER;
