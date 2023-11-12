@@ -124,13 +124,6 @@ void GameEngine::gameStart() {
         std::swap(AddedPlayerList[i], AddedPlayerList[j]);
     }
 
-//    while(AddedPlayerList.size() != 0) {
-//        int index = rand() % AddedPlayerList.size();
-//        AddedPlayerList.push_back(AddedPlayerList[index]);
-//        AddedPlayerList.erase(AddedPlayerList.begin() + index);
-//    }
-
-//    this->AddedPlayerList = orderedPlayers;
 
     cout << "Determined the order of play is shown below: " << endl;
     for(int i = 0; i < AddedPlayerList.size() ; i++) {
@@ -146,15 +139,17 @@ void GameEngine::gameStart() {
     cout << "\nAdded 50 armies to each player's reinforcement pool..." << endl;
 
     // Draws two cards from the deck for each player
-    Deck deck;
-    Card* card1, *card2;
+    Deck deck{};
+
+
     for(int i = 0; i < AddedPlayerList.size() ; i++)
     {
-        card1 = deck.draw();
-        card2 = deck.draw();
+        Card* card1 = deck.draw();
+        Card* card2 = deck.draw();
         if (card1 && card2) {
-            AddedPlayerList[i]->getHand()->returnCard(*card1);
-            AddedPlayerList[i]->getHand()->returnCard(*card2);
+                AddedPlayerList[i]->getHand()->returnCard(*card1);
+                AddedPlayerList[i]->getHand()->returnCard(*card2);
+
         } else {
             std::cout << "Error: Unable to draw cards from the deck." << std::endl;
         }

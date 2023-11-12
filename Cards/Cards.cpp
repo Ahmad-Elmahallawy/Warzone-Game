@@ -20,7 +20,8 @@ Card::Card(const Card& card) {
 
 // operator that assigns a new value to an exisiting object
 Card& Card::operator=(const Card& card) {
-    this-> card1 = card.card1;
+        this->card1 = card.card1;
+        return *this;
 }
 
 //getter method return the card
@@ -100,7 +101,7 @@ Card* Deck::removeCard(int i) {
 }
 
 void Deck::returnCard(Card& card) {
-    this -> vectorDeck.push_back(&card);
+    this->vectorDeck.push_back(&card);  // Copy the card to manage its memory
 }
 
 vector<Card*> Deck::getCard()

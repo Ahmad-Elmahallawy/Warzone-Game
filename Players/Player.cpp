@@ -6,7 +6,7 @@ using namespace std;
 // default constructor
 Player::Player() {
     this->hand = new Hand();
-    this->territories = {new Territory(), new Territory()};
+    this->territories = {};
     this->playerName = "no name";
     this->ordersList = new OrdersList();
 }
@@ -14,6 +14,10 @@ Player::Player() {
 
 Player::Player(string playerName) {
     this->playerName = playerName;
+    this->hand = new Hand();
+    this->territories = {};
+    this->ordersList = new OrdersList();
+
 }
 
 
