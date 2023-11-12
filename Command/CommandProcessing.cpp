@@ -85,6 +85,7 @@ bool CommandProcessing::validate(Command* command, GameEngine::State state) {
                 return true;
             }
             break;
+
         case GameEngine::State::WIN:
             if (isValidCommand({"replay", "quit"})) {
                 return true;

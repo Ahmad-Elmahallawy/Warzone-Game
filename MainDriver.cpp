@@ -29,7 +29,7 @@ int main() {
 //
 //    // Part 5
 //    testGameStates();
-    testStartupPhase();
+  testStartupPhase();
    // testCommandProcessor();
 
     return 0;

@@ -23,7 +23,7 @@ std::map<GameEngine::State, std::vector<GameEngine::Transition>> GameEngine::sta
                        }},
         {State::PLAYERS_ADDED, {
                                {CMD_ADD_PLAYER, State::PLAYERS_ADDED},
-                               {CMD_ASSIGN_COUNTRIES, State::ASSIGN_REINFORCEMENTS}
+                               {CMD_GAME_START, State::ASSIGN_REINFORCEMENTS}
                        }},
         {State::ASSIGN_REINFORCEMENTS, {
                                {CMD_ISSUE_ORDER, State::ISSUE_ORDERS},
@@ -235,7 +235,6 @@ void GameEngine::startupPhase() {
                 if(!addPlayer(command->secondParameter)) {
                     continue;
                 }
-                cout << command->getEffect();
                 currentState = transition(CMD_ADD_PLAYER);
                 break;
             case CMD_GAME_START:
@@ -320,7 +319,7 @@ std::string commandToString(Commands command) {
         case CMD_LOAD_MAP: return "loadmap";
         case CMD_VALIDATE_MAP: return "validatemap";
         case CMD_ADD_PLAYER: return "addplayer";
-        case CMD_ASSIGN_COUNTRIES: return "assigncountries";
+        case CMD_GAME_START: return "gamestart";
         case CMD_ISSUE_ORDER: return "issueorder";
         case CMD_END_ISSUE_ORDER: return "endissueorder";
         case CMD_EXECUTE_ORDERS: return "executeorders";

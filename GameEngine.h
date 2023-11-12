@@ -26,6 +26,7 @@ enum Commands {
     CMD_LOAD_MAP,
     CMD_VALIDATE_MAP,
     CMD_ADD_PLAYER,
+    CMD_GAME_START,
     CMD_ASSIGN_COUNTRIES,
     CMD_ISSUE_ORDER,
     CMD_END_ISSUE_ORDER,
@@ -35,7 +36,6 @@ enum Commands {
     CMD_END,
     CMD_PLAY,
     CMD_EXEC_ORDER,
-    CMD_GAME_START
 };
 
 class GameEngine {
