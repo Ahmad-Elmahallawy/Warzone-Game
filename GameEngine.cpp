@@ -419,20 +419,25 @@ void GameEngine::issuingOrdersPhase() {
 
      */
 
-    //int numPlayers = 2;
-    //Deck *deck = new Deck();
 
-    //Player *players[5] = {};
-    //bool firstRound = true;
-
-    for (int i = 0; i < AddedPlayerList.size(); i++)
-    {
+    for (int i = 0; i < AddedPlayerList.size(); i++) {
         AddedPlayerList[i]->setPhase("Issue Orders");
 
         string playerName = AddedPlayerList[i]->getPlayerName();
         vector<Card *> currentPlayerHandCards = AddedPlayerList[i]->getHand()->vectorHand;
         string type;
         string answer;
+
+
+        while (answer != "n")
+        {
+            cout << "Player " << playerName << ", it is your turn\n" << endl;
+            cout << "type : advance|| deploy|| bomb || blockade || airlift||  ";
+            cout << "Input your desired order here: ";
+            cin >> type;
+    }
+
+        ////////////////////////////////////////////////////old code
 
         while (answer != "n")
         {
@@ -604,11 +609,8 @@ void GameEngine::mainGameLoop() {
     //test local variables will change;
     int numPlayers = AddedPlayerList.size();
 
-
-
     //indicates its first round
     bool firstRound = true;
-
 
     //the loop continues until one person owns all territories on map
     while (numPlayers != 1) {
@@ -616,6 +618,8 @@ void GameEngine::mainGameLoop() {
         //Iterating through GameEngine's list of players
         for (int i = 0; i < AddedPlayerList.size(); i++) {
             if (AddedPlayerList[i]->getTerritories().empty()) {
+                delete AddedPlayerList[i];
+                AddedPlayerList[i]= nullptr;
                 std::cout << " you have lost all your territories and have been eliminated\n" << std::endl;
             }
         }

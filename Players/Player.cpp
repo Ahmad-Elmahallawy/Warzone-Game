@@ -139,7 +139,7 @@ void Player::printAttackList()
 }
 
 
-// creates a new order
+ //creates a new order
 void Player::issueOrder(string orderName) {
     Order *order = new Deploy(*new Deploy());
     int amount, sourceID, destID, pID;
@@ -147,32 +147,78 @@ void Player::issueOrder(string orderName) {
 
     if(orderName == "deploy") {
 
-        cout << "Input a territory Name where you wish to deploy your armies!" << endl;
+//        cout << "Input a territory Name where you wish to deploy your armies from!" << endl;
+//        cin >> sourceID;
+//        for(int i=0;territories.size();i++){
+//            if(territories[i]==sourceID)
+//                sourceID
+//        }
+//
+//        cout << "Input a territory Name where you wish to deploy your armies to !" << endl;
+//        cin >> destID;
+//
+//        cout << "Input the number of armies you want to deploy" << endl;
+//        cin >> amount;
+//
+//        Deploy d1(this,this,amount,territories[0],territories[0]);
+//        //now add to orderslist
+
+    }
+    else if(orderName == "advance")
+    {
+        int inputSourceID, inputDestID;
+        cout << "Input a source by territory ID" << endl;
+        cin >> inputSourceID;
+        cout << "Input a destination by territory ID" << endl;
+        cin >> inputDestID;
+
+    }
+
+    else if(orderName == "blockade"){
+        cout << "Please enter territory ID:" << endl;
         cin >> id;
 
+        cout << "\nAdding order to order list" << endl;
 
-        cout << "Input the number of armies you want to deploy" << endl;
+    }
+
+    else if(orderName == "airlift"){
+        cout << "Please enter source territory ID:" << endl;
+        cin >> sourceID;
+
+        cout << "Please enter destination territory ID:" << endl;
+        cin >> destID;
+
+        cout << "Please enter amount:" << endl;
         cin >> amount;
 
-        //vector<Territory*> gameMapTerritoryList = gameEngine->getMap()->Territories;
+        cout << "\nAdding order to order list" << endl;
 
-        for (int i = 0; i < territories.size(); i++) {
-            //cout << territoryList[i]->getTerritoryID() << endl;
-            if (territories[i]->getTerritoryName() == id) {
-                cout << "Adding territory " << territories[i]->getTerritoryName() <<
-                     " (" << territories[i]->getTerritoryName() << ") " << "to defendList" << endl;
-                defendList.push_back(territories[i]);
-                cout << "\nYour defend list will now look like this" << endl;
-                printDefendList();
-                cout << "\nAdding order to order list" << endl;
-                ordersList->addOrder(new Deploy);
-            }
-        }
+    }
+
+    else if(orderName == "negotiate"){
+        cout << "Please enter a player's ID that you want to negotiate with: " << endl;
+        cin >> pID;
+
+        cout << "\nAdding order to order list" << endl;
+
+    }
+
+    else if(orderName == "bomb")
+    {
+        cout << "Please enter target territory ID:" << endl;
+        cin >> id;
+
+        cout << "Please enter target player ID:" << endl;
+        cin >> pID;
+
+        cout << "\nAdding order to order list" << endl;
+
     }
 
 }
 
-void Player::issue_Order(string type, Player* target, int armyCount, Territory* targetTerritory, Territory* sourceTerritory) {
+//void Player::issue_Order(string type, Player* target, int armyCount, Territory* targetTerritory, Territory* sourceTerritory) {
 //    Order* order{};
 //
 //    std::transform(type.begin(), type.end(), type.begin(),
@@ -195,14 +241,11 @@ void Player::issue_Order(string type, Player* target, int armyCount, Territory* 
 //        order = new Advance(target, this, armyCount, targetTerritory, sourceTerritory);
 //    }
 //    else if (type == "negociate") {
-//        order = new Negociate(target, this, armyCount, targetTerritory, sourceTerritory);
+//        order = new Negotiate(target, this, armyCount, targetTerritory, sourceTerritory);
 //    }
-//    else if (type == "steal") {
-//        order = new Steal(target, this, armyCount, targetTerritory, sourceTerritory);
-//    }++;
-//    orderList->add(order);  // adding order to the list
-//    cout << "Order has been added to the list" << endl;
-}
+//    ordersList->addOrder(order);  // adding order to the list
+//    std::cout << "Order has been added to the list" << endl;
+//}
 
 //Removes a Territory from the list of owned Territory with the same territory ID
 void Player::removeOwnedTerritory(string territoryName) {
@@ -319,7 +362,7 @@ bool Player::ownAllTerritoryInContinent() {//go through all the territories, kee
 //    }
 //    return false;
 //}
-    return true;
+    return false;
 }
 
 //Adds a player to the list of negociated PLayers
