@@ -409,19 +409,17 @@ bool Bomb::validate() {
     }
 
     // Check if the target territory belongs to the player issuing the order
-    if (targetTerritory->getOwner() == this->getPlayer()) {
+    if (targetTerritory->getOwner()->getPlayerName() == sourceTerritory->getOwner()->getPlayerName()) {
         std::cout << "Invalid Bomb order: Target territory belongs to the player issuing the order." << std::endl;
         return false;
     }
 
     // Check if the target territory is adjacent to one of the player's territories
     bool isAdjacent = false;
-    for(int i = 0;i<this->player->getTerritories().size();i++){
-        if(targetTerritory->getTerritoryName() == player->getTerritories()[i]->getTerritoryName())
-        {
+    for(int i = 0;i<sourceTerritory->adjacentTerritories.size();i++){
+        if((targetTerritory->getTerritoryName() == sourceTerritory->adjacentTerritories[i].getTerritoryName())){
             isAdjacent = true;
         }
-
     }
 
     if (!isAdjacent) {
@@ -445,7 +443,7 @@ void Bomb::execute() {
     if (this->validate()) {
         // Remove half of the army units from the target territory
         int remainingArmies = targetTerritory->getNumberOfArmies() / 2;
-        targetTerritory->addArmies(-remainingArmies);
+        targetTerritory->removeArmies(remainingArmies);
 
         // Set the order as executed
         this->executed = true;

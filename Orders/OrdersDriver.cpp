@@ -22,11 +22,14 @@ void testOrderExecution()
     Territory* territory1 = new Territory();
     Territory* territory2 = new Territory();
     Territory* territory3 = new Territory();
+    Territory* territory4 = new Territory();
+
 
     // Set territory names
     territory1->setTerritoryName("Territory1");
     territory2->setTerritoryName("Territory2");
     territory3->setTerritoryName("Territory3");
+    territory4->setTerritoryName("Territory4");
 
     // Add territories to the map
     gameMap.addEdge(*territory1, *territory2);
@@ -34,18 +37,24 @@ void testOrderExecution()
     gameMap.addEdge(*territory2, *territory1);
     territory2->adjacentTerritories.push_back(*territory1);
     gameMap.addEdge(*territory2, *territory3);
+    gameMap.addEdge(*territory2,*territory4);
+    gameMap.addEdge(*territory4,*territory2);
+    territory2->adjacentTerritories.push_back(*territory4);
+    territory4->adjacentTerritories.push_back(*territory2);
 
     // Add territories to players
     p1->addTerritory(territory1);
     p2->addTerritory(territory2);
     p1->addTerritory(territory3);
+    p1->addTerritory(territory4);
 
     std::cout << "Adding 50 units to p1 and p2" << std::endl;
 
-    p1->setReinforcementPool(50);
-    p2->setReinforcementPool(50);
+    p1->setReinforcementPool(100);
+    p2->setReinforcementPool(100);
     territory1->setNumberOfArmies(25);
     territory2->setNumberOfArmies(10);
+    territory4->setNumberOfArmies(20);
     cout << "Testing Deployment Execution" << endl;
     cout << "------------------------------------------------" << endl;
     cout << "Successful Deployment: " << endl;
@@ -79,7 +88,16 @@ void testOrderExecution()
     cout << "Testing Bomb Execution" << endl;
     cout << "------------------------------------------------" << endl;
     cout << "Successful Bomb Execution" << endl;
-    Bomb b(p1,p2,30,territory1,territory2);
+    Bomb b(p1,p2,30,territory4,territory2);
+    b.execute();
+    cout << "Territory 4 went from 20 to " << territory4->getNumberOfArmies() << " Army units" << endl;
+    cout << "Unsuccessful Bomb Execution" << endl;
+    Bomb b2(p1,p2,30,territory3,territory2);
+    b2.execute();
+    cout << "Another Unsuccessful Bomb Execution";
+    Bomb b3(p2,p2,30,territory1,territory2);
+    b3.execute();
+
 
 
 
@@ -127,9 +145,14 @@ void testOrderExecution()
 //    std::cout << "Remaining armies in " << territory1->getTerritoryName() << ": " << territory1->getTerritoryName() << std::endl;
 //
 //
+
     delete territory1;
     delete territory2;
     delete territory3;
+    delete territory4;
+
+
+
 //
 //
 }
