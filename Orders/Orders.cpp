@@ -271,6 +271,7 @@ bool Advance::validate() {
         return false;
     }
 
+
     // Check if the target territory is adjacent to the source territory
     bool adjacent = false;
     for(int i = 0;i<sourceTerritory->adjacentTerritories.size();i++){
@@ -286,6 +287,13 @@ bool Advance::validate() {
     if (this->armiesToDeploy > this->getPlayer()->getReinforcementPool())
     {
         std::cout << "Invalid Advance  order: Can not advance more army than what is in the pool";
+    }
+
+    for (Player* p : player->negociatedPlayers) {
+        if (p == targetTerritory->getOwner()) {
+            cout << "\nFAILED: The target territory owner currently has a negociated contract and cannot be attacked.";
+            return false;
+        }
     }
 
     // The order is valid
@@ -361,6 +369,13 @@ bool Bomb::validate() {
     if (!isAdjacent) {
         std::cout << "Invalid Bomb order: Target territory is not adjacent to any of the player's territories." << std::endl;
         return false;
+    }
+
+    for (Player* p : player->negociatedPlayers) {
+        if (p == targetTerritory->getOwner()) {
+            cout << "\nFAILED: The target territory owner currently has a negotiated contract and cannot be attacked.";
+            return false;
+        }
     }
 
     // The order is valid
