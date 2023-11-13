@@ -40,6 +40,7 @@ public:
     bool operator==(const Territory& other) const {
         return this->territoryName == other.territoryName;
     }
+    vector<Territory> adjacentTerritories;
 private:
     int xCoordinate;//horizontal coordinate of territory on the map
     int yCoordinate;//vertical coordinate of territory on the map
