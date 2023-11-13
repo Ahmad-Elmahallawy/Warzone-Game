@@ -8,8 +8,9 @@ using namespace std;
 #include <iostream>
 #include <list>
 #include "../GameEngine.h"
+#include "../GameLog/LoggingObserver.h"
 
-class Command{
+class Command: public ILoggable, public Subject{
 public:
     string effect;
     string secondParameter;
@@ -18,15 +19,16 @@ public:
     string getEffect();
     Command(string command);
     Command(string command, string secondParameter);
-
+    string stringToLog();
     ~Command();
 
 private:
     string command;
+    LoggingObserver* log1;
 };
 
 
-class CommandProcessing{
+class CommandProcessing: public ILoggable, public Subject{
 public:
     ~CommandProcessing();
     list<Command*> lc;
@@ -34,13 +36,20 @@ public:
     void saveCommand(Command* command);
     Command* getCommand();
     bool validate(Command* command, GameEngine::State state);
+    string stringToLog();
+    Commands getEnumCommands();
+
+    };
+class FileLineReader{
+public:
+    void readLineFromFile();
 };
 class FileCommandProcessorAdapter: public CommandProcessing{
 public:
     Command* readCommand();
     string fileName;
     FileCommandProcessorAdapter(string fileName);
-
+    FileLineReader flr;
     virtual ~FileCommandProcessorAdapter();
 
 private:

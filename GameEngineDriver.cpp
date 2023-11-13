@@ -5,12 +5,11 @@
 #include <string>
 
 // function that runs the game engine
-int main() {
+void testStartupPhase() {
     GameEngine gameEngine;
     gameEngine.startupPhase();
     gameEngine.mainGameLoop();
 
-    return 0;
 }
 
 

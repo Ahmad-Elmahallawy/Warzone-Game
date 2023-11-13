@@ -256,6 +256,7 @@ GameEngine::State GameEngine::transition(Commands command) {
 
                 currentState = transition.nextState;  // Update the current state
                 std::cout << "Transitioning to state: " << stateToString(currentState) << std::endl;
+                Notify(this);
 
                 return currentState;  // Return the new state
             }
@@ -264,6 +265,8 @@ GameEngine::State GameEngine::transition(Commands command) {
 
     std::cout << "Invalid transition from state: " << stateToString(currentState)
               << " with command: " << commandToString(command) << std::endl;
+
+    Notify(this);
 
     // Return the current state if no valid transition is found
     return currentState;
@@ -596,6 +599,13 @@ void GameEngine::ordersExecutionPhase() {
         }
     }
 
+}
+string GameEngine::stringToLog() {
+    return "Game Engine: new state is " + stateToString(this->getCurrentState());
+}
+
+CommandProcessing* GameEngine::getCommandProcessor() {
+    return this->commandProcessor;
 }
 
 void GameEngine::mainGameLoop() {

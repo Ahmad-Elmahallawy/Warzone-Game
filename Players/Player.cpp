@@ -5,6 +5,8 @@
 using namespace std;
 // default constructor
 
+Player* Player::neutralPlayer = new Player("NeutralPlayer");
+
 // Static method to get the neutral player instance
 static Player* getNeutralPlayer();
 
@@ -35,7 +37,7 @@ Player::Player(Player &player) {
     territories = vector<Territory*>(player.territories);
     ordersList = new OrdersList(*player.ordersList);
     playerName = player.playerName;
-
+    delete neutralPlayer;
 }
 
 

@@ -24,6 +24,7 @@ Territory::Territory() {
     this->yCoordinate = 0;
     this->territoryName = "";
     this->continent = "";
+    this->adjacentTerritories = {};
 }
 Territory::~Territory(){
 
@@ -288,6 +289,7 @@ bool MapLoader::secondRun() {
                         return false;
                     }
                     this->gameMap->addEdge(primary,adjacent);//if both exist then link them via an edge
+                    primary.adjacentTerritories.push_back(adjacent);
                 }
             }
         }

@@ -22,7 +22,7 @@ class Territory;
 
 //   ---   Order class    ---   [each ORDER type (below) inherits from this class and overrides execute() and validate()]
 
-class Order
+class Order : public ILoggable, public Subject
 {
 protected:
     // action of the Order
@@ -322,7 +322,7 @@ public:
 
 //   ---   OrdersList class   ---   [a class to create and manage a list of orders]
 
-class OrdersList
+class OrdersList: public ILoggable, public Subject
 {
 private:
 

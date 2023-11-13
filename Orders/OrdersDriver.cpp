@@ -10,15 +10,20 @@ Here : remove, move of the orderlist will be tested, expected result shown comme
 
 void testOrdersLists()
 {
-    std::cout << "test OrderDriver" << std::endl;
+    Map gameMap(5); // Assuming a map with 5 territories
 
+    cout << "Creating 2 players";
+    Player p1("Player 1");
+    Player p2("Player 2");
+
+
+    cout << "Creating an order of each type" << endl;
     Deploy deploy_test = Deploy();
     Advance advance_test = Advance();
     Bomb bomb_test = Bomb();
     Blockade blockade_test = Blockade();
     Airlift airlift_test = Airlift();
     Negotiate negotiate_test = Negotiate();
-
 
 
     // create an OrdersList object to hold the orders

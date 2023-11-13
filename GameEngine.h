@@ -4,7 +4,8 @@
 
 #ifndef PROJECT_1_GAMEENGINE_H
 #define PROJECT_1_GAMEENGINE_H
-
+#include "GameLog/LoggingObserver.h"
+#include "GameLog/FileWriter.h"
 
 
 
@@ -37,7 +38,7 @@ enum Commands {
     CMD_EXEC_ORDER,
 };
 
-class GameEngine {
+class GameEngine: public ILoggable, public Subject {
 
 
 public:
@@ -74,6 +75,9 @@ public:
     void reinforcementPhase();
     void issuingOrdersPhase();
     void ordersExecutionPhase();
+    CommandProcessing* getCommandProcessor();
+
+    string stringToLog();
 
 
     // Define a struct to represent state transitions
