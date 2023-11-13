@@ -12,13 +12,11 @@
 void testLoggingObserver() {
     GameEngine* ge1 = new GameEngine();
 
-    ge1->startupPhase();
-    ge1->mainGameLoop();
-
-
-
     LoggingObserver* o1 = new LoggingObserver(ge1->getCommandProcessor());
     LoggingObserver* o2 = new LoggingObserver(ge1);
+
+    ge1->startupPhase();
+    ge1->mainGameLoop();
 
     ge1->transition(ge1->getCommandProcessor()->getEnumCommands());
     ge1->transition(ge1->getCommandProcessor()->getEnumCommands());
