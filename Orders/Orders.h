@@ -313,7 +313,6 @@ private:
     /// action of Negotiate
     std::string action = "effect in Negotiate Order class";
 
-    Negotiate(Player* target, Player* player, int armyCount, Territory* targetLocation, Territory* fromLocation);
     // boolean set true if action object has been executed
     bool executed = false;
 
@@ -322,6 +321,9 @@ private:
 public:
     // default constructor
     Negotiate();
+
+    Negotiate(Player* target, Player* player, int armyCount, Territory* targetLocation, Territory* fromLocation);
+
 
     // copy constructor
     Negotiate(const Negotiate& negotiate);

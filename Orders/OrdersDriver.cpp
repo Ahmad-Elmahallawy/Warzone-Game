@@ -67,6 +67,7 @@ void testOrderExecution()
     cout << "Unsuccessful Deployment: " << endl;
     Deploy d2(p1,p1,20,territory2,territory1);
     d2.execute();
+
     cout<< "Testing Advance Execution" << endl;
     cout << "------------------------------------------------" << endl;
     cout << "Successful Advance Execution" << endl;
@@ -97,6 +98,45 @@ void testOrderExecution()
     cout << "Another Unsuccessful Bomb Execution" << endl;
     Bomb b3(p2,p2,30,territory1,territory2);
     b3.execute();
+    Player* neutralP = new Player("Neutral");
+    cout << "Successful Blockade Execution" << endl;
+    cout << "Territory 2 army count before: " << territory2->getNumberOfArmies() << endl;
+    cout << "Testing Blockade Execution" << endl;
+    cout << "------------------------------------------------" << endl;
+    Blockade bl(neutralP,p2,30,territory2,territory2);
+    bl.execute();
+    cout << "Territory 2 army count after: " << territory2->getNumberOfArmies() << endl;
+    cout << "Unsuccessful Blockade Execution" << endl;
+    Blockade bl2(neutralP,p2,30,territory3,territory2);
+    bl2.execute();
+    cout << "Testing Airlift Execution" << endl;
+    cout << "------------------------------------------------" << endl;
+    cout << "Successful Airlift Execution" << endl;
+    cout << "Territory 3 army count before: " << territory3->getNumberOfArmies() << endl;
+    Airlift al(p1,p1,10,territory3,territory4);
+    al.execute();
+    cout << "Territory 3 army count after: " << territory3->getNumberOfArmies() << endl;
+    cout << "Territory 4 army count now: " << territory4->getNumberOfArmies() << endl;
+    cout << "Unsuccessful Airlift Execution" << endl;
+    Airlift al2(p1,p1,30,territory4,territory4);
+    cout << "Another Unsuccessful Airlift Execution" << endl;
+    Airlift al3(p1,p1,10,territory2,territory3);
+    al3.execute();
+    cout<< "Testing Negotiate Execution" << endl;
+    cout << "------------------------------------------------" << endl;
+    cout << "Successful Negotiate Execution" << endl;
+    Negotiate n1(p1,p1,20,territory2,territory1);
+    n1.execute();
+    cout << "Unsuccessful Negotiate Execution" << endl;
+    Negotiate n2(p1,p1,20,territory3,territory1);
+    n2.execute();
+    cout << "Checking if player 1 can bomb player 2, Territory: 2" << endl;
+    Bomb bNegotiate(p2,p1,20,territory2,territory1);
+    bNegotiate.execute();
+
+
+
+
 
 
 

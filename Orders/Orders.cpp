@@ -634,6 +634,13 @@ bool Airlift::validate() {
         return false;
     }
 
+    if(armiesToDeploy > sourceTerritory->getNumberOfArmies())
+    {
+        action = "Invalid Airlift order: Source territory has less army than what is in the order.";
+        cout << action << endl;
+        return false;
+    }
+
     // Check if the target territory belongs to the player issuing the order
     if (targetTerritory->getOwner() != this->getPlayer()) {
         action = "Invalid Airlift order: Target territory does not belong to the player issuing the order.";

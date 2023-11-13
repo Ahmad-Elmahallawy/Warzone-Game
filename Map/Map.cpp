@@ -82,12 +82,8 @@ Player* Territory::getOwner() const {
 
 
 void Territory::removeArmies(int numArmies) {
-    if (numArmies >= this->numberOfArmies) {
-        // If the number of armies to remove is greater than or equal to the current number of armies,
-        // set the number of armies to zero.
-        this->numberOfArmies = 0;
-    } else {
-        // Otherwise, subtract the specified number of armies.
+
+        // subtract the specified number of armies.
         this->numberOfArmies -= numArmies;
 
         // Ensure the number of armies does not go below zero
@@ -95,7 +91,7 @@ void Territory::removeArmies(int numArmies) {
             this->numberOfArmies = 0;
             cout << "Can not set below 0";
         }
-    }
+
 }
 
 void Territory::setContinentName(std::string cName) {
