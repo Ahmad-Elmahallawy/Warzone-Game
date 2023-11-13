@@ -106,3 +106,7 @@ Command's Effect: The game session has started!
 /--------------/
 Game Engine: new state is assign reinforcement
 /--------------/
+Command's Effect: Loading up the map!
+/--------------/
+Command's Effect: The map is being validated.
+/--------------/

@@ -186,7 +186,7 @@ bool GameEngine::gameStart() {
     for(int i = 0; i < numTerritories ; i++)
     {
         Territory t = ml->gameMap->listOfTerritories[i];
-        AddedPlayerList[playersIndex % AddedPlayerList.size()]->setTerritories(t);
+        AddedPlayerList[playersIndex % AddedPlayerList.size()]->setTerritories(&t);
 
         playersIndex++;
     }

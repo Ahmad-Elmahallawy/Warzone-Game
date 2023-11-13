@@ -37,10 +37,10 @@ void testLoggingObserver() {
     t3->setTerritoryName("neehaw");
     t4->setTerritoryName("lil");
 
-    p1.setTerritories(*t1);
-    p1.setTerritories(*t4);
-    p2.setTerritories(*t2);
-    p2.setTerritories(*t3);
+    p1.setTerritories(t1);
+    p1.setTerritories(t4);
+    p2.setTerritories(t2);
+    p2.setTerritories(t3);
 
     OrdersList temp = p1.getOrdersList();
     OrdersList temp2 = p2.getOrdersList();

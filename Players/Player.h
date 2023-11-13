@@ -59,6 +59,7 @@ public:
 
     // getters and setters
     Hand *getHand() const;
+    void removeOwnedTerritory(string territoryName);
 
     void issueOrder(string orderName);
 
@@ -69,7 +70,7 @@ public:
     void setHand(Hand *hand);
 
 
-    void setTerritories(Territory territories);
+    void setTerritories(Territory* territories);
     void setPlayerName(const string &playerName);
 
     void setPlayerID(const int &playerID);

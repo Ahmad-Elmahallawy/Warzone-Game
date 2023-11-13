@@ -30,6 +30,9 @@ void testOrderExecution()
 
     // Add territories to the map
     gameMap.addEdge(*territory1, *territory2);
+    territory1->adjacentTerritories.push_back(*territory2);
+    gameMap.addEdge(*territory2, *territory1);
+    territory2->adjacentTerritories.push_back(*territory1);
     gameMap.addEdge(*territory2, *territory3);
 
     // Add territories to players
@@ -41,11 +44,17 @@ void testOrderExecution()
 
     p1->setReinforcementPool(50);
     p2->setReinforcementPool(50);
+    territory1->setNumberOfArmies(25);
+    territory2->setNumberOfArmies(10);
     cout << "Testing Deployment Execution" << endl;
     cout << "------------------------------------------------" << endl;
     cout << "Successful Deployment: " << endl;
-    Deploy d(p1,p1,20,territory3,territory1);
-    d.execute();
+    Deploy d1(p1, p1, 20, territory3, territory1);
+    d1.execute();
+    for(int i = 0; i < p1->getTerritories().size() ; i++)
+    {
+        cout << p1->getTerritories()[i]->getNumberOfArmies() << endl;
+    }
     cout << "Unsuccessful Deployment: " << endl;
     Deploy d2(p1,p1,20,territory2,territory1);
     d2.execute();
@@ -54,6 +63,24 @@ void testOrderExecution()
     cout << "Successful Advance Execution" << endl;
     Advance a(p1,p2,30,territory1,territory2);
     a.execute();
+    cout << "Player 2 now has the following territories and number of army:" << endl;
+    for(int i = 0; i < p2->getTerritories().size() ; i++)
+    {
+        cout << p2->getTerritories()[i]->getTerritoryName() << " " << p2->getTerritories()[i]->getNumberOfArmies()<< endl;
+    }
+    cout << "Player 1 now has the following territories and number of army:" << endl;
+    for(int i = 0; i < p1->getTerritories().size() ; i++)
+    {
+        cout << p1->getTerritories()[i]->getTerritoryName() << " " << p1->getTerritories()[i]->getNumberOfArmies()<< endl;
+    }
+    cout << "Unsuccessful Advance Execution" <<  endl;
+    Advance a1(p1,p2,30,territory3,territory2);
+    a1.execute();
+    cout << "Testing Bomb Execution" << endl;
+    cout << "------------------------------------------------" << endl;
+    cout << "Successful Bomb Execution" << endl;
+    Bomb b(p1,p2,30,territory1,territory2);
+
 
 
 

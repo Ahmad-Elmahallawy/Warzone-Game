@@ -81,8 +81,8 @@ void Player::setHand(Hand *hand) {
 }
 
 // setsTerritories
-void Player::setTerritories(Territory territories) {
-    Player::territories.push_back(&territories);
+void Player::setTerritories(Territory* territories) {
+    Player::territories.push_back(territories);
 }
 
 // sets Player's name
@@ -204,6 +204,14 @@ void Player::issue_Order(string type, Player* target, int armyCount, Territory* 
 //    cout << "Order has been added to the list" << endl;
 }
 
+//Removes a Territory from the list of owned Territory with the same territory ID
+void Player::removeOwnedTerritory(string territoryName) {
+    for (int i = 0; i < territories.size(); i++) {
+        if (territories.at(i)->getTerritoryName() == territoryName) {
+            territories.erase(territories.begin() + i);
+        }
+    }
+}
 
 // Add a territory to the player's list of territories
 void Player::addTerritory(Territory* territory) {

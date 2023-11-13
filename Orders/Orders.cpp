@@ -232,24 +232,30 @@ void Advance::execute() {
         // Simulate battle
         int attackerUnits = armiesToDeploy;
         int defenderUnits = targetTerritory->getNumberOfArmies();
+        const int ATTACK_SUCCESS_RATE = 6; // 60%
+        const int DEFENSE_SUCCESS_RATE = 7; // 70%
         // Check if the target territory belongs to another player
         if (targetTerritory->getOwner() != this->getPlayer()) {
 
+            // Simulate battle
             while (attackerUnits > 0 && defenderUnits > 0) {
-                // Simulate each round of battle
-                // 60% success rate
-                if (rand() % 100 < 60) {
-                    // Attacker kills one defender
+                // Attacker's success rate: 60%
+                if ((rand() % 10) < 6) {
+                    if(defenderUnits == 0)
+                    {
+                        break;
+                    }
                     defenderUnits--;
                 }
 
-                // 70% success rate
-                if (rand() % 100 < 70) {
-                    // Defender kills one attacker
-                    attackerUnits--;
+                // Check if defender is still present after the attacker's attack
+                if (defenderUnits > 0) {
+                    // Defender's success rate: 70%
+                    if ((rand() % 10) < 7) {
+                        attackerUnits--;
+                    }
                 }
             }
-
             // If all defenders are eliminated, the attacker captures the territory
             if (defenderUnits <= 0 && attackerUnits > 0) {
                 std::cout << "Attack successful! " << this->getPlayer()->getPlayerName()
@@ -257,6 +263,8 @@ void Advance::execute() {
 
                 // Move remaining attacker units to the conquered territory
                 targetTerritory->setOwner(this->getPlayer());
+                target->removeOwnedTerritory(targetTerritory->getTerritoryName());
+                player->setTerritories(targetTerritory);
                 targetTerritory->addArmies(attackerUnits);
                 sourceTerritory->addArmies(-this->armiesToDeploy);
                 action = this->getPlayer()->getPlayerName() + " captured " + this->targetTerritory->getTerritoryName();
@@ -314,9 +322,7 @@ bool Advance::validate() {
 
     // Check if the target territory is adjacent to the source territory
     bool adjacent = false;
-    cout << sourceTerritory->adjacentTerritories.size();
     for(int i = 0;i<sourceTerritory->adjacentTerritories.size();i++){
-
         if((targetTerritory->getTerritoryName() == sourceTerritory->adjacentTerritories[i].getTerritoryName())){
             adjacent = true;
         }
@@ -439,7 +445,7 @@ void Bomb::execute() {
     if (this->validate()) {
         // Remove half of the army units from the target territory
         int remainingArmies = targetTerritory->getNumberOfArmies() / 2;
-        targetTerritory->addArmies(remainingArmies);
+        targetTerritory->addArmies(-remainingArmies);
 
         // Set the order as executed
         this->executed = true;
