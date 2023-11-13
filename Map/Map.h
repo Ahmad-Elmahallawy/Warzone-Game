@@ -26,6 +26,7 @@ public:
     string getTerritoryName() const;
     void setTerritoryName(string tName);
     string getContinentName() const;
+    vector<Territory> adjacentTerritories;
     void setContinentName(string cName);
     int getNumberOfArmies() const;
     void setNumberOfArmies(int numArmies);

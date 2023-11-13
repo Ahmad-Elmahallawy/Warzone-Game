@@ -272,7 +272,13 @@ bool Advance::validate() {
     }
 
     // Check if the target territory is adjacent to the source territory
-    if (!sourceTerritory->isAdjacent(targetTerritory)) {
+    bool adjacent = false;
+    for(int i = 0;i<sourceTerritory->adjacentTerritories.size();i++){
+        if((targetTerritory->getTerritoryName() == sourceTerritory->adjacentTerritories[i].getTerritoryName())){
+            adjacent = true;
+        }
+    }
+    if (!adjacent) {
         std::cout << "Invalid Advance order: Source and target territories are not adjacent." << std::endl;
         return false;
     }
@@ -344,11 +350,12 @@ bool Bomb::validate() {
 
     // Check if the target territory is adjacent to one of the player's territories
     bool isAdjacent = false;
-    for (Territory* playerTerritory : this->getPlayer()->getTerritories()) {
-        if (playerTerritory->isAdjacent(targetTerritory)) {
+    for(int i = 0;i<this->player->getTerritories().size();i++){
+        if(targetTerritory->getTerritoryName() == player->getTerritories()[i]->getTerritoryName())
+        {
             isAdjacent = true;
-            break;
         }
+
     }
 
     if (!isAdjacent) {
