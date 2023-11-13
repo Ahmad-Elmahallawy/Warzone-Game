@@ -250,6 +250,48 @@ CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.s"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\Project2\COMP345-Warzone\Command\CommandProcessingDriver.cpp -o CMakeFiles\Project_1.dir\Command\CommandProcessingDriver.cpp.s
 
+CMakeFiles/Project_1.dir/GameLog/LoggingObserver.cpp.obj: CMakeFiles/Project_1.dir/flags.make
+CMakeFiles/Project_1.dir/GameLog/LoggingObserver.cpp.obj: ../GameLog/LoggingObserver.cpp
+CMakeFiles/Project_1.dir/GameLog/LoggingObserver.cpp.obj: CMakeFiles/Project_1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\Project2\COMP345-Warzone\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/Project_1.dir/GameLog/LoggingObserver.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/GameLog/LoggingObserver.cpp.obj -MF CMakeFiles\Project_1.dir\GameLog\LoggingObserver.cpp.obj.d -o CMakeFiles\Project_1.dir\GameLog\LoggingObserver.cpp.obj -c C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\Project2\COMP345-Warzone\GameLog\LoggingObserver.cpp
+
+CMakeFiles/Project_1.dir/GameLog/LoggingObserver.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project_1.dir/GameLog/LoggingObserver.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\Project2\COMP345-Warzone\GameLog\LoggingObserver.cpp > CMakeFiles\Project_1.dir\GameLog\LoggingObserver.cpp.i
+
+CMakeFiles/Project_1.dir/GameLog/LoggingObserver.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_1.dir/GameLog/LoggingObserver.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\Project2\COMP345-Warzone\GameLog\LoggingObserver.cpp -o CMakeFiles\Project_1.dir\GameLog\LoggingObserver.cpp.s
+
+CMakeFiles/Project_1.dir/GameLog/FileWriter.cpp.obj: CMakeFiles/Project_1.dir/flags.make
+CMakeFiles/Project_1.dir/GameLog/FileWriter.cpp.obj: ../GameLog/FileWriter.cpp
+CMakeFiles/Project_1.dir/GameLog/FileWriter.cpp.obj: CMakeFiles/Project_1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\Project2\COMP345-Warzone\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/Project_1.dir/GameLog/FileWriter.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/GameLog/FileWriter.cpp.obj -MF CMakeFiles\Project_1.dir\GameLog\FileWriter.cpp.obj.d -o CMakeFiles\Project_1.dir\GameLog\FileWriter.cpp.obj -c C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\Project2\COMP345-Warzone\GameLog\FileWriter.cpp
+
+CMakeFiles/Project_1.dir/GameLog/FileWriter.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project_1.dir/GameLog/FileWriter.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\Project2\COMP345-Warzone\GameLog\FileWriter.cpp > CMakeFiles\Project_1.dir\GameLog\FileWriter.cpp.i
+
+CMakeFiles/Project_1.dir/GameLog/FileWriter.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_1.dir/GameLog/FileWriter.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\Project2\COMP345-Warzone\GameLog\FileWriter.cpp -o CMakeFiles\Project_1.dir\GameLog\FileWriter.cpp.s
+
+CMakeFiles/Project_1.dir/GameLog/LoggingObserverDriver.cpp.obj: CMakeFiles/Project_1.dir/flags.make
+CMakeFiles/Project_1.dir/GameLog/LoggingObserverDriver.cpp.obj: ../GameLog/LoggingObserverDriver.cpp
+CMakeFiles/Project_1.dir/GameLog/LoggingObserverDriver.cpp.obj: CMakeFiles/Project_1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\Project2\COMP345-Warzone\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/Project_1.dir/GameLog/LoggingObserverDriver.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Project_1.dir/GameLog/LoggingObserverDriver.cpp.obj -MF CMakeFiles\Project_1.dir\GameLog\LoggingObserverDriver.cpp.obj.d -o CMakeFiles\Project_1.dir\GameLog\LoggingObserverDriver.cpp.obj -c C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\Project2\COMP345-Warzone\GameLog\LoggingObserverDriver.cpp
+
+CMakeFiles/Project_1.dir/GameLog/LoggingObserverDriver.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project_1.dir/GameLog/LoggingObserverDriver.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\Project2\COMP345-Warzone\GameLog\LoggingObserverDriver.cpp > CMakeFiles\Project_1.dir\GameLog\LoggingObserverDriver.cpp.i
+
+CMakeFiles/Project_1.dir/GameLog/LoggingObserverDriver.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project_1.dir/GameLog/LoggingObserverDriver.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\Project2\COMP345-Warzone\GameLog\LoggingObserverDriver.cpp -o CMakeFiles\Project_1.dir\GameLog\LoggingObserverDriver.cpp.s
+
 # Object files for target Project_1
 Project_1_OBJECTS = \
 "CMakeFiles/Project_1.dir/Map/Map.cpp.obj" \
@@ -264,7 +306,10 @@ Project_1_OBJECTS = \
 "CMakeFiles/Project_1.dir/GameEngine.cpp.obj" \
 "CMakeFiles/Project_1.dir/GameEngineDriver.cpp.obj" \
 "CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.obj" \
-"CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.obj"
+"CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.obj" \
+"CMakeFiles/Project_1.dir/GameLog/LoggingObserver.cpp.obj" \
+"CMakeFiles/Project_1.dir/GameLog/FileWriter.cpp.obj" \
+"CMakeFiles/Project_1.dir/GameLog/LoggingObserverDriver.cpp.obj"
 
 # External object files for target Project_1
 Project_1_EXTERNAL_OBJECTS =
@@ -282,11 +327,14 @@ Project_1.exe: CMakeFiles/Project_1.dir/GameEngine.cpp.obj
 Project_1.exe: CMakeFiles/Project_1.dir/GameEngineDriver.cpp.obj
 Project_1.exe: CMakeFiles/Project_1.dir/Command/CommandProcessing.cpp.obj
 Project_1.exe: CMakeFiles/Project_1.dir/Command/CommandProcessingDriver.cpp.obj
+Project_1.exe: CMakeFiles/Project_1.dir/GameLog/LoggingObserver.cpp.obj
+Project_1.exe: CMakeFiles/Project_1.dir/GameLog/FileWriter.cpp.obj
+Project_1.exe: CMakeFiles/Project_1.dir/GameLog/LoggingObserverDriver.cpp.obj
 Project_1.exe: CMakeFiles/Project_1.dir/build.make
 Project_1.exe: CMakeFiles/Project_1.dir/linklibs.rsp
 Project_1.exe: CMakeFiles/Project_1.dir/objects1.rsp
 Project_1.exe: CMakeFiles/Project_1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\Project2\COMP345-Warzone\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable Project_1.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\Project2\COMP345-Warzone\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable Project_1.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Project_1.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
