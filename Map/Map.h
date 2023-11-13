@@ -74,8 +74,8 @@ public:
     bool territoryExists(string tName);//finds out if given territory exists
     Territory findTerritory(string tName);
     void setNumberOfTerritories(int n);
-    void firstRun();
-    void secondRun();
+    bool firstRun();
+    bool secondRun();
     int getNumberOfTerritories() const;
     string fileName;
 private:

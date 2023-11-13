@@ -1,16 +1,19 @@
-// GameEngine.cpp
+
+#include <iostream>
+#include <map>
+#include <vector>
+#include <string>
 #include "GameEngine.h"
 #include "Command/CommandProcessor.h"
-#include <iostream>
-#include <vector>
-using namespace std;
+#include "Players/Player.h"
+#include "Map/Map.h"
+#include "Cards/Cards.h"
 
-#include "gameengine.h"
 
 // Definition and initialization of the static member
 std::map<GameEngine::State, std::vector<GameEngine::Transition>> GameEngine::stateTransitions = {
         {State::START, {
-                               {CMD_START, State::MAP_LOADED}
+                               {CMD_LOAD_MAP, State::MAP_LOADED}
                        }},
         {State::MAP_LOADED, {
                                {CMD_LOAD_MAP, State::MAP_LOADED},
@@ -21,10 +24,10 @@ std::map<GameEngine::State, std::vector<GameEngine::Transition>> GameEngine::sta
                        }},
         {State::PLAYERS_ADDED, {
                                {CMD_ADD_PLAYER, State::PLAYERS_ADDED},
-                               {CMD_ASSIGN_COUNTRIES, State::ASSIGN_REINFORCEMENTS}
+                               {CMD_GAME_START, State::ASSIGN_REINFORCEMENTS}
                        }},
         {State::ASSIGN_REINFORCEMENTS, {
-                               {CMD_ISSUE_ORDER, State::ISSUE_ORDERS}
+                               {CMD_ISSUE_ORDER, State::ISSUE_ORDERS},
                        }},
         {State::ISSUE_ORDERS, {
                                {CMD_ISSUE_ORDER, State::ISSUE_ORDERS},
@@ -42,203 +45,258 @@ std::map<GameEngine::State, std::vector<GameEngine::Transition>> GameEngine::sta
 };
 
 
-GameEngine::GameEngine() {
-    // current state when the game runs
-    State currentState = START;
-    CommandProcessor* c1 = new CommandProcessor();
-}
+GameEngine::GameEngine():currentState(START), commandProcessor(new CommandProcessor()) {
+    srand(time(nullptr));
 
-GameEngine::~GameEngine() {
-
-}
-
-// function definition to check if the command is valid to transition to the next state
-bool GameEngine::isValidTransition(Commands command) {
-    for (const auto &transition : stateTransitions[currentState]) {
-        if (transition.command == command) {
-            return true;
-        }
-    }
-    return false;
-}
-
-// transition to the next state if the command is valid
-void GameEngine::transition(Commands command) {
-    if (isValidTransition(command)) {
-        for (const auto &transition : stateTransitions[currentState]) {
-            if (transition.command == command) {
-                currentState = transition.nextState;
-                break;
-            }
-        }
-    } else {
-        std::cout << "Invalid state transition." << std::endl;
-    }
-    Notify(this);
 }
 
 
 // command to enter players in the game
-void GameEngine::addPlayer(string playerName)
+bool GameEngine::addPlayer(string playerName)
 {
 
     // check if a playername is empty
     if(playerName.empty())
     {
-        commandProcessor->getCommand()->saveEffect("Your name cannot be empty");
-        cout << commandProcessor->getCommand()->getEffect() << endl;
-        return;
+        cout << "Your name cannot be empty" << endl;
+        return false;
     }
 
     // check if there are more than 6 players
-    if(AddedPlayerList.size() > 6)
+    if(AddedPlayerList.size() == 6)
     {
-        commandProcessor->getCommand()->saveEffect("Number of players can not exceed 6. You can not add more players");
-        cout << commandProcessor->getCommand()->getEffect() << endl;
-        return;
+        cout << "Number of players can not exceed 6. You can not add more players" << endl;
+        return false;
     }
 
     for (Player* p : AddedPlayerList) {
         if (p->getPlayerName() == playerName) { //check if 2 names are the same
 
-            commandProcessor->getCommand()->saveEffect("The player's name is already taken");
-            cout << commandProcessor->getCommand()->getEffect() << endl;
-            return;
+
+            cout << "The player's name is already taken" << endl;
+            return false;
         }
     }
 
     // creating a player and adding it to the list of players
     Player* player = new Player(playerName);
     AddedPlayerList.push_back(player);
+    cout << AddedPlayerList.at(AddedPlayerList.size() - 1)->getPlayerName() << " has been added." << endl;
+    cout << "Current players: " << endl;
+    for(int i = 0; i < AddedPlayerList.size() ; i++)
+    {
+        cout << "Player #" << i+1 << ": " << AddedPlayerList.at(i)->getPlayerName() << endl;
+    }
+
+    return true;
 
 }
 
 
 void GameEngine::gameStart() {
     if (AddedPlayerList.size() < 2) {
-        commandProcessor->getCommand()->saveEffect("Cannot start the game with less than 2 players");
-        cout << commandProcessor->getCommand()->getEffect() << endl;
+
+        cout << "Cannot start the game with less than 2 players" << endl;
         return;
     }
 
     cout << "Part a: Distributing territories " << endl;
 
     // Allocates one territory to each player. Each territory allocated are equidistant from each other
-    int numTerritories = (int)this->currentMap->listOfTerritories.size();
+    int numTerritories = ml->getNumberOfTerritories();
     int gap = numTerritories / (int)AddedPlayerList.size();
     int playersIndex = 0;
 
     for(int i = 0; i < numTerritories ; i++)
     {
-        Territory* t = &(currentMap->listOfTerritories[i]);
+        Territory t = ml->gameMap->listOfTerritories[i];
         AddedPlayerList[playersIndex % AddedPlayerList.size()]->setTerritories(t);
+
         playersIndex++;
     }
 
     // Randomizes the order of players
-    vector<Player*> orderedPlayers;
-    while(AddedPlayerList.size() != 0) {
-        int index = rand() % AddedPlayerList.size();
-        orderedPlayers.push_back(AddedPlayerList[index]);
-        AddedPlayerList.erase(AddedPlayerList.begin() + index);
+    for (int i = AddedPlayerList.size() - 1; i > 0; --i) {
+        int j = rand() % (i + 1);
+        std::swap(AddedPlayerList[i], AddedPlayerList[j]);
     }
 
-    this->AddedPlayerList = orderedPlayers;
 
     cout << "Determined the order of play is shown below: " << endl;
-    for(int i = 0; i < orderedPlayers.size() ; i++) {
-        cout << "Player #: " << i + 1 << " with name " << orderedPlayers[i]->getPlayerName();
+    for(int i = 0; i < AddedPlayerList.size() ; i++) {
+        cout << "Player #: " << i + 1 << " with name " << AddedPlayerList[i]->getPlayerName() << endl;
     }
 
     // add 50 armies to each player's reinforcement pool
-    for (int i = 0; i < orderedPlayers.size(); i++)
+    for (int i = 0; i < AddedPlayerList.size(); i++)
     {
-        orderedPlayers[i]->setReinforcementPool(50);
+        AddedPlayerList[i]->setReinforcementPool(50);
     }
 
     cout << "\nAdded 50 armies to each player's reinforcement pool..." << endl;
 
     // Draws two cards from the deck for each player
-    Deck* deck = new Deck();
+    Deck deck{};
 
-    Card* card1, *card2;
-    for(int i = 0; i < orderedPlayers.size() ; i++)
+
+    for(int i = 0; i < AddedPlayerList.size() ; i++)
     {
-        card1 = deck->draw();
-        card2 = deck->draw();
-        orderedPlayers[i]->getHand()->returnCard(*card1);
-        orderedPlayers[i]->getHand()->returnCard(*card2);
+        Card* card1 = deck.draw();
+        Card* card2 = deck.draw();
+        if (card1 && card2) {
+            AddedPlayerList[i]->getHand()->returnCard(*card1);
+            AddedPlayerList[i]->getHand()->returnCard(*card2);
+
+        } else {
+            std::cout << "Error: Unable to draw cards from the deck." << std::endl;
+        }
     }
-    delete deck;
-    deck = nullptr;
-    delete card1;
-    card1 = nullptr;
-    delete card2;
-    card2 = nullptr;
+
 
     cout << "\nDrew two cards from the deck for each player..." << endl;
+}
+
+// transition to the next state if the command is valid
+// transition to the next state if the command is valid
+GameEngine::State GameEngine::transition(Commands command) {
+    auto transitionIterator = stateTransitions.find(currentState);
+
+    if (transitionIterator != stateTransitions.end()) {
+        for (const auto &transition : transitionIterator->second) {
+            if (transition.command == command) {
+                std::cout << "Checking transition: " << stateToString(currentState)
+                          << " -> " << stateToString(transition.nextState)
+                          << " with command: " << commandToString(transition.command) << std::endl;
+
+                currentState = transition.nextState;  // Update the current state
+                std::cout << "Transitioning to state: " << stateToString(currentState) << std::endl;
+
+                return currentState;  // Return the new state
+            }
+        }
+    }
+
+    std::cout << "Invalid transition from state: " << stateToString(currentState)
+              << " with command: " << commandToString(command) << std::endl;
+
+    // Return the current state if no valid transition is found
+    Notify(this);
+    return currentState;
 }
 
 
 // Implementation of GameEngine class
 void GameEngine::startupPhase() {
-
     while (currentState != ASSIGN_REINFORCEMENTS) {
-        Command* command = commandProcessor->getCommand();
+        Command *command = commandProcessor->getCommand();
 
-        if (command == NULL) {
+        if (command == nullptr) {
             cout << "No command was input." << endl;
-            exit(0);
+            continue;
         }
 
-        std::cout << "Current state: " << stateToString(getCurrentState()) << std::endl;
-        printValidCommands();
-
-
         // Validate the command
-        if (!commandProcessor->validate(this->commandProcessor->getCommand(),this->currentState)) {
+        if (!commandProcessor->validate(command, this->currentState)) {
             std::cout << "Invalid command. Try again." << std::endl;
             continue;
         }
 
-        int numberOfVertices = testLoadMaps(command->secondParameter);
-        MapLoader ml(numberOfVertices, command->secondParameter);
-        // Process the command and change game state accordingly
-        if (command->getCommand() == "loadmap") {
-            // Load the map
-            ml.firstRun();
-        } else if (command->getCommand() == "validatemap") {
-            // Validate the map
-            ml.secondRun();
-        } else if (command->getCommand() == "addplayer") {
-            addPlayer(command->secondParameter);
-        } else if (command->getCommand() == "gamestart") {
-            gameStart();
-        } else {
-            std::cout << "Invalid command. Try again." << std::endl;
-        }
+        cout << "Current command: " << command->getCommand() << std::endl;
 
-        transition(commandToEnum(command->getCommand()));
+        // Process the command and change game state accordingly
+        switch (commandToEnum(command->getCommand())) {
+            case CMD_LOAD_MAP: {
+                int numberOfVertices = testLoadMaps(command->secondParameter);
+                ml = new MapLoader(numberOfVertices,command->secondParameter);
+                // Load the map
+                if (!ml->firstRun()) {
+                    continue;
+                }
+                cout << "map loaded successfully" << endl;
+                currentState = transition(CMD_LOAD_MAP);
+                break;
+            }
+            case CMD_VALIDATE_MAP: {
+                // Validate the map
+                if (!ml->secondRun()) {
+                    continue;
+                }
+                currentState = transition(CMD_VALIDATE_MAP);
+                break;
+            }
+            case CMD_ADD_PLAYER:
+                if(!addPlayer(command->secondParameter)) {
+                    continue;
+                }
+                currentState = transition(CMD_ADD_PLAYER);
+                break;
+            case CMD_GAME_START:
+                gameStart();
+                currentState = transition(CMD_GAME_START);
+                break;
+            default:
+                std::cout << "Invalid command. Try again." << std::endl;
+                break;
+        }
+        delete command;
     }
+
 
     std::cout << "Game has ended." << std::endl;
 }
+
 // returns the current state of the game
 GameEngine::State GameEngine::getCurrentState() {
     return currentState;
 }
 
 // display the valid commands user can enter
-void GameEngine::printValidCommands() {
-    std::cout << "Valid commands for state " << stateToString(currentState) << ":" << std::endl;
-    for (const auto &transition : stateTransitions[currentState]) {
-        std::cout << commandToString(transition.command) << std::endl;
-    }
-}
+//void GameEngine::printValidCommands() {
+  //  std::cout << "Valid commands for state " << stateToString(currentState) << ":" << std::endl;
+    //for (const auto &transition : stateTransitions[currentState]) {
+      //  std::cout << commandToString(transition.command) << std::endl;
+ //   }
+//}
 
 // returns true if the state is equal to end
 bool GameEngine::isGameComplete() {
     return currentState == END;
+}
+
+GameEngine::~GameEngine() {
+    delete commandProcessor;
+    delete ml;
+
+    for (int i = 0; i < AddedPlayerList.size(); i++) {
+        delete AddedPlayerList[i];
+        AddedPlayerList[i] = NULL;
+    }
+
+
+    AddedPlayerList.clear();
+
+}
+
+GameEngine::State GameEngine::stringToState(string stateStr) {
+    if (stateStr == "start") {
+        return GameEngine::State::START;
+    } else if (stateStr == "map loaded") {
+        return GameEngine::State::MAP_LOADED;
+    } else if (stateStr == "map validated") {
+        return GameEngine::State::MAP_VALIDATED;
+    } else if (stateStr == "players added") {
+        return GameEngine::State::PLAYERS_ADDED;
+    } else if (stateStr == "assign reinforcement") {
+        return GameEngine::State::ASSIGN_REINFORCEMENTS;
+    } else if (stateStr == "issue orders") {
+        return GameEngine::State::ISSUE_ORDERS;
+    } else if (stateStr == "execute orders") {
+        return GameEngine::State::EXECUTE_ORDERS;
+    } else if (stateStr == "win") {
+        return GameEngine::State::WIN;
+    } else if (stateStr == "end") {
+        return GameEngine::State::END;
+    }
 }
 
 // converts state enum value to string
@@ -264,7 +322,7 @@ std::string commandToString(Commands command) {
         case CMD_LOAD_MAP: return "loadmap";
         case CMD_VALIDATE_MAP: return "validatemap";
         case CMD_ADD_PLAYER: return "addplayer";
-        case CMD_ASSIGN_COUNTRIES: return "assigncountries";
+        case CMD_GAME_START: return "gamestart";
         case CMD_ISSUE_ORDER: return "issueorder";
         case CMD_END_ISSUE_ORDER: return "endissueorder";
         case CMD_EXECUTE_ORDERS: return "executeorders";
@@ -287,9 +345,12 @@ Commands commandToEnum(const std::string commandStr) {
         return CMD_VALIDATE_MAP;
     } else if (commandStr == "addplayer") {
         return CMD_ADD_PLAYER;
-    } else if (commandStr == "assigncountries") {
-        return CMD_ASSIGN_COUNTRIES;
-    } else if (commandStr == "issueorder") {
+    }
+    else if (commandStr == "gamestart")
+    {
+        return CMD_GAME_START;
+    }
+    else if (commandStr == "issueorder") {
         return CMD_ISSUE_ORDER;
     } else if (commandStr == "endissueorder") {
         return CMD_END_ISSUE_ORDER;

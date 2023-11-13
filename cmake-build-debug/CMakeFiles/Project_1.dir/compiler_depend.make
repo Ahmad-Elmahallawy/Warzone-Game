@@ -603,7 +603,6 @@ CMakeFiles/Project_1.dir/Command/CommandProcessor.cpp.obj: C:/Users/khale/COMP34
   C:/Users/khale/COMP345-Warzone/GameLog/LoggingObserver.h
 
 CMakeFiles/Project_1.dir/GameEngine.cpp.obj: C:/Users/khale/COMP345-Warzone/GameEngine.cpp \
-  C:/Users/khale/COMP345-Warzone/GameEngine.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iostream \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/requires_hosted.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
@@ -751,6 +750,7 @@ CMakeFiles/Project_1.dir/GameEngine.cpp.obj: C:/Users/khale/COMP345-Warzone/Game
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_vector.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_bvector.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/vector.tcc \
+  C:/Users/khale/COMP345-Warzone/GameEngine.h \
   C:/Users/khale/COMP345-Warzone/Players/Player.h \
   C:/Users/khale/COMP345-Warzone/Map/Map.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/fstream \
@@ -776,8 +776,7 @@ CMakeFiles/Project_1.dir/GameEngine.cpp.obj: C:/Users/khale/COMP345-Warzone/Game
   C:/Users/khale/COMP345-Warzone/GameLog/FileWriter.h \
   C:/Users/khale/COMP345-Warzone/Command/CommandProcessor.h \
   C:/Users/khale/COMP345-Warzone/GameEngine.h \
-  C:/Users/khale/COMP345-Warzone/GameLog/LoggingObserver.h \
-  C:/Users/khale/COMP345-Warzone/GameEngine.h
+  C:/Users/khale/COMP345-Warzone/GameLog/LoggingObserver.h
 
 CMakeFiles/Project_1.dir/GameEngineDriver.cpp.obj: C:/Users/khale/COMP345-Warzone/GameEngineDriver.cpp \
   C:/Users/khale/COMP345-Warzone/GameEngine.h \
@@ -2192,6 +2191,8 @@ CMakeFiles/Project_1.dir/Orders/Orders.cpp.obj: C:/Users/khale/COMP345-Warzone/O
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ostream.tcc \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/istream \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/istream.tcc \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/utility \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_relops.h \
   C:/Users/khale/COMP345-Warzone/Orders/Orders.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/deque \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_uninitialized.h \

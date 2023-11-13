@@ -15,12 +15,12 @@ Card::Card(WarzoneCard card) {
 
 // compy constructor
 Card::Card(const Card& card) {
-    this-> card1 = card.card1;
+    this->card1 = card.card1;
 }
 
 // operator that assigns a new value to an exisiting object
 Card& Card::operator=(const Card& card) {
-    this-> card1 = card.card1;
+    this->card1 = card.card1;
     return *this;
 }
 
@@ -32,7 +32,6 @@ Card::WarzoneCard Card::getCard() const {
 
 ostream& operator<<(std::ostream& os, const Card& obj) {
     os << "This is the card" << obj.card1;
-    return os;
 }
 
 // play method
@@ -55,7 +54,11 @@ Deck::Deck() {
     }
 }
 
-Deck::~Deck() {}
+Deck::~Deck() {
+    for (Card* card : vectorDeck) {
+        delete card;
+    }
+}
 
 Deck::Deck(const Deck& deck) {
     for(size_t i = 0; i < deck.vectorDeck.size(); i++) {
@@ -72,8 +75,9 @@ Card* Deck::draw() {
 
     if(vectorDeck.empty()) {
         std:: cout << "No more cards are in the deck.";
-        return 0;
+        return nullptr;
     }
+
     else {
         srand (time(0));
         int size = vectorDeck.size();
@@ -97,7 +101,7 @@ Card* Deck::removeCard(int i) {
 }
 
 void Deck::returnCard(Card& card) {
-    this -> vectorDeck.push_back(&card);
+    this->vectorDeck.push_back(&card);  // Copy the card to manage its memory
 }
 
 vector<Card*> Deck::getCard()
@@ -110,10 +114,10 @@ void Deck::getDeckSize() {
 }
 
 // Implement the friend function for overloading the << operator.
-ostream& operator<<(std::ostream& os, Deck obj) {
+ostream& operator<<(std::ostream& os, const Deck& obj) {
     os << "The deck has {";
 
-    const std::vector<Card*>& vector1 = obj.getCard();
+    const std::vector<Card*>& vector1 = obj.vectorDeck;
     for (size_t i = 0; i < vector1.size(); ++i) {
         os << vector1[i];
         if (i < vector1.size() - 1) {
@@ -142,7 +146,6 @@ Hand::Hand(const Hand& hand) {
 
 Hand& Hand::operator=(const Hand& hand) {
     this -> vectorHand = hand.vectorHand;
-    return *this;
 }
 
 vector<Card*> Hand::getCard() {
@@ -162,8 +165,9 @@ Card* Hand::removeFromHand(int i) {
 }
 
 void Hand::returnCard(Card& card) {
-    this -> vectorHand.push_back(&card);
+    this->vectorHand.push_back(new Card(card));  // Copy the card to manage its memory
 }
+
 
 void Hand::displayHand() {
     if(vectorHand.empty())

@@ -20,7 +20,7 @@ bomb, blockade, airlift, and negotiate. All orders must have a validate() method
 class Order : public ILoggable, public Subject {
 private:
     // action of the Order
-    std::string action = "String describing the order";
+    std::string action;
 
     // boolean set true if action object has been executed
     bool executed = false;
@@ -28,6 +28,8 @@ private:
 public:
     // default constructor
     Order();
+
+    Order(std::string order);
 
     // copy constructor
     Order(const Order& order);
@@ -60,7 +62,7 @@ public:
 class Deploy : public Order {
 private:
     // action of Deploy
-    std::string action = "effect in Deploy Order class";
+    std::string action = "Deploy Order";
 
     // boolean set true if action object has been executed
     bool executed = false;
@@ -99,7 +101,7 @@ class Advance : public Order
 {
 private:
     // action of Advance
-    std::string action = "effect in Advance Order class";
+    std::string action = "Advance Order";
 
     // boolean set true if action object has been executed
     bool executed = false;

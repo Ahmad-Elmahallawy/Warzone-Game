@@ -1,6 +1,6 @@
 #include "FileWriter.h"
 
-FileWriter::FileWriter() : path("gamelog.txt") {}
+FileWriter::FileWriter() : path("C:\\Users\\khale\\COMP345-Warzone\\gamelog.txt") {}
 
 FileWriter::FileWriter(string s1) : path(s1) {}
 

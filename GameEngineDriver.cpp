@@ -11,7 +11,7 @@ void testGameStates() {
     // keep looping as long as the state is not end
     while (!gameEngine.isGameComplete()) {
         std::cout << "Current state: " << stateToString(gameEngine.getCurrentState()) << std::endl;
-        gameEngine.printValidCommands();
+        //gameEngine.printValidCommands();
 
         // to take user input
         std::string userInput;
@@ -28,8 +28,6 @@ void testGameStates() {
             command = CMD_VALIDATE_MAP;
         } else if (userInput == "addplayer") {
             command = CMD_ADD_PLAYER;
-        } else if (userInput == "assigncountries") {
-            command = CMD_ASSIGN_COUNTRIES;
         } else if (userInput == "issueorder") {
             command = CMD_ISSUE_ORDER;
         } else if (userInput == "endissueorder") {

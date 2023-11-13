@@ -18,18 +18,14 @@
 #include "GameLog/LoggingObserver.h"
 #include "GameLog/FileWriter.h"
 
-
-
 class CommandProcessor;
-
 // Define the possible commands as an enum
 enum Commands {
-    CMD_UNDEFINED,
     CMD_START,
     CMD_LOAD_MAP,
     CMD_VALIDATE_MAP,
     CMD_ADD_PLAYER,
-    CMD_ASSIGN_COUNTRIES,
+    CMD_GAME_START,
     CMD_ISSUE_ORDER,
     CMD_END_ISSUE_ORDER,
     CMD_EXECUTE_ORDERS,
@@ -38,8 +34,9 @@ enum Commands {
     CMD_END,
     CMD_PLAY,
     CMD_EXEC_ORDER,
-    CMD_REPLAY,
+    CMD_UNDEFINED
 };
+
 
 class GameEngine: public ILoggable, public Subject {
 
@@ -62,11 +59,11 @@ public:
     GameEngine(); // constructor
     ~GameEngine(); // Destructor to clean up the dynamically allocated CommandProcessor
     bool isValidTransition(Commands command); // check if the transition is valid
-    void transition(Commands command); // do state transition
+    GameEngine::State transition(Commands command); // do state transition
     GameEngine::State getCurrentState(); // to get the current game state
     void printValidCommands(); // to print the next commands a user is allowed to enter for the transition
     bool isGameComplete(); // to check if the game is complete
-    void addPlayer(string playerName);
+    bool addPlayer(string playerName);
     void gameStart();
     void startupPhase();
     CommandProcessor* getCommandProcessor();
@@ -80,13 +77,20 @@ public:
         State nextState;
     };
     static std::map<State, std::vector<Transition>> stateTransitions; // State transition map
+    State stringToState(string stateStr);
 
 private:
     GameEngine::State currentState; // current game state
     CommandProcessor* commandProcessor;  // Member variable as a pointer to store the CommandProcessor
     vector<Player*> AddedPlayerList; // Holds the players added to keep track of how many players are added;
-    Map* currentMap;
+    MapLoader* ml;
+
 };
+
+
+
+
+
 
 
 std::string stateToString(GameEngine::State state);

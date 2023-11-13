@@ -1,6 +1,5 @@
 CMakeFiles/Project_1.dir/GameEngine.cpp.obj: \
  C:\Users\khale\COMP345-Warzone\GameEngine.cpp \
- C:\Users\khale\COMP345-Warzone\GameEngine.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iostream \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/requires_hosted.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
@@ -148,6 +147,7 @@ CMakeFiles/Project_1.dir/GameEngine.cpp.obj: \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_vector.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_bvector.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/vector.tcc \
+ C:\Users\khale\COMP345-Warzone\GameEngine.h \
  C:\Users\khale\COMP345-Warzone\Players/Player.h \
  C:/Users/khale/COMP345-Warzone/Map/Map.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/fstream \
@@ -173,5 +173,4 @@ CMakeFiles/Project_1.dir/GameEngine.cpp.obj: \
  C:\Users\khale\COMP345-Warzone\GameLog/FileWriter.h \
  C:\Users\khale\COMP345-Warzone\Command/CommandProcessor.h \
  C:/Users/khale/COMP345-Warzone/GameEngine.h \
- C:/Users/khale/COMP345-Warzone/GameLog/LoggingObserver.h \
- C:\Users\khale\COMP345-Warzone\gameengine.h
+ C:/Users/khale/COMP345-Warzone/GameLog/LoggingObserver.h

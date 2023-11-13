@@ -1,0 +1,108 @@
+Invalid command! 
+/--------------/
+Game Engine: new state is start
+/--------------/
+Invalid command! 
+/--------------/
+Game Engine: new state is start
+/--------------/
+Invalid command! 
+/--------------/
+Game Engine: new state is start
+/--------------/
+Order Issue: String describing the order.
+/--------------/
+Order Issue: String describing the order, String describing the order.
+/--------------/
+Order Issue: String describing the order, String describing the order, String describing the order.
+/--------------/
+Order Executed: Deploy!
+/--------------/
+Order Executed: Blockade!
+/--------------/
+Order Executed: Advance!
+/--------------/
+Order Executed: Bomb!
+/--------------/
+Order Executed: Airlift!
+/--------------/
+Order Executed: Negotiate!
+/--------------/
+Invalid command! 
+/--------------/
+Game Engine: new state is start
+/--------------/
+Invalid command! 
+/--------------/
+Game Engine: new state is start
+/--------------/
+Order Issue: String describing the order.
+/--------------/
+Order Issue: String describing the order, String describing the order.
+/--------------/
+Order Issue: String describing the order, String describing the order, String describing the order.
+/--------------/
+Order Executed: Deploy!
+/--------------/
+Order Executed: Blockade!
+/--------------/
+Order Executed: Advance!
+/--------------/
+Order Executed: Bomb!
+/--------------/
+Order Executed: Airlift!
+/--------------/
+Order Executed: Negotiate!
+/--------------/
+Invalid command! 
+/--------------/
+Game Engine: new state is start
+/--------------/
+Invalid command! 
+/--------------/
+Game Engine: new state is start
+/--------------/
+Order Issue: String describing the order.
+/--------------/
+Order Issue: String describing the order, String describing the order.
+/--------------/
+Order Issue: String describing the order, String describing the order, String describing the order.
+/--------------/
+Order Executed: Deploy!
+/--------------/
+Order Executed: Blockade!
+/--------------/
+Order Executed: Advance!
+/--------------/
+Order Executed: Bomb!
+/--------------/
+Order Executed: Airlift!
+/--------------/
+Order Executed: Negotiate!
+/--------------/
+Invalid command! 
+/--------------/
+Game Engine: new state is start
+/--------------/
+Invalid command! 
+/--------------/
+Game Engine: new state is start
+/--------------/
+Order Issue: String describing the order.
+/--------------/
+Order Issue: String describing the order, String describing the order.
+/--------------/
+Order Issue: String describing the order, String describing the order, String describing the order.
+/--------------/
+Order Executed: Deploy!
+/--------------/
+Order Executed: Blockade!
+/--------------/
+Order Executed: Advance!
+/--------------/
+Order Executed: Bomb!
+/--------------/
+Order Executed: Airlift!
+/--------------/
+Order Executed: Negotiate!
+/--------------/

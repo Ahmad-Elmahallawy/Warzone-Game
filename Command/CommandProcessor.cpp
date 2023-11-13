@@ -27,6 +27,22 @@ string Command::getCommand() {
 }
 
 string Command::getEffect() {
+    if(this->command== "start")
+        effect = "start begins the game!";
+    else if(this->command == "loadmap")
+        effect = "Loading up the map!";
+    else if(this-> command == "validatemap")
+        effect = "The map is being validated.";
+    else if(this-> command == "addplayer")
+        effect = "A player is added.";
+    else if(this-> command == "gamestart")
+        effect = "The game session has started!";
+    else if(this-> command == "replay")
+        effect = "You start over!";
+    else if(this->command == "quit")
+        effect = "The game is over. :(";
+    else
+        effect = "No effect took place.";
     return this->effect;
 }
 
@@ -35,26 +51,10 @@ string Command::stringToLog() {
     return s1;
 }
 
-Command* CommandProcessor::readCommand() {
-    string keyboard1;
+Command *CommandProcessor::readCommand() {
     string keyboard;
-    cout<<"If you want to read the command from the console press -console, if you want it from a file type in -file <filename>";
-    cin>>keyboard1;
-    if(keyboard1 != "-console"){
-        vector<string> readFromFileComponents;
-        string fileReadComponent;
-        stringstream ssfr(keyboard1);
-        while(!ssfr.eof()){
-            getline(ssfr,fileReadComponent,' ');
-            readFromFileComponents.push_back(fileReadComponent);
-        }
-        FileCommandProcessorAdapter fcpa(readFromFileComponents[1]);
-        Command* cmd1;
-        cmd1 = fcpa.readCommand();
-        return cmd1;
-    }
     cout<<"Please enter a command: "<<endl;
-    cout<<keyboard;
+    getline(cin,keyboard);
     vector<string> commandComponents;
     string component;
     stringstream ss(keyboard);
@@ -76,6 +76,7 @@ Command* CommandProcessor::readCommand() {
 
 void CommandProcessor::saveCommand(Command* command) {
     lc.push_back(command);
+    command->saveEffect(command->getEffect());
     Notify(this);
 }
 
@@ -139,6 +140,8 @@ string CommandProcessor::stringToLog() {
     // Check if the command type is present in the map
     if(c1->getCommand() == "loadmap")
         commandName = "loadmap";
+    else if(c1->getCommand() == "start")
+        commandName = "start";
     else if(c1->getCommand() == "validatemap")
         commandName = "validatemap";
     else if(c1->getCommand() == "addplayer")
@@ -147,7 +150,7 @@ string CommandProcessor::stringToLog() {
         commandName = "gamestart";
     else if(c1->getCommand() == "replay")
         commandName = "replay";
-    else if(c1->getCommand() == "end")
+    else if(c1->getCommand() == "quit")
         commandName = "quit";
     else
         commandName = " ";
@@ -162,10 +165,6 @@ string CommandProcessor::stringToLog() {
 
 Commands CommandProcessor::getEnumCommands() {
     Command* command = this->getCommand();
-    if (command == nullptr) {
-        // Handle the case where no command is available
-        return CMD_UNDEFINED;
-    }
     return commandToEnum(command->getCommand());
 }
 

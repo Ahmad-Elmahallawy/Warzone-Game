@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include <string>
+#include <utility>
 #include "Orders.h"
 #include "../Players/Player.h"
 
@@ -21,11 +22,15 @@ Order::Order(const Order& order)
     this->action = order.action;
 }
 
+Order::Order(std::string orderName) : action(std::move(orderName)), executed(false) {
+    // Additional initialization if needed
+}
+
 // validate method
 bool Order::validate() { return true; }
 
 // execute method
-void Order::execute() { this->executed = true; }
+void Order::execute() { this->executed = true;}
 
 // assignment operator
 Order& Order::operator=(const Order& order)
@@ -65,10 +70,7 @@ project description document).
 //   ---   Deploy class   ---
 
 // default constructor
-Deploy::Deploy()
-{
-    std::cout << "Deploy is added\n" << std::endl;
-}
+Deploy::Deploy() : Order("Deploy Order") {}
 
 // copy constructor
 Deploy::Deploy(const Deploy& deploy)
@@ -137,10 +139,7 @@ string Deploy::stringToLog() {
 //   ---   Advance class   ---
 
 // default constructor
-Advance::Advance()
-{
-    std::cout << "Advance is added\n" << std::endl;
-}
+Advance::Advance() : Order("Advance Order") {}
 
 // copy constructor
 Advance::Advance(const Advance& existingAdvance)
@@ -210,10 +209,7 @@ string Advance::stringToLog() {
 //   ---   Bomb class   ---
 
 // default constructor
-Bomb::Bomb()
-{
-    std::cout << "Bomb is added\n" << std::endl;
-}
+Bomb::Bomb() : Order("Bomb Order") {}
 
 // copy constructor
 Bomb::Bomb(const Bomb& existingBomb)
@@ -282,10 +278,7 @@ string Bomb::stringToLog() {
 //   ---   Blockade class   ---
 
 // default constructor
-Blockade::Blockade()
-{
-    std::cout << "Blockade is added\n" << std::endl;
-}
+Blockade::Blockade() : Order("Blockade Order") {}
 
 // copy constructor
 Blockade::Blockade(const Blockade& blockade)
@@ -354,10 +347,7 @@ string Blockade::stringToLog() {
 //   ---   Airlift class   ---
 
 // default constructor
-Airlift::Airlift()
-{
-    std::cout << "Airlift is added\n" << std::endl;
-}
+Airlift::Airlift() : Order("Airlift Order") {}
 
 // copy constructor
 Airlift::Airlift(const Airlift& existingAirlift)
@@ -426,10 +416,7 @@ string Airlift::stringToLog() {
 //   ---   Negotiate class   ---
 
 // default constructor
-Negotiate::Negotiate()
-{
-    std::cout << "Negotiate is added\n" << std::endl;
-}
+Negotiate::Negotiate() : Order("Negotiate Order") {}
 
 // copy constructor
 Negotiate::Negotiate(const Negotiate& existingNegotiate)
@@ -604,7 +591,7 @@ string Order::getAction() {
 
 string OrdersList::stringToLog() {
     Order* o1 = ordersList.back();
-    string s1 = "Order Issue: ";
+    string s1 = "Order Issue: player added " + o1->getAction() +" to their order list. The updated list contains: ";
 
     for(int i = 0; i < ordersList.size(); i++) {
         s1 += this->ordersList.at(i)->getAction();

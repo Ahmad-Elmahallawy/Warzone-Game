@@ -6,7 +6,7 @@ using namespace std;
 // default constructor
 Player::Player() {
     this->hand = new Hand();
-    this->territories = {new Territory(), new Territory()};
+    this->territories = {};
     this->playerName = "no name";
     this->ordersList = new OrdersList();
 }
@@ -14,6 +14,10 @@ Player::Player() {
 
 Player::Player(string playerName) {
     this->playerName = playerName;
+    this->hand = new Hand();
+    this->territories = {};
+    this->ordersList = new OrdersList();
+
 }
 
 
@@ -69,8 +73,8 @@ void Player::setHand(Hand *hand) {
 }
 
 // setsTerritories
-void Player::setTerritories(Territory* territories) {
-    Player::territories.push_back(territories);
+void Player::setTerritories(Territory territories) {
+    Player::territories.push_back(&territories);
 }
 
 // sets Player's name
@@ -80,7 +84,7 @@ void Player::setPlayerName(const string &playerName) {
 
 
 // Adds specified number to the player's reinforcement pool
-void Player::addArmies(int num) {
+void Player::setReinforcementPool(int num) {
     this->reinforcementPool += num;
 }
 
@@ -121,7 +125,7 @@ vector<Territory*> Player::toAttack() const{
 
 ostream &operator<<(ostream &os, const Player &player) {
     os << "Player Name: " << player.playerName << ", Player ID: " << player.playerID << '\n';
-    os << "Hand: " << (player.hand) << '\n';
+    os << "Hand: " << *(player.hand) << '\n';
 
     os << "Territories: ";
     const std::vector<Territory *> vector1 = player.territories;
@@ -151,10 +155,6 @@ Player& Player::operator=(const Player& rhs) {
 
 int Player::getReinforcementPool() const {
     return reinforcementPool;
-}
-
-void Player::setReinforcementPool(int num) {
-    Player::reinforcementPool = reinforcementPool + num;
 }
 
 
