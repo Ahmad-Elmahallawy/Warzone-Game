@@ -32,6 +32,10 @@ Order::~Order() {}
 // Validate method
 bool Order::validate() { return true; }
 
+string Order::getAction() {
+    return this->action;
+}
+
 // Execute method
 void Order::execute() { this->executed = true; }
 
@@ -81,12 +85,14 @@ project description document).
 // default constructor
 
 // Default constructor for Deploy class
-Deploy::Deploy() : Order() {}
+Deploy::Deploy() : Order() {
+    this->action = "deploy order";
+}
 
 // Parameter constructor for Deploy class
 Deploy::Deploy(Player* player, Territory* targetTerritory, int armiesToDeploy)
         : Order(player, targetTerritory, armiesToDeploy) {
-    this->action = "effect in Deploy Order class";
+    this->action = "deploy order";
 }
 
 // Copy constructor for Deploy class
@@ -112,6 +118,7 @@ void Deploy::execute() {
         std::cout << "Deploy order executed successfully." << std::endl;
         std::cout << this->action;
     }
+    Notify(this);
 }
 
 // validate method override
@@ -165,15 +172,14 @@ std::ostream& operator<<(std::ostream& output, const Deploy& deploy) {
 // Default constructor for Advance class
 Advance::Advance() : Order() {
     this -> sourceTerritory = nullptr;
-    std::cout << "Advance is added\n" << std::endl;
+    this->action = "Advance order";
 }
 
 // Parameter constructor for Advance class
 Advance::Advance(Player* player, Territory* sourceTerritory, Territory* targetTerritory, int armiesToAdvance)
         : Order(player, targetTerritory, armiesToAdvance) {
     this->sourceTerritory = sourceTerritory;
-    this->action = "effect in Advance Order class";
-    std::cout << "Advance is added" << std::endl;
+    this->action = "Advance order";
 }
 // Copy constructor for Advance class
 Advance::Advance(const Advance& existingAdvance) : Order(existingAdvance) {
@@ -249,6 +255,7 @@ void Advance::execute() {
         std::cout << "Advance order executed successfully." << std::endl;
         cout << action << endl;
     }
+    Notify(this);
 }
 
 // Advance order validate method
@@ -330,13 +337,13 @@ std::ostream& operator<<(std::ostream& output, const Advance& advance) {
 // default constructor
 Bomb::Bomb()
 {
-    std::cout << "Bomb is added\n" << std::endl;
+    this->action = "Bomb order";
 }
 
 // copy constructor
 Bomb::Bomb(const Bomb& existingBomb)
 {
-    this->action = existingBomb.action;
+    this->action = "Bomb order";
 }
 
 // destructor
@@ -395,6 +402,8 @@ void Bomb::execute() {
         std::cout << "Bomb order executed successfully. Half of the army units removed from "
                   << targetTerritory->getTerritoryName() << "." << std::endl;
     }
+    Notify(this);
+
 }
 
 // assignment operator
@@ -428,13 +437,13 @@ std::ostream& operator<<(std::ostream& output, const Bomb& bomb)
 // default constructor
 Blockade::Blockade()
 {
-    std::cout << "Blockade is added\n" << std::endl;
+    this->action = "Blockade order";
 }
 
 // copy constructor
 Blockade::Blockade(const Blockade& blockade)
 {
-    this->action = blockade.action;
+    this->action = "Blockade order";
 }
 
 // destructor
@@ -458,6 +467,8 @@ void Blockade::execute() {
 
         std::cout << "Blockade order executed successfully." << std::endl;
     }
+    Notify(this);
+
 }
 
 // --- Blockade class validate method ---
@@ -521,13 +532,13 @@ std::ostream& operator<<(std::ostream& output, const Blockade& blockade)
 // default constructor
 Airlift::Airlift()
 {
-    std::cout << "Airlift is added\n" << std::endl;
+    this->action = "Airlift order";
 }
 
 // copy constructor
 Airlift::Airlift(const Airlift& existingAirlift)
 {
-    this->action = existingAirlift.action;
+    this->action = "Airlift order";
 }
 
 // destructor
@@ -582,6 +593,8 @@ void Airlift::execute() {
         std::cout << "Airlift order executed successfully." << std::endl;
         cout << action << endl;
     }
+    Notify(this);
+
 }
 
 // assignment operator
@@ -615,13 +628,13 @@ std::ostream& operator<<(std::ostream& output, const Airlift& airlift)
 // default constructor
 Negotiate::Negotiate()
 {
-    std::cout << "Negotiate is added\n" << std::endl;
+    this->action = "Negotiate order";
 }
 
 // copy constructor
 Negotiate::Negotiate(const Negotiate& existingNegotiate)
 {
-    this->action = existingNegotiate.action;
+    this->action = "Negotiate order";
 }
 
 // destructor
@@ -647,6 +660,7 @@ void Negotiate::execute()
     {
         player->addPlayerToNegociatedList(targetTerritory->getOwner());
     }
+    Notify(this);
 }
 
 // assignment operator
@@ -702,6 +716,7 @@ OrdersList::~OrdersList()
 void OrdersList::addOrder(Order* order)
 {
     this->ordersList.push_back(order);
+    Notify(this);
 }
 
 // get next order on the list
@@ -767,6 +782,23 @@ OrdersList& OrdersList::operator=(const OrdersList& orderslist)
     this->ordersList = orderslist.ordersList;
 
     return *this;
+}
+
+int OrdersList::getSize() {
+    return ordersList.size();
+}
+
+string OrdersList::stringToLog() {
+    Order* o1 = ordersList.back();
+    string s1 = "Order Issue: player added " + o1->getAction() +" to their order list. The updated list contains: ";
+
+    for(int i = 0; i < ordersList.size(); i++) {
+        s1 += this->ordersList.at(i)->getAction();
+        if(i != this->getSize() - 1)
+            s1 += ", ";
+    }
+    s1 += ".";
+    return s1;
 }
 
 // stream insertion operator overload
@@ -840,3 +872,71 @@ std::string Negotiate::getLabel() const
 {
     return label;
 }
+
+string Deploy::stringToLog() {
+    string order;
+
+    if(validate()) {
+        order = "Order Executed: Deploy!";
+    }
+    else
+        order = "Invalid deploy execution! Territory doesn't belong to the player.";
+    return order;
+}
+
+string Advance::stringToLog() {
+    string order;
+
+    if(validate()) {
+        order = "Order Executed: Advance!";
+    }
+    else
+        order = "Invalid advance execution! Source territory doesn't belong to the player that issued the order or target territory is not adjacent to the source territory, .";
+    return order;
+}
+
+string Bomb::stringToLog() {
+    string order;
+
+    if(validate()) {
+        order = "Order Executed: Bomb!";
+    }
+    else
+        order = "Invalid bomb execution! Target territory belongs to the player that issuing the order or target territory is not adjacent to one of the territory owned by the player issuing the order";
+    return order;
+}
+
+string Blockade::stringToLog() {
+    string order;
+
+    if(validate()) {
+        order = "Order Executed: Blockade!";
+    }
+    else
+        order = "Invalid blockade execution! Target territory belongs to an enemy player";
+    return order;
+}
+
+string Airlift::stringToLog() {
+    string order;
+
+    if(validate()) {
+        order = "Order Executed: Airlift!";
+    }
+    else
+        order = "Invalid airlift execution! Source or target territory does not belong to the player that issued the order!";
+    return order;
+}
+
+string Negotiate::stringToLog() {
+    string order;
+
+    if(validate()) {
+        order = "Order Executed: Negotiate!";
+    }
+    else
+        order = "Invalid negotiate execution! Target is the player issuing the order!";
+    return order;
+}
+
+

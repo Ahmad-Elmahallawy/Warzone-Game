@@ -1,17 +1,17 @@
-
-/*
-contains a free function named testOrdersLists() that creates a list of orders and demonstrates that the OrdersList implemented
-Here : remove, move of the orderlist will be tested, expected result shown commented
-
-*/
-
-#include "Orders.h"
-#include "../Players/Player.h"
-#include "../Map/Map.h"
-
-
-void testOrderExecution()
-{
+//
+///*
+//contains a free function named testOrdersLists() that creates a list of orders and demonstrates that the OrdersList implemented
+//Here : remove, move of the orderlist will be tested, expected result shown commented
+//
+//*/
+//
+//#include "Orders.h"
+//#include "../Players/Player.h"
+//#include "../Map/Map.h"
+//
+//
+//void testOrderExecution()
+//{
 //    Map gameMap(5); // Assuming a map with 5 territories
 //
 //    cout << "Creating 2 players" << endl;
@@ -85,6 +85,6 @@ void testOrderExecution()
 //    delete territory1;
 //    delete territory2;
 //    delete territory3;
-
-
-}
+//
+//
+//}

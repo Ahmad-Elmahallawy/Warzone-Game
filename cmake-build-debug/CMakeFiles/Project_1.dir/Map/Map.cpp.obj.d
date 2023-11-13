@@ -299,4 +299,5 @@ CMakeFiles/Project_1.dir/Map/Map.cpp.obj: \
  C:/Users/ahmad/Desktop/Courses/Fall2023/COMP345/Project2/COMP345-Warzone/Map/Map.h \
  C:/Users/ahmad/Desktop/Courses/Fall2023/COMP345/Project2/COMP345-Warzone/Orders/Orders.h \
  C:/Users/ahmad/Desktop/Courses/Fall2023/COMP345/Project2/COMP345-Warzone/Players/Player.h \
+ C:/Users/ahmad/Desktop/Courses/Fall2023/COMP345/Project2/COMP345-Warzone/GameLog/LoggingObserver.h \
  C:/Users/ahmad/Desktop/Courses/Fall2023/COMP345/Project2/COMP345-Warzone/Cards/Cards.h

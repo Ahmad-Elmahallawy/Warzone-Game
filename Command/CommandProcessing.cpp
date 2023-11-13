@@ -75,8 +75,9 @@ Command *CommandProcessing::readCommand() {
 
 void CommandProcessing::saveCommand(Command* command) {
     lc.push_back(command);
+    Notify(this);
     command->saveEffect(command->getEffect());
-    Notify(this);}
+}
 
 Command *CommandProcessing::getCommand() {
     Command* cmd = readCommand();

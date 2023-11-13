@@ -170,6 +170,7 @@ CMakeFiles/Project_1.dir/GameEngineDriver.cpp.obj: \
  C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_stack.h \
  C:/Users/ahmad/Desktop/Courses/Fall2023/COMP345/Project2/COMP345-Warzone/Orders/Orders.h \
  C:/Users/ahmad/Desktop/Courses/Fall2023/COMP345/Project2/COMP345-Warzone/Players/Player.h \
+ C:/Users/ahmad/Desktop/Courses/Fall2023/COMP345/Project2/COMP345-Warzone/GameLog/LoggingObserver.h \
  C:/Users/ahmad/Desktop/Courses/Fall2023/COMP345/Project2/COMP345-Warzone/Cards/Cards.h \
  C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\Project2\COMP345-Warzone\Map/Map.h \
  C:\Users\ahmad\Desktop\Courses\Fall2023\COMP345\Project2\COMP345-Warzone\Cards/Cards.h \

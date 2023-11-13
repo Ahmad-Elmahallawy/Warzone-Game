@@ -13,6 +13,7 @@ bomb, blockade, airlift, and negotiate. All orders must have a validate() method
 #include <iostream>
 #include <deque>
 #include "../Players/Player.h"
+#include "../GameLog/LoggingObserver.h"
 
 
 
@@ -22,7 +23,7 @@ class Territory;
 
 //   ---   Order class    ---   [each ORDER type (below) inherits from this class and overrides execute() and validate()]
 
-class Order
+class Order : public ILoggable, public Subject
 {
 protected:
     // action of the Order
@@ -38,6 +39,8 @@ protected:
 public:
     // default constructor
     Order();
+
+
 
     Order(Player* player, Territory* targetTerritory, int armiesToDeploy);
 
@@ -61,6 +64,8 @@ public:
 
     // assignment operator
     Order& operator=(const Order& order);
+
+    string getAction();
 
     // print helper method for stream insertion overload
     virtual void print(std::ostream& output) const;
@@ -111,6 +116,8 @@ public:
     // stream insertion operator
     friend std::ostream& operator<<(std::ostream& output, const Deploy& deploy);
 
+    string stringToLog();
+
     std::string getLabel() const override;
 };
 
@@ -130,6 +137,8 @@ public:
 
     // copy constructor
     Advance(const Advance& advance);
+
+    string stringToLog();
 
     // execute method override
     void execute() override;
@@ -179,6 +188,8 @@ public:
     // validate method override
     bool validate() override;
 
+    string stringToLog();
+
     // assignment operator
     Bomb& operator=(const Bomb& bomb);
 
@@ -227,6 +238,8 @@ public:
     // print helper method for stream insertion overload
     void print(std::ostream& output) const override;
 
+    string stringToLog();
+
     // stream insertion operator
     friend std::ostream& operator<<(std::ostream& output, const Blockade& blockade);
 
@@ -272,7 +285,7 @@ public:
 
     // stream insertion operator
     friend std::ostream& operator<<(std::ostream& output, const Airlift& airlift);
-
+    string stringToLog();
     std::string getLabel() const override;
 };
 
@@ -313,7 +326,7 @@ public:
 
     // stream insertion operator
     friend std::ostream& operator<<(std::ostream& output, const Negotiate& negotiate);
-
+    string stringToLog();
     std::string getLabel() const override;
 };
 
@@ -322,7 +335,7 @@ public:
 
 //   ---   OrdersList class   ---   [a class to create and manage a list of orders]
 
-class OrdersList
+class OrdersList : public ILoggable, public Subject
 {
 private:
 
@@ -360,6 +373,10 @@ public:
 
     // assignment operator
     OrdersList& operator=(const OrdersList& ordersList);
+
+    string stringToLog();
+
+    int getSize();
 
     //stream insertion operator
     friend std::ostream& operator<<(std::ostream& output, const OrdersList& ordersList);

@@ -157,4 +157,5 @@ CMakeFiles/Project_1.dir/Orders/Orders.cpp.obj: \
  C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ext/aligned_buffer.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/list.tcc \
  C:/Users/ahmad/Desktop/Courses/Fall2023/COMP345/Project2/COMP345-Warzone/Orders/Orders.h \
- C:/Users/ahmad/Desktop/Courses/Fall2023/COMP345/Project2/COMP345-Warzone/Cards/Cards.h
+ C:/Users/ahmad/Desktop/Courses/Fall2023/COMP345/Project2/COMP345-Warzone/Cards/Cards.h \
+ C:/Users/ahmad/Desktop/Courses/Fall2023/COMP345/Project2/COMP345-Warzone/GameLog/LoggingObserver.h
