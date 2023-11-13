@@ -265,7 +265,7 @@ void Advance::execute() {
                 targetTerritory->setOwner(this->getPlayer());
                 target->removeOwnedTerritory(targetTerritory->getTerritoryName());
                 player->setTerritories(targetTerritory);
-                targetTerritory->addArmies(attackerUnits);
+                targetTerritory->addArmies(attackerUnits - targetTerritory->getNumberOfArmies());
                 sourceTerritory->addArmies(-attackerUnits);
                 action = this->getPlayer()->getPlayerName() + " captured " + this->targetTerritory->getTerritoryName();
                 // Set conqueredTerritory to true
