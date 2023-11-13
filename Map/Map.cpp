@@ -27,7 +27,6 @@ Territory::Territory() {
     this->adjacentTerritories = {};
 }
 Territory::~Territory(){
-
 }
 int Territory::getXCoordinate() const{
     return this->xCoordinate;

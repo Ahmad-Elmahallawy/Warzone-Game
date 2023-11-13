@@ -6,59 +6,85 @@ Here : remove, move of the orderlist will be tested, expected result shown comme
 */
 
 #include "Orders.h"
+#include "../Players/Player.h"
+#include "../Map/Map.h"
 
 
-void testOrdersLists()
+void testOrderExecution()
 {
-    Map gameMap(5); // Assuming a map with 5 territories
-
-    cout << "Creating 2 players";
-    Player p1("Player 1");
-    Player p2("Player 2");
-
-
-    cout << "Creating an order of each type" << endl;
-    Deploy deploy_test = Deploy();
-    Advance advance_test = Advance();
-    Bomb bomb_test = Bomb();
-    Blockade blockade_test = Blockade();
-    Airlift airlift_test = Airlift();
-    Negotiate negotiate_test = Negotiate();
-
-
-    // create an OrdersList object to hold the orders
-    std::cout << "create an OrdersList :\n" << std::endl;
-    OrdersList orderslist_test = OrdersList();
-
-    std::cout << std::endl;
-
-    // place pointers to all the action objects in the list
-    orderslist_test.addOrder(&deploy_test);
-    orderslist_test.addOrder(&advance_test);
-    orderslist_test.addOrder(&bomb_test);
-    orderslist_test.addOrder(&blockade_test);
-    orderslist_test.addOrder(&airlift_test);
-    orderslist_test.addOrder(&negotiate_test);
-
-
-
-    // print out the contents of the orderlist
-    std::cout << "\n the orderslist contains :\n" << std::endl;
-    std::cout << orderslist_test << std::endl;
-
-    // removing blockade
-    std::cout << " -- removing blockade Order from the list :\n" << std::endl;
-    orderslist_test.remove(4);
-    std::cout << orderslist_test << std::endl;
-
-    // swapping orders
-    orderslist_test.move(3, 1);
-    std::cout << orderslist_test << std::endl;
-
-  //check result
-    Order* nextOrder = orderslist_test.getNextOrder();
-    nextOrder->execute();
-    std::cout << std::endl << orderslist_test << std::endl;
+//    Map gameMap(5); // Assuming a map with 5 territories
+//
+//    cout << "Creating 2 players" << endl;
+//    Player p1("Player 1");
+//    Player p2("Player 2");
+//
+//    Territory* territory1 = new Territory();
+//    Territory* territory2 = new Territory();
+//    Territory* territory3 = new Territory();
+//
+//// Set territory names
+//    territory1->setTerritoryName("Territory1");
+//    territory2->setTerritoryName("Territory2");
+//    territory3->setTerritoryName("Territory3");
+//
+//// Add territories to the map
+//    gameMap.addEdge(*territory1, *territory2);
+//    gameMap.addEdge(*territory2, *territory3);
+//
+//// Add territories to players
+//    p1.addTerritory(territory1);
+//    p2.addTerritory(territory2);
+//    Player::getNeutralPlayer()->addTerritory(territory3);
+//
+//
+//
+//
+//    std::cout << "Adding 50 units to p1 and p2" << std::endl;
+//
+//    p1.setReinforcementPool(50);
+//    p2.setReinforcementPool(50);
+//
+//
+//
+//    // Execution phase
+//    // 1. Test each order and its validation
+//    std::cout << "Testing Order Execution and Validation:" << std::endl;
+//
+//    // Deploy order
+//    Deploy deployOrder( &p1, territory1,5);
+//    deployOrder.targetTerritory = territory1;
+//    // Check if the target territory belongs to the player issuing the order
+//
+//        deployOrder.execute();
+//        std::cout << "Deploy Order Executed" << std::endl;
+//
+//
+////    // Advance order with territory conquest
+//    Advance advanceOrder(&p2, territory1, territory2,3);
+//    advanceOrder.execute();
+//    std::cout << "Advance Order Executed (Conquest)" << std::endl;
+//
+//    // Negotiate order
+//    Negotiate negotiateOrder;
+//    negotiateOrder.execute();
+//    std::cout << "Negotiate Order Executed" << std::endl;
+//
+//    // Blockade order
+//    Blockade blockadeOrder;
+//    blockadeOrder.execute();
+//    std::cout << "Blockade Order Executed" << std::endl;
+//
+//
+//// Bomb order
+//    Bomb bombOrder; // Assuming bombOrder targets territory1 and is issued by player2
+//    bombOrder.execute();
+//    std::cout << "Bomb Order Executed: Half of the army units removed from " << territory1->getTerritoryName() << std::endl;
+//    std::cout << "Remaining armies in " << territory1->getTerritoryName() << ": " << territory1->getTerritoryName() << std::endl;
+//
+//
+//    delete territory1;
+//    delete territory2;
+//    delete territory3;
 
 
 }

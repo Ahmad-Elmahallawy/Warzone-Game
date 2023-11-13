@@ -179,7 +179,25 @@ void Player::issueOrder(string orderName) {
     }
 
 }
-
+// Add a territory to the player's list of territories
+void Player::addTerritory(Territory* territory) {
+    if (territory) {
+        // Check if the territory is not already owned by another player
+        if (territory->getOwner() && territory->getOwner() != this) {
+            std::cout << "Error: Territory '" << territory->getTerritoryName()
+                      << "' already belongs to another player." << std::endl;
+        } else {
+            // Add the territory to the player's list
+            territories.push_back(territory);
+            // Set this player as the owner of the territory
+            territory->setOwner(this);
+            std::cout << "Territory '" << territory->getTerritoryName() << "' added to player '"
+                      << playerName << "'." << std::endl;
+        }
+    } else {
+        std::cout << "Error: Cannot add a null territory." << std::endl;
+    }
+}
 // currently just a static territories to defend
 vector<Territory*> Player::toDefend() const{
 
@@ -270,4 +288,26 @@ bool Player::ownAllTerritoryInContinent() {//go through all the territories, kee
     return true;
 }
 
+//Adds a player to the list of negociated PLayers
+void Player::addPlayerToNegociatedList(Player* p) {
+    int count = 0;
+    for (Player* i : negociatedPlayers) {
+        if (i == NULL) {
+            break;
+        }
+        count++;
+    }
+    negociatedPlayers[count] = p;
+}
+
+
+//Empty the array of negociated PLayers
+void Player::clearNegociatedList() {
+    int count = 0;
+    for (Player* i : negociatedPlayers) {
+        delete i;
+        i = NULL;
+    }
+
+}
 

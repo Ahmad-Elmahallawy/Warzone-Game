@@ -41,6 +41,8 @@ public:
 
     Player(string playerName);
 
+    Player* negociatedPlayers[20];
+
     // Static method to get the neutral player instance
     static Player* getNeutralPlayer();
 
@@ -106,7 +108,11 @@ public:
 
     Player& operator=(const Player& rhs);
 
+    void addPlayerToNegociatedList(Player* p);
 
+    void clearNegociatedList();
+
+    void addTerritory(Territory* territory);
 };
 
 void testPlayers();

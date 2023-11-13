@@ -117,19 +117,11 @@ GameEngine::GameEngine():currentState(START), commandProcessor(new CommandProces
 }
 
 GameEngine::~GameEngine() {
-    delete commandProcessor;
     if (ml != nullptr) {
         delete ml;
         ml = nullptr;
     }
 
-    for (int i = 0; i < AddedPlayerList.size(); i++)
-    {
-        delete AddedPlayerList[i];
-        AddedPlayerList[i] = nullptr; // Set to nullptr after deletion
-    }
-
-    AddedPlayerList.clear();
 }
 
 

@@ -271,6 +271,7 @@ bool Advance::validate() {
         return false;
     }
 
+
     // Check if the target territory is adjacent to the source territory
     bool adjacent = false;
     for(int i = 0;i<sourceTerritory->adjacentTerritories.size();i++){
@@ -286,6 +287,13 @@ bool Advance::validate() {
     if (this->armiesToDeploy > this->getPlayer()->getReinforcementPool())
     {
         std::cout << "Invalid Advance  order: Can not advance more army than what is in the pool";
+    }
+
+    for (Player* p : player->negociatedPlayers) {
+        if (p == targetTerritory->getOwner()) {
+            cout << "\nFAILED: The target territory owner currently has a negociated contract and cannot be attacked.";
+            return false;
+        }
     }
 
     // The order is valid
@@ -361,6 +369,13 @@ bool Bomb::validate() {
     if (!isAdjacent) {
         std::cout << "Invalid Bomb order: Target territory is not adjacent to any of the player's territories." << std::endl;
         return false;
+    }
+
+    for (Player* p : player->negociatedPlayers) {
+        if (p == targetTerritory->getOwner()) {
+            cout << "\nFAILED: The target territory owner currently has a negotiated contract and cannot be attacked.";
+            return false;
+        }
     }
 
     // The order is valid
@@ -562,7 +577,7 @@ void Airlift::execute() {
         // Set the order as executed
         this->executed = true;
         action = this->getPlayer()->getPlayerName() + " has ordered an Airlist, army units will move from " + sourceTerritory->getTerritoryName() + " to " + targetTerritory->getTerritoryName()
-                + ". The number of units moved: " + to_string(armiesToDeploy);
+                 + ". The number of units moved: " + to_string(armiesToDeploy);
 
         std::cout << "Airlift order executed successfully." << std::endl;
         cout << action << endl;
@@ -615,8 +630,14 @@ Negotiate::~Negotiate() {}
 // validate method override
 bool Negotiate::validate()
 {
-    std::cout << "Negotiate class is valid" << std::endl;
-    return true;
+    if (targetTerritory->getOwner() == this->getPlayer()) {
+        std::cout << "error: target territory belongs to the same player issuing negotiate " << std::endl;
+        return false;
+    }
+    else{
+        std::cout << "success: negotiate order validated " << std::endl;
+        return true;
+    }
 }
 
 // execute method override
@@ -624,7 +645,7 @@ void Negotiate::execute()
 {
     if (this->validate())
     {
-        this->executed = true;
+        player->addPlayerToNegociatedList(targetTerritory->getOwner());
     }
 }
 
