@@ -32,6 +32,7 @@ protected:
     // boolean set true if action object has been executed
     bool executed = false;
     Player* player = nullptr;
+    Player* target = nullptr;
     Territory* targetTerritory;
     Territory* sourceTerritory;
     int armiesToDeploy;
@@ -56,12 +57,21 @@ public:
     // virtual method to validate order (implemented in subclasses)
     virtual bool validate();
 
-    // Set the player associated with the order
+    // Getter and Setter for player
+    Player* getPlayer() const;
     void setPlayer(Player* player);
 
-    // Get the player associated with the order
-    Player* getPlayer() const;
+    // Getter and Setter for targetTerritory
+    Territory* getTargetTerritory() const;
+    void setTargetTerritory(Territory* territory);
 
+    // Getter and Setter for sourceTerritory
+    Territory* getSourceTerritory() const;
+    void setSourceTerritory(Territory* territory);
+
+    // Getter and Setter for armiesToDeploy
+    int getArmiesToDeploy() const;
+    void setArmiesToDeploy(int armies);
     // assignment operator
     Order& operator=(const Order& order);
 
@@ -92,8 +102,7 @@ public:
     Deploy();
 
     // parameter constructor
-    Deploy(Player* player, Territory* targetTerritory, int armiesToDeploy);
-
+    Deploy(Player* target, Player* from, int armyCount, Territory* targetLocation, Territory* fromLocation);
 
     // copy constructor
     Deploy(const Deploy& deploy);
@@ -132,7 +141,8 @@ public:
     Advance();
 
     // parameter constructor
-    Advance(Player* player, Territory* sourceTerritory, Territory* targetTerritory, int armiesToAdvance);
+    Advance(Player* target, Player* player, int armyCount, Territory* targetLocation, Territory* fromLocation);
+
     ~Advance() override;
 
     // copy constructor
@@ -176,6 +186,8 @@ public:
     // default constructor
     Bomb();
 
+    Bomb(Player* target, Player* player, int armyCount, Territory* targetLocation, Territory* fromLocation);
+
     // copy constructor
     Bomb(const Bomb& bomb);
 
@@ -211,6 +223,7 @@ private:
     // action of Blockade
     std::string action = "effect in Blockade Order class";
 
+
     // boolean set true if action object has been executed
     bool executed = false;
 
@@ -220,6 +233,7 @@ public:
     // default constructor
     Blockade();
 
+    Blockade(Player* target, Player* player, int armyCount, Territory* targetLocation, Territory* fromLocation);
     // copy constructor
     Blockade(const Blockade& blockade);
 
@@ -264,6 +278,8 @@ public:
     // default constructor
     Airlift();
 
+    Airlift(Player* target, Player* player, int armyCount, Territory* targetLocation, Territory* fromLocation);
+
     // copy constructor
     Airlift(const Airlift& airlift);
 
@@ -297,6 +313,7 @@ private:
     /// action of Negotiate
     std::string action = "effect in Negotiate Order class";
 
+    Negotiate(Player* target, Player* player, int armyCount, Territory* targetLocation, Territory* fromLocation);
     // boolean set true if action object has been executed
     bool executed = false;
 

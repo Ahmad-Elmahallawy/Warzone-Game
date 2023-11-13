@@ -19,15 +19,15 @@ int main() {
 //    cout << "===========================" << endl;
 //    testStartupPhase();
 //    cout << "End of Part 2 and 3" << endl;
-//    cout << "===========================" << endl;
-//    cout << "           Part 4         " << endl;
-//    cout << "===========================" << endl;
-//    testOrderExecution();
+    cout << "===========================" << endl;
+    cout << "           Part 4         " << endl;
+    cout << "===========================" << endl;
+    testOrderExecution();
 //    cout << "End of Part 2 and 3" << endl;
 //    cout << "===========================" << endl;
 //    cout << "           Part 5         " << endl;
 //    cout << "===========================" << endl;
-    testLoggingObserver();
+//    testLoggingObserver();
 
 
 }

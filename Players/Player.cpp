@@ -1,11 +1,11 @@
 // part 2
 // this is the Players.cpp file where all the definitions are done
 #include <iostream>
+#include <algorithm>
 #include "Player.h"
 using namespace std;
 // default constructor
 
-Player* Player::neutralPlayer = new Player("NeutralPlayer");
 
 // Static method to get the neutral player instance
 static Player* getNeutralPlayer();
@@ -37,7 +37,6 @@ Player::Player(Player &player) {
     territories = vector<Territory*>(player.territories);
     ordersList = new OrdersList(*player.ordersList);
     playerName = player.playerName;
-    delete neutralPlayer;
 }
 
 
@@ -97,14 +96,7 @@ void Player::setReinforcementPool(int num) {
     this->reinforcementPool += num;
 }
 
-// Static method to get the neutral player instance
-Player* Player::getNeutralPlayer() {
-    // If neutralPlayer is not created, create it
-    if (!neutralPlayer) {
-        neutralPlayer = new Player("Neutral"); // Adjust the constructor as needed
-    }
-    return neutralPlayer;
-}
+
 void Player::setCapturedTerritoryThisTurn(bool update)
 {
     this->capturedTerritoryThisTurn = update;
@@ -179,6 +171,40 @@ void Player::issueOrder(string orderName) {
     }
 
 }
+
+void Player::issue_Order(string type, Player* target, int armyCount, Territory* targetTerritory, Territory* sourceTerritory) {
+//    Order* order{};
+//
+//    std::transform(type.begin(), type.end(), type.begin(),
+//                   [](unsigned char c) { return std::tolower(c); });
+//    if (type == "deploy") {
+//        order = new Deploy(this, this, armyCount, targetTerritory, sourceTerritory);
+//    }
+//    else if (type == "airlift") {
+//        order = new Airlift(target, this, armyCount, targetTerritory, sourceTerritory);
+//    }
+//        //Fix the target player to be neutral not by creating a new player but asign it it to the current neutral player.
+//    else if (type == "blockade") {
+//        Player* n = new Player("neutralplaceholder");
+//        order = new Blockade(n, this, armyCount, targetTerritory, sourceTerritory);
+//    }
+//    else if (type == "bomb") {
+//        order = new Bomb(target, this, armyCount, targetTerritory, sourceTerritory);
+//    }
+//    else if (type == "advance") {
+//        order = new Advance(target, this, armyCount, targetTerritory, sourceTerritory);
+//    }
+//    else if (type == "negociate") {
+//        order = new Negociate(target, this, armyCount, targetTerritory, sourceTerritory);
+//    }
+//    else if (type == "steal") {
+//        order = new Steal(target, this, armyCount, targetTerritory, sourceTerritory);
+//    }++;
+//    orderList->add(order);  // adding order to the list
+//    cout << "Order has been added to the list" << endl;
+}
+
+
 // Add a territory to the player's list of territories
 void Player::addTerritory(Territory* territory) {
     if (territory) {

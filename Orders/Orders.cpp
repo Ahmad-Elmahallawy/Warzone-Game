@@ -20,7 +20,8 @@ Order::Order() : executed(false), player(nullptr), targetTerritory(nullptr), arm
 
 // Parameter constructor
 Order::Order(Player* player, Territory* targetTerritory, int armiesToDeploy)
-        : action("String describing the order"), executed(false), player(player), targetTerritory(targetTerritory), armiesToDeploy(armiesToDeploy) {}
+        : player(player), targetTerritory(targetTerritory), armiesToDeploy(armiesToDeploy) {
+}
 
 // Copy constructor
 Order::Order(const Order& order)
@@ -57,6 +58,31 @@ Order& Order::operator=(const Order& order) {
     return *this;
 }
 
+
+// Getter and Setter for targetTerritory
+Territory* Order::getTargetTerritory() const {
+    return targetTerritory;
+}
+void Order::setTargetTerritory(Territory* territory) {
+    targetTerritory = territory;
+}
+
+// Getter and Setter for sourceTerritory
+Territory* Order::getSourceTerritory() const {
+    return sourceTerritory;
+}
+void Order::setSourceTerritory(Territory* territory) {
+    sourceTerritory = territory;
+}
+
+// Getter and Setter for armiesToDeploy
+int Order::getArmiesToDeploy() const {
+    return armiesToDeploy;
+}
+void Order::setArmiesToDeploy(int armies) {
+    armiesToDeploy = armies;
+}
+
 // Print helper method for stream insertion operator overload
 void Order::print(std::ostream& output) const {
     output << "Order" << std::endl;
@@ -90,9 +116,13 @@ Deploy::Deploy() : Order() {
 }
 
 // Parameter constructor for Deploy class
-Deploy::Deploy(Player* player, Territory* targetTerritory, int armiesToDeploy)
-        : Order(player, targetTerritory, armiesToDeploy) {
-    this->action = "deploy order";
+Deploy::Deploy(Player* target, Player* player, int armyCount, Territory* targetLocation, Territory* fromLocation) {
+    this->target = target;
+    this->player = player;
+    this->armiesToDeploy = armyCount;
+    this->targetTerritory = targetLocation;
+    this->sourceTerritory = fromLocation;
+    this->action = "Deploy order";
 }
 
 // Copy constructor for Deploy class
@@ -116,7 +146,7 @@ void Deploy::execute() {
         this->executed = true;
 
         std::cout << "Deploy order executed successfully." << std::endl;
-        std::cout << this->action;
+        std::cout << this->action << endl;
     }
     Notify(this);
 }
@@ -176,10 +206,14 @@ Advance::Advance() : Order() {
 }
 
 // Parameter constructor for Advance class
-Advance::Advance(Player* player, Territory* sourceTerritory, Territory* targetTerritory, int armiesToAdvance)
-        : Order(player, targetTerritory, armiesToAdvance) {
-    this->sourceTerritory = sourceTerritory;
-    this->action = "Advance order";
+Advance::Advance(Player* target, Player* player, int armyCount, Territory* targetLocation, Territory* fromLocation) {
+    this->target = target;
+    this->player = player;
+    this->armiesToDeploy = armyCount;
+    this->targetTerritory = targetLocation;
+    this->sourceTerritory = fromLocation;
+    this->action = "Advance";
+
 }
 // Copy constructor for Advance class
 Advance::Advance(const Advance& existingAdvance) : Order(existingAdvance) {
@@ -194,7 +228,6 @@ Advance::~Advance() {}
 // Advance order execute method
 void Advance::execute() {
     if (this->validate()) {
-
         bool conqueredTerritory = false;
         // Simulate battle
         int attackerUnits = armiesToDeploy;
@@ -281,7 +314,9 @@ bool Advance::validate() {
 
     // Check if the target territory is adjacent to the source territory
     bool adjacent = false;
+    cout << sourceTerritory->adjacentTerritories.size();
     for(int i = 0;i<sourceTerritory->adjacentTerritories.size();i++){
+
         if((targetTerritory->getTerritoryName() == sourceTerritory->adjacentTerritories[i].getTerritoryName())){
             adjacent = true;
         }
@@ -337,6 +372,16 @@ std::ostream& operator<<(std::ostream& output, const Advance& advance) {
 // default constructor
 Bomb::Bomb()
 {
+    this->action = "Bomb order";
+}
+
+// Parameterized constructor for Bomb
+Bomb::Bomb(Player* target, Player* player, int armyCount, Territory* targetLocation, Territory* fromLocation) {
+    this->target = target;
+    this->player = player;
+    this->armiesToDeploy = armyCount;
+    this->targetTerritory = targetLocation;
+    this->sourceTerritory = fromLocation;
     this->action = "Bomb order";
 }
 
@@ -440,6 +485,16 @@ Blockade::Blockade()
     this->action = "Blockade order";
 }
 
+// Parameterized constructor for Blockade
+Blockade::Blockade(Player* target, Player* player, int armyCount, Territory* targetLocation, Territory* fromLocation) {
+    this->target = target;
+    this->player = player;
+    this->armiesToDeploy = armyCount;
+    this->targetTerritory = targetLocation;
+    this->sourceTerritory = fromLocation;
+    this->action = "Blockade";
+}
+
 // copy constructor
 Blockade::Blockade(const Blockade& blockade)
 {
@@ -452,15 +507,13 @@ Blockade::~Blockade() {}
 // execute method override
 void Blockade::execute() {
     if (this->validate()) {
-        // Create the neutral player instance
-        Player* neutralPlayer = Player::getNeutralPlayer();
 
         // Double the number of army units on the target territory
         int currentArmies = targetTerritory->getNumberOfArmies();
         targetTerritory->addArmies(currentArmies);
 
         // Transfer the ownership of the territory to the Neutral player
-        targetTerritory->setOwner(neutralPlayer);
+        targetTerritory->setOwner(target);
 
         // Set the order as executed
         this->executed = true;
@@ -488,8 +541,7 @@ bool Blockade::validate() {
     }
 
     // Check if the target territory belongs to the neutral player
-    Player* neutralPlayer = Player::getNeutralPlayer();
-    if (targetTerritory->getOwner() == neutralPlayer) {
+    if (targetTerritory->getOwner() == target) {
         std::cout << "Invalid Blockade order: Target territory already belongs to the Neutral player." << std::endl;
         return false;
     }
@@ -535,6 +587,16 @@ Airlift::Airlift()
     this->action = "Airlift order";
 }
 
+Airlift::Airlift(Player* target, Player* player, int armyCount, Territory* targetLocation, Territory* fromLocation) {
+    this->target = target;
+    this->player = player;
+    this->armiesToDeploy = armyCount;
+    this->targetTerritory = targetLocation;
+    this->sourceTerritory = fromLocation;
+    this->action = "Airlift order";
+
+}
+
 // copy constructor
 Airlift::Airlift(const Airlift& existingAirlift)
 {
@@ -552,6 +614,7 @@ bool Airlift::validate() {
         cout << action << endl;
         return false;
     }
+
 
     // Check if the target territory exists
     if (!targetTerritory) {
@@ -630,12 +693,22 @@ Negotiate::Negotiate()
 {
     this->action = "Negotiate order";
 }
+Negotiate::Negotiate(Player* target, Player* player, int armyCount, Territory* targetLocation, Territory* fromLocation) {
+    this->target = target;
+    this->player = player;
+    this->armiesToDeploy = armyCount;
+    this->targetTerritory = targetLocation;
+    this->sourceTerritory = fromLocation;
+    this->action = "Negotiate order";
+}
+
 
 // copy constructor
 Negotiate::Negotiate(const Negotiate& existingNegotiate)
 {
     this->action = "Negotiate order";
 }
+
 
 // destructor
 Negotiate::~Negotiate() {}

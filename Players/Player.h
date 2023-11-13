@@ -29,7 +29,6 @@ private:
     vector<Territory*> attackList;
     vector<Territory*> defendList;
     // Static member representing the neutral player
-    static Player* neutralPlayer;
     bool capturedTerritoryThisTurn = false;
 
 
@@ -44,7 +43,6 @@ public:
     Player* negociatedPlayers[20];
 
     // Static method to get the neutral player instance
-    static Player* getNeutralPlayer();
 
     Player(Hand *hand, const vector<Territory *> &territories, const string &playerName, int playerId,
            OrdersList *ordersList);
@@ -57,6 +55,7 @@ public:
 
     std::vector<Territory*> toAttack() const;
 
+    void issue_Order(string type, Player* target, int armyCount, Territory* targetLocation, Territory* fromLocation);
 
     // getters and setters
     Hand *getHand() const;
