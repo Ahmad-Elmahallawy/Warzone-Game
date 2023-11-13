@@ -608,8 +608,14 @@ Negotiate::~Negotiate() {}
 // validate method override
 bool Negotiate::validate()
 {
-    std::cout << "Negotiate class is valid" << std::endl;
-    return true;
+    if (targetTerritory->getOwner() == this->getPlayer()) {
+        std::cout << "error: target territory belongs to the same player issuing negotiate " << std::endl;
+        return false;
+    }
+    else{
+        std::cout << "success: negotiate order validated " << std::endl;
+        return true;
+    }
 }
 
 // execute method override
@@ -617,7 +623,7 @@ void Negotiate::execute()
 {
     if (this->validate())
     {
-        this->executed = true;
+        player->addPlayerToNegociatedList(targetTerritory->getOwner());
     }
 }
 

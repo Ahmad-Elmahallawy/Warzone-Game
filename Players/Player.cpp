@@ -268,4 +268,27 @@ bool Player::ownAllTerritoryInContinent() {//go through all the territories, kee
     return true;
 }
 
+//Adds a player to the list of negociated PLayers
+void Player::addPlayerToNegociatedList(Player* p) {
+    int count = 0;
+    for (Player* i : negociatedPlayers) {
+        if (i == NULL) {
+            break;
+        }
+        count++;
+    }
+    negociatedPlayers[count] = p;
+}
+
+
+//Empty the array of negociated PLayers
+void Player::clearNegociatedList() {
+    int count = 0;
+    for (Player* i : negociatedPlayers) {
+        delete i;
+        i = NULL;
+    }
+
+}
+
 
