@@ -94,7 +94,7 @@ void testOrderExecution()
     cout << "Unsuccessful Bomb Execution" << endl;
     Bomb b2(p1,p2,30,territory3,territory2);
     b2.execute();
-    cout << "Another Unsuccessful Bomb Execution";
+    cout << "Another Unsuccessful Bomb Execution" << endl;
     Bomb b3(p2,p2,30,territory1,territory2);
     b3.execute();
 
