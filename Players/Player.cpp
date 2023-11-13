@@ -147,21 +147,21 @@ void Player::issueOrder(string orderName) {
 
     if(orderName == "deploy") {
 
-//        cout << "Input a territory Name where you wish to deploy your armies from!" << endl;
-//        cin >> sourceID;
-//        for(int i=0;territories.size();i++){
-//            if(territories[i]==sourceID)
-//                sourceID
-//        }
-//
-//        cout << "Input a territory Name where you wish to deploy your armies to !" << endl;
-//        cin >> destID;
-//
-//        cout << "Input the number of armies you want to deploy" << endl;
-//        cin >> amount;
-//
-//        Deploy d1(this,this,amount,territories[0],territories[0]);
-//        //now add to orderslist
+        cout << "Input a territory Name where you wish to deploy your armies from!" << endl;
+        cin >> sourceID;
+        for(int i=0;territories.size();i++){
+            if(territories[i]==sourceID)
+                sourceID
+        }
+
+        cout << "Input a territory Name where you wish to deploy your armies to !" << endl;
+        cin >> destID;
+
+        cout << "Input the number of armies you want to deploy" << endl;
+        cin >> amount;
+
+        Deploy d1(this,this,amount,territories[0],territories[0]);
+        //now add to orderslist
 
     }
     else if(orderName == "advance")
