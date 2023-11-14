@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Project_1::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Project_1-Debug-0c4aeffc71d017f6f73e.json",
+					"jsonFile" : "target-Project_1-Debug-e5685c8cc07bde8564a2.json",
 					"name" : "Project_1",
 					"projectIndex" : 0
 				}
@@ -49,12 +49,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/ahmad/Desktop/Courses/Fall2023/COMP345/Project2/COMP345-Warzone/cmake-build-debug",
-		"source" : "C:/Users/ahmad/Desktop/Courses/Fall2023/COMP345/Project2/COMP345-Warzone"
+		"build" : "C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug",
+		"source" : "C:/Users/oimbs/CLionProjects/COMP345-Warzone"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 3
+		"minor" : 5
 	}
 }
