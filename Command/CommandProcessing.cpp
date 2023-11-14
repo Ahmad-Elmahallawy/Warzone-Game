@@ -48,7 +48,25 @@ string Command::stringToLog() {
     string s1 = "Command's Effect: " + this->effect;
     return s1;
 }
+bool Command::operator==(const Command &rhs) const {
+    return (*this) == (rhs) &&
+           effect == rhs.effect &&
+           secondParameter == rhs.secondParameter &&
+           command == rhs.command &&
+           log1 == rhs.log1;
+}
 
+bool Command::operator!=(const Command &rhs) const {
+    return !(rhs == *this);
+}
+Command::Command(const Command& other)
+        : command(other.command), effect(other.effect), secondParameter(other.secondParameter), log1(nullptr) {
+}
+
+std::ostream& operator<<(std::ostream& os, const Command& obj) {
+    os << "Command: " << obj.command << ", Effect: " << obj.effect << ", Second Parameter: " << obj.secondParameter;
+    return os;
+}
 FileCommandProcessorAdapter::~FileCommandProcessorAdapter() {
 
 }
@@ -176,12 +194,70 @@ CommandProcessing::~CommandProcessing() {
     }
 }
 
-FileCommandProcessorAdapter::FileCommandProcessorAdapter(std::string fileName) :fileName(fileName){}
+CommandProcessing::CommandProcessing() {}
+bool CommandProcessing::operator==(const CommandProcessing &rhs) const {
+    return (*this) == (rhs) &&
+           (*this) == (rhs) &&
+           lc == rhs.lc;
+}
+
+bool CommandProcessing::operator!=(const CommandProcessing &rhs) const {
+    return !(rhs == *this);
+}
+
+CommandProcessing::CommandProcessing(const CommandProcessing& other) {
+    lc = other.lc;
+}
+
+std::ostream& operator<<(std::ostream& os, const CommandProcessing& obj) {
+    os << "CommandProcessing 1: ";  // Customize this output as needed
+    return os;
+}
+FileCommandProcessorAdapter::FileCommandProcessorAdapter(std::string fileName) :fileName(fileName){
+    this->flr;
+}
 
 Command* FileCommandProcessorAdapter::readCommand() {
+   return this->flr->readLineFromFile(fileName);
+}
+bool FileCommandProcessorAdapter::operator!=(const FileCommandProcessorAdapter &rhs) const {
+    return !(rhs == *this);
+}
+bool FileCommandProcessorAdapter::operator==(const FileCommandProcessorAdapter &rhs) const {
+    return (*this) == (rhs) &&
+           fileName == rhs.fileName &&
+           flr == rhs.flr;
+}
+FileCommandProcessorAdapter::FileCommandProcessorAdapter(const FileCommandProcessorAdapter& other)
+        : CommandProcessing(other), fileName(other.fileName), flr(nullptr) {
+    if (other.flr) {
+        flr = new FileLineReader(*other.flr);
+    }
+}
+std::ostream& operator<<(std::ostream& os, const FileCommandProcessorAdapter& obj) {
+    os << "FileCommandProcessorAdapter: " << obj.fileName;
+    return os;
+}
+FileLineReader::FileLineReader() {
+
+}
+FileLineReader::~FileLineReader() {
+
+}
+bool FileLineReader::operator==(const FileLineReader& other) const {
+    return true;
+}
+FileLineReader::FileLineReader(const FileLineReader& other) {
+}
+std::ostream& operator<<(std::ostream& os, const FileLineReader& obj) {
+    os << "FileLineReader: ";
+    return os;
+}
+
+Command* FileLineReader::readLineFromFile(string filename) {
     string fileInput;
     std::ifstream myFile;
-    myFile.open(fileName);//opening file
+    myFile.open(filename);//opening file
     std::getline(myFile,fileInput);
     string component;
     vector<string> commandComponents;

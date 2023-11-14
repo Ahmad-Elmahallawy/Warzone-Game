@@ -21,6 +21,11 @@ public:
     Command(string command, string secondParameter);
     string stringToLog();
     ~Command();
+    Command(const Command& other);
+    // Stream insertion operator
+    friend std::ostream& operator<<(std::ostream& os, const Command& obj);
+    bool operator==(const Command &rhs) const;
+    bool operator!=(const Command &rhs) const;
 
 private:
     string command;
@@ -38,19 +43,36 @@ public:
     bool validate(Command* command, GameEngine::State state);
     string stringToLog();
     Commands getEnumCommands();
+    CommandProcessing(const CommandProcessing& other);
+    // Stream insertion operator
+    CommandProcessing();
+    friend std::ostream& operator<<(std::ostream& os, const CommandProcessing& obj);
+    bool operator==(const CommandProcessing &rhs) const;
+    bool operator!=(const CommandProcessing &rhs) const;
 
-    };
+};
 class FileLineReader{
 public:
-    void readLineFromFile();
+    FileLineReader();
+    Command* readLineFromFile(string filename);
+    ~FileLineReader();
+    // Stream insertion operator
+    friend std::ostream& operator<<(std::ostream& os, const FileLineReader& obj);
+    bool operator==(const FileLineReader& other) const;
+    // Copy constructor
+    FileLineReader(const FileLineReader& other);
 };
 class FileCommandProcessorAdapter: public CommandProcessing{
 public:
     Command* readCommand();
     string fileName;
     FileCommandProcessorAdapter(string fileName);
-    FileLineReader flr;
-    virtual ~FileCommandProcessorAdapter();
+    FileLineReader* flr;
+    FileCommandProcessorAdapter(const FileCommandProcessorAdapter& other);
+    ~FileCommandProcessorAdapter();
+    bool operator==(const FileCommandProcessorAdapter &rhs) const;
+    friend std::ostream& operator<<(std::ostream& os, const FileCommandProcessorAdapter& obj);
+    bool operator!=(const FileCommandProcessorAdapter &rhs) const;
 
 private:
 
@@ -58,3 +80,12 @@ private:
 
 void testCommandProcessor();
 #endif //PROJECT_1_COMMANDPROCESSING_H
+
+
+
+
+
+
+
+
+
