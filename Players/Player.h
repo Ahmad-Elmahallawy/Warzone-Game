@@ -55,7 +55,7 @@ public:
 
     std::vector<Territory*> toAttack() const;
 
-    void issue_Order(string type, Player* target, int armyCount, Territory* targetLocation, Territory* fromLocation);
+    void issue_Order();
 
     // getters and setters
     Hand *getHand() const;
