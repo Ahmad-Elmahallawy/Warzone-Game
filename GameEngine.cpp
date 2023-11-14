@@ -5,6 +5,7 @@
 #include <vector>
 #include <algorithm> // include for case-insensitive string comparison
 #include <random>
+#include "GameEngineDriver.h"
 
 using namespace std;
 
@@ -68,9 +69,9 @@ Commands commandToEnum(const std::string commandStr) {
         return CMD_END_EXEC_ORDERS;
     } else if (commandStr == "win") {
         return CMD_WIN;
-    } else if (commandStr == "end") {
+    } else if (commandStr == "quit") {
         return CMD_END;
-    } else if (commandStr == "play") {
+    } else if (commandStr == "replay") {
         return CMD_PLAY;
     } else if (commandStr == "execorder") {
         return CMD_EXEC_ORDER;
@@ -515,7 +516,7 @@ void GameEngine::mainGameLoop() {
         currentState = transition(CMD_END_ISSUE_ORDER);
 
         // Orders Execution Phase
-        ordersExecutionPhase();
+       ordersExecutionPhase();
         currentState = transition(CMD_WIN);
         //not first round anymore after orders execution phase
         firstRound = false;
@@ -529,16 +530,15 @@ void GameEngine::mainGameLoop() {
         Command *command = commandProcessor->getCommand();
         if (!commandProcessor->validate(command, this->currentState)) {
             cout << command->getCommand();
-            std::cout << "Invalid command. Try again." << std::endl;
             continue;
         }
-        cout << "Current command: " << command->getCommand() << std::endl;
+        cout << "Current command: " << stateToString(currentState) << std::endl;
 
         // Process the command and change game state accordingly
         switch (commandToEnum(command->getCommand())) {
             case CMD_PLAY:
                 currentState = transition(CMD_PLAY);
-                startupPhase();
+                testStartupPhase();
                 break;
 
             case CMD_END:

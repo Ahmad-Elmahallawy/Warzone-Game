@@ -54,7 +54,7 @@ void testCommandProcessor(){
         }else{
             CommandProcessing cp;
             cmd = cp.getCommand();
-            isValid = cp.validate(cmd,GameEngine::State::ASSIGN_REINFORCEMENTS);
+            isValid = cp.validate(cmd,GameEngine::State::PLAYERS_ADDED);
             if(isValid){
                 cout<<"Command is valid.";
             }else{
