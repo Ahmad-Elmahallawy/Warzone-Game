@@ -399,66 +399,6 @@ bool Player::hasCardInHand(Card::WarzoneCard cardType) const {
 }
 
 
-//creates a new order
-void Player::issueOrder() {
-    Order *order{};
-    int amount;
-    string sourceID, destID, targetPlayer;
-    Territory *source;
-    Territory *destination;
-    Player otherPlayer;
-    string type;
-    Player *target;
-    cout << "please enter the type of order that you would like to issue"<<endl;
-    cin >>type;
-    cout << "Please enter the target player name" << endl;
-    cin >> targetPlayer;
-    cout << "Please enter the amount you of your army that you would like to commit for this" << endl;
-    cin >> amount;
-    cout << "Please enter territory of target for blockade:" << endl;
-    cin >> destID;
-    cout<<"please enter your own territory"<< endl;
-    cin >> sourceID;
-    cout << "\nAdding order to order list" << endl;
-    std::transform(type.begin(), type.end(), type.begin(),
-                   [](unsigned char c) { return std::tolower(c); });
-
-
-    // Validate source territory
-    for (int i = 0; i < territories.size(); i++) {
-        if (territories[i]->getTerritoryName() == sourceID) {
-            source = territories[i];
-            break;
-        }
-    }
-
-
-    if (type == "deploy") {
-        order = new Deploy(this, this, amount, destination, source);
-    }
-    else if (type == "airlift") {
-        order = new Airlift(target, this, amount, destination, source);
-    }
-        //Fix the target player to be neutral not by creating a new player but asign it it to the current neutral player.
-    else if (type == "blockade") {
-        Player* n = new Player("neutralplaceholder");
-        order = new Blockade(n, this, amount, destination, source);
-    }
-    else if (type == "bomb") {
-        order = new Bomb(target, this, amount, destination, source);
-    }
-    else if (type == "advance") {
-        order = new Advance(target, this, amount, destination, source);
-    }
-    else if (type == "negociate") {
-        order = new Negotiate(target, this, amount, destination, source);
-    }
-    cout << "here";
-    ordersList->addOrder(order);  // adding order to the list
-    std::cout << "Order has been added to the list" << endl;
-
-}
-
 
 //Removes a Territory from the list of owned Territory with the same territory ID
 void Player::removeOwnedTerritory(string territoryName) {

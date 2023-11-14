@@ -125,8 +125,6 @@ GameEngine::~GameEngine() {
 }
 
 
-
-
 // command to enter players in the game
 bool GameEngine::addPlayer(string playerName)
 {
@@ -508,18 +506,49 @@ void GameEngine::mainGameLoop() {
         {
             // Reinforcement Phase
             reinforcementPhase();
-            transition(CMD_ISSUE_ORDER);
-        }
+            currentState = transition(CMD_ISSUE_ORDER);        }
 
         // Issuing Orders Phase
         issuingOrdersPhase();
+        currentState = transition(CMD_END_ISSUE_ORDER);
 
         // Orders Execution Phase
         ordersExecutionPhase();
+        currentState = transition(CMD_WIN);
         //not first round anymore after orders execution phase
         firstRound = false;
 
         oneRound++;
 
     }
+    cout << "Order Execution Phase has finished! Do you want to replay or exit?" << endl;
+    while (currentState != isGameComplete())
+    {
+        Command *command = commandProcessor->getCommand();
+        if (!commandProcessor->validate(command, this->currentState)) {
+            cout << command->getCommand();
+            std::cout << "Invalid command. Try again." << std::endl;
+            continue;
+        }
+        cout << "Current command: " << command->getCommand() << std::endl;
+
+        // Process the command and change game state accordingly
+        switch (commandToEnum(command->getCommand())) {
+            case CMD_PLAY:
+                currentState = transition(CMD_PLAY);
+                startupPhase();
+                break;
+
+            case CMD_END:
+                currentState = transition(CMD_END);
+                std::cout << "Exiting the game. Thank you for playing." << std::endl;
+                exit(0);
+
+            default:
+                std::cout << "Invalid command. Try again." << std::endl;
+                break;
+        }
+
+    }
+
 }
