@@ -482,114 +482,36 @@ void GameEngine::issuingOrdersPhase() {
 //orders executionPhase
 
 void GameEngine::ordersExecutionPhase() {
-    Deck *deck = new Deck();
-    int beforeTerritoryListSize; //how many territories owned before
-    int afterTerritoryListSize;  //how many territories owned after
 
-     //1:deploy NEED TO CHECK IF REINFORCEMENT POOL IS EMPTY OTHERWISE CANNOT EXECUTE OTHER ORDERS
-    for (int i = 0; i < AddedPlayerList.size(); i++)
-    {
-        AddedPlayerList[i]->setPhase("Execute Orders DEPLOY (1st priority)");
+    cout << endl;
+    cout << "Execute Order Phase: " << endl << "\n";
+    int size;
 
-        beforeTerritoryListSize = AddedPlayerList[i]->getTerritories().size();
-        OrdersList currentPlayerOrdersList = AddedPlayerList[i]->getOrdersList();
+    for(Player* player : AddedPlayerList) {
+        size = player->getOrdersList().getSize();
+        if(size == 0)
+            continue;
 
-        // If player's order list is empty do not display
-        if(AddedPlayerList[i]->getOrdersList().getOrdersListSize() != 0)
-        {
-            AddedPlayerList[i]->setPhase("Execute Orders DEPLOY (1st priority)");
+        cout << "Player "  << player->getPlayerName() << " has an orderlist of size " << player->getOrdersList().getSize() << endl;
 
-        }
+        deque<Order*> currentOrderList = player->getOrdersList().getOrderList();
 
-        // looping through player's order list
-        for (int j = 0; j < currentPlayerOrdersList.getOrdersListSize(); j++)
-        {
-            if (currentPlayerOrdersList.getOrder(j)->getLabel() == "deploy")
-            {
-                //execute deploy actions here
-                currentPlayerOrdersList.getNextOrder()->execute();
-            }
-        }
-        afterTerritoryListSize = AddedPlayerList[i]->getTerritories().size();
-        if(afterTerritoryListSize - beforeTerritoryListSize){ // player receives card at end of turn if they conquer at least one territory during thier turn
-            deck->draw();
+        for(Order* order : currentOrderList) {
+            if(order->getAction() == "deploy order")
+               order->execute();
         }
     }
 
-    // 2: airlift
-    for (int i = 0; i < AddedPlayerList.size(); i++)
-    {
-        if(AddedPlayerList[i]->getOrdersList().getOrdersListSize() != 0)
-        {
-            AddedPlayerList[i]->setPhase("Execute Orders: AIRLIFT(2)");
-
+    for(Player* player : AddedPlayerList) {
+        deque<Order*> currentOrderList = player->getOrdersList().getOrderList();
+        for(Order* order : currentOrderList) {
+            if(order->getAction() != "deploy order")
+                order->execute();
         }
-
-        OrdersList currentPlayerOrdersList = AddedPlayerList[i]->getOrdersList();
-
-        for (int j = 0; j < currentPlayerOrdersList.getOrdersListSize(); j++)
-        {
-            if (currentPlayerOrdersList.getNextOrder()->getLabel() == "airlift")
-            {
-                //execute airlift actions here
-                currentPlayerOrdersList.getNextOrder()->execute();
-            }
-        }
+        player->getOrdersList().restart();
     }
 
-    // 3: blockade and the others
-    for (int i = 0; i < AddedPlayerList.size(); i++)
-    {
-        if(AddedPlayerList[i]->getOrdersList().getOrdersListSize() != 0)
-        {
-            AddedPlayerList[i]->setPhase("Execute Orders: BLOCKADE (3rd)");
-
-        }
-
-        OrdersList currentPlayerOrdersList = AddedPlayerList[i]->getOrdersList();
-
-        for (int j = 0; j < currentPlayerOrdersList.getOrdersListSize(); j++)
-        {
-            if (currentPlayerOrdersList.getOrder(j)->getLabel() == "blockade")
-            {
-                //execute blockade actions here
-                currentPlayerOrdersList.getOrder(j)->execute();
-            }
-        }
-    }
-
-    // 4: rest of the orders executed in this block
-    for (int i = 0; i < AddedPlayerList.size(); i++)
-    {
-        if(AddedPlayerList[i]->getOrdersList().getOrdersListSize() != 0)
-        {
-            AddedPlayerList[i]->setPhase("Execute Orders: executing the rest according to their order in the list");
-
-        }
-
-        OrdersList currentPlayerOrdersList = AddedPlayerList[i]->getOrdersList();
-
-        for (int j = 0; j < currentPlayerOrdersList.getOrdersListSize(); j++)
-        {
-            if (currentPlayerOrdersList.getOrder(j)->getLabel() == "advance")
-            {
-                //execute advance actions here
-                currentPlayerOrdersList.getOrder(j)->execute();
-            }
-
-            if (currentPlayerOrdersList.getOrder(j)->getLabel() == "bomb")
-            {
-                //execute bomb actions here
-                currentPlayerOrdersList.getOrder(j)->execute();
-            }
-
-            if (currentPlayerOrdersList.getOrder(j)->getLabel() == "negotiate")
-            {
-                //execute negotiate actions here
-                currentPlayerOrdersList.getOrder(j)->execute();
-            }
-        }
-    }
+    cout << "Execution Order Phase is done." << endl;
 
 }
 string GameEngine::stringToLog() {

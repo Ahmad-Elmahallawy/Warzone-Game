@@ -65,7 +65,20 @@ const string &Player::getPlayerName() const {
 
 // return's user's orderlist
 OrdersList& Player::getOrdersList(){
-    std::cout << "\nthe orderlist contains :" << std::endl;
+
+    if(ordersList->getOrderList().empty()) {
+        cout << this->playerName << " orderlist is empty.\n";
+    }
+    else {
+        std::cout << "The orderlist contains :";
+        if (!ordersList->getOrderList().empty()) {
+            for (const auto &order: ordersList->getOrderList()) {
+                std::cout << *order << ", ";
+            }
+        }
+        cout << ".";
+    }
+    cout << endl;
     return *ordersList;
 }
 

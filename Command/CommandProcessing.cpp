@@ -24,12 +24,14 @@ string Command::getCommand() {
 }
 
 string Command::getEffect() {
-    if(this->command== "start")
-        effect = "start begins the game!";
+    if(this->command == "loadmap" && this->secondParameter.empty())
+        effect = "No effect took place.";
     else if(this->command == "loadmap")
         effect = "Loading up the map!";
     else if(this-> command == "validatemap")
         effect = "The map is being validated.";
+    else if(this->command == "loadmap" && this->secondParameter.empty())
+        effect = "No effect took place.";
     else if(this-> command == "addplayer")
         effect = "A player is added.";
     else if(this-> command == "gamestart")
@@ -90,12 +92,14 @@ string CommandProcessing::stringToLog() {
 
 
     // Check if the command type is present in the map
-    if(c1->getCommand() == "loadmap")
+    if(c1->getCommand() == "loadmap" && c1->secondParameter.empty())
+        commandName = "Invalid Command!";
+    else if(c1->getCommand() == "loadmap")
         commandName = "loadmap";
-    else if(c1->getCommand() == "start")
-        commandName = "start";
     else if(c1->getCommand() == "validatemap")
         commandName = "validatemap";
+    else if(c1->getCommand() == "addplayer" && c1->secondParameter.empty())
+        commandName = "Invalid Command!";
     else if(c1->getCommand() == "addplayer")
         commandName = "addplayer";
     else if(c1->getCommand() == "gamestart")
@@ -108,8 +112,10 @@ string CommandProcessing::stringToLog() {
         commandName = " ";
 
     string temp;
-    if(commandName == " ")
-        temp += "Invalid command! ";
+    if(commandName == "Invalid Command")
+        temp = "Invalid Command!";
+    else if(commandName == " ")
+        temp += "Invalid command!";
     else
         temp += "Command: " + commandName + " has been saved!";
     return temp;

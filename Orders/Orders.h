@@ -401,6 +401,9 @@ public:
     friend std::ostream& operator<<(std::ostream& output, const OrdersList& ordersList);
 
 
+    deque<Order *> getOrderList();
+
+    void restart();
 };
 //free function to test OrdersList methods
 void testOrderExecution();

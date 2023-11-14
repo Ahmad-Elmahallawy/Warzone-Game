@@ -872,6 +872,17 @@ int OrdersList::getSize() {
     return ordersList.size();
 }
 
+deque<Order *> OrdersList::getOrderList() {
+    return ordersList;
+}
+
+void OrdersList::restart() {
+    for (auto & i : ordersList) {
+        delete i;
+    }
+    ordersList.clear();
+}
+
 string OrdersList::stringToLog() {
     Order* o1 = ordersList.back();
     string s1 = "Order Issue: player added " + o1->getAction() +" to their order list. The updated list contains: ";
