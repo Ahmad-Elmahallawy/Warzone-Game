@@ -420,67 +420,12 @@ void GameEngine::issuingOrdersPhase() {
      */
 
 
-    for (int i = 0; i < AddedPlayerList.size(); i++) {
-        AddedPlayerList[i]->setPhase("Issue Orders");
-
-        string playerName = AddedPlayerList[i]->getPlayerName();
-        vector<Card *> currentPlayerHandCards = AddedPlayerList[i]->getHand()->vectorHand;
-        string type;
-        string answer;
-
-
-        while (answer != "n")
-        {
-            cout << "Player " << playerName << ", it is your turn\n" << endl;
-            cout << "type : advance|| deploy|| bomb || blockade || airlift||  ";
-            cout << "Input your desired order here: ";
-            cin >> type;
+    for(int i=0;AddedPlayerList.size();i++){
+        cout << "| Player: " << AddedPlayerList[i]->getPlayerName() << "'s will now issue an order ";
+        AddedPlayerList[i]->issueOrder();
     }
 
-        ////////////////////////////////////////////////////old code
 
-        while (answer != "n")
-        {
-            cout << "Player " << playerName << ", it is your turn\n" << endl;
-            cout << "type : advance|| deploy|| bomb || blockade || airlift||  ";
-            cout << "Input your desired order here: ";
-            cin >> type;
-
-            // If input is advance or deploy it calls issueOrder
-            if (type == "advance" || type == "deploy")
-            {
-                AddedPlayerList[i]->issueOrder(type);
-            }
-
-                // If input is any of these it will loop through player's hands to see if card exists and play it as well as add it
-                // to orders list
-            else if(type == "bomb" || type == "blockade" || type == "airlift" || type == "negotiate")
-            {
-                cout << currentPlayerHandCards.size() << endl;
-                AddedPlayerList[i]->issueOrder(type);
-
-                // If hand is empty output error message
-                if(currentPlayerHandCards.empty())
-                {
-                    cout << "Invalid order! Your hand is empty!!" << endl;
-                }
-            }
-
-            else
-            {
-                cout << "Invalid order!" << endl;
-            }
-
-            // asks user if he/she desires to issue a new order, if no, his or her turn ends and goes to next player in queue
-            cout << "Would you like to issue another order? (yes or no)" << endl;
-            cin >> answer;
-            if(answer == "no")
-            {
-                break;
-            }
-            cout << "\n" << endl;
-        }
-    }
 
 }
 

@@ -6,3 +6,33 @@ Invalid Command!
 /--------------/
 Command's Effect: Loading up the map!
 /--------------/
+Command: loadmap has been saved!
+/--------------/
+Command's Effect: Loading up the map!
+/--------------/
+Game Engine: new state is map loaded
+/--------------/
+Command: validatemap has been saved!
+/--------------/
+Command's Effect: The map is being validated.
+/--------------/
+Game Engine: new state is map validated
+/--------------/
+Command: addplayer has been saved!
+/--------------/
+Command's Effect: A player is added.
+/--------------/
+Game Engine: new state is players added
+/--------------/
+Command: addplayer has been saved!
+/--------------/
+Command's Effect: A player is added.
+/--------------/
+Game Engine: new state is players added
+/--------------/
+Command: gamestart has been saved!
+/--------------/
+Command's Effect: The game session has started!
+/--------------/
+Game Engine: new state is assign reinforcement
+/--------------/

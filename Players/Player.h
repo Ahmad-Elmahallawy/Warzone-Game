@@ -61,7 +61,7 @@ public:
     Hand *getHand() const;
     void removeOwnedTerritory(string territoryName);
 
-    void issueOrder(string orderName);
+    void issueOrder();
 
     const vector<Territory *> &getTerritories() const;
 
