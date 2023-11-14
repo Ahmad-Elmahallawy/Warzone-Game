@@ -404,6 +404,8 @@ public:
     deque<Order *> getOrderList();
 
     void restart();
+
+    string getList();
 };
 //free function to test OrdersList methods
 void testOrderExecution();

@@ -62,22 +62,10 @@ const string &Player::getPlayerName() const {
 
 // return's user's orderlist
 OrdersList& Player::getOrdersList(){
-
-    if(ordersList->getOrderList().empty()) {
-        cout << this->playerName << " orderlist is empty.\n";
-    }
-    else {
-        std::cout << "The orderlist contains :";
-        if (!ordersList->getOrderList().empty()) {
-            for (const auto &order: ordersList->getOrderList()) {
-                std::cout << *order << ", ";
-            }
-        }
-        cout << ".";
-    }
-    cout << endl;
     return *ordersList;
 }
+
+
 
 // returns player hand
 Hand* Player::getHand() const
@@ -148,18 +136,280 @@ void Player::printAttackList()
     }
 }
 
+void Player::issueOrder(MapLoader& mapLoader) {
+    std::cout << "Player " << getPlayerName() << ", it's your turn to issue orders." << std::endl;
 
- //creates a new order
- void Player::issueOrder() {
-     Order *order{};
-     int amount;
-     string sourceID, destID, targetPlayer;
-     Territory *source;
-     Territory *destination;
-     Player otherPlayer;
-     string type;
-     Player *target;
-     cout << "please enter the type of order that you would like to issue"<<endl;
+    // Loop to allow the player to issue multiple orders
+    while (true) {
+        std::cout << "Choose an order type (1: Deploy, 2: Advance, 3: Airlift, 4: Blockade, 5: Bomb, 6: Negotiate, 0: End turn): ";
+        int choice;
+        std::cin >> choice;
+
+        if (choice == 0) {
+            break; // Exit the loop if the player chooses to end the turn
+        }
+
+        Order* order = nullptr;
+
+        // Based on the user's choice, create the corresponding order
+        switch (choice) {
+            case 1: {
+                // Deploy order
+                order = createDeployOrder(mapLoader);
+                ordersList->addOrder(order);
+                break;
+            }
+            case 2: {
+                // Advance order
+                order = createAdvanceOrder(mapLoader);
+                ordersList->addOrder(order);
+                break;
+            }
+            case 3: {
+                // Airlift order
+                order = createAirliftOrder(mapLoader);
+                ordersList->addOrder(order);
+                break;
+            }
+            case 4: {
+                // Blockade order
+                order = createBlockadeOrder(mapLoader);
+                ordersList->addOrder(order);
+                break;
+            }
+            case 5: {
+                // Bomb order
+                order = createBombOrder(mapLoader);
+                ordersList->addOrder(order);
+                break;
+            }
+            case 6: {
+                // Negotiate order
+                order = createNegotiateOrder(mapLoader);
+                ordersList->addOrder(order);
+                break;
+            }
+            default:
+                std::cout << "Invalid choice. Please try again." << std::endl;
+                continue; // Restart the loop if the choice is invalid
+        }
+
+
+    }
+    std::cout << "End of turn for Player " << getPlayerName() << "." << std::endl;
+}
+
+Order* Player::createDeployOrder(MapLoader& mapLoader) {
+    // Implement logic to get parameters for Deploy order from the user
+    int armies;
+    std::string targetTerritory;
+    std::cout << "Enter the number of armies to deploy: ";
+    std::cin >> armies;
+    std::cout << "Enter the target territory name: ";
+    std::cin >> targetTerritory;
+
+    // Find the target territory object based on its name
+    Territory t = mapLoader.findTerritory(targetTerritory);
+    Territory* target = &t;
+
+    // Check if the target territory exists
+    if (target) {
+        return new Deploy(this, this, armies, target, target);
+    } else {
+        std::cout << "Error: Target territory not found." << std::endl;
+        return nullptr;  // Return nullptr to indicate failure
+    }
+}
+
+Order* Player::createAdvanceOrder(MapLoader& mapLoader) {
+    // Implement logic to get parameters for Advance order from the user
+    std::string sourceTerritory, targetTerritory;
+    int armies;
+    std::cout << "Enter the source territory name: ";
+    std::cin >> sourceTerritory;
+    std::cout << "Enter the target territory name: ";
+    std::cin >> targetTerritory;
+
+    // Find the source and target territories based on their names
+    Territory s = mapLoader.findTerritory(sourceTerritory);
+    Territory* source = &s;
+    Territory t = mapLoader.findTerritory(targetTerritory);
+    Territory* target = &t;
+    // Check if the source and target territories exist
+    if (source && target) {
+        std::cout << "Enter the number of armies to advance: ";
+        std::cin >> armies;
+        return new Advance(this, this, armies, target, source);
+    } else {
+        std::cout << "Error: Source or target territory not found." << std::endl;
+        return nullptr;  // Return nullptr to indicate failure
+    }
+}
+
+Order* Player::createAirliftOrder(MapLoader& mapLoader) {
+    // Check if the player has the Airlift card in their hand
+    bool hasAirliftCard = hasCardInHand(Card::WarzoneCard::Airlift);
+    if (hasAirliftCard) {
+        // Implement logic to get parameters for Airlift order from the user
+        std::string sourceTerritory, targetTerritory, pName;
+        int armies;
+        std::cout << "Enter the source territory name: ";
+        std::cin >> sourceTerritory;
+        std::cout << "Enter the target territory name: ";
+        std::cin >> targetTerritory;
+        std::cout << "Enter the target player name: ";
+        std::cin >> pName;
+        Player* p = new Player(pName);
+        Territory f = mapLoader.findTerritory(targetTerritory);
+        Territory* find = &f;
+        if(find->getOwner()->getPlayerName() != p->playerName)
+        {
+            cout << "Name is worng";
+            return nullptr;
+        }
+        // Find the source and target territories based on their names
+        Territory s = mapLoader.findTerritory(sourceTerritory);
+        Territory* source = &s;
+        Territory t = mapLoader.findTerritory(targetTerritory);
+        Territory* target = &t;
+
+        // Check if the source and target territories exist
+        if (source && target) {
+            std::cout << "Enter the number of armies to airlift: ";
+            std::cin >> armies;
+            return new Airlift(p, this, armies, target, source);
+        } else {
+            std::cout << "Error: Source or target territory not found." << std::endl;
+            return nullptr;  // Return nullptr to indicate failure
+        }
+    } else {
+        std::cout << "You don't have the Airlift card to issue this order." << std::endl;
+        return nullptr;  // Return nullptr to indicate failure
+    }
+}
+
+Order* Player::createBlockadeOrder(MapLoader& mapLoader) {
+    // Check if the player has the Blockade card in their hand
+    bool hasBlockadeCard = hasCardInHand(Card::WarzoneCard::Blockade);
+    if (hasBlockadeCard) {
+        // Implement logic to get parameters for Blockade order from the user
+        std::string targetTerritory;
+        std::cout << "Enter the target territory name: ";
+        std::cin >> targetTerritory;
+
+        // Find the target territory object based on its name
+        Territory t = mapLoader.findTerritory(targetTerritory);
+        Territory* target = &t;
+        // Check if the target territory exists
+        if (target) {
+            return new Blockade(this, this, 0,target, target);
+        } else {
+            std::cout << "Error: Target territory not found." << std::endl;
+            return nullptr;  // Return nullptr to indicate failure
+        }
+    } else {
+        std::cout << "You don't have the Blockade card to issue this order." << std::endl;
+        return nullptr;  // Return nullptr to indicate failure
+    }
+}
+
+Order* Player::createBombOrder(MapLoader& mapLoader) {
+    // Check if the player has the Bomb card in their hand
+    bool hasBombCard = hasCardInHand(Card::WarzoneCard::Bomb);
+    if (hasBombCard) {
+        // Implement logic to get parameters for Bomb order from the user
+        std::string sourceTerritory, targetTerritory, pName;
+        std::cout << "Enter the source territory name: ";
+        std::cin >> sourceTerritory;
+        std::cout << "Enter the target territory name: ";
+        std::cin >> targetTerritory;
+        std::cout << "Enter the target player name: ";
+        std::cin >> pName;
+        Player* p = new Player(pName);
+        Territory f = mapLoader.findTerritory(targetTerritory);
+        Territory* find = &f;
+        if(find->getOwner()->getPlayerName() != p->playerName)
+        {
+            cout << "Name is worng";
+            return nullptr;
+        }
+        // Find the source and target territories based on their names
+        Territory s = mapLoader.findTerritory(sourceTerritory);
+        Territory* source = &s;
+        Territory t = mapLoader.findTerritory(targetTerritory);
+        Territory* target = &t;
+
+        // Check if the target territory exists
+        if (target) {
+            return new Bomb(p, this,0, target, source);
+        } else {
+            std::cout << "Error: Target territory not found." << std::endl;
+            return nullptr;  // Return nullptr to indicate failure
+        }
+    } else {
+        std::cout << "You don't have the Bomb card to issue this order." << std::endl;
+        return nullptr;  // Return nullptr to indicate failure
+    }
+}
+
+Order* Player::createNegotiateOrder(MapLoader& mapLoader) {
+    // Check if the player has the Diplomacy card in their hand
+    bool hasDiplomacyCard = hasCardInHand(Card::WarzoneCard::Diplomacy);
+    if (hasDiplomacyCard) {
+        std::string sourceTerritory, targetTerritory, pName;
+        // Implement logic to get parameters for Negotiate order from the user
+        std::cout << "Enter the source territory name: ";
+        std::cin >> sourceTerritory;
+        std::cout << "Enter the target territory name: ";
+        std::cin >> targetTerritory;
+        std::cout << "Enter the target player name: ";
+        std::cin >> pName;
+        Player* p = new Player(pName);
+        Territory f = mapLoader.findTerritory(targetTerritory);
+        Territory* find = &f;
+        if(find->getOwner()->getPlayerName() != p->playerName)
+        {
+            cout << "Name is worng";
+            return nullptr;
+        }
+
+        // Find the source and target territories based on their names
+        Territory s = mapLoader.findTerritory(sourceTerritory);
+        Territory* source = &s;
+        Territory t = mapLoader.findTerritory(targetTerritory);
+        Territory* target = &t;
+
+        // Check if the target player exists
+        if (target) {
+            return new Negotiate(p, this, 0 , target,source);
+        } else {
+            std::cout << "Error: Target player not found." << std::endl;
+            return nullptr;  // Return nullptr
+        }}}
+
+
+bool Player::hasCardInHand(Card::WarzoneCard cardType) const {
+    // Iterate through the player's hand to check if the specified card type is present
+    for (const Card* card : hand->getCard()) {
+        if (card->getCard() == cardType) {
+            return true; // Card found in hand
+        }
+    }
+    return false; // Card not found in hand
+}
+
+
+//creates a new order
+void Player::issueOrder() {
+    Order *order{};
+    int amount;
+    string sourceID, destID, targetPlayer;
+    Territory *source;
+    Territory *destination;
+    Player otherPlayer;
+    string type;
+    Player *target;
+    cout << "please enter the type of order that you would like to issue"<<endl;
     cin >>type;
     cout << "Please enter the target player name" << endl;
     cin >> targetPlayer;
@@ -170,42 +420,42 @@ void Player::printAttackList()
     cout<<"please enter your own territory"<< endl;
     cin >> sourceID;
     cout << "\nAdding order to order list" << endl;
-     std::transform(type.begin(), type.end(), type.begin(),
-                    [](unsigned char c) { return std::tolower(c); });
+    std::transform(type.begin(), type.end(), type.begin(),
+                   [](unsigned char c) { return std::tolower(c); });
 
 
-     // Validate source territory
-     for (int i = 0; i < territories.size(); i++) {
-         if (territories[i]->getTerritoryName() == sourceID) {
-             source = territories[i];
-             break;
-         }
-     }
+    // Validate source territory
+    for (int i = 0; i < territories.size(); i++) {
+        if (territories[i]->getTerritoryName() == sourceID) {
+            source = territories[i];
+            break;
+        }
+    }
 
 
-     if (type == "deploy") {
-             order = new Deploy(this, this, amount, destination, source);
-         }
-         else if (type == "airlift") {
-             order = new Airlift(target, this, amount, destination, source);
-         }
-             //Fix the target player to be neutral not by creating a new player but asign it it to the current neutral player.
-         else if (type == "blockade") {
-             Player* n = new Player("neutralplaceholder");
-             order = new Blockade(n, this, amount, destination, source);
-         }
-         else if (type == "bomb") {
-             order = new Bomb(target, this, amount, destination, source);
-         }
-         else if (type == "advance") {
-             order = new Advance(target, this, amount, destination, source);
-         }
-         else if (type == "negociate") {
-             order = new Negotiate(target, this, amount, destination, source);
-         }
-         cout << "here";
-         ordersList->addOrder(order);  // adding order to the list
-         std::cout << "Order has been added to the list" << endl;
+    if (type == "deploy") {
+        order = new Deploy(this, this, amount, destination, source);
+    }
+    else if (type == "airlift") {
+        order = new Airlift(target, this, amount, destination, source);
+    }
+        //Fix the target player to be neutral not by creating a new player but asign it it to the current neutral player.
+    else if (type == "blockade") {
+        Player* n = new Player("neutralplaceholder");
+        order = new Blockade(n, this, amount, destination, source);
+    }
+    else if (type == "bomb") {
+        order = new Bomb(target, this, amount, destination, source);
+    }
+    else if (type == "advance") {
+        order = new Advance(target, this, amount, destination, source);
+    }
+    else if (type == "negociate") {
+        order = new Negotiate(target, this, amount, destination, source);
+    }
+    cout << "here";
+    ordersList->addOrder(order);  // adding order to the list
+    std::cout << "Order has been added to the list" << endl;
 
 }
 
@@ -354,4 +604,3 @@ void Player::clearNegociatedList() {
     }
 
 }
-

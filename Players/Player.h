@@ -12,7 +12,8 @@
 #include "../Cards/Cards.h"
 
 class OrdersList;
-
+class MapLoader;
+class Order;
 using namespace std;
 
 class Player {
@@ -55,7 +56,29 @@ public:
 
     std::vector<Territory*> toAttack() const;
 
-    void issue_Order(string type, Player* target, int armyCount, Territory* targetLocation, Territory* fromLocation);
+    // Method for issuing orders
+    void issueOrder(MapLoader& mapLoader);
+
+    // Method to create Deploy order
+    Order* createDeployOrder(MapLoader& mapLoader);
+
+    // Method to create Advance order
+    Order* createAdvanceOrder(MapLoader& mapLoader);
+
+    // Method to create Airlift order
+    Order* createAirliftOrder(MapLoader& mapLoader);
+
+    // Method to create Blockade order
+    Order* createBlockadeOrder(MapLoader& mapLoader);
+
+    // Method to create Bomb order
+    Order* createBombOrder(MapLoader& mapLoader);
+
+    // Method to create Negotiate order
+    Order* createNegotiateOrder(MapLoader& mapLoader);
+
+    // Method to check if the player has a specific card in hand
+    bool hasCardInHand(Card::WarzoneCard cardType) const;
 
     // getters and setters
     Hand *getHand() const;
