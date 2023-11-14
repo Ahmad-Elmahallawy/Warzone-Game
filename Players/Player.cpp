@@ -46,9 +46,6 @@ Player::~Player() {
     cout << "hand deleted" << endl;
     delete this->ordersList;
     cout << "orderslist deleted" << endl;
-    for (Territory* territory : territories) {
-        delete territory;
-    }
 
 }
 
@@ -152,70 +149,66 @@ void Player::printAttackList()
 }
 
 
-// creates a new order
-void Player::issueOrder(string orderName) {
-    Order *order = new Deploy(*new Deploy());
-    int amount, sourceID, destID, pID;
-    basic_string<char> id;
+ //creates a new order
+ void Player::issueOrder() {
+     Order *order{};
+     int amount;
+     string sourceID, destID, targetPlayer;
+     Territory *source;
+     Territory *destination;
+     Player otherPlayer;
+     string type;
+     Player *target;
+     cout << "please enter the type of order that you would like to issue"<<endl;
+    cin >>type;
+    cout << "Please enter the target player name" << endl;
+    cin >> targetPlayer;
+    cout << "Please enter the amount you of your army that you would like to commit for this" << endl;
+    cin >> amount;
+    cout << "Please enter territory of target for blockade:" << endl;
+    cin >> destID;
+    cout<<"please enter your own territory"<< endl;
+    cin >> sourceID;
+    cout << "\nAdding order to order list" << endl;
+     std::transform(type.begin(), type.end(), type.begin(),
+                    [](unsigned char c) { return std::tolower(c); });
 
-    if(orderName == "deploy") {
 
-        cout << "Input a territory Name where you wish to deploy your armies!" << endl;
-        cin >> id;
+     // Validate source territory
+     for (int i = 0; i < territories.size(); i++) {
+         if (territories[i]->getTerritoryName() == sourceID) {
+             source = territories[i];
+             break;
+         }
+     }
 
 
-        cout << "Input the number of armies you want to deploy" << endl;
-        cin >> amount;
-
-        //vector<Territory*> gameMapTerritoryList = gameEngine->getMap()->Territories;
-
-        for (int i = 0; i < territories.size(); i++) {
-            //cout << territoryList[i]->getTerritoryID() << endl;
-            if (territories[i]->getTerritoryName() == id) {
-                cout << "Adding territory " << territories[i]->getTerritoryName() <<
-                     " (" << territories[i]->getTerritoryName() << ") " << "to defendList" << endl;
-                defendList.push_back(territories[i]);
-                cout << "\nYour defend list will now look like this" << endl;
-                printDefendList();
-                cout << "\nAdding order to order list" << endl;
-                ordersList->addOrder(new Deploy);
-            }
-        }
-    }
+     if (type == "deploy") {
+             order = new Deploy(this, this, amount, destination, source);
+         }
+         else if (type == "airlift") {
+             order = new Airlift(target, this, amount, destination, source);
+         }
+             //Fix the target player to be neutral not by creating a new player but asign it it to the current neutral player.
+         else if (type == "blockade") {
+             Player* n = new Player("neutralplaceholder");
+             order = new Blockade(n, this, amount, destination, source);
+         }
+         else if (type == "bomb") {
+             order = new Bomb(target, this, amount, destination, source);
+         }
+         else if (type == "advance") {
+             order = new Advance(target, this, amount, destination, source);
+         }
+         else if (type == "negociate") {
+             order = new Negotiate(target, this, amount, destination, source);
+         }
+         cout << "here";
+         ordersList->addOrder(order);  // adding order to the list
+         std::cout << "Order has been added to the list" << endl;
 
 }
 
-void Player::issue_Order(string type, Player* target, int armyCount, Territory* targetTerritory, Territory* sourceTerritory) {
-//    Order* order{};
-//
-//    std::transform(type.begin(), type.end(), type.begin(),
-//                   [](unsigned char c) { return std::tolower(c); });
-//    if (type == "deploy") {
-//        order = new Deploy(this, this, armyCount, targetTerritory, sourceTerritory);
-//    }
-//    else if (type == "airlift") {
-//        order = new Airlift(target, this, armyCount, targetTerritory, sourceTerritory);
-//    }
-//        //Fix the target player to be neutral not by creating a new player but asign it it to the current neutral player.
-//    else if (type == "blockade") {
-//        Player* n = new Player("neutralplaceholder");
-//        order = new Blockade(n, this, armyCount, targetTerritory, sourceTerritory);
-//    }
-//    else if (type == "bomb") {
-//        order = new Bomb(target, this, armyCount, targetTerritory, sourceTerritory);
-//    }
-//    else if (type == "advance") {
-//        order = new Advance(target, this, armyCount, targetTerritory, sourceTerritory);
-//    }
-//    else if (type == "negociate") {
-//        order = new Negociate(target, this, armyCount, targetTerritory, sourceTerritory);
-//    }
-//    else if (type == "steal") {
-//        order = new Steal(target, this, armyCount, targetTerritory, sourceTerritory);
-//    }++;
-//    orderList->add(order);  // adding order to the list
-//    cout << "Order has been added to the list" << endl;
-}
 
 //Removes a Territory from the list of owned Territory with the same territory ID
 void Player::removeOwnedTerritory(string territoryName) {
@@ -295,10 +288,14 @@ ostream &operator<<(ostream &os, const Player &player) {
 
 Player& Player::operator=(const Player& rhs) {
     cout << "Player assignment operator called." << endl;
-    hand = rhs.hand;
-    ordersList = rhs.ordersList;
-    territories = rhs.territories;
-
+    if (this != &rhs) {
+        delete hand;
+        delete ordersList;
+        hand = new Hand(*rhs.hand);
+        territories = vector<Territory*>(rhs.territories);
+        ordersList = new OrdersList(*rhs.ordersList);
+        playerName = rhs.playerName;
+    }
     return *this;
 }
 
@@ -332,7 +329,7 @@ bool Player::ownAllTerritoryInContinent() {//go through all the territories, kee
 //    }
 //    return false;
 //}
-    return true;
+    return false;
 }
 
 //Adds a player to the list of negociated PLayers

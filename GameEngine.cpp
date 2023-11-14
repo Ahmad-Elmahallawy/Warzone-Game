@@ -1,3 +1,4 @@
+// GameEngine.cpp
 #include "GameEngine.h"
 #include "Command/CommandProcessing.h"
 #include <iostream>
@@ -9,9 +10,6 @@ using namespace std;
 
 #include "GameEngine.h"
 // converts state enum value to string
-
-GameEngine::State GameEngine::currentState = GameEngine::State::START;
-
 std::string stateToString(GameEngine::State state) {
     switch (state) {
         case GameEngine::State::START: return "start";
@@ -188,10 +186,13 @@ bool GameEngine::gameStart() {
     for(int i = 0; i < numTerritories ; i++)
     {
         Territory t = ml->gameMap->listOfTerritories[i];
-        AddedPlayerList[playersIndex % AddedPlayerList.size()]->setTerritories(&t);
+        Player* p = AddedPlayerList[playersIndex % AddedPlayerList.size()];
+        p->setTerritories(&t);
+        t.setOwner(p);
 
         playersIndex++;
     }
+
 
     // Randomizes the order of players
     for (int i = AddedPlayerList.size() - 1; i > 0; --i) {
@@ -411,71 +412,37 @@ void GameEngine:: reinforcementPhase() {
 }
 
 void GameEngine::issuingOrdersPhase() {
-    /*deploy -> put armies in a territory
-    advance -> moves a specified number of armies between adjacent territories, if its a player territory, armies get transferred
-    to that territory, if its an enemy territory, an attack happens between the 2 territories
-    bomb -> destroy half of the armies located on an opponent's territory that is adjacent to one of player's territory
-    blockade -> triple number of armies on one of player's current territory and make it a neutral territory (cannot be attacked?)
-    airlift ->
-    negotiate -> prevent attacks between current and another player until end of turn
 
-     */
+        /*deploy -> put armies in a territory
+        advance -> moves a specified number of armies between adjacent territories, if its a player territory, armies get transferred
+        to that territory, if its an enemy territory, an attack happens between the 2 territories
+        bomb -> destroy half of the armies located on an opponent's territory that is adjacent to one of player's territory
+        blockade -> triple number of armies on one of player's current territory and make it a neutral territory (cannot be attacked?)
+        airlift ->
+        negotiate -> prevent attacks between current and another player until end of turn
+         */
 
-    //int numPlayers = 2;
-    //Deck *deck = new Deck();
-
-    //Player *players[5] = {};
-    //bool firstRound = true;
-
-    for (int i = 0; i < AddedPlayerList.size(); i++)
-    {
-        AddedPlayerList[i]->setPhase("Issue Orders");
-
-        string playerName = AddedPlayerList[i]->getPlayerName();
-        vector<Card *> currentPlayerHandCards = AddedPlayerList[i]->getHand()->vectorHand;
-        string type;
-        string answer;
-
-        while (answer != "n")
+        for (int i = 0; i < AddedPlayerList.size(); i++)
         {
-            cout << "Player " << playerName << ", it is your turn\n" << endl;
-            cout << "type : advance|| deploy|| bomb || blockade || airlift||  ";
-            cout << "Input your desired order here: ";
-            cin >> type;
+            AddedPlayerList[i]->setPhase("Issue Orders");
 
-            // If input is advance or deploy it calls issueOrder
-            if (type == "advance" || type == "deploy")
+            string playerName = AddedPlayerList[i]->getPlayerName();
+            vector<Card*>currentPlayerHandCards = AddedPlayerList[i]->getHand()->vectorHand;
+            string type;
+            string answer;
+
+            while (answer != "n")
             {
-                AddedPlayerList[i]->issueOrder(type);
+                cout << "Player " << playerName << ", it is your turn\n" << endl;
+                    // If hand is empty output error message
+                    if(currentPlayerHandCards.empty())
+                    {
+                        cout << "Invalid order! Your hand is empty!!" << endl;
+                    }
             }
-
-                // If input is any of these it will loop through player's hands to see if card exists and play it as well as add it
-                // to orders list
-            else if(type == "bomb" || type == "blockade" || type == "airlift" || type == "negotiate")
-            {
-                cout << currentPlayerHandCards.size() << endl;
-                AddedPlayerList[i]->issueOrder(type);
-
-                // If hand is empty output error message
-                if(currentPlayerHandCards.empty())
-                {
-                    cout << "Invalid order! Your hand is empty!!" << endl;
-                }
-            }
-
-            else
-            {
-                cout << "Invalid order!" << endl;
-            }
-
-            // asks user if he/she desires to issue a new order, if no, his or her turn ends and goes to next player in queue
-            cout << "Would you like to issue another order? (yes or no)" << endl;
-            cin >> answer;
-            if(answer == "no")
-            {
-                break;
-            }
-            cout << "\n" << endl;
+                AddedPlayerList[i]->setPhase("Issue Orders");
+                cout << "| Player: " << AddedPlayerList[i]->getPlayerName() << "'s will now issue an order ";
+                AddedPlayerList[i]->issueOrder();
         }
     }
 
@@ -515,49 +482,49 @@ void GameEngine::ordersExecutionPhase() {
 
     cout << "Execution Order Phase is done." << endl;
 
-}
-string GameEngine::stringToLog() {
-    return "Game Engine: new state is " + stateToString(this->getCurrentState());
-}
+    }
+    string GameEngine::stringToLog() {
+        return "Game Engine: new state is " + stateToString(this->getCurrentState());
+    }
 
 CommandProcessing* GameEngine::getCommandProcessor() {
     return this->commandProcessor;
 }
 
-void GameEngine::mainGameLoop() {
-    //test local variables will change;
-    int numPlayers = AddedPlayerList.size();
+    void GameEngine::mainGameLoop() {
+        //test local variables will change;
+        int numPlayers = AddedPlayerList.size();
 
-
-
-    //indicates its first round
-    bool firstRound = true;
-
-
-    //the loop continues until one person owns all territories on map
-    while (numPlayers != 1) {
-        //If a players territoryList size is 0, he/she is removed from the game because he/she no longer controls at least 1 territory
-        //Iterating through GameEngine's list of players
-        for (int i = 0; i < AddedPlayerList.size(); i++) {
-            if (AddedPlayerList[i]->getTerritories().empty()) {
-                std::cout << " you have lost all your territories and have been eliminated\n" << std::endl;
+        //indicates its first round
+        bool firstRound = true;
+        int oneRound = 0;
+        //the loop continues until one person owns all territories on map
+        while (oneRound != 1) {
+            //If a players territoryList size is 0, he/she is removed from the game because he/she no longer controls at least 1 territory
+            //Iterating through GameEngine's list of players
+            for (int i = 0; i < AddedPlayerList.size(); i++) {
+                if (AddedPlayerList[i]->getTerritories().empty()) {
+                    delete AddedPlayerList[i];
+                    AddedPlayerList[i]= nullptr;
+                    std::cout << " you have lost all your territories and have been eliminated\n" << std::endl;
+                }
             }
+
+            if (firstRound)// reinforcement phase is skipped during the first round
+            {
+                // Reinforcement Phase
+                reinforcementPhase();
+            }
+
+            // Issuing Orders Phase
+            issuingOrdersPhase();
+
+            // Orders Execution Phase
+            ordersExecutionPhase();
+            //not first round anymore after orders execution phase
+            firstRound = false;
+
+            oneRound++;
+
         }
-
-        if (!firstRound)// reinforcement phase is skipped during the first round
-        {
-            // Reinforcement Phase
-            reinforcementPhase();
-        }
-
-        // Issuing Orders Phase
-        issuingOrdersPhase();
-
-        // Orders Execution Phase
-        ordersExecutionPhase();
-        //not first round anymore after orders execution phase
-        firstRound = false;
-
-
     }
-}
