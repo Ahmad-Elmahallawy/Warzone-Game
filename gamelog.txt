@@ -794,3 +794,21 @@ Command's Effect: A player is added.
 /--------------/
 Command's Effect: The game session has started!
 /--------------/
+Command's Effect: Loading up the map!
+/--------------/
+Command's Effect: No effect took place.
+/--------------/
+Command's Effect: No effect took place.
+/--------------/
+Command's Effect: No effect took place.
+/--------------/
+Command's Effect: Loading up the map!
+/--------------/
+Command's Effect: The map is being validated.
+/--------------/
+Command's Effect: A player is added.
+/--------------/
+Command's Effect: A player is added.
+/--------------/
+Command's Effect: The game session has started!
+/--------------/

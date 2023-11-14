@@ -335,13 +335,7 @@ GameEngine::State GameEngine::getCurrentState() {
     return currentState;
 }
 
-// display the valid commands user can enter
-//void GameEngine::printValidCommands() {
-//    std::cout << "Valid commands for state " << stateToString(currentState) << ":" << std::endl;
-//    for (const auto &transition : stateTransitions[currentState]) {
-//        std::cout << commandToString(transition.command) << std::endl;
-//    }
-//}
+
 
 // returns true if the state is equal to end
 bool GameEngine::isGameComplete() {
@@ -430,8 +424,6 @@ void GameEngine::issuingOrdersPhase() {
             vector<Card*>currentPlayerHandCards = AddedPlayerList[i]->getHand()->vectorHand;
             string type;
             string answer;
-
-
 
                 cout << "Player " << playerName << ", it is your turn\n" << endl;
                     // If hand is empty output error message
@@ -590,18 +582,40 @@ void GameEngine::issuingOrdersPhase() {
             {
                 // Reinforcement Phase
                 reinforcementPhase();
-                transition(CMD_ISSUE_ORDER);
+                currentState = transition(CMD_ISSUE_ORDER);
             }
 
             // Issuing Orders Phase
             issuingOrdersPhase();
+            currentState = transition(CMD_WIN);
 
             // Orders Execution Phase
             //ordersExecutionPhase();
+
+
             //not first round anymore after orders execution phase
             firstRound = false;
 
             oneRound++;
+
+        }
+        cout << "Order Execution Phase has finished! Do you want to replay or exit?" << endl;
+        Command *command = commandProcessor->getCommand();
+        while(command->getCommand() != "replay" || command->getCommand() != "quit")
+        {
+            cout << "Invalid command for the current game state. Try again\ncommand" << endl;
+            command = commandProcessor->getCommand();
+        }
+
+        if(command->getCommand() != "replay")
+        {
+            currentState = transition(CMD_PLAY);
+            gameStart();
+        }
+        else
+        {
+            currentState = transition(CMD_END);
+            cout << "Thank you for playing!";
 
         }
     }
