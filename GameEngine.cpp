@@ -412,180 +412,195 @@ void GameEngine:: reinforcementPhase() {
 }
 
 void GameEngine::issuingOrdersPhase() {
-    /*deploy -> put armies in a territory
-    advance -> moves a specified number of armies between adjacent territories, if its a player territory, armies get transferred
-    to that territory, if its an enemy territory, an attack happens between the 2 territories
-    bomb -> destroy half of the armies located on an opponent's territory that is adjacent to one of player's territory
-    blockade -> triple number of armies on one of player's current territory and make it a neutral territory (cannot be attacked?)
-    airlift ->
-    negotiate -> prevent attacks between current and another player until end of turn
 
-     */
+        /*deploy -> put armies in a territory
+        advance -> moves a specified number of armies between adjacent territories, if its a player territory, armies get transferred
+        to that territory, if its an enemy territory, an attack happens between the 2 territories
+        bomb -> destroy half of the armies located on an opponent's territory that is adjacent to one of player's territory
+        blockade -> triple number of armies on one of player's current territory and make it a neutral territory (cannot be attacked?)
+        airlift ->
+        negotiate -> prevent attacks between current and another player until end of turn
+         */
 
+        for (int i = 0; i < AddedPlayerList.size(); i++)
+        {
+            AddedPlayerList[i]->setPhase("Issue Orders");
 
-    for(int i=0;AddedPlayerList.size();i++){
-        cout << "| Player: " << AddedPlayerList[i]->getPlayerName() << "'s will now issue an order ";
-        AddedPlayerList[i]->issueOrder();
+            string playerName = AddedPlayerList[i]->getPlayerName();
+            vector<Card*>currentPlayerHandCards = AddedPlayerList[i]->getHand()->vectorHand;
+            string type;
+            string answer;
+
+            while (answer != "n")
+            {
+                cout << "Player " << playerName << ", it is your turn\n" << endl;
+                    // If hand is empty output error message
+                    if(currentPlayerHandCards.empty())
+                    {
+                        cout << "Invalid order! Your hand is empty!!" << endl;
+                    }
+            }
+                AddedPlayerList[i]->setPhase("Issue Orders");
+                cout << "| Player: " << AddedPlayerList[i]->getPlayerName() << "'s will now issue an order ";
+                AddedPlayerList[i]->issueOrder();
+        }
     }
 
+    //orders executionPhase
 
+    void GameEngine::ordersExecutionPhase() {
+        Deck *deck = new Deck();
+        int beforeTerritoryListSize; //how many territories owned before
+        int afterTerritoryListSize;  //how many territories owned after
 
-}
-
-//orders executionPhase
-
-void GameEngine::ordersExecutionPhase() {
-    Deck *deck = new Deck();
-    int beforeTerritoryListSize; //how many territories owned before
-    int afterTerritoryListSize;  //how many territories owned after
-
-     //1:deploy NEED TO CHECK IF REINFORCEMENT POOL IS EMPTY OTHERWISE CANNOT EXECUTE OTHER ORDERS
-    for (int i = 0; i < AddedPlayerList.size(); i++)
-    {
-        AddedPlayerList[i]->setPhase("Execute Orders DEPLOY (1st priority)");
-
-        beforeTerritoryListSize = AddedPlayerList[i]->getTerritories().size();
-        OrdersList currentPlayerOrdersList = AddedPlayerList[i]->getOrdersList();
-
-        // If player's order list is empty do not display
-        if(AddedPlayerList[i]->getOrdersList().getOrdersListSize() != 0)
+         //1:deploy NEED TO CHECK IF REINFORCEMENT POOL IS EMPTY OTHERWISE CANNOT EXECUTE OTHER ORDERS
+        for (int i = 0; i < AddedPlayerList.size(); i++)
         {
             AddedPlayerList[i]->setPhase("Execute Orders DEPLOY (1st priority)");
 
-        }
+            beforeTerritoryListSize = AddedPlayerList[i]->getTerritories().size();
+            OrdersList currentPlayerOrdersList = AddedPlayerList[i]->getOrdersList();
 
-        // looping through player's order list
-        for (int j = 0; j < currentPlayerOrdersList.getOrdersListSize(); j++)
-        {
-            if (currentPlayerOrdersList.getOrder(j)->getLabel() == "deploy")
+            // If player's order list is empty do not display
+            if(AddedPlayerList[i]->getOrdersList().getOrdersListSize() != 0)
             {
-                //execute deploy actions here
-                currentPlayerOrdersList.getNextOrder()->execute();
+                AddedPlayerList[i]->setPhase("Execute Orders DEPLOY (1st priority)");
+
             }
-        }
-        afterTerritoryListSize = AddedPlayerList[i]->getTerritories().size();
-        if(afterTerritoryListSize - beforeTerritoryListSize){ // player receives card at end of turn if they conquer at least one territory during thier turn
-            deck->draw();
-        }
-    }
 
-    // 2: airlift
-    for (int i = 0; i < AddedPlayerList.size(); i++)
-    {
-        if(AddedPlayerList[i]->getOrdersList().getOrdersListSize() != 0)
-        {
-            AddedPlayerList[i]->setPhase("Execute Orders: AIRLIFT(2)");
-
-        }
-
-        OrdersList currentPlayerOrdersList = AddedPlayerList[i]->getOrdersList();
-
-        for (int j = 0; j < currentPlayerOrdersList.getOrdersListSize(); j++)
-        {
-            if (currentPlayerOrdersList.getNextOrder()->getLabel() == "airlift")
+            // looping through player's order list
+            for (int j = 0; j < currentPlayerOrdersList.getOrdersListSize(); j++)
             {
-                //execute airlift actions here
-                currentPlayerOrdersList.getNextOrder()->execute();
+                if (currentPlayerOrdersList.getOrder(j)->getLabel() == "deploy")
+                {
+                    //execute deploy actions here
+                    currentPlayerOrdersList.getNextOrder()->execute();
+                }
+            }
+            afterTerritoryListSize = AddedPlayerList[i]->getTerritories().size();
+            if(afterTerritoryListSize - beforeTerritoryListSize){ // player receives card at end of turn if they conquer at least one territory during thier turn
+                deck->draw();
             }
         }
-    }
 
-    // 3: blockade and the others
-    for (int i = 0; i < AddedPlayerList.size(); i++)
-    {
-        if(AddedPlayerList[i]->getOrdersList().getOrdersListSize() != 0)
+        // 2: airlift
+        for (int i = 0; i < AddedPlayerList.size(); i++)
         {
-            AddedPlayerList[i]->setPhase("Execute Orders: BLOCKADE (3rd)");
-
-        }
-
-        OrdersList currentPlayerOrdersList = AddedPlayerList[i]->getOrdersList();
-
-        for (int j = 0; j < currentPlayerOrdersList.getOrdersListSize(); j++)
-        {
-            if (currentPlayerOrdersList.getOrder(j)->getLabel() == "blockade")
+            if(AddedPlayerList[i]->getOrdersList().getOrdersListSize() != 0)
             {
-                //execute blockade actions here
-                currentPlayerOrdersList.getOrder(j)->execute();
+                AddedPlayerList[i]->setPhase("Execute Orders: AIRLIFT(2)");
+
             }
-        }
-    }
 
-    // 4: rest of the orders executed in this block
-    for (int i = 0; i < AddedPlayerList.size(); i++)
-    {
-        if(AddedPlayerList[i]->getOrdersList().getOrdersListSize() != 0)
-        {
-            AddedPlayerList[i]->setPhase("Execute Orders: executing the rest according to their order in the list");
+            OrdersList currentPlayerOrdersList = AddedPlayerList[i]->getOrdersList();
 
-        }
-
-        OrdersList currentPlayerOrdersList = AddedPlayerList[i]->getOrdersList();
-
-        for (int j = 0; j < currentPlayerOrdersList.getOrdersListSize(); j++)
-        {
-            if (currentPlayerOrdersList.getOrder(j)->getLabel() == "advance")
+            for (int j = 0; j < currentPlayerOrdersList.getOrdersListSize(); j++)
             {
-                //execute advance actions here
-                currentPlayerOrdersList.getOrder(j)->execute();
-            }
-
-            if (currentPlayerOrdersList.getOrder(j)->getLabel() == "bomb")
-            {
-                //execute bomb actions here
-                currentPlayerOrdersList.getOrder(j)->execute();
-            }
-
-            if (currentPlayerOrdersList.getOrder(j)->getLabel() == "negotiate")
-            {
-                //execute negotiate actions here
-                currentPlayerOrdersList.getOrder(j)->execute();
-            }
-        }
-    }
-
-}
-string GameEngine::stringToLog() {
-    return "Game Engine: new state is " + stateToString(this->getCurrentState());
-}
-
-CommandProcessing* GameEngine::getCommandProcessor() {
-    return this->commandProcessor;
-}
-
-void GameEngine::mainGameLoop() {
-    //test local variables will change;
-    int numPlayers = AddedPlayerList.size();
-
-    //indicates its first round
-    bool firstRound = true;
-
-    //the loop continues until one person owns all territories on map
-    while (numPlayers != 1) {
-        //If a players territoryList size is 0, he/she is removed from the game because he/she no longer controls at least 1 territory
-        //Iterating through GameEngine's list of players
-        for (int i = 0; i < AddedPlayerList.size(); i++) {
-            if (AddedPlayerList[i]->getTerritories().empty()) {
-                delete AddedPlayerList[i];
-                AddedPlayerList[i]= nullptr;
-                std::cout << " you have lost all your territories and have been eliminated\n" << std::endl;
+                if (currentPlayerOrdersList.getNextOrder()->getLabel() == "airlift")
+                {
+                    //execute airlift actions here
+                    currentPlayerOrdersList.getNextOrder()->execute();
+                }
             }
         }
 
-        if (!firstRound)// reinforcement phase is skipped during the first round
+        // 3: blockade and the others
+        for (int i = 0; i < AddedPlayerList.size(); i++)
         {
-            // Reinforcement Phase
-            reinforcementPhase();
+            if(AddedPlayerList[i]->getOrdersList().getOrdersListSize() != 0)
+            {
+                AddedPlayerList[i]->setPhase("Execute Orders: BLOCKADE (3rd)");
+
+            }
+
+            OrdersList currentPlayerOrdersList = AddedPlayerList[i]->getOrdersList();
+
+            for (int j = 0; j < currentPlayerOrdersList.getOrdersListSize(); j++)
+            {
+                if (currentPlayerOrdersList.getOrder(j)->getLabel() == "blockade")
+                {
+                    //execute blockade actions here
+                    currentPlayerOrdersList.getOrder(j)->execute();
+                }
+            }
         }
 
-        // Issuing Orders Phase
-        issuingOrdersPhase();
+        // 4: rest of the orders executed in this block
+        for (int i = 0; i < AddedPlayerList.size(); i++)
+        {
+            if(AddedPlayerList[i]->getOrdersList().getOrdersListSize() != 0)
+            {
+                AddedPlayerList[i]->setPhase("Execute Orders: executing the rest according to their order in the list");
 
-        // Orders Execution Phase
-        ordersExecutionPhase();
-        //not first round anymore after orders execution phase
-        firstRound = false;
+            }
 
+            OrdersList currentPlayerOrdersList = AddedPlayerList[i]->getOrdersList();
+
+            for (int j = 0; j < currentPlayerOrdersList.getOrdersListSize(); j++)
+            {
+                if (currentPlayerOrdersList.getOrder(j)->getLabel() == "advance")
+                {
+                    //execute advance actions here
+                    currentPlayerOrdersList.getOrder(j)->execute();
+                }
+
+                if (currentPlayerOrdersList.getOrder(j)->getLabel() == "bomb")
+                {
+                    //execute bomb actions here
+                    currentPlayerOrdersList.getOrder(j)->execute();
+                }
+
+                if (currentPlayerOrdersList.getOrder(j)->getLabel() == "negotiate")
+                {
+                    //execute negotiate actions here
+                    currentPlayerOrdersList.getOrder(j)->execute();
+                }
+            }
+        }
 
     }
-}
+    string GameEngine::stringToLog() {
+        return "Game Engine: new state is " + stateToString(this->getCurrentState());
+    }
+
+    CommandProcessing* GameEngine::getCommandProcessor() {
+        return this->commandProcessor;
+    }
+
+    void GameEngine::mainGameLoop() {
+        //test local variables will change;
+        int numPlayers = AddedPlayerList.size();
+
+        //indicates its first round
+        bool firstRound = true;
+        int oneRound = 0;
+        //the loop continues until one person owns all territories on map
+        while (oneRound != 1) {
+            //If a players territoryList size is 0, he/she is removed from the game because he/she no longer controls at least 1 territory
+            //Iterating through GameEngine's list of players
+            for (int i = 0; i < AddedPlayerList.size(); i++) {
+                if (AddedPlayerList[i]->getTerritories().empty()) {
+                    delete AddedPlayerList[i];
+                    AddedPlayerList[i]= nullptr;
+                    std::cout << " you have lost all your territories and have been eliminated\n" << std::endl;
+                }
+            }
+
+            if (firstRound)// reinforcement phase is skipped during the first round
+            {
+                // Reinforcement Phase
+                reinforcementPhase();
+            }
+
+            // Issuing Orders Phase
+            issuingOrdersPhase();
+
+            // Orders Execution Phase
+            ordersExecutionPhase();
+            //not first round anymore after orders execution phase
+            firstRound = false;
+
+            oneRound++;
+
+        }
+    }

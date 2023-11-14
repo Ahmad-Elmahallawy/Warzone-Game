@@ -190,6 +190,7 @@ void Player::printAttackList()
          else if (type == "negociate") {
              order = new Negotiate(target, this, amount, destination, source);
          }
+         cout << "here";
          ordersList->addOrder(order);  // adding order to the list
          std::cout << "Order has been added to the list" << endl;
 
