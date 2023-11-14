@@ -64,12 +64,13 @@ public:
     ~GameEngine(); // Destructor to clean up the dynamically allocated CommandProcessing
     bool isValidTransition(Commands command); // check if the transition is valid
     GameEngine::State transition(Commands command); // do state transition
-    static GameEngine::State getCurrentState(); // to get the current game state
+    GameEngine::State getCurrentState(); // to get the current game state
     void printValidCommands(); // to print the next commands a user is allowed to enter for the transition
     bool isGameComplete(); // to check if the game is complete
     bool addPlayer(string playerName);
     bool gameStart();
     void startupPhase();
+
     //main game loop
     void mainGameLoop();
     void reinforcementPhase();
@@ -89,10 +90,11 @@ public:
     State stringToState(string stateStr);
 
 private:
-  static GameEngine::State currentState; // current game state
+    GameEngine::State currentState; // current game state
     CommandProcessing* commandProcessor;  // Member variable as a pointer to store the CommandProcessing
     vector<Player*> AddedPlayerList; // Holds the players added to keep track of how many players are added;
     MapLoader* ml; // MapLoader object to load a map, check if it is valid or not and display it
+    Deck* d;
 
 
 };

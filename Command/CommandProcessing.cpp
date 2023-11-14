@@ -24,12 +24,14 @@ string Command::getCommand() {
 }
 
 string Command::getEffect() {
-    if(this->command== "start")
-        effect = "start begins the game!";
+    if(this->command== "loadmap" && this->secondParameter.empty())
+        effect = "No effect took place!";
     else if(this->command == "loadmap")
         effect = "Loading up the map!";
     else if(this-> command == "validatemap")
         effect = "The map is being validated.";
+    else if(this->command== "addplayer" && this->secondParameter.empty())
+        effect = "No effect took place!";
     else if(this-> command == "addplayer")
         effect = "A player is added.";
     else if(this-> command == "gamestart")
@@ -110,7 +112,7 @@ string CommandProcessing::stringToLog() {
         commandName = " ";
 
     string temp;
-    if(commandName == "Invalid Command")
+    if(commandName == "Invalid Command!")
         temp = "Invalid Command!";
     else if(commandName == " ")
         temp += "Invalid command!";
