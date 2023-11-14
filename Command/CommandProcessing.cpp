@@ -90,10 +90,10 @@ string CommandProcessing::stringToLog() {
 
 
     // Check if the command type is present in the map
-    if(c1->getCommand() == "loadmap")
+    if(c1->getCommand() == "loadmap" && c1->secondParameter.empty())
+        commandName = "Invalid Command!";
+    else if(c1->getCommand() == "loadmap")
         commandName = "loadmap";
-    else if(c1->getCommand() == "start")
-        commandName = "start";
     else if(c1->getCommand() == "validatemap")
         commandName = "validatemap";
     else if(c1->getCommand() == "addplayer")
@@ -110,6 +110,8 @@ string CommandProcessing::stringToLog() {
     string temp;
     if(commandName == " ")
         temp += "Invalid command! ";
+    else if(commandName == "Invalid Command!")
+        temp = commandName;
     else
         temp += "Command: " + commandName + " has been saved!";
     return temp;
