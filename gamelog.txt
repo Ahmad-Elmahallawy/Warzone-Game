@@ -1,0 +1,8 @@
+Command: start has been saved!
+/--------------/
+Command's Effect: start begins the game!
+/--------------/
+Invalid Command!
+/--------------/
+Command's Effect: Loading up the map!
+/--------------/
