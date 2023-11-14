@@ -664,3 +664,133 @@ Command's Effect: The game session has started!
 /--------------/
 Game Engine: new state is assign reinforcement
 /--------------/
+Invalid Command!
+/--------------/
+Command's Effect: Loading up the map!
+/--------------/
+Command: loadmap has been saved!
+/--------------/
+Command's Effect: Loading up the map!
+/--------------/
+Game Engine: new state is map loaded
+/--------------/
+Command: validatemap has been saved!
+/--------------/
+Command's Effect: The map is being validated.
+/--------------/
+Game Engine: new state is map validated
+/--------------/
+Command: addplayer has been saved!
+/--------------/
+Command's Effect: A player is added.
+/--------------/
+Command: loadmap has been saved!
+/--------------/
+Command's Effect: Loading up the map!
+/--------------/
+Game Engine: new state is map loaded
+/--------------/
+Command: validatemap has been saved!
+/--------------/
+Command's Effect: The map is being validated.
+/--------------/
+Game Engine: new state is map validated
+/--------------/
+Command: addplayer has been saved!
+/--------------/
+Command's Effect: A player is added.
+/--------------/
+Game Engine: new state is players added
+/--------------/
+Command: addplayer has been saved!
+/--------------/
+Command's Effect: A player is added.
+/--------------/
+Game Engine: new state is players added
+/--------------/
+Command: gamestart has been saved!
+/--------------/
+Command's Effect: The game session has started!
+/--------------/
+Game Engine: new state is assign reinforcement
+/--------------/
+Command: loadmap has been saved!
+/--------------/
+Command's Effect: Loading up the map!
+/--------------/
+Game Engine: new state is map loaded
+/--------------/
+Command: validatemap has been saved!
+/--------------/
+Command's Effect: The map is being validated.
+/--------------/
+Game Engine: new state is map validated
+/--------------/
+Command: addplayer has been saved!
+/--------------/
+Command's Effect: A player is added.
+/--------------/
+Game Engine: new state is players added
+/--------------/
+Command: addplayer has been saved!
+/--------------/
+Command's Effect: A player is added.
+/--------------/
+Game Engine: new state is players added
+/--------------/
+Command: gamestart has been saved!
+/--------------/
+Command's Effect: The game session has started!
+/--------------/
+Game Engine: new state is assign reinforcement
+/--------------/
+Invalid command! 
+/--------------/
+Command's Effect: No effect took place.
+/--------------/
+Game Engine: new state is assign reinforcement
+/--------------/
+Command: quit has been saved!
+/--------------/
+Command's Effect: The game is over. :(
+/--------------/
+Game Engine: new state is assign reinforcement
+/--------------/
+Order Issue: player added deploy order to their order list. The updated list contains: deploy order.
+/--------------/
+Order Issue: player added String describing the order to their order list. The updated list contains: deploy order, String describing the order.
+/--------------/
+Order Issue: player added Advance order to their order list. The updated list contains: deploy order, String describing the order, Advance order.
+/--------------/
+Invalid deploy execution! Territory doesn't belong to the player.
+/--------------/
+Invalid blockade execution! Target territory belongs to an enemy player
+/--------------/
+Invalid advance execution! Source territory doesn't belong to the player that issued the order or target territory is not adjacent to the source territory, .
+/--------------/
+Invalid bomb execution! Target territory belongs to the player that issuing the order or target territory is not adjacent to one of the territory owned by the player issuing the order
+/--------------/
+Invalid airlift execution! Source or target territory does not belong to the player that issued the order!
+/--------------/
+Command's Effect: Loading up the map!
+/--------------/
+Command's Effect: The map is being validated.
+/--------------/
+Command's Effect: A player is added.
+/--------------/
+Command's Effect: A player is added.
+/--------------/
+Command's Effect: The game session has started!
+/--------------/
+Command's Effect: Loading up the map!
+/--------------/
+Command's Effect: The map is being validated.
+/--------------/
+Command's Effect: The game session has started!
+/--------------/
+Command's Effect: A player is added.
+/--------------/
+Command's Effect: A player is added.
+/--------------/
+Command's Effect: The game session has started!
+/--------------/

@@ -70,6 +70,7 @@ public:
     bool addPlayer(string playerName);
     bool gameStart();
     void startupPhase();
+
     //main game loop
     void mainGameLoop();
     void reinforcementPhase();
@@ -93,6 +94,7 @@ private:
     CommandProcessing* commandProcessor;  // Member variable as a pointer to store the CommandProcessing
     vector<Player*> AddedPlayerList; // Holds the players added to keep track of how many players are added;
     MapLoader* ml; // MapLoader object to load a map, check if it is valid or not and display it
+    Deck* d;
 
 
 };

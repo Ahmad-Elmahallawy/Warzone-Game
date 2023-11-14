@@ -431,18 +431,18 @@ void GameEngine::issuingOrdersPhase() {
             string type;
             string answer;
 
-            while (answer != "n")
-            {
+
+
                 cout << "Player " << playerName << ", it is your turn\n" << endl;
                     // If hand is empty output error message
                     if(currentPlayerHandCards.empty())
                     {
                         cout << "Invalid order! Your hand is empty!!" << endl;
                     }
-            }
+
                 AddedPlayerList[i]->setPhase("Issue Orders");
                 cout << "| Player: " << AddedPlayerList[i]->getPlayerName() << "'s will now issue an order ";
-                AddedPlayerList[i]->issueOrder();
+                AddedPlayerList[i]->issueOrder(*ml);
         }
     }
 
@@ -590,13 +590,14 @@ void GameEngine::issuingOrdersPhase() {
             {
                 // Reinforcement Phase
                 reinforcementPhase();
+                transition(CMD_ISSUE_ORDER);
             }
 
             // Issuing Orders Phase
             issuingOrdersPhase();
 
             // Orders Execution Phase
-            ordersExecutionPhase();
+            //ordersExecutionPhase();
             //not first round anymore after orders execution phase
             firstRound = false;
 
