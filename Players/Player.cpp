@@ -99,11 +99,7 @@ void Player::setCapturedTerritoryThisTurn(bool update)
 {
     this->capturedTerritoryThisTurn = update;
 }
-// List of territories that are going to be defended
-vector<Territory *> Player::toDefend()
-{
-    return defendList;
-}
+
 
 //Print function for Player's list of territories to be defended
 void Player::printDefendList()
@@ -118,11 +114,6 @@ void Player::printDefendList()
     }
 }
 
-// Player's list of territories that are going to be attacked
-vector<Territory *> Player::toAttack()
-{
-    return attackList;
-}
 
 // Print function for Player's list of territories to be attacked
 void Player::printAttackList()
@@ -136,8 +127,73 @@ void Player::printAttackList()
     }
 }
 
+const vector<Territory *> &Player::getAttackList() const {
+    return attackList;
+}
+
+void Player::setAttackList(Territory* attack) {
+    attackList.push_back(attack);
+}
+
+const vector<Territory *> &Player::getDefendList() const {
+    return defendList;
+}
+
+void Player::setDefendList(Territory* defend) {
+    defendList.push_back(defend);
+}
+
 void Player::issueOrder(MapLoader& mapLoader) {
     std::cout << "Player " << getPlayerName() << ", it's your turn to issue orders." << std::endl;
+
+
+
+    // Issue Deploy orders on own territories in the toDefend list
+    while (reinforcementPool > 0) {
+
+        if (defendList.empty()) {
+            std::cout << "No own territories to defend. Ending deployment phase." << std::endl;
+            break;
+        }
+
+        // Display territories available for deployment
+        std::cout << "List of own territories to defend:" << std::endl;
+        for (size_t i = 0; i < defendList.size(); ++i) {
+            std::cout << i + 1 << ": " << defendList[i]->getTerritoryName() << std::endl;
+        }
+
+        // Ask the player to choose a territory to deploy armies
+        std::cout << "Choose a territory to deploy armies (0 to end deployment): ";
+        int deployChoice;
+        std::cin >> deployChoice;
+
+        if (deployChoice == 0) {
+            std::cout << "Ending deployment phase." << std::endl;
+            break;
+        }
+
+        if (deployChoice >= 1 && static_cast<size_t>(deployChoice) <= defendList.size()) {
+            Territory* deployTarget = defendList[deployChoice - 1];
+            int deployArmies;
+            std::cout << "Enter the number of armies to deploy: ";
+            std::cin >> deployArmies;
+
+            if(reinforcementPool < deployArmies)
+            {
+                std::cout << "Invalid choice. Please try again." << std::endl;
+                continue;
+            }
+            // Create the Deploy order for the chosen territory
+            Order* deployOrder = new Deploy(this, this, deployArmies, deployTarget, deployTarget);
+            ordersList->addOrder(deployOrder);
+
+            // Update the reinforcement pool
+            reinforcementPool -= deployArmies;
+            std::cout << "Deploy order issued to defend " << deployTarget->getTerritoryName() << "." << std::endl;
+        } else {
+            std::cout << "Invalid choice. Please try again." << std::endl;
+        }
+    }
 
     // Loop to allow the player to issue multiple orders
     while (true) {
@@ -194,8 +250,14 @@ void Player::issueOrder(MapLoader& mapLoader) {
                 continue; // Restart the loop if the choice is invalid
         }
 
+        if (order) {
+            ordersList->addOrder(order);
+            std::cout << "Order issued." << std::endl;
+        }
+
 
     }
+
     std::cout << "End of turn for Player " << getPlayerName() << "." << std::endl;
 }
 
@@ -235,13 +297,37 @@ Order* Player::createAdvanceOrder(MapLoader& mapLoader) {
     Territory* source = &s;
     Territory t = mapLoader.findTerritory(targetTerritory);
     Territory* target = &t;
-    // Check if the source and target territories exist
-    if (source && target) {
+    bool adjacent = false;
+    for(int i = 0;i<source->adjacentTerritories.size();i++){
+        if((target->getTerritoryName() == source->adjacentTerritories[i].getTerritoryName())){
+            adjacent = true;
+        }
+    }
+    // Check if the source and target territories exist and are adjacent
+    if (source && target && adjacent) {
         std::cout << "Enter the number of armies to advance: ";
         std::cin >> armies;
-        return new Advance(this, this, armies, target, source);
+
+        // Check if the target territory is in the toDefend list
+        defendList = toDefend();
+        auto itDefend = std::find(defendList.begin(), defendList.end(), target);
+
+        // Check if the target territory is in the toAttack list
+        attackList = toAttack();
+        auto itAttack = std::find(attackList.begin(), attackList.end(), target);
+
+        if (itDefend != defendList.end()) {
+            // If the target is in the toDefend list, create an Advance order to defend
+            return new Advance(this, this, armies, target, source);
+        } else if (itAttack != attackList.end()) {
+            // If the target is in the toAttack list, create an Advance order to attack
+            return new Advance(this, this, armies, target, source);
+        } else {
+            std::cout << "Error: Target territory not found in toDefend or toAttack lists." << std::endl;
+            return nullptr;  // Return nullptr to indicate failure
+        }
     } else {
-        std::cout << "Error: Source or target territory not found." << std::endl;
+        std::cout << "Error: Source or target territory not found or not adjacent." << std::endl;
         return nullptr;  // Return nullptr to indicate failure
     }
 }
@@ -409,51 +495,47 @@ void Player::removeOwnedTerritory(string territoryName) {
     }
 }
 
-// Add a territory to the player's list of territories
-void Player::addTerritory(Territory* territory) {
-    if (territory) {
-        // Check if the territory is not already owned by another player
-        if (territory->getOwner() && territory->getOwner() != this) {
-            std::cout << "Error: Territory '" << territory->getTerritoryName()
-                      << "' already belongs to another player." << std::endl;
-        } else {
-            // Add the territory to the player's list
-            territories.push_back(territory);
-            // Set this player as the owner of the territory
-            territory->setOwner(this);
-            std::cout << "Territory '" << territory->getTerritoryName() << "' added to player '"
-                      << playerName << "'." << std::endl;
+std::vector<Territory*> Player::toDefend() {
+    // Basic strategy: Defend territories with the fewest armies
+
+    for (int i = 0; i < territories.size(); ++i) {
+        if (territories[i]->getNumberOfArmies() > 0) {
+            defendList.push_back(territories[i]);
         }
-    } else {
-        std::cout << "Error: Cannot add a null territory." << std::endl;
     }
-}
-// currently just a static territories to defend
-vector<Territory*> Player::toDefend() const{
 
-    Territory *t1, *t2, *t3;
-    t1 = new Territory();
-    t2 = new Territory();
-    t3 = new Territory();
-    t1->setTerritoryName("Belgium");
-    t2->setTerritoryName("Canada");
-    t3->setTerritoryName("Italy");
-    cout << t1->getTerritoryName() + ", " + t2->getTerritoryName() + ", " + t3->getTerritoryName() << endl;
-    return {t1, t2, t3};
+    // Sort the defendList by the number of armies in ascending order
+    std::sort(defendList.begin(), defendList.end(),
+              [](const Territory* a, const Territory* b) {
+                  return a->getNumberOfArmies() < b->getNumberOfArmies();
+              });
+
+    return defendList;
 }
 
-// currently just a static territories to attack
-vector<Territory*> Player::toAttack() const{
-    Territory *t1, *t2, *t3;
-    t1 = new Territory();
-    t2 = new Territory();
-    t3 = new Territory();
-    t1->setTerritoryName("England");
-    t2->setTerritoryName("France");
-    t3->setTerritoryName("Mexico");
-    cout << t1->getTerritoryName() + ", " + t2->getTerritoryName() + ", " + t3->getTerritoryName();
-    return {t1,t2,t3};
+std::vector<Territory*> Player::toAttack() {
+    // Basic strategy: Attack territories with the most armies owned by opponents
+
+    for (int i = 0; i < territories.size(); ++i) {
+        if (territories[i]->getNumberOfArmies() > 0) {
+            for (int j = 0; j < territories[i]->adjacentTerritories.size(); ++j) {
+                if (territories[i]->adjacentTerritories[j].getOwner() != this) {
+                    attackList.push_back(&territories[i]->adjacentTerritories[j]);
+                }
+            }
+        }
+    }
+
+    // Sort the attackList by the number of armies in descending order
+    std::sort(attackList.begin(), attackList.end(),
+              [](const Territory* a, const Territory* b) {
+                  return a->getNumberOfArmies() > b->getNumberOfArmies();
+              });
+
+    return attackList;
 }
+
+
 
 ostream &operator<<(ostream &os, const Player &player) {
     os << "Player Name: " << player.playerName << ", Player ID: " << player.playerID << '\n';
@@ -521,7 +603,25 @@ bool Player::ownAllTerritoryInContinent() {//go through all the territories, kee
 //}
     return false;
 }
-
+// Add a territory to the player's list of territories
+void Player::addTerritory(Territory* territory) {
+    if (territory) {
+        // Check if the territory is not already owned by another player
+        if (territory->getOwner() && territory->getOwner() != this) {
+            std::cout << "Error: Territory '" << territory->getTerritoryName()
+                      << "' already belongs to another player." << std::endl;
+        } else {
+            // Add the territory to the player's list
+            territories.push_back(territory);
+            // Set this player as the owner of the territory
+            territory->setOwner(this);
+            std::cout << "Territory '" << territory->getTerritoryName() << "' added to player '"
+                      << playerName << "'." << std::endl;
+        }
+    } else {
+        std::cout << "Error: Cannot add a null territory." << std::endl;
+    }
+}
 //Adds a player to the list of negociated PLayers
 void Player::addPlayerToNegociatedList(Player* p) {
     int count = 0;

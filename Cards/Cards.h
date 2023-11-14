@@ -94,7 +94,7 @@ public:
 
     friend ostream& operator<<(std::ostream& os, const Hand& obj);
 
-    void getHandSize();
+    int getHandSize();
 
 
     vector<Card*> vectorHand;

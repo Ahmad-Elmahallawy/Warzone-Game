@@ -40,8 +40,9 @@ public:
     Player(Player &player);
 
     Player(string playerName);
-
-    Player* negociatedPlayers[20];
+    void setAttackList(Territory* attack);
+    void setDefendList(Territory* defend);
+        Player* negociatedPlayers[20];
 
     // Static method to get the neutral player instance
 
@@ -136,6 +137,14 @@ public:
     void clearNegociatedList();
 
     void addTerritory(Territory* territory);
+
+    const vector<Territory *> &getAttackList() const;
+
+    void setAttackList(const vector<Territory *> &attackList);
+
+    const vector<Territory *> &getDefendList() const;
+
+    void setDefendList(const vector<Territory *> &defendList);
 };
 
 void testPlayers();

@@ -3,5 +3,5 @@
 
 // function declaration
 void testStartupPhase();
-
+void testMainGameLoop();
 #endif //PROJECT_1_GAMEENGINEDRIVER_H

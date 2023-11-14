@@ -184,8 +184,8 @@ void Hand::displayHand() {
     }
 }
 
-void Hand::getHandSize() {
-    cout << "The hand size is " << vectorHand.size() <<"." << endl;
+int Hand::getHandSize() {
+    return vectorHand.size();
 }
 
 ostream& operator<<(std::ostream& os, const Hand& obj) {

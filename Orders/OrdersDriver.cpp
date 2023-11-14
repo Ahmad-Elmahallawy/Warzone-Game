@@ -9,7 +9,6 @@
 #include "../Players/Player.h"
 #include "../Map/Map.h"
 
-
 void testOrderExecution()
 {
     Map gameMap(5); // Assuming a map with 5 territories
@@ -83,6 +82,7 @@ void testOrderExecution()
     {
         cout << p1->getTerritories()[i]->getTerritoryName() << " " << p1->getTerritories()[i]->getNumberOfArmies()<< endl;
     }
+    cout << p2->getHand()->getHandSize();
     cout << "Unsuccessful Advance Execution" <<  endl;
     Advance a1(p1,p2,30,territory3,territory2);
     a1.execute();

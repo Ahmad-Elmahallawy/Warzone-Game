@@ -187,6 +187,8 @@ bool GameEngine::gameStart() {
         Player* p = AddedPlayerList[playersIndex % AddedPlayerList.size()];
         p->setTerritories(&t);
         t.setOwner(p);
+        if(rand() % 3 > 1)
+        {p->setDefendList(&t);}
 
         playersIndex++;
     }
