@@ -28,7 +28,9 @@ Order::Order(const Order& order)
         : action(order.action), executed(order.executed), player(order.player), targetTerritory(order.targetTerritory), armiesToDeploy(order.armiesToDeploy) {}
 
 // Destructor
-Order::~Order() {}
+Order::~Order() {
+    delete sourceTerritory;
+}
 
 // Validate method
 bool Order::validate() { return true; }
@@ -398,7 +400,8 @@ Bomb::Bomb(const Bomb& existingBomb)
 }
 
 // destructor
-Bomb::~Bomb() {}
+Bomb::~Bomb() {
+}
 
 // validate method override
 bool Bomb::validate() {

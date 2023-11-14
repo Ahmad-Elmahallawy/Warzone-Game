@@ -82,7 +82,8 @@ void testOrderExecution()
     {
         cout << p1->getTerritories()[i]->getTerritoryName() << " " << p1->getTerritories()[i]->getNumberOfArmies()<< endl;
     }
-    cout << p2->getHand()->getHandSize();
+    cout << "Player 2 now has a hand size of " << p2->getHand()->getHandSize() << endl;
+    cout << "Player 1 has a hand size of " << p1->getHand()->getHandSize() << endl;
     cout << "Unsuccessful Advance Execution" <<  endl;
     Advance a1(p1,p2,30,territory3,territory2);
     a1.execute();

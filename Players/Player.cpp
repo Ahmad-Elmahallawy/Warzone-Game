@@ -47,6 +47,7 @@ Player::~Player() {
     delete this->ordersList;
     cout << "orderslist deleted" << endl;
 
+
 }
 
 // returns player's territories
@@ -348,11 +349,6 @@ Order* Player::createAirliftOrder(MapLoader& mapLoader) {
         Player* p = new Player(pName);
         Territory f = mapLoader.findTerritory(targetTerritory);
         Territory* find = &f;
-        if(find->getOwner()->getPlayerName() != p->playerName)
-        {
-            cout << "Name is worng";
-            return nullptr;
-        }
         // Find the source and target territories based on their names
         Territory s = mapLoader.findTerritory(sourceTerritory);
         Territory* source = &s;
