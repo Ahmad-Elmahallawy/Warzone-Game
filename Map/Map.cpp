@@ -73,6 +73,7 @@ void Territory::addArmies(int numArmies) {
 }
 void Territory::setOwner(Player* newOwner) {
     owningPlayer = newOwner;
+    cout << owningPlayer->getPlayerName() << " has territory " << this->territoryName << endl;
 }
 
 // Getter for the owner (player) of the territory

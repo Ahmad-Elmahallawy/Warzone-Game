@@ -186,10 +186,13 @@ bool GameEngine::gameStart() {
     for(int i = 0; i < numTerritories ; i++)
     {
         Territory t = ml->gameMap->listOfTerritories[i];
-        AddedPlayerList[playersIndex % AddedPlayerList.size()]->setTerritories(&t);
+        Player* p = AddedPlayerList[playersIndex % AddedPlayerList.size()];
+        p->setTerritories(&t);
+        t.setOwner(p);
 
         playersIndex++;
     }
+
 
     // Randomizes the order of players
     for (int i = AddedPlayerList.size() - 1; i > 0; --i) {
