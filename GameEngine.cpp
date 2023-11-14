@@ -587,7 +587,7 @@ void GameEngine::issuingOrdersPhase() {
 
             // Issuing Orders Phase
             issuingOrdersPhase();
-            currentState = transition(CMD_WIN);
+            currentState = transition(CMD_EXEC_ORDER);
 
             // Orders Execution Phase
             //ordersExecutionPhase();
