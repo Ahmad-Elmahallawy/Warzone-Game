@@ -1,4 +1,3 @@
-// GameEngine.cpp
 #include "GameEngine.h"
 #include "Command/CommandProcessing.h"
 #include <iostream>
@@ -10,6 +9,9 @@ using namespace std;
 
 #include "GameEngine.h"
 // converts state enum value to string
+
+GameEngine::State GameEngine::currentState = GameEngine::State::START;
+
 std::string stateToString(GameEngine::State state) {
     switch (state) {
         case GameEngine::State::START: return "start";
@@ -112,7 +114,7 @@ std::map<GameEngine::State, std::vector<GameEngine::Transition>> GameEngine::sta
 };
 
 
-GameEngine::GameEngine():currentState(START), commandProcessor(new CommandProcessing()) {
+GameEngine::GameEngine():commandProcessor(new CommandProcessing()) {
 
 }
 

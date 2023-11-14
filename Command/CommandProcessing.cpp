@@ -24,14 +24,12 @@ string Command::getCommand() {
 }
 
 string Command::getEffect() {
-    if(this->command == "loadmap" && this->secondParameter.empty())
-        effect = "No effect took place.";
+    if(this->command== "start")
+        effect = "start begins the game!";
     else if(this->command == "loadmap")
         effect = "Loading up the map!";
     else if(this-> command == "validatemap")
         effect = "The map is being validated.";
-    else if(this->command == "loadmap" && this->secondParameter.empty())
-        effect = "No effect took place.";
     else if(this-> command == "addplayer")
         effect = "A player is added.";
     else if(this-> command == "gamestart")
