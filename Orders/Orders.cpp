@@ -790,8 +790,9 @@ OrdersList::~OrdersList()
     // change all the pointers to nullptr
     for (Order* order : ordersList)
     {
-        order = nullptr;
+        delete order;
     }
+    ordersList.clear();
 }
 
 // add an order to the list
@@ -875,20 +876,38 @@ deque<Order *> OrdersList::getOrderList() {
 }
 
 //return the order's names
-string OrdersList::getList() {
+//string OrdersList::getList() {
+//
+//    string t1;
+//    if(ordersList.empty())
+//       return " Orderlist is empty.";
+//    else {
+//        t1 += " Orderlist contains: { ";
+//        for (const auto &order: this->ordersList) {
+//            t1 +=  order->getAction() + ", ";
+//        }
+//        t1 += "}.";
+//        return t1;
+//    }
+//    return " ";
+//}
 
+string OrdersList::getList() {
     string t1;
-    if(ordersList.empty())
-       return " Orderlist is empty.";
+    if (ordersList.empty())
+        return " Orderlist is empty.";
     else {
         t1 += " Orderlist contains: { ";
-        for (const auto &order: this->ordersList) {
-            t1 +=  order->getAction() + ", ";
+        for (const auto &order : this->ordersList) {
+            if (order) {
+                t1 += order->getAction() + ", ";
+            } else {
+                return " nullpoointer or invalid object";
+            }
         }
         t1 += "}.";
         return t1;
     }
-    return " ";
 }
 
 void OrdersList::restart() {

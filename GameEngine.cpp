@@ -460,18 +460,28 @@ void GameEngine::ordersExecutionPhase() {
             continue;
         cout << "Player " << player->getPlayerName() << " has an orderlist of size "
              << player->getOrdersList().getSize() << "." << endl;
-        cout << "Player " << player->getPlayerName() << player->getOrdersList().getList() << endl;
+        cout << "Player " << player->getPlayerName() << player->getOrdersList().getList() << endl;//probelm is here
+        cout << "bug before deque and before forloop"<< endl;
         deque<Order*> currentOrderList = player->getOrdersList().getOrderList();
+        cout << "bug after deque and before forloop"<< endl;
         for(Order* order : currentOrderList) {
-            if(order->getAction() == "Deploy order")
+            if(order->getAction() == "Deploy order") {
                 order->execute();
+                cout << "bug after deque in forloop"<< endl;
+            }
         }
     }
     for(Player* player : AddedPlayerList) {
+        cout << "breaks"<< endl;
         deque<Order*> currentOrderList = player->getOrdersList().getOrderList();
+        cout << "still works"<< endl;
         for(Order* order : currentOrderList) {
-            if(order->getAction() != "Deploy order")
-                order->execute();
+            cout << "works for loop" << endl;
+            if (order->getAction() != "Deploy order") {
+                cout << "in if condition" << endl;
+            order->execute();
+            cout << "order executed" << endl;
+        }
         }
         player->getOrdersList().restart();
 
@@ -499,8 +509,8 @@ void GameEngine::mainGameLoop() {
         //Iterating through GameEngine's list of players
         for (int i = 0; i < AddedPlayerList.size(); i++) {
             if (AddedPlayerList[i]->getTerritories().empty()) {
-                delete AddedPlayerList[i];
-                AddedPlayerList[i]= nullptr;
+               // delete AddedPlayerList[i];
+                //AddedPlayerList[i]= nullptr;
                 std::cout << " you have lost all your territories and have been eliminated\n" << std::endl;
             }
         }
