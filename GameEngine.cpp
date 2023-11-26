@@ -465,10 +465,8 @@ void GameEngine::ordersExecutionPhase() {
         deque<Order*> currentOrderList = player->getOrdersList().getOrderList();
         cout << "bug after deque and before forloop"<< endl;
         for(Order* order : currentOrderList) {
-            if(order->getAction() == "Deploy order") {
                 order->execute();
                 cout << "bug after deque in forloop"<< endl;
-            }
         }
     }
     for(Player* player : AddedPlayerList) {
@@ -483,7 +481,7 @@ void GameEngine::ordersExecutionPhase() {
             cout << "order executed" << endl;
         }
         }
-        player->getOrdersList().restart();
+       // player->getOrdersList().restart();
 
     }
     cout << "Execution Order Phase is done." << endl;

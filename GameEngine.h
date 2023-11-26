@@ -38,6 +38,26 @@ enum Commands {
     CMD_EXEC_ORDER,
 };
 
+//A3 part 5, tournament mode header
+class TournamentMode : public ILoggable, public Subject {
+public:
+    TournamentMode();
+    ~TournamentMode();
+    TournamentMode(TournamentMode* other);
+    TournamentMode& operator=(const TournamentMode& mode);
+    // stream insertion operator
+    friend std::ostream& operator<<(std::ostream& out, const TournamentMode& mode);
+
+    int tourGameNum;
+    int tourMaxTurn;
+    vector<string> tourMaps;
+    vector<string> tourStrategies;
+    vector<string> winnerStrategies;
+
+    string stringToLog();
+    void generateLogFile();
+};
+
 class GameEngine: public ILoggable, public Subject {
 
 
@@ -58,7 +78,7 @@ public:
 
 
     GameEngine();
-
+    TournamentMode* mode;
 
     // constructor
     ~GameEngine(); // Destructor to clean up the dynamically allocated CommandProcessing
@@ -98,6 +118,8 @@ private:
 
 
 };
+
+
 
 
 

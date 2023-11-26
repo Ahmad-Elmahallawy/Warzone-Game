@@ -910,12 +910,12 @@ string OrdersList::getList() {
     }
 }
 
-void OrdersList::restart() {
-    for (auto & i : ordersList) {
-        delete i;
-    }
-    ordersList.clear();
-}
+//void OrdersList::restart() {
+//    for (auto & i : ordersList) {
+//        delete i;
+//    }
+//    ordersList.clear();
+//}
 
 string OrdersList::stringToLog() {
     Order* o1 = ordersList.back();
