@@ -114,6 +114,10 @@ private:
     CommandProcessing* commandProcessor;  // Member variable as a pointer to store the CommandProcessing
     vector<Player*> AddedPlayerList; // Holds the players added to keep track of how many players are added;
     MapLoader* ml; // MapLoader object to load a map, check if it is valid or not and display it
+    MapLoader* ml2; // MapLoader object to load a map, check if it is valid or not and display it
+    MapLoader* ml3; // MapLoader object to load a map, check if it is valid or not and display it
+    MapLoader* ml4; // MapLoader object to load a map, check if it is valid or not and display it
+    MapLoader* ml5; // MapLoader object to load a map, check if it is valid or not and display it
     Deck* d;
 
 

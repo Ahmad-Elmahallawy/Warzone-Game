@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Project_1"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Project_1">
+				<Option output="C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug/Project_1.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug/Makefile&quot;  VERBOSE=1 Project_1"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Project_1/fast">
+				<Option output="C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug/Project_1.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug/Makefile&quot;  VERBOSE=1 Project_1/fast"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/oimbs/CLionProjects/COMP345-Warzone/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/Cards/Cards.cpp">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/Cards/Cards.h">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/Cards/CardsDriver.cpp">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/Command/CommandProcessing.cpp">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/Command/CommandProcessing.h">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/Command/CommandProcessingDriver.cpp">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/GameEngine.cpp">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/GameEngine.h">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/GameEngineDriver.cpp">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/GameEngineDriver.h">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/GameLog/FileWriter.cpp">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/GameLog/FileWriter.h">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/GameLog/LoggingObserver.cpp">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/GameLog/LoggingObserver.h">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/GameLog/LoggingObserverDriver.cpp">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/MainDriver.cpp">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/Map/Map.cpp">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/Map/Map.h">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/Map/MapDriver.cpp">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/Orders/Orders.cpp">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/Orders/Orders.h">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/Orders/OrdersDriver.cpp">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/Players/Player.cpp">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/Players/Player.h">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/Players/PlayerDriver.cpp">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/mainGameLoopDriver.cpp">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/mainGameLoopDriver.h">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/oimbs/CLionProjects/COMP345-Warzone/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
