@@ -377,13 +377,6 @@ GameEngine::State GameEngine::stringToState(string stateStr) {
 //reinforcement phase
 
 void GameEngine:: reinforcementPhase() {
-    /*Players are given a number of army units that depends on the number of
-    territories they own, (# of territories owned divided by 3, rounded down). If the player owns all the
-    territories of an entire continent, the player is given a number of army units corresponding to the
-    continent’s control bonus value. In any case, the minimal number of reinforcement army units per turn for
-    any player is 3. These army units are placed in the player’s reinforcement pool. This must be
-    implemented in a function/method named reinforcementPhase() in the game engine.
-     */
 
     for (int i = 0; i < AddedPlayerList.size(); i++) {
         AddedPlayerList[i]->setPhase("Reinforcement");
@@ -396,7 +389,6 @@ void GameEngine:: reinforcementPhase() {
             AddedPlayerList[i]->setReinforcementPool(AddedPlayerList[i]->getReinforcementPool() + 3);
             cout << AddedPlayerList[i]->getReinforcementPool() << endl;
         }
-
             //check if players owned all territories in continent
         else if (AddedPlayerList[i]->ownAllTerritoryInContinent()) {
             cout << "| Player: " << AddedPlayerList[i]->getPlayerName() << "'s updated Reinforcement Pool: ";
@@ -414,32 +406,13 @@ void GameEngine:: reinforcementPhase() {
 
 void GameEngine::issuingOrdersPhase() {
 
-    /*deploy -> put armies in a territory
-    advance -> moves a specified number of armies between adjacent territories, if its a player territory, armies get transferred
-    to that territory, if its an enemy territory, an attack happens between the 2 territories
-    bomb -> destroy half of the armies located on an opponent's territory that is adjacent to one of player's territory
-    blockade -> triple number of armies on one of player's current territory and make it a neutral territory (cannot be attacked?)
-    airlift ->
-    negotiate -> prevent attacks between current and another player until end of turn
-     */
-
     for (int i = 0; i < AddedPlayerList.size(); i++)
     {
-        AddedPlayerList[i]->setPhase("Issue Orders");
-
         string playerName = AddedPlayerList[i]->getPlayerName();
         vector<Card*>currentPlayerHandCards = AddedPlayerList[i]->getHand()->vectorHand;
         string type;
         string answer;
-
-
-
         cout << "Player " << playerName << ", it is your turn\n" << endl;
-        // If hand is empty output error message
-        if(currentPlayerHandCards.empty())
-        {
-            cout << "Invalid order! Your hand is empty!!" << endl;
-        }
 
         AddedPlayerList[i]->setPhase("Issue Orders");
         cout << "| Player: " << AddedPlayerList[i]->getPlayerName() << "'s will now issue an order ";
@@ -460,30 +433,24 @@ void GameEngine::ordersExecutionPhase() {
             continue;
         cout << "Player " << player->getPlayerName() << " has an orderlist of size "
              << player->getOrdersList().getSize() << "." << endl;
-        cout << "Player " << player->getPlayerName() << player->getOrdersList().getList() << endl;//probelm is here
-        cout << "bug before deque and before forloop"<< endl;
+        cout << "Player " << player->getPlayerName() << player->getOrdersList().getList() << endl;
         deque<Order*> currentOrderList = player->getOrdersList().getOrderList();
-        cout << "bug after deque and before forloop"<< endl;
         for(Order* order : currentOrderList) {
                 order->execute();
                 cout << "bug after deque in forloop"<< endl;
         }
     }
-    for(Player* player : AddedPlayerList) {
-        cout << "breaks"<< endl;
-        deque<Order*> currentOrderList = player->getOrdersList().getOrderList();
-        cout << "still works"<< endl;
-        for(Order* order : currentOrderList) {
-            cout << "works for loop" << endl;
-            if (order->getAction() != "Deploy order") {
-                cout << "in if condition" << endl;
-            order->execute();
-            cout << "order executed" << endl;
-        }
-        }
-       // player->getOrdersList().restart();
-
-    }
+//    for(Player* player : AddedPlayerList) {
+//        deque<Order*> currentOrderList = player->getOrdersList().getOrderList();
+//        for(Order* order : currentOrderList) {
+//            if (order->getAction() != "Deploy order") {
+//            order->execute();
+//            cout << "order executed" << endl;
+//        }
+//        }
+//
+//
+//    }
     cout << "Execution Order Phase is done." << endl;
 }
 string GameEngine::stringToLog() {
@@ -495,24 +462,19 @@ CommandProcessing* GameEngine::getCommandProcessor() {
 }
 
 void GameEngine::mainGameLoop() {
-    //test local variables will change;
-    int numPlayers = AddedPlayerList.size();
 
-    //indicates its first round
     bool firstRound = true;
     int oneRound = 0;
-    //the loop continues until one person owns all territories on map
+
     while (oneRound != 1) {
-        //If a players territoryList size is 0, he/she is removed from the game because he/she no longer controls at least 1 territory
-        //Iterating through GameEngine's list of players
         for (int i = 0; i < AddedPlayerList.size(); i++) {
             if (AddedPlayerList[i]->getTerritories().empty()) {
-               // delete AddedPlayerList[i];
-                //AddedPlayerList[i]= nullptr;
+                AddedPlayerList[i]= nullptr;
+                delete AddedPlayerList[i];
+
                 std::cout << " you have lost all your territories and have been eliminated\n" << std::endl;
             }
         }
-
         if (firstRound)// reinforcement phase is skipped during the first round
         {
             // Reinforcement Phase
@@ -526,7 +488,7 @@ void GameEngine::mainGameLoop() {
         // Orders Execution Phase
        ordersExecutionPhase();
         currentState = transition(CMD_WIN);
-        //not first round anymore after orders execution phase
+
         firstRound = false;
 
         oneRound++;

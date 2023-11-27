@@ -893,22 +893,27 @@ deque<Order *> OrdersList::getOrderList() {
 //}
 
 string OrdersList::getList() {
-    string t1;
-    if (ordersList.empty())
-        return " Orderlist is empty.";
-    else {
-        t1 += " Orderlist contains: { ";
-        for (const auto &order : this->ordersList) {
+    string result;
+    if (ordersList.empty()) {
+        return "Orderlist is empty.";
+    } else {
+        result += "Orderlist contains: { ";
+        for (auto it = ordersList.begin(); it != ordersList.end(); ++it) {
+            const auto &order = *it;
             if (order) {
-                t1 += order->getAction() + ", ";
+                result += order->getAction();
+                if (next(it) != ordersList.end()) {
+                    result += ", ";
+                }
             } else {
-                return " nullpoointer or invalid object";
+                return "Null pointer or invalid object.";
             }
         }
-        t1 += "}.";
-        return t1;
+        result += "}.";
+        return result;
     }
 }
+
 
 //void OrdersList::restart() {
 //    for (auto & i : ordersList) {
